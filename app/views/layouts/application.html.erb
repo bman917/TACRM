@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TACRM</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+<%=javascript_tag do %>
+	$(document).ready(function(){
+	  application_init();
+	});
+<% end %>
+
+</head>
+<body>
+
+<div id="header">
+	<h1> Travel Agency CRM</h1>
+</div>
+
+<div id="nav_bar">
+	<%= link_to 'Traveller Profiles', profiles_path %>
+</div>
+
+<%= yield %>
+
+</body>
+</html>
