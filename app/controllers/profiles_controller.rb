@@ -4,13 +4,14 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    new
     @profiles = Profile.all
+    @profile = Profile.new
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @new_phone = Phone.new(contact_detail_type: @profile.class, contact_detail_id: @profile.id)
   end
 
   # GET /profiles/new

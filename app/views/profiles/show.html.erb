@@ -1,19 +1,13 @@
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+  init_profiles_show();
+});
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
-
-<p>
-  <strong>Middle name:</strong>
-  <%= @profile.middle_name %>
-</p>
+<strong>Full Name:</strong> <span id="full_name"><%= @profile.first_name %> <%= @profile.middle_name %> <%= @profile.last_name %></span>
 
 <p>
   <strong>Birth day:</strong>
@@ -24,6 +18,37 @@
   <strong>Gender:</strong>
   <%= @profile.gender %>
 </p>
+
+<table>
+  <tr>
+    <td id="phone_column">
+      <h4>Contact Numbers</h4>
+      <ul id="phone_ul">
+        <% @profile.phones.each do | phone | %>
+          <%= render phone %>
+        <% end %>
+      </ul>
+      <div class="no-print">
+        <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
+        <%= form_for(@new_phone, remote: true) do |f| %>
+              <%= f.select :phone_type, ['Landline', 'Mobile','Fax','Unknown']%>
+              <%= f.text_field :number, class: "contact_numbers" %>
+              <%= f.hidden_field :contact_detail_type%>
+              <%= f.hidden_field :contact_detail_id%>
+              <%= f.submit "Add", id: 'add_contact_number_submit' %>
+              <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
+        <% end %>
+      </div>
+
+    </td>
+    <td id="email_column">
+      <strong>Email</strong>
+    </td>
+    <td id="address_column">
+      <strong>Address</strong>
+    </td>
+  </tr>
+</table>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
