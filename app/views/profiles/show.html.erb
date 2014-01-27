@@ -47,7 +47,29 @@ $(document).ready(function(){
 
     </td>
     <td id="address_column">
-      <strong>Address</strong>
+            <h4>Addresses</h4>
+      <ul id="addresses_ul">
+        <% @profile.addresses.each do | addresses | %>
+          <%= render addresses %>
+        <% end %>
+      </ul>
+      <div class="no-print">
+        <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
+        <%= form_for(@new_address, remote: true) do |f| %>
+              <fieldset><%=f.label 'Street'%><%= f.text_field :line_one%>
+              <%=f.label 'City: '%><%= f.text_field :city%>
+              </fieldset>
+              <fieldset>
+              <%=f.label 'State/Region'%><%= f.text_field :state_region%>
+              <%=f.label 'zipcode'%><%= f.text_field :zipcode%>
+              <%=f.label 'Country'%><%= f.text_field :country%>
+              </fieldset>
+              <%= f.hidden_field :owner_type%>
+              <%= f.hidden_field :owner_id%>
+              <%= f.submit "Add", id: 'add_address_submit' %>
+              <%= link_to 'Hide', '', id: "hide_new_address_link" %>
+        <% end %>
+      </div>
     </td>
   </tr>
 </table>

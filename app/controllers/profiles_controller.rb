@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @new_phone = Phone.new(contact_detail_type: @profile.class, contact_detail_id: @profile.id)
+    @new_address = Address.new(owner_type: @profile.class, owner_id: @profile.id)
   end
 
   # GET /profiles/new
