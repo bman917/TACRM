@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127172503) do
+ActiveRecord::Schema.define(version: 20140127181050) do
 
   create_table "phones", force: true do |t|
     t.string   "phone_type"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140127172503) do
     t.string   "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
 end

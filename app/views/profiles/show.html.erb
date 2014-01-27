@@ -19,6 +19,11 @@ $(document).ready(function(){
   <%= @profile.gender %>
 </p>
 
+<p>
+  <strong>Email:</strong>
+  <%= @profile.email %>
+</p>
+
 <table>
   <tr>
     <td id="phone_column">
@@ -40,9 +45,6 @@ $(document).ready(function(){
         <% end %>
       </div>
 
-    </td>
-    <td id="email_column">
-      <strong>Email</strong>
     </td>
     <td id="address_column">
       <strong>Address</strong>
