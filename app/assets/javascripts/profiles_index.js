@@ -9,6 +9,8 @@ function init_profiles_index() {
 
 	$('#show_new_profile_row_link').on('click', toggle_new_profile_row);
 	$('#hide_new_profile_row_link').on('click', toggle_new_profile_row);
+
+	$('.best_in_place').best_in_place();
 }
 
 function toggle_new_profile_row() {

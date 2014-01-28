@@ -30,9 +30,11 @@ class AddressesController < ApplicationController
       if @address.save
         format.html { redirect_to @address, notice: 'Address was successfully created.' }
         format.json { render action: 'show', status: :created, location: @address }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @address.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -58,6 +60,7 @@ class AddressesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to addresses_url }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -69,6 +72,6 @@ class AddressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:address).permit(:owner_id, :owner_type, :line_one, :city, :state_region, :zipcode, :country)
+      params.require(:address).permit(:owner_id, :owner_type, :line_one, :city, :state_region, :zipcode, :country, :address_type)
     end
 end

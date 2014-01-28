@@ -1,3 +1,27 @@
 #new_profile_row {
 	display: none;
 }
+
+#profile_index_table {
+	input {
+		width: 10em;
+	}
+
+	input#profile_birth_day {
+	width: 7em;
+	}
+
+	#profile_last_name, #profile_middle_name {
+		width: 7em;
+	}
+
+	#new_profile_save_button {
+		width: 5em;
+	}
+	
+}
+
+#gender_column {
+	width: 2em;
+}
+

@@ -7,16 +7,22 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
-<strong>Full Name:</strong> <span id="full_name"><%= @profile.first_name %> <%= @profile.middle_name %> <%= @profile.last_name %></span>
+<strong>Full Name:</strong> <span id="full_name">
+  <%= best_in_place @profile, :first_name %> 
+  <%= best_in_place @profile, :middle_name %> 
+  <%= best_in_place @profile, :last_name %></span>
 
 <p>
   <strong>Birth day:</strong>
-  <%= @profile.birth_day %>
+  <%= best_in_place @profile, :birth_day, :type => :date,
+      :display_as => :birth_day_med_format %>
+
 </p>
 
 <p>
   <strong>Gender:</strong>
-  <%= @profile.gender %>
+  <%= best_in_place @profile, :gender, type: :select, 
+    collection: [['M','M'],['F','F']] %>
 </p>
 
 <p>
@@ -24,7 +30,7 @@ $(document).ready(function(){
   <%= @profile.email %>
 </p>
 
-<table>
+<table id="contact_details_table">
   <tr>
     <td id="phone_column">
       <h4>Contact Numbers</h4>
@@ -56,12 +62,17 @@ $(document).ready(function(){
       <div class="no-print">
         <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
         <%= form_for(@new_address, remote: true) do |f| %>
-              <fieldset><%=f.label 'Street'%><%= f.text_field :line_one%>
-              <%=f.label 'City: '%><%= f.text_field :city%>
+              <fieldset>
+                <%=f.label 'Type'%>
+                <%=f.select :address_type, ['Home', 'Business']%>
+              </fieldset>
+              <fieldset><%=f.label 'Address Line 1:'%><%= f.text_area :line_one%></fieldset>
+              <fieldset>
+                <%=f.label 'City: '%><%= f.text_field :city%>
+                <%=f.label 'State/Region'%><%= f.text_field :state_region%>
               </fieldset>
               <fieldset>
-              <%=f.label 'State/Region'%><%= f.text_field :state_region%>
-              <%=f.label 'zipcode'%><%= f.text_field :zipcode%>
+              <%=f.label 'Zip Code:'%><%= f.text_field :zipcode%>
               <%=f.label 'Country'%><%= f.text_field :country%>
               </fieldset>
               <%= f.hidden_field :owner_type%>

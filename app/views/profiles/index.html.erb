@@ -21,16 +21,16 @@ $(document).ready(function(){
     </div>
   <% end %>
   <%= link_to 'Add Profile', '', id: 'show_new_profile_row_link' %>
-    <table>
+    <table id="profile_index_table">
       <thead>
         <tr>
+          <th></th>
           <th>First name</th>
           <th>Last name</th>
           <th>Middle name</th>
           <th>Birth day</th>
-          <th>Gender</th>
+          <th id="gender_column">Gender</th>
           <th>Email</th>
-          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -38,25 +38,26 @@ $(document).ready(function(){
 
       <tbody>
         <tr id="new_profile_row">
+          <td></td>
           <td><%= f.text_field :first_name %></td>
           <td><%= f.text_field :last_name %></td>
           <td><%= f.text_field :middle_name %></td>
           <td><%= f.text_field :birth_day %></td>
           <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
           <td><%= f.email_field :email %></td>
-          <td><%= f.submit %></td>
+          <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
           <td><%= link_to 'Hide', '', id: "hide_new_profile_row_link"%></td>
-          <td></td>
+          
         </tr>
         <% @profiles.each do |profile| %>
           <tr>
+            <td><%= link_to 'View', profile %></td>
             <td><%= profile.first_name %></td>
             <td><%= profile.last_name %></td>
             <td><%= profile.middle_name %></td>
             <td><%= profile.birth_day.to_time.to_s(:med) %></td>
             <td><%= profile.gender %></td>
             <td><%= profile.email %></td>
-            <td><%= link_to 'Show', profile %></td>
             <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
             <td><%= link_to 'X', profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %></td>
           </tr>
