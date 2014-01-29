@@ -37,6 +37,13 @@ set :deploy_to, '/deploy/TACRM'
 
 namespace :deploy do
 
+  desc 'DB Migrate Because deploy:migrate is not working'
+  task :migrate2 do
+    on roles(:app) do
+      execute :rake, 'db:migrate'
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do

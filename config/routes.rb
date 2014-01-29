@@ -3,7 +3,11 @@ TACRM::Application.routes.draw do
 
   resources :phones
 
-  resources :profiles
+  resources :profiles do
+    get :corporate_index, on: :collection
+  end
+
+  get 'profile/type/:profile_type' => "profiles#index", as: "profiles_by_type"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

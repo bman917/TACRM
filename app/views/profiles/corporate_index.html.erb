@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 <% end %>
 
-<h1>Traveller Profiles</h1>
+<h1>Corporate Profiles</h1>
 
 <%= form_for(@profile) do |f| %>
 
@@ -25,11 +25,7 @@ $(document).ready(function(){
       <thead>
         <tr>
           <th></th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Middle name</th>
-          <th>Birth day</th>
-          <th id="gender_column">Gender</th>
+          <th>Name</th>
           <th>Email</th>
           <th></th>
         </tr>
@@ -38,11 +34,7 @@ $(document).ready(function(){
       <tbody>
         <tr id="new_profile_row">
           <td></td>
-          <td><%= f.text_field :first_name %></td>
-          <td><%= f.text_field :last_name %></td>
-          <td><%= f.text_field :middle_name %></td>
-          <td><%= f.text_field :birth_day %></td>
-          <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
+          <td><%= f.text_field :name %></td>
           <td><%= f.email_field :email %></td>
           <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
           <td><%= link_to 'Hide', '', id: "hide_new_profile_row_link"%></td>
@@ -53,6 +45,6 @@ $(document).ready(function(){
       </tbody>
     </table>
 
-    <%= f.hidden_field :profile_type %>
+    
 <% end %>
 <!--%= link_to 'New Profile', new_profile_path %-->

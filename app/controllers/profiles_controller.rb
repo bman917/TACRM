@@ -4,8 +4,13 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
-    @profile = Profile.new
+    @profiles = Profile.where(profile_type: 'INDIVIDUAL')
+    @profile = Profile.new(profile_type: 'INDIVIDUAL')
+  end
+
+  def corporate_index
+    @profiles = Profile.where(profile_type: 'CORPORATE')
+    @profile = Profile.new(profile_type: 'CORPORATE')
   end
 
   # GET /profiles/1
@@ -72,6 +77,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :middle_name, :birth_day, :gender, :email)
+      params.require(:profile).permit(:name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, :gender, :email)
     end
 end

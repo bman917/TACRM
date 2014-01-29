@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128144928) do
+ActiveRecord::Schema.define(version: 20140128164959) do
 
   create_table "addresses", force: true do |t|
     t.integer  "owner_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20140128144928) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
+    t.string   "profile_type"
+    t.string   "name"
   end
 
 end

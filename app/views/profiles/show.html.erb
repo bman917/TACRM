@@ -7,27 +7,35 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
-<strong>Full Name:</strong> <span id="full_name">
-  <%= best_in_place @profile, :first_name %> 
-  <%= best_in_place @profile, :middle_name %> 
-  <%= best_in_place @profile, :last_name %></span>
+<% if @profile.profile_type == 'INDIVIDUAL' %>
 
-<p>
-  <strong>Birth day:</strong>
-  <%= best_in_place @profile, :birth_day, :type => :date,
-      :display_as => :birth_day_med_format %>
+      <strong>Full Name:</strong> <span id="full_name">
+        <%= best_in_place @profile, :first_name %> 
+        <%= best_in_place @profile, :middle_name %> 
+        <%= best_in_place @profile, :last_name %></span>
 
-</p>
+      <p>
+        <strong>Birth day:</strong>
+        <%= best_in_place @profile, :birth_day, :type => :date,
+            :display_as => :birth_day_med_format %>
 
-<p>
-  <strong>Gender:</strong>
-  <%= best_in_place @profile, :gender, type: :select, 
-    collection: [['M','M'],['F','F']] %>
-</p>
+      </p>
+
+      <p>
+        <strong>Gender:</strong>
+        <%= best_in_place @profile, :gender, type: :select, 
+          collection: [['M','M'],['F','F']] %>
+      </p>
+
+<% end %>
+
+<% if @profile.profile_type == 'CORPORATE' %>
+    <strong>Name:</strong> <%= best_in_place @profile, :name %>
+<% end %>
 
 <p>
   <strong>Email:</strong>
-  <%= @profile.email %>
+  <%= best_in_place @profile, :email %>
 </p>
 
 <table id="contact_details_table">
@@ -85,5 +93,10 @@ $(document).ready(function(){
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<% if @profile.profile_type == 'CORPORATE' %>
+  <%= link_to 'Back', corporate_index_profiles_path %>
+<% end %>
+
+<% if @profile.profile_type == 'INDIVIDUAL' %>
+  <%= link_to 'Back', profiles_path %>
+<% end %>

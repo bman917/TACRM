@@ -1,0 +1,18 @@
+<tr>
+    <td><%= link_to 'View', profile %></td>
+
+    <% if profile.profile_type == 'INDIVIDUAL' %>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= profile.middle_name %></td>
+        <td><%= profile.birth_day.to_time.to_s(:med) if profile.birth_day %></td>
+        <td><%= profile.gender %></td>
+    <% end %>
+
+    <% if profile.profile_type == 'CORPORATE' %>
+        <td><%= profile.name %></td>
+    <% end %>
+    <td><%= profile.email %></td>
+    <td><%= link_to 'X', profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
+    </td>
+</tr>
