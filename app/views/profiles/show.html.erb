@@ -7,6 +7,13 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
+<div id="help">
+This page shows all information about the Profile Account. 
+<br/>
+Click on any information to edit it. Changes are automatically saved.
+Addresses cannot be edited. To change, delete and add a new one.
+</div>
+
     <p>
       <strong>Account Name:</strong>
       <%= best_in_place @profile.account, :name %>
@@ -54,7 +61,7 @@ $(document).ready(function(){
       <div class="no-print">
         <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
         <%= form_for(@new_phone, remote: true) do |f| %>
-              <%= f.select :phone_type, ['Landline', 'Mobile','Fax','Unknown']%>
+              <%= f.select :phone_type, phone_types%>
               <%= f.text_field :number, class: "contact_numbers" %>
               <%= f.hidden_field :contact_detail_type%>
               <%= f.hidden_field :contact_detail_id%>

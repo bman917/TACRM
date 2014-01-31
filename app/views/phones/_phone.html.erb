@@ -1,4 +1,6 @@
 <li id="profile_phone_<%=phone.id%>">
 <%=link_to 'X', phone, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete #{number_to_phone phone.number}?"} %>
-<%=phone.phone_type %> - <%=number_to_phone phone.number%>
+<%=best_in_place phone, :phone_type, type: :select, 
+		collection: phone_types %> - 
+<%=best_in_place phone, :number, display_with: :number_to_phone%>
 </li>

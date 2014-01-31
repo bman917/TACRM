@@ -23,3 +23,13 @@
 	padding-left: 2em;
 	padding-right: 2em;
 }
+
+#help {
+	font-size: .9em;
+	font-style: italic;
+	border: 1px dashed grey;
+	border-radius: 5px;
+	padding: 5px;
+	width:400px;
+	background: #FFFFC2;
+}

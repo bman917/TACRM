@@ -1,24 +1,26 @@
-<h1>Listing accounts</h1>
+<h1>Accounts</h1>
+
+<div id="help">
+When you create any type of Profile, an Account will automatically be created for them. 
+<br/>
+Click 'View' link to see details for the Account.
+</div>
 
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Profile</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
+        <td><%= link_to 'View', account.profile %></td>
         <td><%= account.name %></td>
         <td><%= account.profile.full_name if account.profile %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Account', new_account_path %>
+<!--%= link_to 'New Account', new_account_path %-->
