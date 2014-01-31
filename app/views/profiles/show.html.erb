@@ -8,46 +8,56 @@ $(document).ready(function(){
 <p id="notice"><%= notice %></p>
 
 <div id="help">
-This page shows all information about the Profile Account. 
-<br/>
-Click on any information to edit it. Changes are automatically saved.
-Addresses cannot be edited. To change, delete and add a new one.
+  This page shows all information about the Profile Account. 
+  <br/>
+  Click on any information to edit it. Changes are automatically saved.
+  Addresses cannot be edited. To change, delete and add a new one.
 </div>
 
-    <p>
-      <strong>Account Name:</strong>
-      <%= best_in_place @profile.account, :name %>
-    </p>
-<% if @profile.profile_type == 'INDIVIDUAL' %>
+<div id="account_name">
+  <strong>Account Name:</strong>
+  <%= best_in_place @profile.account, :name %>
+</div>
 
-      <strong>Full Name:</strong> <span id="full_name">
+
+
+
+<% if @profile.profile_type == 'INDIVIDUAL' %>
+  <div class="field_group">
+      <span class="group">
+        <strong>Full Name:</strong> 
         <%= best_in_place @profile, :first_name %> 
         <%= best_in_place @profile, :middle_name, nil: '&nbsp; ' %> 
-        <%= best_in_place @profile, :last_name %></span>
+        <%= best_in_place @profile, :last_name %>
+      </span>
 
-      <p>
+      <span class="group">
         <strong>Birth day:</strong>
         <%= best_in_place @profile, :birth_day, :type => :date,
             :display_as => :birth_day_med_format %>
+      </span>
 
-      </p>
-
-      <p>
+      <span class="group">
         <strong>Gender:</strong>
         <%= best_in_place @profile, :gender, type: :select, 
           collection: [['M','M'],['F','F']] %>
-      </p>
+      </span>
 
+  </div>
 <% end %>
 
 <% if @profile.profile_type == 'CORPORATE' %>
+  <div class="field_group">
     <strong>Company Name:</strong> <%= best_in_place @profile, :name %>
+  </div>
 <% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= best_in_place @profile, :email %>
-</p>
+  <div class="field_group">
+    <p>
+      <strong>Email:</strong>
+      <%= best_in_place @profile, :email %>
+    </p>
+  </div>
 
 <table id="contact_details_table">
   <tr>

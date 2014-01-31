@@ -1,3 +1,15 @@
+#account_name {
+	margin-top: 1em;
+}
+.field_group {
+	margin-top: 1em;
+	display: block;
+
+	span.group {
+		margin-right: 2em;
+	}
+}
+
 form#new_phone, form#new_address {
 	display: none;
 }
@@ -8,6 +20,13 @@ form#new_phone, form#new_address {
 }
 
 #contact_details_table {
+	border-top: 1px solid #BCB7B2;
+	border-bottom: 1px solid #BCB7B2;
+	margin-bottom: 3em;
+	tr, td {
+		padding-left: 1em;
+	}
+
 }
 
 #address_column {
