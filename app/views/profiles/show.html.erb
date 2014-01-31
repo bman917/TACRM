@@ -8,112 +8,31 @@ $(document).ready(function(){
 <p id="notice"><%= notice %></p>
 
 <div id="help">
-  This page shows all information about the Profile Account. 
+  This page shows all information about the Profile. 
   <br/>
   Click on any information to edit it. Changes are automatically saved.
-  Addresses cannot be edited. To change, delete and add a new one.
 </div>
 
 <div id="account_name">
-  <strong>Account Name:</strong>
-  <%= best_in_place @profile.account, :name %>
+	<% if @profile.account %>
+		<strong>Account Name:</strong>
+		<%= best_in_place @profile.account, :name %>
+	<% else %>
+	<div id="help">
+	  This profile does not have a Travel Account. A Travel Account will enable the user to book services. Click on the link below to open an Account for this Profile.
+	  <br/>
+		<%=link_to 'Create Account', '', id: "create_account_link", class: 'add_fields no-print'%>
+		<%=render 'accounts/form2'%>
+	</div>
+		
+	<% end %>
 </div>
+<%=render 'profile_details' %>
+<%=render 'contact_details' %>
+<%=render 'group_details'%>
 
 
-
-
-<% if @profile.profile_type == 'INDIVIDUAL' %>
-  <div class="field_group">
-      <span class="group">
-        <strong>Full Name:</strong> 
-        <%= best_in_place @profile, :first_name %> 
-        <%= best_in_place @profile, :middle_name, nil: '&nbsp; ' %> 
-        <%= best_in_place @profile, :last_name %>
-      </span>
-
-      <span class="group">
-        <strong>Birth day:</strong>
-        <%= best_in_place @profile, :birth_day, :type => :date,
-            :display_as => :birth_day_med_format %>
-      </span>
-
-      <span class="group">
-        <strong>Gender:</strong>
-        <%= best_in_place @profile, :gender, type: :select, 
-          collection: [['M','M'],['F','F']] %>
-      </span>
-
-  </div>
-<% end %>
-
-<% if @profile.profile_type == 'CORPORATE' %>
-  <div class="field_group">
-    <strong>Company Name:</strong> <%= best_in_place @profile, :name %>
-  </div>
-<% end %>
-
-  <div class="field_group">
-    <p>
-      <strong>Email:</strong>
-      <%= best_in_place @profile, :email %>
-    </p>
-  </div>
-
-<table id="contact_details_table">
-  <tr>
-    <td id="phone_column">
-      <h4>Contact Numbers</h4>
-      <ul id="phone_ul">
-        <% @profile.phones.each do | phone | %>
-          <%= render phone %>
-        <% end %>
-      </ul>
-      <div class="no-print">
-        <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
-        <%= form_for(@new_phone, remote: true) do |f| %>
-              <%= f.select :phone_type, phone_types%>
-              <%= f.text_field :number, class: "contact_numbers" %>
-              <%= f.hidden_field :contact_detail_type%>
-              <%= f.hidden_field :contact_detail_id%>
-              <%= f.submit "Add", id: 'add_contact_number_submit' %>
-              <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
-        <% end %>
-      </div>
-
-    </td>
-    <td id="address_column">
-            <h4>Addresses</h4>
-      <ul id="addresses_ul">
-        <% @profile.addresses.each do | addresses | %>
-          <%= render addresses %>
-        <% end %>
-      </ul>
-      <div class="no-print">
-        <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
-        <%= form_for(@new_address, remote: true) do |f| %>
-              <fieldset>
-                <%=f.label 'Type'%>
-                <%=f.select :address_type, ['Home', 'Business']%>
-              </fieldset>
-              <fieldset><%=f.label 'Address Line 1:'%><%= f.text_area :line_one%></fieldset>
-              <fieldset>
-                <%=f.label 'City: '%><%= f.text_field :city%>
-                <%=f.label 'State/Region'%><%= f.text_field :state_region%>
-              </fieldset>
-              <fieldset>
-              <%=f.label 'Zip Code:'%><%= f.text_field :zipcode%>
-              <%=f.label 'Country'%><%= f.text_field :country%>
-              </fieldset>
-              <%= f.hidden_field :owner_type%>
-              <%= f.hidden_field :owner_id%>
-              <%= f.submit "Add", id: 'add_address_submit' %>
-              <%= link_to 'Hide', '', id: "hide_new_address_link" %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
-</table>
-
+<div id="back">
 <% if @profile.profile_type == 'CORPORATE' %>
   <%= link_to 'Back', corporate_index_profiles_path %>
 <% end %>
@@ -121,3 +40,4 @@ $(document).ready(function(){
 <% if @profile.profile_type == 'INDIVIDUAL' %>
   <%= link_to 'Back', profiles_path %>
 <% end %>
+</div>

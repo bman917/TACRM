@@ -1,3 +1,29 @@
+#groups_list {
+	width: 700px;
+
+}
+.profile_group {
+	float: left;
+	width: 300px;
+	border: 1px solid #BCB7B2;
+	
+	margin: 1em;
+	padding: .5em;
+	border-radius: .5em;
+}
+
+
+
+.delete_group {
+	font-size: .8em;
+	float: right;
+}
+
+#back {
+	margin-top: 3em;
+	clear: both;
+}
+
 #account_name {
 	margin-top: 1em;
 }
@@ -10,7 +36,8 @@
 	}
 }
 
-form#new_phone, form#new_address {
+form#new_phone, form#new_address, form.new_member, 
+form#new_group, div#create_account {
 	display: none;
 }
 
@@ -50,3 +77,4 @@ form#new_phone, form#new_address {
 		padding-right: 2px;
 	}
 }
+

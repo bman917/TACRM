@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129191336) do
+ActiveRecord::Schema.define(version: 20140131065834) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 20140129191336) do
     t.datetime "updated_at"
     t.string   "address_type"
   end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["account_id"], name: "index_groups_on_account_id"
+
+  create_table "members", force: true do |t|
+    t.integer  "profile_id"
+    t.integer  "group_id"
+    t.string   "relationship"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["group_id"], name: "index_members_on_group_id"
+  add_index "members", ["profile_id"], name: "index_members_on_profile_id"
 
   create_table "phones", force: true do |t|
     t.string   "phone_type"

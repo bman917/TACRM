@@ -23,6 +23,9 @@ class ProfilesController < ApplicationController
   def show
     @new_phone = Phone.new(contact_detail_type: @profile.class, contact_detail_id: @profile.id)
     @new_address = Address.new(owner_type: @profile.class, owner_id: @profile.id)
+    @group = Group.new(account: @profile.account)
+    @account = Account.new(profile: @profile, name: @profile.full_name)
+    
   end
 
   # GET /profiles/new
@@ -39,7 +42,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
 
-    @profile.build_account(name: @profile.full_name)
+    #@profile.build_account(name: @profile.full_name)
 
     respond_to do |format|
       if @profile.save

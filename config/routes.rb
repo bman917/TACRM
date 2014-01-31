@@ -1,4 +1,8 @@
 TACRM::Application.routes.draw do
+  resources :members
+
+  resources :groups
+
   resources :accounts
 
   resources :addresses

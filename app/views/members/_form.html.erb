@@ -1,0 +1,30 @@
+<%= form_for(@member, remote: true, html: {id: "add_member_form_group_#{@member.group_id}"}) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<li>
+<%= f.collection_select :profile_id, Profile.where(profile_type: 'INDIVIDUAL'), :id, :full_name %> 
+-
+<%= f.select :relationship, ['Family', 'Employee', 'Friend', 'None'] %>
+</li>
+
+
+  
+  
+
+  <%= f.hidden_field :group_id %>
+
+  <div class="actions">
+    <%= f.submit 'Add' %>
+        <%=link_to 'Hide', '', id: "hide_member_link_group_#{@member.group.id}", class: 'member_link_group no-print hidden'%> 
+  </div>
+<% end %>

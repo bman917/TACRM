@@ -1,0 +1,4 @@
+<li id="member_<%=member.id%>">
+	<%=link_to 'X', member, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove #{member.profile.full_name}?"} %>
+	<%=member.profile.full_name%> - <%=member.relationship%>
+</li>
