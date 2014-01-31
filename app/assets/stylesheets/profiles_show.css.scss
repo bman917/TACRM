@@ -49,11 +49,12 @@ form#new_group, div#create_account {
 #contact_details_table {
 	border-top: 1px solid #BCB7B2;
 	border-bottom: 1px solid #BCB7B2;
-	margin-bottom: 3em;
+	border: 1px solid #BCB7B2;
+	margin-bottom: 2em;
+	margin-left: 0;
 	tr, td {
-		padding-left: 1em;
+		padding-left: 10px;
 	}
-
 }
 
 #address_column {

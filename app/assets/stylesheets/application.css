@@ -13,23 +13,34 @@
  *= require_self
  *= require_tree .
  */
+html {
+	background: #F3ECE0;
+	border-right: 7px solid #AAA59D;
+	border-left: 7px solid #AAA59D;
+	height: 100%;
+}
 
 #header
 {
-	margin: 15px;
+	padding: 15px;
 	height: 30px;
+	background: #77736E;
+;
+	color: white;
 }
+
+#nav_bar a {
+		margin-left: 1em;
+	}
 
 #nav_bar {
 	width: 100%;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	height: 1.5em;
-	margin-left: -1em;
 	margin-bottom: 0;
 	padding-bottom: 0;
-	padding-left: 2em;
-	padding-right: 2em;
+
 }
 
 #content {
@@ -37,18 +48,18 @@
 }
 
 #help {
-	width: 100%;
+	
 	font-size: .9em;
 	font-style: italic;
-	border: 1px dashed grey;
-	border-radius: 5px;
+	border-top: 1px dashed grey;
+	border-bottom: 1px dashed grey;
 	padding: 15px;
 	
 	background: #FFFFE9;
 
-	margin-left: -2em;
-	padding-left: 2em;
-	padding-right: 2em;
+	margin-left: -13px;
+	margin-right: -1em;
+	
 	margin-bottom: 1em;
 }
 
@@ -56,12 +67,12 @@
 	margin: 5px;
 	font-size: .9em;
 	font-style: italic;
-	border: 1px solid #C1D4E6;
+	//border: 1px solid #C1D4E6;
 	border-radius: 5px;
 	padding: 5px;
 	padding-left: 20px;
 	
-	background: #D6EBFF;
+	background: #FFFFE9;
 	color: #8794A1;
 }
 

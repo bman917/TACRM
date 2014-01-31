@@ -1,4 +1,13 @@
 <li id="profile_address_<%=address.id%>">
 	<%=link_to 'X', address, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete?"} %>
-	<%=address.display%>
+	<%=best_in_place address, :address_type, type: :select, collection: 
+		[['Home','Home'],['Business','Business']]
+	%>
+	-
+	<%=best_in_place address, :line_one %>,
+	<%=best_in_place address, :city %>,
+	<%=best_in_place address, :state_region %>,
+	<%=best_in_place address, :zipcode %>
+	<%=best_in_place address, :country %>
+
 </li>
