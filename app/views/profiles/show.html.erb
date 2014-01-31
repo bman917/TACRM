@@ -7,11 +7,15 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
+    <p>
+      <strong>Account Name:</strong>
+      <%= best_in_place @profile.account, :name %>
+    </p>
 <% if @profile.profile_type == 'INDIVIDUAL' %>
 
       <strong>Full Name:</strong> <span id="full_name">
         <%= best_in_place @profile, :first_name %> 
-        <%= best_in_place @profile, :middle_name %> 
+        <%= best_in_place @profile, :middle_name, nil: '&nbsp; ' %> 
         <%= best_in_place @profile, :last_name %></span>
 
       <p>
@@ -30,7 +34,7 @@ $(document).ready(function(){
 <% end %>
 
 <% if @profile.profile_type == 'CORPORATE' %>
-    <strong>Name:</strong> <%= best_in_place @profile, :name %>
+    <strong>Company Name:</strong> <%= best_in_place @profile, :name %>
 <% end %>
 
 <p>

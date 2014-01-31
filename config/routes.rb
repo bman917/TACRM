@@ -1,4 +1,6 @@
 TACRM::Application.routes.draw do
+  resources :accounts
+
   resources :addresses
 
   resources :phones
@@ -7,6 +9,7 @@ TACRM::Application.routes.draw do
     get :corporate_index, on: :collection
   end
 
+  get 'profile/search' => "profiles#search", as: "profile_search"
   get 'profile/type/:profile_type' => "profiles#index", as: "profiles_by_type"
 
   # The priority is based upon order of creation: first created -> highest priority.

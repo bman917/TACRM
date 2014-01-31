@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
+  def search
+    @profiles = Profile.order(:name).where("name like ?", "%#{params[:term]}%")
+    
+  end
+
   # GET /profiles
   # GET /profiles.json
   def index
@@ -33,6 +38,8 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+
+    @profile.build_account(name: @profile.full_name)
 
     respond_to do |format|
       if @profile.save
