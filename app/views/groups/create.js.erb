@@ -1,3 +1,4 @@
 $('#groups_list').append("<%=j render @group%>").toggle().fadeIn("fast");
-$('#group_name').val('');
-$('#group_name').focus();
+toggle_new_group_form();
+$('#add_member_link_group_<%=@group.id%>').on('click', toggle_new_member_form);
+$('#add_member_link_group_<%=@group.id%>').click();

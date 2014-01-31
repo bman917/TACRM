@@ -18,12 +18,14 @@ function init_profiles_show() {
 function toggle_create_account_form() {
 	$('#create_account').toggle();
 	$('#create_account_link').toggle();
+	$('#new_account #account_name').focus();
 	event.preventDefault();	
 }
 
 function toggle_new_group_form() {
 	$('#add_group_link').toggle();
 	$('form#new_group').toggle();
+	$('#group_name').focus();
 	event.preventDefault();	
 }
 
