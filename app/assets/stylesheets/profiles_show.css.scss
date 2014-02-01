@@ -2,7 +2,11 @@
 	width: 700px;
 
 }
-.profile_group {
+
+#add_note_link {
+	clear: both;
+}
+.profile_group, .profile_note {
 	float: left;
 	width: 300px;
 	border: 1px solid #BCB7B2;
@@ -37,7 +41,7 @@
 }
 
 form#new_phone, form#new_address, form.new_member, 
-form#new_group, div#create_account {
+form#new_group, div#create_account, #new_note {
 	display: none;
 }
 
@@ -81,5 +85,39 @@ form#new_group, div#create_account {
 
 #group_details #add_group_link, #create_account_link {
 	font-size: 1em;
+}
+
+.profile_show_section {
+	margin-bottom: 2em; 
+}
+
+.section_divider {
+		margin-left: -13px;
+		margin-right: -13px;
+		padding-left: 13px;
+		border-top: 1px solid #AAA59D;
+		border-bottom: 1px solid #AAA59D;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		margin-bottom: .5em;
+		background: #948E88;
+	
+}
+
+.section_hide_link {
+	font-size: 1em;
+	// margin-top: .5em;
+	// margin-left: .5em;
+	padding: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	
+	width: 20em;
+	font-size: .7em;
+	color: #003300;
+	border-radius: .5em;
+	border-left: 1px solid #003300;
+	border-right: 1px solid #003300;
+	text-decoration: none;
 }
 

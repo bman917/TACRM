@@ -1,3 +1,6 @@
+<div id="profile_details">
+  <h2 class="section_divider">Profile Details</h2>
+
 <% if @profile.profile_type == 'INDIVIDUAL' %>
   <div class="field_group">
       <span class="group">
@@ -34,3 +37,4 @@
       <%= best_in_place @profile, :email %>
     </p>
   </div>
+</div>

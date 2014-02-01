@@ -1,0 +1,18 @@
+<div id="note_details" class="profile_show_section">
+
+	<h2 class="section_divider">
+	<%=section_hide_link :note_hide_link%>	
+	Notes
+	</h2>
+	<div class="section_body">
+		<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
+		<div>
+		<%=render 'notes/form'%>
+		</div>
+		<table id="notes_list">
+			<%@profile.notes.each do | note | %>
+				<%=render note%>
+			<% end %>
+		</table>
+	</div>
+</div>

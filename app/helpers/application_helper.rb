@@ -6,4 +6,8 @@ module ApplicationHelper
 			['Unknown','Unknown']
 		]
 	end
+
+	def section_hide_link(id)
+		link_to '-', '', {id: id, class: 'section_hide_link'}
+	end	
 end

@@ -12,7 +12,32 @@ function init_profiles_show() {
 	$('.member_link_group').on('click', toggle_new_member_form);
 	$('#add_group_link').on('click', toggle_new_group_form);
 	$('#create_account_link').on('click', toggle_create_account_form);
+	$('#hide_note_form_link').on('click', toggle_new_note_form);
+	$('#add_note_link').on('click', toggle_new_note_form);
+
+
 	$('.best_in_place').best_in_place();
+
+	$('.section_hide_link').on('click', toggle_section);
+}
+
+function toggle_section() {
+	$(this).closest('.profile_show_section').find('.section_body').slideToggle("fast");
+
+	if( $(this).text() == '+') {
+		$(this).text('-');
+	} else {
+		$(this).text('+');
+	}
+	
+	event.preventDefault();
+}
+
+function toggle_new_note_form() {
+	$('#add_note_link').toggle();
+	$('form#new_note').toggle();
+	$('#note_note').focus();
+	event.preventDefault();	
 }
 
 function toggle_create_account_form() {

@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
     @new_address = Address.new(owner_type: @profile.class, owner_id: @profile.id)
     @group = Group.new(account: @profile.account)
     @account = Account.new(profile: @profile, name: @profile.full_name)
-    
+    @note = Note.new(profile: @profile)
   end
 
   # GET /profiles/new
@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @profile }
       else
         format.html { render action: 'edit' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }

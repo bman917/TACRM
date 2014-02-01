@@ -1,55 +1,65 @@
-<table id="contact_details_table">
-  <tr>
-    <td id="phone_column">
-      <h4>Contact Numbers</h4>
-      <ul id="phone_ul">
-        <% @profile.phones.each do | phone | %>
-          <%= render phone %>
-        <% end %>
-      </ul>
-      <div class="no-print">
-        <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
-        <%= form_for(@new_phone, remote: true) do |f| %>
-              <%= f.select :phone_type, phone_types%>
-              <%= f.text_field :number, class: "contact_numbers" %>
-              <%= f.hidden_field :contact_detail_type%>
-              <%= f.hidden_field :contact_detail_id%>
-              <%= f.submit "Add", id: 'add_contact_number_submit' %>
-              <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
-        <% end %>
-      </div>
+<div class="profile_show_section">
 
-    </td>
-    <td id="address_column">
-     <h4>Addresses</h4>
-      <ul id="addresses_ul">
-        <% @profile.addresses.each do | addresses | %>
-          <%= render addresses %>
-        <% end %>
-      </ul>
-      <div class="no-print">
-        <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
-        <%= form_for(@new_address, remote: true) do |f| %>
-              <fieldset>
-                <%=f.label 'Type'%>
-                <%=f.select :address_type, ['Home', 'Business']%>
-              </fieldset>
-              <fieldset><%=f.label 'Address Line 1:'%><%= f.text_area :line_one%></fieldset>
-              <fieldset>
-                <%=f.label 'City: '%><%= f.text_field :city%>
-                <%=f.label 'State/Region'%><%= f.text_field :state_region%>
-              </fieldset>
-              <fieldset>
-              <%=f.label 'Zip Code:'%><%= f.text_field :zipcode%>
-              <%=f.label 'Country'%><%= f.text_field :country%>
-              </fieldset>
-              <%= f.hidden_field :owner_type%>
-              <%= f.hidden_field :owner_id%>
-              <%= f.submit "Add", id: 'add_address_submit' %>
-              <%= link_to 'Hide', '', id: "hide_new_address_link" %>
-        <% end %>
+  <h2 class="section_divider">
+  <%=section_hide_link :contact_detail_hide_link%>  
+  Contact Details
+  </h2>
 
-      </div>
-    </td>
-  </tr>
-</table>
+  <div class="section_body">
+      <table id="contact_details_table">
+        <tr>
+          <td id="phone_column">
+            <h4>Contact Numbers</h4>
+            <ul id="phone_ul">
+              <% @profile.phones.each do | phone | %>
+                <%= render phone %>
+              <% end %>
+            </ul>
+            <div class="no-print">
+              <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
+              <%= form_for(@new_phone, remote: true) do |f| %>
+                    <%= f.select :phone_type, phone_types%>
+                    <%= f.text_field :number, class: "contact_numbers" %>
+                    <%= f.hidden_field :contact_detail_type%>
+                    <%= f.hidden_field :contact_detail_id%>
+                    <%= f.submit "Add", id: 'add_contact_number_submit' %>
+                    <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
+              <% end %>
+            </div>
+
+          </td>
+          <td id="address_column">
+           <h4>Addresses</h4>
+            <ul id="addresses_ul">
+              <% @profile.addresses.each do | addresses | %>
+                <%= render addresses %>
+              <% end %>
+            </ul>
+            <div class="no-print">
+              <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
+              <%= form_for(@new_address, remote: true) do |f| %>
+                    <fieldset>
+                      <%=f.label 'Type'%>
+                      <%=f.select :address_type, ['Home', 'Business']%>
+                    </fieldset>
+                    <fieldset><%=f.label 'Address Line 1:'%><%= f.text_area :line_one%></fieldset>
+                    <fieldset>
+                      <%=f.label 'City: '%><%= f.text_field :city%>
+                      <%=f.label 'State/Region'%><%= f.text_field :state_region%>
+                    </fieldset>
+                    <fieldset>
+                    <%=f.label 'Zip Code:'%><%= f.text_field :zipcode%>
+                    <%=f.label 'Country'%><%= f.text_field :country%>
+                    </fieldset>
+                    <%= f.hidden_field :owner_type%>
+                    <%= f.hidden_field :owner_id%>
+                    <%= f.submit "Add", id: 'add_address_submit' %>
+                    <%= link_to 'Hide', '', id: "hide_new_address_link" %>
+              <% end %>
+
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>
