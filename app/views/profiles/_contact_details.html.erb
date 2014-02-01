@@ -15,11 +15,11 @@
                 <%= render phone %>
               <% end %>
             </ul>
-            <div class="no-print">
+            <div class="no-print toggler">
               <%=link_to 'Add', '', id: 'add_phone_link', class: 'add_fields no-print'%>
               <%= form_for(@new_phone, remote: true) do |f| %>
                     <%= f.select :phone_type, phone_types%>
-                    <%= f.text_field :number, class: "contact_numbers" %>
+                    <%= f.text_field :number, class: "contact_numbers focus_on_toggle" %>
                     <%= f.hidden_field :contact_detail_type%>
                     <%= f.hidden_field :contact_detail_id%>
                     <%= f.submit "Add", id: 'add_contact_number_submit' %>
@@ -35,14 +35,15 @@
                 <%= render addresses %>
               <% end %>
             </ul>
-            <div class="no-print">
+            <div class="no-print toggler" >
               <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
               <%= form_for(@new_address, remote: true) do |f| %>
                     <fieldset>
                       <%=f.label 'Type'%>
                       <%=f.select :address_type, ['Home', 'Business']%>
                     </fieldset>
-                    <fieldset><%=f.label 'Address Line 1:'%><%= f.text_area :line_one%></fieldset>
+                    <fieldset><%=f.label 'Address Line 1:'%>
+                    <%= f.text_area :line_one, class: 'focus_on_toggle'%></fieldset>
                     <fieldset>
                       <%=f.label 'City: '%><%= f.text_field :city%>
                       <%=f.label 'State/Region'%><%= f.text_field :state_region%>

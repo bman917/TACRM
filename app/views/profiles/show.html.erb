@@ -36,9 +36,11 @@ $(document).ready(function(){
 			  Not all profile needs a Travel Account. For example, for group of people trevelling together, only one of them need to open a Travel Account.
 			  </p>
 			  Click on the link below to open an Account for this Profile.
-			  <br/>
-				<%=link_to 'Create Account', '', id: "create_account_link", class: 'add_fields no-print'%>
+			  	<br/>
+			  	<div class="toggler">
+			  	<%=link_to 'Create Account', '', id: "create_account_link", class: 'add_fields no-print'%>
 				<%=render 'accounts/form2'%>
+				</div>
 			</div>
 		<% end %>
 

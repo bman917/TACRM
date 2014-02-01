@@ -9,10 +9,12 @@
 		<div id="help">
 		Groups are used to select one or more profiles for a particular service. For example, when booking a Flight, a group should be created if the Account Holder is travelling with a group.
 		</br>
-		<%=link_to 'Add Group', '', id: "add_group_link", class: 'add_fields no-print'%>
-		<%=render 'groups/form' %>
-
+			<div class="toggler">
+			<%=render 'groups/form' %>
+			<%=link_to 'Add Group', '', id: "add_group_link", class: 'add_fields no-print'%>
+			</div>
 		</div>
+
 		<div id="groups_list">
 
 		<%@profile.account.groups.each do | group | %>

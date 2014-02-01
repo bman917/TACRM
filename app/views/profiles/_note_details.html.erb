@@ -5,10 +5,13 @@
 	Notes
 	</h2>
 	<div class="section_body">
-		<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
-		<div>
-		<%=render 'notes/form'%>
+		<div class="toggler">
+			<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
+			<div>
+				<%=render 'notes/form'%>
+			</div>
 		</div>
+		
 		<table>
 		<div id="notes_list">
 

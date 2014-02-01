@@ -13,9 +13,9 @@
 
   <div class="field">
     <%= f.label :name, 'Group Name' %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'focus_on_toggle' %>
     <%= f.submit %>
-    <%= link_to 'Hide', '', id: "hide_group_form_link" %>
+    <%= link_to 'Hide', '', id: "hide_group_form_link"%>
   </div>
     <%= f.hidden_field :account_id %>
 <% end %>

@@ -21,3 +21,18 @@
 function application_init() {
 	$.datepicker.setDefaults({ dateFormat: 'MM dd, yy' });
 }
+
+// For this to work, the form and the 'show link' must enclosed in a .toggler class.
+// For example:
+// <div class="toggler">
+// 	<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
+// 	<%=render 'notes/form'%>
+// </div>
+function toggle_form() {
+	var form = $(this).closest('.toggler').find('form');
+	form.toggle();
+	form.find('.focus_on_toggle').focus();
+	
+	$(this).closest('.toggler').find('.add_fields').toggle();
+	event.preventDefault();	
+}

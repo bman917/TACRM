@@ -12,19 +12,15 @@
   <% end %>
 
 <li>
-<%= f.collection_select :profile_id, Profile.where(profile_type: 'INDIVIDUAL'), :id, :full_name %> 
+<%= f.collection_select :profile_id, Profile.where(profile_type: 'INDIVIDUAL'), :id, :full_name, {}, class: 'focus_on_toggle' %> 
 -
 <%= f.select :relationship, ['Family', 'Employee', 'Friend', 'None'] %>
 </li>
-
-
-  
-  
 
   <%= f.hidden_field :group_id %>
 
   <div class="actions">
     <%= f.submit 'Add' %>
-        <%=link_to 'Hide', '', id: "hide_member_link_group_#{@member.group.id}", class: 'member_link_group no-print hidden'%> 
+        <%=link_to 'Hide', '', class: 'no-print'%> 
   </div>
 <% end %>
