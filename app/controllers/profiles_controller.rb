@@ -41,7 +41,6 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    sleep 2;
 
     #@profile.build_account(name: @profile.full_name)
 
