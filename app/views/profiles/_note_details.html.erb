@@ -9,10 +9,13 @@
 		<div>
 		<%=render 'notes/form'%>
 		</div>
-		<table id="notes_list">
+		<table>
+		<div id="notes_list">
+
 			<%@profile.notes.each do | note | %>
 				<%=render note%>
 			<% end %>
+		</div>
 		</table>
 	</div>
 </div>
