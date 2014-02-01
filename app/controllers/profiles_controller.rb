@@ -41,9 +41,6 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-
-    #@profile.build_account(name: @profile.full_name)
-
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -72,7 +69,6 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
-    sleep 5;
     @profile.destroy
     respond_to do |format|
       format.html { redirect_to profiles_url }
