@@ -20,6 +20,12 @@
 
 function application_init() {
 	$.datepicker.setDefaults({ dateFormat: 'MM dd, yy' });
+
+	$('a.slow_link').on('click',  function() {
+		$('#content').append("<div class='overlay'></div>");
+		$('#wait_message').toggle();
+		$('#wait_message').addClass('modal');
+	});
 }
 
 // For this to work, the form and the 'show link' must enclosed in a .toggler class.

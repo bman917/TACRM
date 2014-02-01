@@ -12,7 +12,7 @@ $(document).ready(function(){
   
 </div>
 
-<%= link_to 'Add Profile', '', id: 'show_new_profile_row_link' %>
+<%= link_to 'Add Profile', '', id: 'show_new_profile_row_link'%>
 <div id="add_profile">
   <h1>Add Profile</h1>
   <%= form_for(@profile) do |f| %>
@@ -48,7 +48,7 @@ $(document).ready(function(){
             <td><%= f.text_field :first_name %></td>
             <td><%= f.text_field :last_name %></td>
             <td><%= f.text_field :middle_name %></td>
-            <td><%= f.text_field :birth_day %></td>
+            <td><%= f.date_field :birth_day %></td>
             <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
             <td><%= f.email_field :email %></td>
             <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>

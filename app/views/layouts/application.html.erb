@@ -20,12 +20,16 @@
 </div>
 
 <div id="nav_bar">
-	<%= link_to 'Accounts Listing', accounts_path %>
-	<%= link_to 'Traveller Profiles', profiles_path %>
-	<%= link_to 'Corporate Profiles', corporate_index_profiles_path%>
+	<%= link_to 'Accounts Listing', accounts_path, class: 'slow_link' %>
+	<%= link_to 'Traveller Profiles', profiles_path, class: 'slow_link' %>
+	<%= link_to 'Corporate Profiles', corporate_index_profiles_path, class: 'slow_link'%>
 </div>
 
 <div id="content">
+
+<div id="wait_message" class="hidden">
+Processing...
+</div>
 
 <%= yield %>
 
