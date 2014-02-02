@@ -19,10 +19,39 @@
 	<h1> Travel Agency CRM</h1>
 </div>
 
-<div id="nav_bar">
-	<%= link_to 'Accounts Listing', accounts_path, class: 'slow_link' %>
-	<%= link_to 'Traveller Profiles', profiles_path, class: 'slow_link' %>
-	<%= link_to 'Corporate Profiles', corporate_index_profiles_path, class: 'slow_link'%>
+<div id="navigation">
+	<ul id="menu">
+		<li><a href="">Accounts</a>
+			<ul>
+				<li><%= link_to 'Accounts Listing', accounts_path, class: 'slow_link' %></li>
+				<li><%= link_to 'Individual', profiles_path, class: 'slow_link' %></li>
+				<li><%= link_to 'Corporate', corporate_index_profiles_path, class: 'slow_link'%></li>
+			</ul>
+		</li>
+		<li><a id='x' href="">Transactions</a>
+			<ul>
+				<li><%= link_to 'Domestic Ticketing', '', id: 'x'%></li>
+				<li><%= link_to 'Intl Ticketing', '', id: 'x'%></li>
+				<li><%= link_to 'Hotel Accommodation', '', id: 'x'%></li>
+				<li><%= link_to 'Package Tour', '', id: 'x'%></li>
+				<li><%= link_to 'Transport Rental', '', id: 'x'%></li>
+				<li><%= link_to 'Passport', '', id: 'x'%></li>
+				<li><%= link_to 'Visa Processing', '', id: 'x'%></li>
+				<li><%= link_to 'Travel Insurance', '', id: 'x'%></li>
+				<li><%= link_to 'Others', '', id: 'x'%></li>
+			</ul>
+		</li>
+		<li><a id='x' href="">Administration</a>
+			<ul>
+				<li><%= link_to 'Add/Delete Users', '', id: 'x'%></li>
+				<li><%= link_to 'Users Permissions', '', id: 'x'%></li>
+				<li><%= link_to 'Manage Database', '', id: 'x'%></li>
+			</ul>
+		</li>
+	
+	
+	</ul>
+
 </div>
 
 <div id="content">
