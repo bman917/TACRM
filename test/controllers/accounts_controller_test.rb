@@ -21,7 +21,7 @@ class AccountsControllerTest < ActionController::TestCase
       post :create, account: { name: @account.name, profile_id: @account.profile_id }
     end
 
-    assert_redirected_to account_path(assigns(:account))
+    assert_redirected_to profile_path(assigns(:account).profile)
   end
 
   test "should show account" do

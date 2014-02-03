@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  profile_id: 
-  group_id: 
+  id: 1
+  profile_id: 1
+  group_id: 1
   relationship: MyString
 
 two:
-  profile_id: 
-  group_id: 
+  id: 2
+  profile_id: 2
+  group_id: 2
   relationship: MyString

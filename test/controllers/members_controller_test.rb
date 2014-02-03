@@ -21,7 +21,7 @@ class MembersControllerTest < ActionController::TestCase
       post :create, member: { group_id: @member.group_id, profile_id: @member.profile_id, relationship: @member.relationship }
     end
 
-    assert_redirected_to member_path(assigns(:member))
+    assert_redirected_to profile_path(assigns(:member).profile)
   end
 
   test "should show member" do
@@ -44,6 +44,6 @@ class MembersControllerTest < ActionController::TestCase
       delete :destroy, id: @member
     end
 
-    assert_redirected_to members_path
+    assert_redirected_to profile_path(assigns(:member).profile)
   end
 end

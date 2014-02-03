@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  owner_id: 
+  owner_id: 1
+  owner_type: Profile
   line_one: MyString
   city: MyString
   state_region: MyString
@@ -9,7 +10,8 @@ one:
   country: MyString
 
 two:
-  owner_id: 
+  owner_id: 2
+  owner_type: Profile
   line_one: MyString
   city: MyString
   state_region: MyString
