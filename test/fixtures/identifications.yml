@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  foid_type: 'Drivers Liscense'
+  foid: MyString
+  notes: MyString
+  profile_id: 1
+
+two:
+  foid_type: 'Drivers Liscense'
+  foid: MyString
+  notes: MyString
+  profile_id: 2

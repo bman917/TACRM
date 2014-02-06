@@ -1,3 +1,7 @@
+.profile_show_section .section_body {
+	display: none;
+}
+
 #groups_list {
 	width: 700px;
 
@@ -41,7 +45,7 @@
 }
 
 form#new_phone, form#new_address, form.new_member, 
-form#new_group, #new_account, #new_note {
+form#new_group, #new_account, #new_note, #new_identification {
 	display: none;
 }
 

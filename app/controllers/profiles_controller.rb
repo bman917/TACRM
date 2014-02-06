@@ -26,6 +26,7 @@ class ProfilesController < ApplicationController
     @group = Group.new(account: @profile.account)
     @account = Account.new(profile: @profile, name: @profile.full_name)
     @note = Note.new(profile: @profile)
+    @identification = Identification.new(profile: @profile)
   end
 
   # GET /profiles/new

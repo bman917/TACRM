@@ -2,6 +2,7 @@ class Profile < ActiveRecord::Base
 	has_many :phones, as: :contact_detail, :dependent => :delete_all
 	has_many :addresses, as: :owner, :dependent => :delete_all
 	has_many :notes, :dependent => :delete_all
+	has_many :identifications, :dependent => :delete_all
 	has_one :account
 
 	def full_name

@@ -16,38 +16,9 @@ $(document).ready(function(){
 <%=render 'profile_details' %>
 <%=render 'contact_details' %>
 <%=render 'note_details' %>
+<%=render 'foid_details' %>
 
-<div id="account_name" class="profile_show_section">
-	<h2 class="section_divider">
-	<%=section_hide_link :account_hide_link%>	
-	Travel Account
-	</h2>
-	<div class="section_body">
-		<% if @profile.account %>
-			<div id="help">
-			A Travel Account is used for booking different kinds of services.
-			</div>
-			<strong>Account Name:</strong>
-			<%= best_in_place @profile.account, :name %>
-		<% else %>
-			<div id="help">
-			  This profile does not have a Travel Account. A Travel Account will enable the user to book services. 
-			  </p>
-			  Not all profile needs a Travel Account. For example, for group of people trevelling together, only one of them need to open a Travel Account.
-			  </p>
-			  Click on the link below to open an Account for this Profile.
-			  	<br/>
-			  	<div class="toggler">
-			  	<%=link_to 'Create Account', '', id: "create_account_link", class: 'add_fields no-print'%>
-				<%=render 'accounts/form2'%>
-				</div>
-			</div>
-		<% end %>
-
-<%=render 'group_details'%>
-
-	</div>
-</div>
+<%=render 'account_details' %>
 
 <div id="back">
 <% if @profile.profile_type == 'CORPORATE' %>

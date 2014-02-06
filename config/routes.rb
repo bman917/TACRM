@@ -1,4 +1,6 @@
 TACRM::Application.routes.draw do
+  resources :identifications
+
   resources :notes
 
   resources :members

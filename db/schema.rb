@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201041842) do
+ActiveRecord::Schema.define(version: 20140206161134) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20140201041842) do
   end
 
   add_index "groups", ["account_id"], name: "index_groups_on_account_id"
+
+  create_table "identifications", force: true do |t|
+    t.string   "foid_type"
+    t.string   "foid"
+    t.string   "notes"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identifications", ["profile_id"], name: "index_identifications_on_profile_id"
 
   create_table "members", force: true do |t|
     t.integer  "profile_id"

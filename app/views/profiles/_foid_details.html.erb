@@ -1,0 +1,10 @@
+<div id="foid_details" class="profile_show_section">
+  <h2 class="section_divider">
+  <%=section_hide_link :foid_hide_link%> 
+  Forms Of Identifications
+  </h2>
+  <div class="section_body">
+  <%= render partial: 'identifications/index', locals: {identifications: @profile.identifications} %>
+
+  </div>
+</div>

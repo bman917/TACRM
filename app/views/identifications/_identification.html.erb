@@ -1,0 +1,7 @@
+<li id="foid_<%=identification.id%>"> 
+   	<%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove [#{identification.foid_type} - #{identification.foid}]?"} %>
+
+<%= best_in_place identification, :foid_type, type: :select,
+		collection: foid_types %> -
+<%= best_in_place identification, :foid %>
+</li>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @identification.foid_type %>
+</p>
+
+<p>
+  <strong>Foid:</strong>
+  <%= @identification.foid %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @identification.notes %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @identification.profile %>
+</p>
+
+<%= link_to 'Edit', edit_identification_path(@identification) %> |
+<%= link_to 'Back', identifications_path %>
