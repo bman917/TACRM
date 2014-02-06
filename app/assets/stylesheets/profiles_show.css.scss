@@ -1,5 +1,10 @@
 .profile_show_section .section_body {
 	display: none;
+
+}
+
+#group_details_body {
+	display: none;
 }
 
 #groups_list {
@@ -32,9 +37,7 @@
 	clear: both;
 }
 
-#account_name {
-	margin-top: 1em;
-}
+
 .field_group {
 	margin-top: 1em;
 	display: block;
@@ -92,7 +95,7 @@ form#new_group, #new_account, #new_note, #new_identification {
 }
 
 .profile_show_section {
-	margin-bottom: 2em; 
+	margin-bottom: 5px; 
 }
 
 .section_divider {
@@ -101,11 +104,16 @@ form#new_group, #new_account, #new_note, #new_identification {
 		padding-left: 13px;
 		border-top: 1px solid #AAA59D;
 		border-bottom: 1px solid #AAA59D;
-		padding-top: 7px;
-		padding-bottom: 7px;
-		margin-bottom: .5em;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		margin-bottom: 0;
 		background: #948E88;
+		font-size: 1em;
 	
+}
+
+.section_body {
+	margin-top: 1em;
 }
 
 .section_hide_link {
