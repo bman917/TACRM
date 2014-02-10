@@ -29,7 +29,7 @@ function init_profiles_index() {
 
 }
 
-function toggle_add_profile_div() {
+function toggle_add_profile_div(event) {
 	$('#profile_index').toggle();
 	$('#show_new_profile_row_link').toggle();
 	$('#add_profile').toggle();

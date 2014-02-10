@@ -36,7 +36,7 @@ function show_waiting() {
 // 	<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
 // 	<%=render 'notes/form'%>
 // </div>
-function toggle_form() {
+function toggle_form(event) {
 	var form = $(this).closest('.toggler').find('form');
 	form.toggle();
 	form.find('.focus_on_toggle').focus();
