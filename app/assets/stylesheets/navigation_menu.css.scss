@@ -1,8 +1,8 @@
 #navigation {
    
-   border-top: 1px solid white;
-   border-bottom: 2px solid white;
-   background-color: #5E5C59;
+   border-top: 1px solid #375219;
+   border-bottom: 1px solid #375219;
+   background-color: #D4E6BF;
    height: 2.5em;
    margin-left: -1em;
    margin-right: -1em;
@@ -10,7 +10,7 @@
    font-weight: bold;
 
    a, a:visited {
-   	color: white;
+   	color: #375219;
    }
 
    ul#menu {
@@ -37,16 +37,16 @@
 	  text-decoration: none;
 	  //color: #ffffff;
 	  padding: 5px 15px 5px 15px;
-	  background: #5E5C59;
+	  background: #D4E6BF;
 	  margin-left: 1px;
 	  white-space: nowrap;
 	}
 
 	//Highlight main menus
 	ul li a:hover { 
-	background: #5E5C59; 
+	background: #D4E6BF; 
 	
-	color: white;	
+	color: #375219;	
 
 	} 
 
@@ -61,12 +61,12 @@
 	  //opacity: 095;
 	}
 	li:hover a { 
-		background: #5E5C59; 
+		background: #D4E6BF; 
 	}
 	li:hover li a:hover { 
-		background: #42403B; 
-		border-top: 2px solid white;
-		border-bottom: 2px solid white;
+		background: #91B666; 
+		border-top: 1px solid #375219;
+		border-bottom: 1px solid #375219;
 		color: white;
 
 	}

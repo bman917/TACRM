@@ -4,8 +4,10 @@ table
 	width: 800px;
 	//text-align: center;
 	border-collapse: collapse;
-	border-top: 7px solid #5E5C59;
-	border-bottom: 7px solid #5E5C59;
+	border: 1px solid #C7DBB1;
+	border-top: 7px solid #C7DBB1;
+	border-bottom: 7px solid #C7DBB1;
+
 
 	//background: #e8edff; 
 	//tr:hover { background: #C4CFF6; }
@@ -20,18 +22,22 @@ th
 	padding: 8px;
 	//border-right: 1px solid #5E5C59;
 	//border-left: 1px solid #5E5C59;
-	border: 1px solid #5E5C59;
+	border: 1px solid #C7DBB1;
 	//color: #039;
-	color: white;
-	background: #4B4A47;
+	color: #000000;
+	background: #E4F4D3;
 }
  td
 {
-	//padding: 8px;
+	padding: 3px;
 	
-	//border-right: 1px solid white;
-	//border-left: 1px solid white;
+	border-right: 1px solid  #C7DBB1;
+	border-left: 1px solid  #C7DBB1;
 	//color: #669;
+}
+
+tr:hover {
+	background: #E0F5C8;
 }
 
 

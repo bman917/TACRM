@@ -14,7 +14,7 @@
  *= require_tree .
  */
 html {
-	background: #F3ECE0;
+	background: #FFFFFF;
 }
 
 body {
@@ -27,9 +27,9 @@ body {
 {
 	padding: 15px;
 	height: 30px;
-	background: #77736E;
+	background: white;
 ;
-	color: white;
+	color: #375219;
 }
 
 #nav_bar a {
