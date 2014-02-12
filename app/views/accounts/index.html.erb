@@ -1,33 +1,43 @@
-<h1>Travel Accounts</h1>
-
-<div id="help">
-A Travel Account is used for booking different kinds of services. </br>
-To create a Travel Account select a profile from the <%= link_to 'Traveller Profiles', profiles_path, class: 'slow_link' %> or <%= link_to 'Corporate Profiles', corporate_index_profiles_path, class: 'slow_link'%> page.
+<div id="section_title">
+All Clients
 </div>
-
-<table>
+<div id="section_controls">
+<%=link_to 'Add Corporate', '', class: 'add_fields'%>
+<%=link_to 'Add Individual', '', class: 'add_fields'%> 
+</div>
+<div id="section_content">
+<table class="section_table">
   <thead>
     <tr>
       <th></th>
       <th>Name</th>
-      <th>Profile</th>
+      <th>Email</th>
+      <th>Contact Number</th>
+      <th>Address</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @accounts.each do |account| %>
-      <tr>
-        <td><%= link_to 'View', account.profile %></td>
+      <tr class="<%=cycle('odd','even')%>">
+        <td class="view">
+          <div>
+          <%= link_to 'View Details', account.profile, class: 'view_details' %>
+          </div>
+        </td>
         <td><%= account.name %></td>
-        <td><%= account.profile.full_name if account.profile %></td>
+        <td><%= account.profile.email if account.profile %></td>
+        <td><%= account.profile.phones.first.try :display %></td>
+        <td><%= truncate account.profile.addresses.first.try(:display) %></td>
         <td><%= link_to 'X', account, method: :delete, class: "remove_fields", data: { confirm: "Delete Account '#{account.name}'?" } %>
     </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div class="table_botom_spacer">&nbsp</div>
 
-<br>
+</div>
 
 <!--%= link_to 'New Account', new_account_path %-->

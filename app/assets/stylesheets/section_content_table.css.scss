@@ -1,0 +1,21 @@
+.section_table {
+	margin: 0;
+	width: 100%;
+	border-top: 0;
+	border-bottom: 0;
+
+	th, td {
+		padding: 4px;
+	}
+
+	tr.even {
+		background: #EFF6E7;
+	}
+
+}
+
+td.view {
+	text-align: center;
+	width: 7em;
+}
+
