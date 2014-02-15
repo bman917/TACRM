@@ -1,0 +1,8 @@
+<% require 'profiles_helper'%>
+<% cache("JS-#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
+
+$('.section_table').remove();
+$('#section_content').prepend("<%=j render('profile_table')%>");
+remove_overlay();
+
+<% end %>

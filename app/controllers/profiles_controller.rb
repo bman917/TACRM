@@ -9,8 +9,22 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.where(profile_type: 'INDIVIDUAL')
+    @profile_type = params[:profile_type] || 'ALL'
+
+
+    if @profile_type == 'ALL'
+      @profiles = Profile.all
+    else
+      @profiles = Profile.where(profile_type: @profile_type)
+    end
+
+    # @profiles = Profile.all
     @profile = Profile.new(profile_type: 'INDIVIDUAL')
+
+    respond_to do | format |
+      format.html
+      format.js
+    end
   end
 
   def corporate_index

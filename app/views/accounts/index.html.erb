@@ -11,6 +11,7 @@ All Clients
     <tr>
       <th></th>
       <th>Name</th>
+      <th>Type</th>
       <th>Email</th>
       <th>Contact Number</th>
       <th>Address</th>
@@ -27,6 +28,7 @@ All Clients
           </div>
         </td>
         <td><%= account.name %></td>
+        <td><%= account.profile.profile_type %></td>
         <td><%= account.profile.email if account.profile %></td>
         <td><%= account.profile.phones.first.try :display %></td>
         <td><%= truncate account.profile.addresses.first.try(:display) %></td>

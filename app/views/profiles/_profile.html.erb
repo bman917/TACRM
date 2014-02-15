@@ -1,9 +1,16 @@
-<tr>
-    <td><%= link_to 'View', profile, class: 'slow_link' %></td>
+<tr class="<%=cycle('odd','even')%>">
+        <td class="view">
+          <div>
+          <%= link_to 'View Details', profile, class: 'view_details' %>
+          </div>
+        </td>
 
         <td><%= profile.full_name %></td>
+        <td><%= profile.profile_type %></td>
+        <td><%= profile.email %></td>
+        <td><%= profile.phones.first.try :display %></td>
+        <td><%= truncate profile.addresses.first.try(:display) %></td>
 
-    <td><%= profile.email %></td>
-    <td><%= link_to 'X', profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
-    </td>
+        <td><%= link_to 'X', profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
+        </td>
 </tr>

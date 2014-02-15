@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+	def profile_types
+		[
+			['INDIVIDUAL','INDIVIDUAL'],
+			['GUEST','GUEST'],
+			['CORPORATE','CORPORATE']
+
+		]
+	end
+
 	def foid_types
 		[
 			['Drivers License', 'Drivers License'],

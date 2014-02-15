@@ -6,10 +6,10 @@ class Profile < ActiveRecord::Base
 	has_one :account
 
 	def full_name
-		if profile_type == 'INDIVIDUAL'
-			"#{first_name} #{middle_name} #{last_name}"
-		else
+		if profile_type == 'CORPORATE'
 			self.name
+		else
+			"#{first_name} #{middle_name} #{last_name}"
 		end
 	end
 

@@ -1,16 +1,32 @@
+<% cache("#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
+
 <%=javascript_tag do %>
 
 $(document).ready(function(){
   init_profiles_index();
+
+
 });
+
 <% end %>
 
-<div id="profile_index">
-  <h1>Traveller Profiles</h1>
-    
-  <%= render 'profile_table'%>
-  
+<div id="section_title">
+All Clients
 </div>
+<div id="section_controls">
+<%=form_tag profiles_path, method: 'get', id: 'type_filter', remote: true do %>
+Filter: <%= select_tag(:profile_type, options_for_select(profile_types.push(['ALL']) , @profile_type))%>
+<% end %>
+<%=link_to 'Add Corporate', '', class: 'add_fields'%>
+<%=link_to 'Add Individual', '', class: 'add_fields'%> 
+</div>
+<div id="section_content">
+
+  <%= render 'profile_table'%>
+
+<div class="table_botom_spacer">&nbsp</div>
+</div>
+
 
 <%= link_to 'Add Profile', '', id: 'show_new_profile_row_link'%>
 <div id="add_profile">
@@ -59,3 +75,4 @@ $(document).ready(function(){
   <% end %>
   <%= link_to 'Cancel', '', id: "hide_new_profile_row_link"%>
 </div>
+<% end %>

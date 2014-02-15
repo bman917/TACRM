@@ -1,9 +1,12 @@
-<table id="profile_index_table">
+<table class="section_table">
   <thead>
     <tr>
       <th></th>
       <th>Name</th>
+      <th>Type</th>
       <th>Email</th>
+      <th>Contact Number</th>
+      <th>Address</th>
       <th></th>
     </tr>
   </thead>
@@ -11,7 +14,7 @@
   <tbody>
 
     <% @profiles.each do |profile| %>
-      <%= render profile %>
+      <%=render profile%>
     <% end if @profiles%>
   </tbody>
 </table>

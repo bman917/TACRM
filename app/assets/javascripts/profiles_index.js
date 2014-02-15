@@ -20,14 +20,28 @@ function init_profiles_index() {
 		$('#wait_message').addClass('modal');
 	});
 
-	$('a.slow_link').on('click',  function() {
-		$('#content').append("<div class='overlay'></div>");
-		$('#wait_message').toggle();
-		$('#wait_message').addClass('modal');
+	$('a.slow_link').on('click',  overlay);
+
+	$('#profile_type').change(function() {
+		overlay();
+		$('#type_filter').submit();
 	});
 
-
 }
+
+function overlay() {
+		$('#content').append("<div class='overlay'></div>");
+		$('#wait_message').toggle();
+		$('#wait_message').addClass('modal');	
+}
+
+function remove_overlay() {
+	$('.overlay').remove();
+	$('#wait_message').removeClass('modal');
+	$('#wait_message').toggle();
+}
+
+
 
 function toggle_add_profile_div(event) {
 	$('#profile_index').toggle();
