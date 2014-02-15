@@ -1,9 +1,12 @@
-#type_filter {
+#section_controls .group {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ABC391;
+}
+#type_filter, #new_profile {
 	display: inline;
 }
-#add_profile {
-	display: none;
-}
+
 
 #profile_add_table {
 	input {

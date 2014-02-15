@@ -14,12 +14,22 @@ $(document).ready(function(){
 All Clients
 </div>
 <div id="section_controls">
+
 <%=form_tag profiles_path, method: 'get', id: 'type_filter', remote: true do %>
 Filter: <%= select_tag(:profile_type, options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 <% end %>
-<%=link_to 'Add Corporate', '', class: 'add_fields'%>
-<%=link_to 'Add Individual', '', class: 'add_fields'%> 
+
+  <span class="group">
+    <%=link_to 'ADD CLIENT', new_profile_by_type_path('INDIVIDUAL'), class: 'add_fields', remote: true%>
+    <%=link_to 'ADD GUEST', new_profile_by_type_path('GUEST'), class: 'add_fields', remote: true%>
+    <%=link_to 'ADD CORPORATE CLIENT', new_profile_by_type_path('CORPORATE'), class: 'add_fields', remote: true%>
+    
+  </span>
+
+  
+
 </div>
+
 <div id="section_content">
 
   <%= render 'profile_table'%>
@@ -28,51 +38,4 @@ Filter: <%= select_tag(:profile_type, options_for_select(profile_types.push(['AL
 </div>
 
 
-<%= link_to 'Add Profile', '', id: 'show_new_profile_row_link'%>
-<div id="add_profile">
-  <h1>Add Profile</h1>
-  <%= form_for(@profile) do |f| %>
-
-    <% if @profile.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
-
-        <ul>
-        <% @profile.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-      <table id="profile_add_table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Middle name</th>
-            <th>Birth day</th>
-            <th id="gender_column">Gender</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="new_profile_row">
-            <td></td>
-            <td><%= f.text_field :first_name %></td>
-            <td><%= f.text_field :last_name %></td>
-            <td><%= f.text_field :middle_name %></td>
-            <td><%= f.date_field :birth_day %></td>
-            <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
-            <td><%= f.email_field :email %></td>
-            <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
-          </tr>
-        </tbody>
-      </table>
-      <%= f.hidden_field :profile_type %>
-  <% end %>
-  <%= link_to 'Cancel', '', id: "hide_new_profile_row_link"%>
-</div>
 <% end %>

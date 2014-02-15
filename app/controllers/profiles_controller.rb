@@ -3,7 +3,6 @@ class ProfilesController < ApplicationController
 
   def search
     @profiles = Profile.order(:name).where("name like ?", "%#{params[:term]}%")
-    
   end
 
   # GET /profiles
@@ -46,6 +45,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @profile.profile_type = params[:profile_type] || 'INDIVIDUAL'
+
   end
 
   # GET /profiles/1/edit

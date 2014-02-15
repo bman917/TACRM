@@ -7,7 +7,10 @@ function init_profiles_index() {
 
 	$('#profile_first_name').focus();
 
-	$('#show_new_profile_row_link').on('click', toggle_add_profile_div);
+
+
+
+
 	$('#hide_new_profile_row_link').on('click', toggle_add_profile_div);
 
 	$('.best_in_place').best_in_place();
@@ -23,6 +26,7 @@ function init_profiles_index() {
 	$('a.slow_link').on('click',  overlay);
 
 	$('#profile_type').change(function() {
+		$('#add_profile').fadeOut('fast');
 		overlay();
 		$('#type_filter').submit();
 	});
@@ -45,8 +49,8 @@ function remove_overlay() {
 
 function toggle_add_profile_div(event) {
 	$('#profile_index').toggle();
-	$('#show_new_profile_row_link').toggle();
-	$('#add_profile').toggle();
+	// $('#show_new_profile_row_link').toggle();
+	$('#add_profile').slideToggle('fast');
 	$('input[type=text]:first').focus();
 	event.preventDefault();	
 }

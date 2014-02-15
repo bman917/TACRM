@@ -1,0 +1,64 @@
+<div id="add_profile">
+  
+  <%= form_for(@profile) do |f| %>
+
+    <% if @profile.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+        <ul>
+        <% @profile.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <table id="profile_add_table">
+        <thead>
+          <tr>
+            <th>Type</th>
+
+          <% if @profile.profile_type == 'CORPORATE' %>
+
+            <th>Name</th>
+
+          <% else %>
+            
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Middle name</th>
+            <th>Birth day</th>
+            <th id="gender_column">Gender</th>
+          <% end %>
+
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="new_profile_row">
+            <td> <%= @profile.profile_type %></td>
+
+          <% if @profile.profile_type == 'CORPORATE' %>
+
+            <td class="name"><%= f.text_field :name %></td>
+
+          <% else %>
+        
+            <td><%= f.text_field :first_name %></td>
+            <td><%= f.text_field :last_name %></td>
+            <td><%= f.text_field :middle_name %></td>
+            <td><%= f.date_field :birth_day %></td>
+            <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
+          <% end %>
+
+            <td><%= f.email_field :email %></td>
+            <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= f.hidden_field :profile_type %>
+  <% end %>
+  <%= link_to 'Cancel', '', id: "hide_new_profile_row_link"%>
+</div>
