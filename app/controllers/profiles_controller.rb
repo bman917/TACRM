@@ -44,10 +44,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    sleep 3
     @profile = Profile.new
     @profile.profile_type = params[:profile_type] || 'INDIVIDUAL'
-
   end
 
   # GET /profiles/1/edit
