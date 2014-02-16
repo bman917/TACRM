@@ -1,9 +1,4 @@
 function init_profiles_index() {
-	// $('#profile_birth_day').datepicker({
- //      changeMonth: true,
- //      changeYear: true,
- //      yearRange: "-200:+0"
- //    });
 
 	$('#profile_first_name').focus();
 
@@ -31,6 +26,15 @@ function init_profiles_index() {
 		$('#type_filter').submit();
 	});
 
+	$('.add_client_link').on('click', function(e) {
+		if ($('#prepare_form').is(":visible")) {
+			e.preventDefault();
+			return false;
+		} else {
+			$('#prepare_form').append("<h3>Preparing " + $(this).text() + "...</h3>");
+			$('#prepare_form').fadeIn('fast');
+		}
+	});
 }
 
 function overlay() {
