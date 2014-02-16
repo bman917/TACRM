@@ -27,12 +27,13 @@ function init_profiles_index() {
 	});
 
 	$('.add_client_link').on('click', function(e) {
+
 		if ($('#prepare_form').is(":visible")) {
 			e.preventDefault();
 			return false;
 		} else {
 			$('.add_profile').fadeOut('fast', function() { $(this).remove();});
-			$('#prepare_form').fadeIn('slow');
+			$('#prepare_form').fadeIn('fast');
 		}
 	});
 }
