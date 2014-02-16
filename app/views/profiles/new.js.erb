@@ -1,6 +1,4 @@
 $('#prepare_form').fadeOut('fast');
-$('#prepare_form h3:first').remove();
-$('.add_profile').fadeOut('fast', function() { $(this).remove();});
 $('#section_controls').append('<%=j render('add_profile')%>');
 $('.add_profile').slideDown('fast');
 $('#profile_birth_day').datepicker({

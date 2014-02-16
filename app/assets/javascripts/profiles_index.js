@@ -31,8 +31,8 @@ function init_profiles_index() {
 			e.preventDefault();
 			return false;
 		} else {
-			$('#prepare_form').append("<h3>Preparing " + $(this).text() + "...</h3>");
-			$('#prepare_form').fadeIn('fast');
+			$('.add_profile').fadeOut('fast', function() { $(this).remove();});
+			$('#prepare_form').fadeIn('slow');
 		}
 	});
 }
