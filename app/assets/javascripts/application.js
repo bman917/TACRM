@@ -44,3 +44,15 @@ function toggle_form(event) {
 	$(this).closest('.toggler').find('.add_fields').toggle();
 	event.preventDefault();	
 }
+
+function overlay() {
+		$('#content').append("<div class='overlay'></div>");
+		$('#wait_message').toggle();
+		$('#wait_message').addClass('modal');	
+}
+
+function remove_overlay() {
+	$('.overlay').remove();
+	$('#wait_message').removeClass('modal');
+	$('#wait_message').toggle();
+}
