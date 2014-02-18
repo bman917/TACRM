@@ -1,12 +1,3 @@
-.profile_show_section .section_body {
-	display: none;
-
-}
-
-#group_details_body {
-	display: none;
-}
-
 #groups_list {
 	width: 700px;
 
@@ -92,45 +83,6 @@ form#new_group, #new_account, #new_note, #new_identification {
 
 #group_details #add_group_link, #create_account_link {
 	font-size: 1em;
-}
-
-.profile_show_section {
-	margin-bottom: 5px; 
-}
-
-.section_divider {
-		margin-left: -13px;
-		margin-right: -13px;
-		padding-left: 13px;
-		border-top: 1px solid #AAA59D;
-		border-bottom: 1px solid #AAA59D;
-		padding-top: 3px;
-		padding-bottom: 3px;
-		margin-bottom: 0;
-		background: #D4E6BF;
-		font-size: 1em;
-	
-}
-
-.section_body {
-	margin-top: 1em;
-}
-
-.section_hide_link {
-	font-size: 1em;
-	// margin-top: .5em;
-	// margin-left: .5em;
-	padding: 1px;
-	padding-left: 7px;
-	padding-right: 7px;
-	
-	width: 20em;
-	font-size: .7em;
-	color: #003300;
-	border-radius: .5em;
-	border-left: 1px solid #003300;
-	border-right: 1px solid #003300;
-	text-decoration: none;
 }
 
 #notes_list{

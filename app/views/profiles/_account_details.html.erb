@@ -1,7 +1,6 @@
 <div id="account_name" class="profile_show_section">
-	<h2 class="section_divider">
-	<%=section_hide_link :account_hide_link%>	
-	Travel Account
+	<h2 class="hidden title">
+			Travel Account
 	</h2>
 	<div class="section_body">
 		<% if @profile.account %>
@@ -24,8 +23,6 @@
 				</div>
 			</div>
 		<% end %>
-
-<%=render 'group_details'%>
 
 	</div>
 </div>

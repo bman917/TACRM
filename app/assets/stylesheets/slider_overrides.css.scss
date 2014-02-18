@@ -1,0 +1,43 @@
+.slider-container {
+	border: 1px solid #ABC391; 
+	display: table;
+}
+
+.profile_detail {
+	margin:0 auto;
+	max-width: 1030px;
+	min-width: 800px;
+	margin-bottom: 1em;
+}
+
+.ls-wrapper .liquid-slider {
+	 background: white;
+	 max-width: 1030px;
+	 min-width: 800px;
+}
+
+.ls-nav {
+	background: #D5E6C2;
+}
+
+.ls-wrapper {
+	overflow: visible;
+}
+
+.ls-wrapper .ls-nav {
+
+	a:hover {
+		background: #E4F4D3;
+	}
+	a {
+	background: #D5E6C2;
+
+	}
+
+	.current {
+		font-weight: bold;
+		text-decoration: underline;
+		background: #EFF6E7;
+		
+	}
+}

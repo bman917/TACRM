@@ -8,8 +8,8 @@
 		<div class="toggler">
 		<%=link_to 'Add Member', '', id: "add_member_link_group_#{group.id}", class: 'member_link_group add_fields no-print'%>
 
-		<% @member = Member.new(group: group)%>
-		<%=render 'members/form'%>
+			<% @member = Member.new(group: group)%>
+			<%=render 'members/form'%>
 		</div>
 
 		<%=link_to 'Delete Group', group, remote: true, method: :delete, class: "remove_fields no-print delete_group", data: {confirm: "Delete '#{group.name}'?"} %>

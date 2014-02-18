@@ -7,25 +7,39 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
-<div id="help">
-  This page shows all information about the Profile. 
-  <br/>
-  <strong>Click on any information to edit it. Changes are automatically saved.</strong>
-</div>
 
 <%=render 'profile_details' %>
-<%=render 'contact_details' %>
-<%=render 'note_details' %>
-<%=render 'foid_details' %>
 
-<%=render 'account_details' %>
-
-<div id="back">
-<% if @profile.profile_type == 'CORPORATE' %>
-  <%= link_to 'Back', corporate_index_profiles_path %>
+  <%=javascript_tag do %>
+  $(document).ready(function(){
+    $(function(){
+      $('#profile-tabs').liquidSlider({
+        slideEaseDuration: 500,
+        autoHeight: true,
+        minHeight: 300
+      });
+    });
+ });
 <% end %>
+<div class="slider-container">
+	<div class="liquid-slider" id="profile-tabs">
+	    <div>
+	      <%=render 'contact_details'%>
+	    </div>
+	    <div>
+	      <%=render 'note_details' %>
+	    </div>          
+	    <div>
+	      <%=render 'foid_details' %>
+	    </div>
+		<% if @profile.account %>
+		<div>
+			<%=render 'group_details' %>
+		</div>
+		<% end %>
+	    <div>
+	      <%=render 'account_details' %>
+	    </div>
+	</div>
 
-<% if @profile.profile_type == 'INDIVIDUAL' %>
-  <%= link_to 'Back', profiles_path %>
-<% end %>
 </div>

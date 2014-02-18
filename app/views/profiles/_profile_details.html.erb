@@ -1,40 +1,67 @@
-<div id="profile_details">
-  <h2 class="section_divider">Profile Details</h2>
+
+
+<div class="profile_detail">
+  <div id="section_title">
+  Client Details
+  </div>
+  <div id="section_controls">
+    Client Type <%= @profile.profile_type %>
+  </div>
+
+
+
 
 <% if @profile.profile_type == 'INDIVIDUAL' %>
-  <div class="field_group">
-      <span class="group">
-        <strong>Full Name:</strong> 
-        <%= best_in_place @profile, :first_name %> 
-        <%= best_in_place @profile, :middle_name, nil: '&nbsp; ' %> 
-        <%= best_in_place @profile, :last_name %>
-      </span>
 
-      <span class="group">
-        <strong>Birth day:</strong>
-        <%= best_in_place @profile, :birth_day, :type => :date,
-            :display_as => :birth_day_med_format %>
-      </span>
+   <table class="table2">
+        <tr>
+          <th>First Name</th>  
+          <th>Middle Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Birth Date</th>
+          <th>Email</th>
+          
+        </tr>  
+        <tr>
+          <td> <%= best_in_place @profile, :first_name %></td>
+          <td><%= best_in_place @profile, :middle_name %></td>
+          <td><%= best_in_place @profile, :last_name %></td>
+          <td><%= best_in_place @profile, :gender, type: :select, 
+          collection: [['M','M'],['F','F']] %></td>
+          <td><%= best_in_place @profile, :birth_day, :type => :date,
+            :display_as => :birth_day_med_format %></td>
+          <td><%= best_in_place @profile, :email %></td>
+        </tr>
+    </table>
 
-      <span class="group">
-        <strong>Gender:</strong>
-        <%= best_in_place @profile, :gender, type: :select, 
-          collection: [['M','M'],['F','F']] %>
-      </span>
 
-  </div>
+
+
+
+
 <% end %>
+
+
 
 <% if @profile.profile_type == 'CORPORATE' %>
-  <div class="field_group">
-    <strong>Company Name:</strong> <%= best_in_place @profile, :name %>
-  </div>
-<% end %>
 
-  <div class="field_group">
-    <p>
-      <strong>Email:</strong>
-      <%= best_in_place @profile, :email %>
-    </p>
-  </div>
+   <table class="table2">
+        <tr>
+          <th>Company Name</th>  
+          <td> <%= best_in_place @profile, :name %></td>
+        </tr>  
+        <tr>
+          <th>Email</th>
+          <td><%= best_in_place @profile, :email %></td>
+        </tr>
+    </table>
+
+<% end %>
+<div class="table_botom_spacer">&nbsp</div>
+
+
 </div>
+
+
+

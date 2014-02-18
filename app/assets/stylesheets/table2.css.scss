@@ -1,0 +1,25 @@
+.table2 {
+	margin: 0;
+	width: 100%;
+	border-top: 0;
+	border-bottom: 0;
+
+
+	th {
+		width: 120px;
+		// text-align: center;
+	}
+
+	th, td {
+		border: 1px solid #ABC391;
+	}
+
+	th, td {
+		padding: 4px;
+	}
+
+	tr.even {
+		background: #EFF6E7;
+	}
+
+}

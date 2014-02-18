@@ -16,6 +16,9 @@
 //= require best_in_place
 //= require best_in_place.purr
 //= require turbolinks
+//= require jquery.liquid-slider
+//= require jquery.touchSwipe.min
+//= require hide_toggler
 //= require_tree .
 
 function application_init() {
