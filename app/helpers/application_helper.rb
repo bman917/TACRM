@@ -21,7 +21,7 @@ module ApplicationHelper
 		[
 			['Landline','Landline'],
 			['Mobile','Mobile'],
-			['Unknown','Unknown']
+			['Fax','Fax']
 		]
 	end
 

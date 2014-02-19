@@ -49,13 +49,15 @@ form#new_group, #new_account, #new_note, #new_identification {
 }
 
 #contact_details_table {
-	border-top: 1px solid #BCB7B2;
-	border-bottom: 1px solid #BCB7B2;
-	border: 1px solid #BCB7B2;
+	// border-top: 1px solid #BCB7B2;
+	// border-bottom: 1px solid #BCB7B2;
+	// border: 1px solid #BCB7B2;
+	border: 0;
 	margin-bottom: 2em;
 	margin-left: 0;
 	tr, td {
 		padding-left: 10px;
+		border: 0;
 	}
 }
 
