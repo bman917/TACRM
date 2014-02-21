@@ -8,16 +8,16 @@ GIT
 
 GIT
   remote: git://github.com/bman917/hide_toggler.git
-  revision: 78e7cf211ae8adb7d4b4067cc5dd2f3102cf7b60
+  revision: bead4d395c78c538e4af45d7120413fc714d111a
   specs:
-    hide_toggler (0.0.5)
+    hide_toggler (0.0.6)
       rails (>= 3.1)
 
 GIT
   remote: git://github.com/bman917/jquery-liquidslider-rails.git
-  revision: c492bf5b6e7823c99d62f02edc71e24428a88d2e
+  revision: 5f2ff40e780ed66dd0270506c56186b61441716f
   specs:
-    jquery-liquidslider-rails (2.0.12)
+    jquery-liquidslider-rails (2.0.12.1)
 
 GEM
   remote: https://rubygems.org/

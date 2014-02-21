@@ -26,6 +26,9 @@ function application_init() {
 	$.datepicker.setDefaults({ dateFormat: 'MM dd, yy' });
 
 	$('a.slow_link').on('click', show_waiting);
+
+	add_loading_image_on_toggler_form_submit();
+	liquid_slider_auto_height();
 }
 
 function show_waiting() {
