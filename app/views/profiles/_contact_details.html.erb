@@ -1,13 +1,15 @@
-<div class="profile_show_section">
+
+
+<div class="profile_show_section liquidSlider_auto_height">
 
   <h2 class="hidden title">Contact Details</h2>
 
   <div class="section_body">
       <table id="contact_details_table">
         <tr>
-          <td id="phone_column">
+          <td id="phone_column" class="wip">
             <h4>Contact Numbers</h4>
-            <ul id="phone_ul">
+            <ul id="phone_ul" class="wic">
               <% @profile.phones.each do | phone | %>
                 <%= render phone %>
               <% end %>
@@ -25,9 +27,9 @@
             </div>
 
           </td>
-          <td id="address_column">
+          <td id="address_column"  class="wip">
            <h4>Addresses</h4>
-            <ul id="addresses_ul">
+            <ul id="addresses_ul" class="wic">
               <% @profile.addresses.each do | addresses | %>
                 <%= render addresses %>
               <% end %>

@@ -1,9 +1,9 @@
-<div id="note_details" class="profile_show_section">
+<div id="note_details" class="profile_show_section liquidSlider_auto_height">
 
 	<h2 class="section_divider title">
 	Notes
 	</h2>
-	<div class="section_body">
+	<div class="section_body wip">
 		<div class="toggler">
 			<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
 			<div>
@@ -17,6 +17,9 @@
 			<%@profile.notes.each do | note | %>
 				<%=render note%>
 			<% end %>
+		</div>
+
+		<div class="wic">
 		</div>
 		
 	</div>

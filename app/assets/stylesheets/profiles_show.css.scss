@@ -1,5 +1,5 @@
 #groups_list {
-	width: 700px;
+	width: 100%;
 
 }
 
@@ -8,15 +8,13 @@
 }
 .profile_group, .profile_note {
 	float: left;
-	width: 300px;
+	width: 350px;
 	border: 1px solid #BCB7B2;
 	
 	margin: 1em;
 	padding: .5em;
 	border-radius: .5em;
 }
-
-
 
 .delete_group {
 	font-size: .8em;
@@ -82,6 +80,7 @@ form#new_group, #new_account, #new_note, #new_identification {
 		padding-right: 2px;
 	}
 }
+
 
 #group_details #add_group_link, #create_account_link {
 	font-size: 1em;

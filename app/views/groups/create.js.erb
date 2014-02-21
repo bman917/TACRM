@@ -1,4 +1,7 @@
-$('#groups_list').append("<%=j render @group%>").toggle().fadeIn("fast");
-
+$('#group_details').remove_loading_image();
+$('#groups_list').append("<%=j render @group%>").toggle().fadeIn("fast", adjustHeight);
 $('#group_<%=@group.id%> a').on('click', toggle_form);
-$('#add_member_link_group_<%=@group.id%>').click();
+
+//This causes problem with slider panel position. It makes the panel
+//position to be raised upwards.
+//$('#add_member_link_group_<%=@group.id%>').trigger('click');

@@ -19,25 +19,26 @@ $(document).ready(function(){
         minHeight: 300
       });
     });
+
  });
 <% end %>
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
-	    <div>
+	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
-	    <div>
+	    <div class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
-	    <div>
+	   <div class="tab_content">
 	      <%=render 'foid_details' %>
 	    </div>
 		<% if @profile.account %>
-		<div>
+		<div class="tab_content">
 			<%=render 'group_details' %>
 		</div>
 		<% end %>
-	    <div>
+	    <div class="tab_content">
 	      <%=render 'account_details' %>
 	    </div>
 	</div>

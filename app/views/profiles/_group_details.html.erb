@@ -1,5 +1,5 @@
 <% if @profile.account %>
-<div id="group_details" class="profile_show_section">
+<div id="group_details" class="profile_show_section wip liquidSlider_auto_height">
 	<h2 class="hidden title">
 	Groups
 	</h2>
@@ -13,13 +13,15 @@
 			<%=link_to 'Add Group', '', id: "add_group_link", class: 'add_fields no-print'%>
 			</div>
 		</div>
-
+		<div class="wic"></div>	
 		<div id="groups_list">
 
 		<%@profile.account.groups.each do | group | %>
 			<%=render group%>
 		<% end %>
 		</div>
-	</div>	
+
+	</div>
+	
 </div>
 <% end %>

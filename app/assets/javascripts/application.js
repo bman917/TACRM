@@ -16,7 +16,8 @@
 //= require best_in_place
 //= require best_in_place.purr
 //= require turbolinks
-//= require jquery.liquid-slider
+//= require jquery.liquid-slider.min
+//= require jquery.liquid-slider-ajax
 //= require jquery.touchSwipe.min
 //= require hide_toggler
 //= require_tree .
@@ -46,6 +47,8 @@ function toggle_form(event) {
 	
 	$(this).closest('.toggler').find('.add_fields').toggle();
 	event.preventDefault();	
+	adjustHeight();
+	
 }
 
 function overlay() {
