@@ -25,6 +25,7 @@ class PhonesController < ApplicationController
   # POST /phones.json
   def create
     @phone = Phone.new(phone_params)
+    sleep 2
     respond_to do |format|
       if @phone.save
         format.html { redirect_to @phone, notice: 'Phone was successfully created.' }
