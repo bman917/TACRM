@@ -27,7 +27,6 @@ function application_init() {
 
 	$('a.slow_link').on('click', show_waiting);
 
-	add_loading_image_on_toggler_form_submit();
 	liquid_slider_auto_height();
 }
 

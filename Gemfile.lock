@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/bman917/hide_toggler.git
-  revision: bead4d395c78c538e4af45d7120413fc714d111a
+  revision: 439dda1ee2420cc51cfaaeea17df2cb9933d3bb7
   specs:
-    hide_toggler (0.0.6)
+    hide_toggler (0.0.8)
       rails (>= 3.1)
 
 GIT
