@@ -1,0 +1,12 @@
+$('#error_explanation div').append('<h2><%=message%></h2>');
+<% errors.full_messages.each do | error | %>
+$('#error_explanation ul').append('<li><%=error%></li>');
+<% end %>
+$('#error_explanation').fadeIn('slow')
+
+setTimeout(function() {
+	$('#error_explanation').fadeOut('slow', function() {
+		$('#error_explanation li').remove();
+		$('#error_explanation h2').remove();
+	});
+},20000);

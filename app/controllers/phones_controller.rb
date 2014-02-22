@@ -34,7 +34,7 @@ class PhonesController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @phone.errors, status: :unprocessable_entity }
-        format.js
+        format.js { render 'error'}
       end
     end
   end

@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/bman917/hide_toggler.git
-  revision: 439dda1ee2420cc51cfaaeea17df2cb9933d3bb7
+  revision: 641a915dd3f78d662b3cc405a20ba162acf62f3d
   specs:
-    hide_toggler (0.0.8)
+    hide_toggler (0.1.1)
       rails (>= 3.1)
 
 GIT
@@ -46,7 +46,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    arel (4.0.1)
+    arel (4.0.2)
     atomic (1.1.14)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -59,9 +59,9 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
-    capistrano-bundler (1.1.1)
+    capistrano-bundler (1.1.2)
       capistrano (~> 3.0)
-      sshkit (>= 1.2.0)
+      sshkit (~> 1.2)
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -75,7 +75,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.7.0)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -84,11 +84,11 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jquery-rails (3.0.4)
+    jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.1.1)
-      railties (>= 3.1.0)
+    jquery-ui-rails (4.2.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -103,8 +103,8 @@ GEM
     mysql2 (0.3.15)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.7.0)
-    polyglot (0.3.3)
+    net-ssh (2.8.0)
+    polyglot (0.3.4)
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -134,7 +134,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    sprockets (2.10.1)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -148,17 +148,17 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
-    term-ansicolor (1.2.2)
-      tins (~> 0.8)
+    term-ansicolor (1.3.0)
+      tins (~> 1.0)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
-    tins (0.13.1)
+    tins (1.0.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.0)
+    turbolinks (2.2.1)
       coffee-rails
     tzinfo (0.3.38)
     uglifier (2.4.0)
