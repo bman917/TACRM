@@ -9,6 +9,19 @@
 
 
 #profile_add_table {
+
+	width: auto;
+	margin: 2em 2em auto;
+	th {
+		width: 10em;
+		text-align: right;
+	}
+
+	td {
+		padding: 0 1em;
+		border: 1px solid #C7DBB1;
+	}
+
 	input {
 		width: 10em;
 	}
@@ -18,11 +31,12 @@
 	}
 
 	#profile_last_name, #profile_middle_name {
-		width: 7em;
+		width: 10em;
 	}
 
 	#new_profile_save_button {
 		width: 5em;
+		float: right;
 	}
 	
 }

@@ -16,13 +16,16 @@ All Clients
 <div id="section_controls">
 
 <%=form_tag profiles_path, method: 'get', id: 'type_filter', remote: true do %>
-Filter: <%= select_tag(:profile_type, options_for_select(profile_types.push(['ALL']) , @profile_type))%>
+Filter: <%= select_tag(:profile_type, 
+options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 <% end %>
 
   <span class="group">
     <%=link_to 'ADD CLIENT', new_profile_by_type_path('INDIVIDUAL'), class: 'add_fields add_client_link', remote: true%>
     <%=link_to 'ADD GUEST', new_profile_by_type_path('GUEST'), class: 'add_fields add_client_link', remote: true%>
     <%=link_to 'ADD CORPORATE CLIENT', new_profile_by_type_path('CORPORATE'), class: 'add_fields add_client_link', remote: true%>
+    <%=link_to 'ADD AGENT', new_profile_by_type_path('AGENT'), class: 'add_fields add_client_link', remote: true%>
+
   </span>
 
   <div id="prepare_form">

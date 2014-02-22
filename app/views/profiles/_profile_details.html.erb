@@ -11,7 +11,7 @@
 
 
 
-<% if @profile.profile_type == 'INDIVIDUAL' || @profile.profile_type == 'GUEST'%>
+<% if @profile.profile_type == 'AGENT' || @profile.profile_type == 'INDIVIDUAL' || @profile.profile_type == 'GUEST'%>
 
    <table class="table2">
         <tr>
@@ -20,8 +20,8 @@
           <th>Last Name</th>
           <th>Gender</th>
           <th>Birth Date</th>
+          <th>Nationality</th>
           <th>Email</th>
-          
         </tr>  
         <tr>
           <td> <%= best_in_place @profile, :first_name %></td>
@@ -31,6 +31,7 @@
           collection: [['M','M'],['F','F']] %></td>
           <td><%= best_in_place @profile, :birth_day, :type => :date,
             :display_as => :birth_day_med_format %></td>
+          <td><%= best_in_place @profile, :nationality %></td>
           <td><%= best_in_place @profile, :email %></td>
         </tr>
     </table>

@@ -4,7 +4,8 @@ module ApplicationHelper
 		[
 			['INDIVIDUAL','INDIVIDUAL'],
 			['GUEST','GUEST'],
-			['CORPORATE','CORPORATE']
+			['CORPORATE','CORPORATE'],
+			['AGENT','AGENT']
 
 		]
 	end

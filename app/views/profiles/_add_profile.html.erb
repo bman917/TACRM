@@ -14,51 +14,70 @@
       </div>
     <% end %>
 
+<% if @profile.profile_type == 'INDIVIDUAL' ||  @profile.profile_type == 'GUEST' ||  @profile.profile_type == 'AGENT'%>
+
       <table id="profile_add_table">
-        <thead>
           <tr>
             <th>Client Type</th>
-
-          <% if @profile.profile_type == 'CORPORATE' %>
-
-            <th>Name</th>
-
-          <% else %>
-            
+             <td> <%= @profile.profile_type %></td>
+          </tr>
+          <tr>
             <th>First name</th>
-            <th>Last name</th>
-            <th>Middle name</th>
-            <th>Birth day</th>
-            <th id="gender_column">Gender</th>
-          <% end %>
-
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="new_profile_row">
-            <td> <%= @profile.profile_type %></td>
-
-          <% if @profile.profile_type == 'CORPORATE' %>
-
-            <td class="name"><%= f.text_field :name %></td>
-
-          <% else %>
-        
             <td><%= f.text_field :first_name %></td>
-            <td><%= f.text_field :last_name %></td>
-            <td><%= f.text_field :middle_name %></td>
-            <td><%= f.date_field :birth_day %></td>
-            <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
-          <% end %>
-
-            <td><%= f.email_field :email %></td>
-            <td><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
           </tr>
-        </tbody>
+          <tr>
+            <th>Last name</th>  
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <th>Middle name</th>
+            <td><%= f.text_field :middle_name %></td>
+          </tr>
+          <tr>
+            <th>Birth day</th>
+            <td><%= f.date_field :birth_day %></td>
+          </tr>
+          <tr>
+            <th id="gender_column">Gender</th>
+            <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
+          </tr>
+          <tr>
+            <th>Country of Nationality</th>
+            <td><%= f.country_select :nationality, ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"] %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
+          </tr>
       </table>
-      <%= f.hidden_field :profile_type %>
-  <% end %>
+<% end %>
+
+<% if @profile.profile_type == 'CORPORATE' %>
+
+      <table id="profile_add_table">
+          <tr>
+            <th>Client Type</th>
+             <td> <%= @profile.profile_type %></td>
+          </tr>
+          <tr>
+            <th>Company Name</th>
+            <td class="name"><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
+          </tr>
+      </table>
+
+<% end %>
+
+<%= f.hidden_field :profile_type %>
+<% end %>
   <%= link_to 'Cancel', '', id: "hide_new_profile_row_link"%>
 </div>
