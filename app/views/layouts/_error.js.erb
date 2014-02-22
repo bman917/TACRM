@@ -5,7 +5,7 @@ $('#error_explanation ul').append('<li><%=error%></li>');
 $('#error_explanation').fadeIn('slow')
 
 setTimeout(function() {
-	$('#error_explanation').fadeOut('slow', function() {
+	$('#error_explanation').slideUp('slow', function() {
 		$('#error_explanation li').remove();
 		$('#error_explanation h2').remove();
 	});

@@ -33,7 +33,7 @@ class AddressesController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @address.errors, status: :unprocessable_entity }
-        format.js
+        format.js { render 'error'}
       end
     end
   end
