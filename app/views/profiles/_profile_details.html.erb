@@ -5,7 +5,8 @@
   Client Details
   </div>
   <div id="section_controls">
-    Client Type <%= @profile.profile_type %>
+    <div style="display:inline"><strong>Client Type:</strong> <%= @profile.profile_type %></div>
+    <div style="display:inline;margin-left:4em;"><strong>Client Since</strong>: <%= @profile.client_since.to_time.to_s(:med) if @profile.client_since %></div>
   </div>
 
 
@@ -51,11 +52,21 @@
         <tr>
           <th>Company Name</th>  
           <td> <%= best_in_place @profile, :name %></td>
-        </tr>  
-        <tr>
           <th>Email</th>
           <td><%= best_in_place @profile, :email %></td>
+          <th>Business Type</th>
+          <td> <%= best_in_place @profile, :business_type%></td>
+        </tr>  
+        <tr>
+          <th>Status</th>
+          <td> <%= best_in_place @profile, :status%></td>
+          <th>Credit Limit</th>
+          <td> <%= best_in_place @profile, :credit_limit%></td>
+          <th>Terms</th>
+          <td> <%= best_in_place @profile, :terms%></td>
+
         </tr>
+
     </table>
 
 <% end %>

@@ -60,18 +60,30 @@
       <table id="profile_add_table">
           <tr>
             <th>Client Type</th>
-             <td> <%= @profile.profile_type %></td>
+            <td> <%= @profile.profile_type %></td>
+            <th>Client Since</th>
+            <td> <%= f.date_field :client_since %></td>
           </tr>
           <tr>
             <th>Company Name</th>
             <td class="name"><%= f.text_field :name %></td>
+            <th>Business Type</th>
+            <td class="name"><%= f.text_field :business_type %></td>
           </tr>
           <tr>
             <th>Email</th>
             <td><%= f.email_field :email %></td>
+            <th>Contact Person</th>
+            <td><%= f.text_field :contact_person%></td>
           </tr>
           <tr>
-            <td colspan="2"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
+            <th>Credit Limit</th>
+            <td><%= f.number_field :credit_limit %></td>
+            <th>Terms</th>
+            <td><%= f.text_field :terms %></td>
+          </tr>
+          <tr>
+            <td colspan="4"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
           </tr>
       </table>
 

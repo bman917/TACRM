@@ -56,6 +56,7 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.status = 'ACTIVE'
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -99,6 +100,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:nationality, :name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, :gender, :email)
+      params.require(:profile).permit(:contact_person, :business_type,
+        :client_since,:credit_limit,:terms,:status,:lead_source,:nationality, :name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, :gender, :email)
     end
 end
