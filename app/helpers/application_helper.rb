@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+	def gender_types
+		[
+			['Male','Male'],
+			['Female','Female']
+		]
+	end
+
+	def marital_status_types
+		[
+			['Single','Single'],
+			['Married','Married']
+
+		]
+	end
+
 	def profile_types
 		[
 			['INDIVIDUAL','INDIVIDUAL'],

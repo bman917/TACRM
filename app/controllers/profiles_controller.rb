@@ -8,17 +8,9 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profile_type = params[:profile_type] || 'ALL'
-
-
-    if @profile_type == 'ALL'
-      @profiles = Profile.all
-    else
-      @profiles = Profile.where(profile_type: @profile_type)
-    end
-
-    # @profiles = Profile.all
-    @profile = Profile.new(profile_type: 'INDIVIDUAL')
+    index_load
+    # # @profiles = Profile.all
+    # @profile = Profile.new(profile_type: 'INDIVIDUAL')
 
     respond_to do | format |
       format.html
@@ -45,6 +37,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @profile.client_since = Date.today
     @profile.profile_type = params[:profile_type] || 'INDIVIDUAL'
   end
 
@@ -62,7 +55,8 @@ class ProfilesController < ApplicationController
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @profile }
       else
-        format.html { render action: 'new' }
+        index_load
+        format.html { render 'index' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -93,6 +87,16 @@ class ProfilesController < ApplicationController
   end
 
   private
+    def index_load
+      @profile_type = params[:profile_type] || 'ALL'
+
+      if @profile_type == 'ALL'
+        @profiles = Profile.all
+      else
+        @profiles = Profile.where(profile_type: @profile_type)
+      end
+
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])
@@ -101,6 +105,8 @@ class ProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.require(:profile).permit(:contact_person, :business_type,
-        :client_since,:credit_limit,:terms,:status,:lead_source,:nationality, :name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, :gender, :email)
+        :client_since,:credit_limit,:terms,:status,:lead_source,:nationality, 
+        :name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, 
+        :gender, :email, :marital_status, :occupation, :employer, :job_position)
     end
 end

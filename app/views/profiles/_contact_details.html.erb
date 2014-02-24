@@ -1,8 +1,46 @@
 
 
-<div class="profile_show_section liquidSlider_auto_height">
+<div class="profile_show_section">
 
-  <h2 class="hidden title">Contact Details</h2>
+
+
+<% if @profile.profile_type == 'AGENT' || @profile.profile_type == 'INDIVIDUAL' || @profile.profile_type == 'GUEST' %>
+
+  <h2 class="hidden title">Client Details</h2>
+
+   <table class="table2">
+
+        <tr>
+          <th>Nationality</th>
+          <th>Marital Status</th>
+          <th>Occupation</th>
+          <th>Employer</th>
+          <th>Position</th>
+
+
+        </tr>
+        <tr>
+            <td><%= best_in_place @profile, :nationality %></td>
+            <td><%= best_in_place @profile, :marital_status, type: :select, collection: marital_status_types %></td>
+
+            <td><%= best_in_place @profile, :occupation%></td>
+            
+            <td><%= best_in_place @profile, :employer%></td>
+            
+            <td><%= best_in_place @profile, :job_position%></td>
+        </tr>
+    </table>
+
+
+
+
+
+<% else %>
+   <h2 class="hidden title">Contact Details</h2>
+<% end %>     
+
+
+
 
   <div class="section_body">
       <table id="contact_details_table">

@@ -1,3 +1,15 @@
+  <% if @profile && @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <% cache("#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
 
 <%=javascript_tag do %>
@@ -10,10 +22,15 @@ $(document).ready(function(){
 
 <% end %>
 
+
+
 <div id="section_title">
 All Clients
 </div>
 <div id="section_controls">
+
+
+
 
 <%=form_tag profiles_path, method: 'get', id: 'type_filter', remote: true do %>
 Filter: <%= select_tag(:profile_type, 

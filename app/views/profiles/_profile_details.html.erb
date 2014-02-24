@@ -6,7 +6,7 @@
   </div>
   <div id="section_controls">
     <div style="display:inline"><strong>Client Type:</strong> <%= @profile.profile_type %></div>
-    <div style="display:inline;margin-left:4em;"><strong>Client Since</strong>: <%= @profile.client_since.to_time.to_s(:med) if @profile.client_since %></div>
+    <div style="display:inline;margin-left:4em;"><strong>Client Since</strong>: <%= best_in_place @profile, :client_since, :type => :date %></div>
   </div>
 
 
@@ -21,7 +21,6 @@
           <th>Last Name</th>
           <th>Gender</th>
           <th>Birth Date</th>
-          <th>Nationality</th>
           <th>Email</th>
         </tr>  
         <tr>
@@ -30,9 +29,8 @@
           <td><%= best_in_place @profile, :last_name %></td>
           <td><%= best_in_place @profile, :gender, type: :select, 
           collection: [['M','M'],['F','F']] %></td>
-          <td><%= best_in_place @profile, :birth_day, :type => :date,
+          <td ><%= best_in_place @profile, :birth_day, :type => :date,
             :display_as => :birth_day_med_format %></td>
-          <td><%= best_in_place @profile, :nationality %></td>
           <td><%= best_in_place @profile, :email %></td>
         </tr>
     </table>

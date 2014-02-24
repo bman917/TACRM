@@ -19,38 +19,39 @@
       <table id="profile_add_table">
           <tr>
             <th>Client Type</th>
-             <td> <%= @profile.profile_type %></td>
+            <td> <%= @profile.profile_type %></td>
+            <th>Client Since</th>
+            <td> <%= f.date_field :client_since %></td>
           </tr>
           <tr>
             <th>First name</th>
             <td><%= f.text_field :first_name %></td>
+
+            <th id="gender_column">Gender</th>
+            <td><%= f.select :gender, gender_types %></td>           
           </tr>
           <tr>
             <th>Last name</th>  
             <td><%= f.text_field :last_name %></td>
+
+            <th>Birth day</th>
+            <td><%= f.date_field :birth_day %></td>
+
           </tr>
           <tr>
             <th>Middle name</th>
             <td><%= f.text_field :middle_name %></td>
-          </tr>
-          <tr>
-            <th>Birth day</th>
-            <td><%= f.date_field :birth_day %></td>
-          </tr>
-          <tr>
-            <th id="gender_column">Gender</th>
-            <td><%= f.select :gender, [['Male','M'],['Female','F']] %></td>
-          </tr>
-          <tr>
-            <th>Country of Nationality</th>
-            <td><%= f.country_select :nationality, ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"] %></td>
-          </tr>
-          <tr>
+
             <th>Email</th>
             <td><%= f.email_field :email %></td>
+
           </tr>
           <tr>
-            <td colspan="2"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
+            <th>Nationality</th>
+            <td colspan="3"><%= f.country_select :nationality, ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"] %></td>
+          </tr>
+          <tr>
+            <td colspan="4"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
           </tr>
       </table>
 <% end %>
