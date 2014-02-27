@@ -1,0 +1,64 @@
+  <%=javascript_tag do %>
+
+  $(document).ready(function(){
+
+    $('.toggler_link').hide_toggler();
+    $('#add_passport_link').on('click', function() {
+      $('#identification_foid').focus();
+    });
+
+    $('#new_identification').on('submit', function() {
+      $('#loading').slideDown('fast');
+      $('#new_passport_row').slideUp('fast');
+    })
+
+  });
+  <% end %>
+
+<div id="passports" class="profile_show_section">
+  <h2 class="section_divider title hidden">
+  Documents
+  </h2>
+  <div class="section_body wip toggler_parent">
+
+  <h2>Passports</h2>
+
+  <%= form_for(@identification, remote: true) do |f| %>
+  	<%= f.hidden_field :profile_id %>
+  	<%= f.hidden_field :foid_type, value: 'Passport' %>
+
+  	<table id="passports" class='table2'>
+  		<tr>
+  			<th><%= f.label :foid, "Passport Number"%></th>
+  			<th><%= f.label :date_issued, "Date Issued"%></th>
+  			<th><%= f.label :expiration_date, "Expiration Date" %></th>
+  			<th><%= f.label :issued_by, "Issued By" %></th>
+  			<th></th>
+  		</tr>
+
+	    <% @profile.identifications.passports.each do |passport| %>
+	      <%= render partial: 'identifications/passport', locals: {passport: passport} %>
+	    <% end %>
+      <tr id="loading">
+        <td colspan="5">
+          <%=image_tag 'loading_bar.gif', size: '200x13'%>
+        </td>
+      </tr>
+
+  		<tr id="new_passport_row" class="togger_child hidden">
+  			<td><%= f.text_field :foid%></td>
+  			<td><%= f.date_field :date_issued %></td>
+  			<td><%= f.date_field :expiration_date %></td>
+  			<td><%= f.text_field :issued_by %></td>
+  			<td>
+          <%= f.submit "Save", :disable_with => 'Saving...' %>
+          <%=link_to 'Hide', '', class: 'toggler_link'%>
+        </td>
+  		</tr>
+  	</table>
+  <% end %>
+    <div id="passport_actions">
+    <%=link_to 'Add Passport', '', id: 'add_passport_link', class: 'add_fields toggler_link'%>
+    </div>
+  </div>
+</div>

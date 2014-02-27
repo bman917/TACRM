@@ -30,9 +30,14 @@ $(document).ready(function(){
 	    <div class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
-	   <div class="tab_content">
-	      <%=render 'foid_details' %>
+   	    <div class="tab_content">
+	      <%=render 'documents' %>
 	    </div>
+
+<!-- 	   <div class="tab_content">
+	      <%=render 'foid_details' %>
+	    </div> -->
+
 		<% if @profile.account %>
 		<div class="tab_content">
 			<%=render 'group_details' %>

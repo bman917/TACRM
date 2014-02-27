@@ -52,4 +52,8 @@ module ApplicationHelper
 	def add_link(params={text: 'Add', id: 'add_link'})
 		link_to params[:text], '', id: params[:id], class: "add_fields no-print"
 	end
+
+	def format_date(date)
+		date.to_time.to_s(:long)
+	end
 end

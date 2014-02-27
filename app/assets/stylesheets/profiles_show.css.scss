@@ -41,6 +41,10 @@ form#new_group, #new_account, #new_note, #new_identification {
 	display: none;
 }
 
+#passports #new_identification {
+	display: block;
+}
+
 #phone_column, #address_column {
 	vertical-align: top;
 	padding-bottom: 1em;

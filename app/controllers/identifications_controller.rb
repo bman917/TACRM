@@ -31,7 +31,11 @@ class IdentificationsController < ApplicationController
       if @identification.save
         format.html { redirect_to @identification, notice: 'Identification was successfully created.' }
         format.json { render action: 'show', status: :created, location: @identification }
-        format.js
+        format.js {
+          if @identification.passport?
+            render 'add_passport'
+          end
+        }
       else
         format.html { render action: 'new' }
         format.json { render json: @identification.errors, status: :unprocessable_entity }
@@ -61,7 +65,11 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to identifications_url }
       format.json { head :no_content }
-      format.js
+      format.js {
+          if @identification.passport?
+            render 'delete_passport'
+          end
+      }
     end
   end
 
@@ -73,6 +81,8 @@ class IdentificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def identification_params
-      params.require(:identification).permit(:foid_type, :foid, :notes, :profile_id)
+      params.require(:identification).permit(:foid_type, :foid, :notes, 
+        :profile_id, :date_issued, :expiration_date, :issued_by,
+        :country, :sub_type, :entry_date, :max_stay )
     end
 end

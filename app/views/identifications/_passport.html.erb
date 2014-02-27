@@ -1,0 +1,7 @@
+<tr id="passport_<%=passport.id%>">
+	<td><%= best_in_place passport, :foid%></td>
+	<td><%= best_in_place passport, :date_issued, :type => :date, :display_with => lambda { |v| format_date(v)} %></td>
+	<td><%= best_in_place passport, :expiration_date, :type => :date, :display_with => lambda { |v| format_date(v)}%></td>
+	<td><%= best_in_place passport, :issued_by%></td>
+	<td>   	<%=link_to 'X', passport, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete [#{passport.foid_type} - #{passport.foid}]?"} %></td>
+</tr>

@@ -1,0 +1,2 @@
+$('#passports #loading').hide();
+$('#new_passport_row').before("<%= j render partial: 'passport', locals: {passport: @identification}%>");
