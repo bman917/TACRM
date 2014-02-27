@@ -23,7 +23,11 @@
 //= require_tree .
 
 function application_init() {
-	$.datepicker.setDefaults({ dateFormat: 'MM dd, yy' });
+	$.datepicker.setDefaults({ 
+		dateFormat: 'MM dd, yy', 
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "c-100:c+50"});
 
 	$('a.slow_link').on('click', show_waiting);
 
