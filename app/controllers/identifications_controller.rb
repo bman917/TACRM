@@ -31,11 +31,7 @@ class IdentificationsController < ApplicationController
       if @identification.save
         format.html { redirect_to @identification, notice: 'Identification was successfully created.' }
         format.json { render action: 'show', status: :created, location: @identification }
-        format.js {
-          if @identification.passport?
-            render 'add_passport'
-          end
-        }
+        format.js { render "add_#{@identification.foid_type.try :downcase}" }
       else
         format.html { render action: 'new' }
         format.json { render json: @identification.errors, status: :unprocessable_entity }
@@ -65,11 +61,7 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to identifications_url }
       format.json { head :no_content }
-      format.js {
-          if @identification.passport?
-            render 'delete_passport'
-          end
-      }
+      format.js { render "delete_by_type" }
     end
   end
 
@@ -83,6 +75,6 @@ class IdentificationsController < ApplicationController
     def identification_params
       params.require(:identification).permit(:foid_type, :foid, :notes, 
         :profile_id, :date_issued, :expiration_date, :issued_by,
-        :country, :sub_type, :entry_date, :max_stay )
+        :country, :sub_type, :visa_type, :entry_date, :max_stay )
     end
 end

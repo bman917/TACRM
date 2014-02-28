@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227155159) do
+ActiveRecord::Schema.define(version: 20140228134258) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20140227155159) do
     t.string   "issued_by"
     t.string   "country"
     t.string   "sub_type"
-    t.string   "entry_date"
     t.string   "max_stay"
+    t.date     "entry_date"
   end
 
   add_index "identifications", ["profile_id"], name: "index_identifications_on_profile_id"

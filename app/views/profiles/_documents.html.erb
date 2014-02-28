@@ -3,21 +3,32 @@
   $(document).ready(function(){
 
     $('.toggler_link').hide_toggler();
+
     $('#add_passport_link').on('click', function() {
       $('#identification_foid').focus();
+    });
+
+    $('#add_visa_link').on('click', function() {
+      $('#identification_country').focus();
     });
 
     $('#new_identification').on('submit', function() {
       $('#loading').slideDown('fast');
       $('#new_passport_row').slideUp('fast');
+    });
+
+
+    $('#new_visa').on('submit', function() {
+      $('#visas #loading').slideDown('fast');
+      $('#new_visa_row').slideUp('fast');
     })
+
   });
   <% end %>
 
+<h2 class="title hidden">Documents</h2>
+
 <div id="passports" class="profile_show_section">
-  <h2 class="section_divider title hidden">
-  Documents
-  </h2>
   <div class="section_body wip toggler_parent">
 
   <h2>Passports</h2>
@@ -56,8 +67,63 @@
   		</tr>
   	</table>
   <% end %>
-    <div id="passport_actions">
+
+    <div class="actions">
     <%=link_to 'Add Passport', '', id: 'add_passport_link', class: 'add_fields toggler_link'%>
     </div>
+
   </div>
+</div>
+
+
+<div id="visas" class="profile_show_section wip toggler_parent">
+
+  <h2>Visas</h2>
+
+    <%= form_for(@identification, remote: true, html: {id: "new_visa"}) do |f| %>
+     <%= f.hidden_field :profile_id %>
+      <%= f.hidden_field :foid_type, value: 'Visa' %>
+
+      <table id="visas" class='table2'>
+        <tr>
+          <th><%= f.label :country, "VISA"%></th>
+          <th><%= f.label :visa_type, "Type"%></th>
+          <th><%= f.label :foid, "Visa Number"%></th>
+          <th><%= f.label :date_issued, "Date Issued"%></th>
+          <th><%= f.label :expiration_date, "Expiration Date" %></th>
+          <th><%= f.label :entry_date, "Entry Date" %></th>
+          <th><%= f.label :max_stay, "Max Stay" %></th>
+          <th></th>
+        </tr>
+
+        <% @profile.identifications.visas.each do |visa| %>
+          <%= render partial: 'identifications/visa', locals: {visa: visa} %>
+        <% end %>
+
+        <tr id="loading">
+          <td colspan="8">
+            <%=image_tag 'loading_bar.gif', size: '200x13'%>
+          </td>
+        </tr>
+
+        <tr id="new_visa_row" class="togger_child hidden">
+          <td><%= f.text_field :country, class: 'med' %></td>
+          <td><%= f.text_field :visa_type, class: 'med' %></td>
+          <td><%= f.text_field :foid, class: 'med' %></td>
+          <td><%= f.date_field :date_issued %></td>
+          <td><%= f.date_field :expiration_date %></td>
+          <td><%= f.date_field :entry_date %></td>
+          <td><%= f.number_field :max_stay%></td>
+          <td>
+            <%= f.submit "Save", :disable_with => 'Saving...' %>
+            <%=link_to 'Hide', '', class: 'toggler_link'%>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
+    <div class="actions">
+    <%=link_to 'Add Visa', '', id: 'add_visa_link', class: 'add_fields toggler_link'%>
+    </div>
+
 </div>

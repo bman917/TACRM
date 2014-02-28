@@ -24,15 +24,16 @@ $(document).ready(function(){
 <% end %>
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
+   	    <div class="tab_content documents">
+	      <%=render 'documents' %>
+	    </div>
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
 	    <div class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
-   	    <div class="tab_content">
-	      <%=render 'documents' %>
-	    </div>
+
 
 <!-- 	   <div class="tab_content">
 	      <%=render 'foid_details' %>

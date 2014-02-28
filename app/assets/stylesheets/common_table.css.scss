@@ -27,7 +27,8 @@ th
 	color: #000000;
 	background: #E4F4D3;
 }
- td
+
+td
 {
 	padding: 3px;
 	
@@ -40,9 +41,18 @@ tr:hover {
 	// background: #E0F5C8;
 }
 
-
-
 .updated, tr.updated:hover {
 	background: yellow;
 }
 
+input[type="date"] {
+	width: 10em;
+}
+
+input[type="number"] {
+	width: 5em;
+}
+
+input[type="text"].med {
+	width: 10em;
+}

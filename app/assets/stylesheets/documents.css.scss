@@ -1,8 +1,41 @@
-#passports #passport_actions {
-	margin-top: 5px;
-}
 
 #loading {
 	text-align: center;
 	display: none;
 }
+
+.documents {
+	h2 {
+		margin: 1em 0;
+	}
+	.actions {
+		margin-top: 5px;
+	}
+
+
+}
+
+.documents .panel-wrapper {
+		padding: 20px 10px !important;
+}
+
+.documents .table2 {
+
+	// min-width: 850px;
+	// margin-left: -30px;
+	// margin-right: -30px;
+	font-size: 90%;
+
+	input[type="date"] {
+		width: 9.75em;
+	}
+
+	input[type="number"] {
+		width: 3.5em;
+	}
+
+	input[type="text"].med {
+		width: 6.5em;
+	}
+}
+

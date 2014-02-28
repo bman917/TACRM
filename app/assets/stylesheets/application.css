@@ -22,7 +22,9 @@ html {
 body {
 	/*	border-right: 7px solid #AAA59D;
 	border-left: 7px solid #AAA59D;
-	*/height: 100%;
+	*/
+	height: 100%;
+	
 }
 
 #header

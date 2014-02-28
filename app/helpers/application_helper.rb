@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def main_country_list
+		["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"]
+	end
+
 	def gender_types
 		[
 			['Male','Male'],
@@ -54,6 +58,6 @@ module ApplicationHelper
 	end
 
 	def format_date(date)
-		date.to_time.to_s(:long)
+		date.to_time.to_s(:med)
 	end
 end

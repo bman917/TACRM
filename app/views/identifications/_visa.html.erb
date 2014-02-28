@@ -1,0 +1,11 @@
+<tr id="visa_<%=visa.id%>">
+	<td><%= best_in_place visa, :country%></td>
+	<td><%= best_in_place visa, :visa_type%></td>
+	<td><%= best_in_place visa, :foid%></td>
+	<td><%= best_in_place visa, :date_issued, :type => :date, :display_with => lambda { |v| format_date(v)} %></td>
+	<td><%= best_in_place visa, :expiration_date, :type => :date, :display_with => lambda { |v| format_date(v)}%></td>
+	<td><%= best_in_place visa, :entry_date, :type => :date, :display_with => lambda { |v| format_date(v)}%></td>
+
+	<td><%= best_in_place visa, :max_stay%></td>
+	<td>   	<%=link_to 'X', visa, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete [#{visa.foid_type} - #{visa.country}]?"} %></td>
+</tr>

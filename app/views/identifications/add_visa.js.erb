@@ -1,0 +1,3 @@
+$('#visas #loading').hide();
+$('#new_visa_row').before("<%= j render partial: 'visa', locals: {visa: @identification}%>");
+adjustHeight();

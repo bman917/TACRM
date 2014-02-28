@@ -48,7 +48,7 @@
           </tr>
           <tr>
             <th>Nationality</th>
-            <td colspan="3"><%= f.country_select :nationality, ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"] %></td>
+            <td colspan="3"><%= f.country_select :nationality,main_country_list %></td>
           </tr>
           <tr>
             <td colspan="4"><%= f.submit 'Save', id: 'new_profile_save_button' %></td>
