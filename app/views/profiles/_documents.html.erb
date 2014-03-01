@@ -25,7 +25,7 @@
       $('#new_visa_row').slideUp('fast');
     })
 
-    $('.date').datepicker();
+    $('.date').datepicker({dateFormat: 'M dd, yy'});
 
   });
   <% end %>
@@ -47,7 +47,7 @@
   			<th><%= f.label :date_issued, "Date Issued"%></th>
   			<th><%= f.label :expiration_date, "Expiration Date" %></th>
   			<th><%= f.label :issued_by, "Issued By" %></th>
-  			<th></th>
+  			<th class="tiny"></th>
   		</tr>
 
 	    <% @profile.identifications.passports.each do |passport| %>
@@ -97,7 +97,7 @@
           <th><%= f.label :expiration_date, "Expiration Date" %></th>
           <th><%= f.label :entry_date, "Entry Date" %></th>
           <th><%= f.label :max_stay, "Max Stay" %></th>
-          <th></th>
+          <th class="tiny"></th>
         </tr>
 
         <% @profile.identifications.visas.each do |visa| %>
