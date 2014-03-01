@@ -1,5 +1,4 @@
 <div class="add_profile" style="display:none;">
-  
   <%= form_for(@profile) do |f| %>
 
     <% if @profile.errors.any? %>
@@ -21,7 +20,7 @@
             <th>Client Type</th>
             <td> <%= @profile.profile_type %></td>
             <th>Client Since</th>
-            <td> <%= f.date_field :client_since %></td>
+            <td> <%= f.text_field :client_since %></td>
           </tr>
           <tr>
             <th>First name</th>
@@ -35,7 +34,7 @@
             <td><%= f.text_field :last_name %></td>
 
             <th>Birth day</th>
-            <td><%= f.date_field :birth_day %></td>
+            <td><%= f.text_field :birth_day %></td>
 
           </tr>
           <tr>
@@ -63,7 +62,7 @@
             <th>Client Type</th>
             <td> <%= @profile.profile_type %></td>
             <th>Client Since</th>
-            <td> <%= f.date_field :client_since %></td>
+            <td> <%= f.text_field :client_since %></td>
           </tr>
           <tr>
             <th>Company Name</th>

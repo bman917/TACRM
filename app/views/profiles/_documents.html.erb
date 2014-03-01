@@ -2,6 +2,8 @@
 
   $(document).ready(function(){
 
+    
+
     $('.toggler_link').hide_toggler();
 
     $('#add_passport_link').on('click', function() {
@@ -22,6 +24,8 @@
       $('#visas #loading').slideDown('fast');
       $('#new_visa_row').slideUp('fast');
     })
+
+    $('.date').datepicker();
 
   });
   <% end %>
@@ -57,8 +61,8 @@
 
   		<tr id="new_passport_row" class="togger_child hidden">
   			<td><%= f.text_field :foid%></td>
-  			<td><%= f.date_field :date_issued %></td>
-  			<td><%= f.date_field :expiration_date %></td>
+  			<td><%= f.text_field :date_issued, class: 'date' %></td>
+  			<td><%= f.text_field :expiration_date, class: 'date' %></td>
   			<td><%= f.text_field :issued_by %></td>
   			<td>
           <%= f.submit "Save", :disable_with => 'Saving...' %>
@@ -110,9 +114,9 @@
           <td><%= f.text_field :country, class: 'med' %></td>
           <td><%= f.text_field :visa_type, class: 'med' %></td>
           <td><%= f.text_field :foid, class: 'med' %></td>
-          <td><%= f.date_field :date_issued %></td>
-          <td><%= f.date_field :expiration_date %></td>
-          <td><%= f.date_field :entry_date %></td>
+          <td><%= f.text_field :date_issued, id: 'visa_date_issued', class: 'date' %></td>
+          <td><%= f.text_field :expiration_date, id: 'visa_expiration_date',class: 'date' %></td>
+          <td><%= f.text_field :entry_date, class: 'date' %></td>
           <td><%= f.number_field :max_stay%></td>
           <td>
             <%= f.submit "Save", :disable_with => 'Saving...' %>

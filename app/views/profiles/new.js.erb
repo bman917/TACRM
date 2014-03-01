@@ -2,13 +2,14 @@ $('#prepare_form').hide();
 $('#section_controls').append('<%=j render('add_profile')%>');
 $('.add_profile').slideDown('fast', function() {
 
+	$('#profile_client_since').datepicker();
 	$('#profile_birth_day').datepicker({
 		changeMonth: true,
 		changeYear: true,
 		yearRange: "-200:+0"
 	});
 
-	$('#profile_add_table input:text').first().focus();
+	$('#profile_add_table input').first().focus();
 
 	$('#hide_new_profile_row_link').on('click', function(e) {
 		$('.add_profile').slideToggle('fast');
