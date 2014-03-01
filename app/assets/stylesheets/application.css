@@ -10,6 +10,8 @@
  *
  *= require jquery.ui.datepicker
  *= require reset
+ *= require best_in_place
+ *= require common
  *= require liquid-slider
  *= require animate
  *= require_self
@@ -81,8 +83,4 @@ body {
 	
 	background: #FFFFE9;
 	color: #8794A1;
-}
-
-.hidden {
-	display: none;
 }

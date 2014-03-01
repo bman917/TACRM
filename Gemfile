@@ -59,8 +59,11 @@ end
 
 gem 'jquery-ui-rails'
 gem 'best_in_place', github: 'bernat/best_in_place'
-gem 'hide_toggler', github: 'bman917/hide_toggler'
-# gem 'hide_toggler', :path => '/home/jchan/work/hide_toggler'
-gem 'jquery-liquidslider-rails', github: 'bman917/jquery-liquidslider-rails'
-#gem 'jquery-liquidslider-rails', :path => '/home/jchan/work/jquery-liquidslider-rails'
 gem 'country_select'
+gem 'common_assets', github: 'bman917/common_assets'
+gem 'hide_toggler', github: 'bman917/hide_toggler'
+gem 'jquery-liquidslider-rails', github: 'bman917/jquery-liquidslider-rails'
+
+# gem 'hide_toggler', :path => '/home/jchan/work/hide_toggler'
+# gem 'common_assets', :path => '/home/jchan/work/common_assets'
+# gem 'jquery-liquidslider-rails', :path => '/home/jchan/work/jquery-liquidslider-rails'
