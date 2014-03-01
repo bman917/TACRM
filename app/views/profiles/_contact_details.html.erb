@@ -32,11 +32,17 @@
     </table>
 
 
-
-
-
 <% else %>
    <h2 class="hidden title">Contact Details</h2>
+
+   <table id="contact_details_table">
+      <tr>
+        <td>
+        <h4>Contact Person</h4>
+        <%= best_in_place @profile, :contact_person%>
+        </td>
+      </tr>
+    </table>
 <% end %>     
 
 
