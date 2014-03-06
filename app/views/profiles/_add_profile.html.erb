@@ -1,4 +1,4 @@
-<div class="add_profile" style="display:none;">
+<div class="add_profile">
   <%= form_for(@profile) do |f| %>
 
     <% if @profile.errors.any? %>
@@ -18,7 +18,7 @@
       <table id="profile_add_table">
           <tr>
             <th>Client Type</th>
-            <td> <%= @profile.profile_type %></td>
+            <td> <%= f.select(:profile_type, profile_types)%></td>
             <th>Client Since</th>
             <td> <%= f.text_field :client_since, value: @profile.client_since.to_time.to_s(:long), tabindex: 1 %></td>
           </tr>
@@ -60,7 +60,7 @@
       <table id="profile_add_table">
           <tr>
             <th>Client Type</th>
-            <td> <%= @profile.profile_type %></td>
+            <td> <%= f.select(:profile_type, profile_types)%></td>
             <th>Client Since</th>
             <td> <%= f.text_field :client_since, value: @profile.client_since.to_time.to_s(:long), tabindex: 1 %></td>
           </tr>

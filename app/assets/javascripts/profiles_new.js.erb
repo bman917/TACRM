@@ -1,0 +1,52 @@
+<% url = TACRM::Application.routes.url_helpers %>
+
+/* initializes _add_profile.html.erb */
+function init_add_profile_form() {
+	$('#profile_client_since').datepicker({
+		onSelect: focus_on_next_tab
+    });
+	
+	$('#profile_birth_day').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "-200:+0",
+		onSelect: focus_on_next_tab
+	});
+
+	$("[tabindex='2']").focus();
+
+	$('#hide_new_profile_row_link').on('click', function(e) {
+		$('.add_profile').slideToggle('fast');
+	});
+
+	$('#new_profile').on('submit', function() {
+		$('#new_profile_save_button').attr("disabled","disabled");
+		$('#new_profile_save_button').val("Saving...");
+		overlay();
+	});
+
+	// For the profile type selection dropdown in the add profile form.
+	// This is used in the profile index page
+	// Re-retreives the Add Profile Form.
+	// Shows a loading image while waiting for the form to arrive.
+	$('#section_controls #profile_profile_type').change(function() {
+		
+		$('.add_profile').fadeOut('fast', function() { $(this).remove();});
+		$('#prepare_form').fadeIn('fast');
+
+		$.ajax({
+			url: 'profile/new/' + $(this).val(),
+			dataType: "script"
+		});
+	});
+
+	//For the profile type selection dropdown in the add profile form
+	//This is used in the profile/new form
+	//Selecting a different profile type triggers a page load and a new
+	//profile form to be retreived.
+	$('div#new_profile #profile_profile_type').change(function() {
+		Turbolinks.visit('/profile/new/' + $(this).val());
+	});
+
+}
+

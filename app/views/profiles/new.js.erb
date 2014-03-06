@@ -1,31 +1,6 @@
 $('#prepare_form').hide();
 $('#section_controls').append('<%=j render('add_profile')%>');
-$('.add_profile').slideDown('fast', function() {
-
-	$('#profile_client_since').datepicker({
-		onSelect: focus_on_next_tab
-    });
-	
-	$('#profile_birth_day').datepicker({
-		changeMonth: true,
-		changeYear: true,
-		yearRange: "-200:+0",
-		onSelect: focus_on_next_tab
-	});
-
-	$("[tabindex='2']").focus();
-
-	$('#hide_new_profile_row_link').on('click', function(e) {
-		$('.add_profile').slideToggle('fast');
-	});
-
-	$('#new_profile').on('submit', function() {
-		$('#new_profile_save_button').attr("disabled","disabled");
-		$('#new_profile_save_button').val("Saving...");
-		overlay();
-	});
-
-});
+$('.add_profile').slideDown('fast', init_add_profile_form);
 
 
 

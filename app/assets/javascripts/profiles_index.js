@@ -2,7 +2,8 @@ function init_profiles_index() {
 
 	$('a.slow_link').on('click',  overlay);
 
-	// Select box for different profile types.
+	// Select filter for different profile types.
+	// Causes profile filtered by profile type to be loaded.
 	// Calls overlays while profiles are being retreived
 	$('#profile_type').change(function() {
 		$('#add_profile').fadeOut('fast');
