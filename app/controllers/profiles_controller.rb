@@ -50,6 +50,15 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.status = 'ACTIVE'
+
+    puts "FullName: #{@profile.full_name}"
+    puts "Individual Client: #{@profile.individual_client?}"
+
+    if @profile.individual_client? ||  @profile.corporate_client?
+      @profile.account = Account.new(name: @profile.full_name)
+       puts "Creating Account for #{@profile.full_name}. Accont name: [#{@profile.account.name}]"
+    end
+
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }

@@ -2,14 +2,18 @@ $('#prepare_form').hide();
 $('#section_controls').append('<%=j render('add_profile')%>');
 $('.add_profile').slideDown('fast', function() {
 
-	$('#profile_client_since').datepicker();
+	$('#profile_client_since').datepicker({
+		onSelect: focus_on_next_tab
+    });
+	
 	$('#profile_birth_day').datepicker({
 		changeMonth: true,
 		changeYear: true,
-		yearRange: "-200:+0"
+		yearRange: "-200:+0",
+		onSelect: focus_on_next_tab
 	});
 
-	$('#profile_add_table input').first().focus();
+	$("[tabindex='2']").focus();
 
 	$('#hide_new_profile_row_link').on('click', function(e) {
 		$('.add_profile').slideToggle('fast');

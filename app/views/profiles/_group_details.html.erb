@@ -1,16 +1,14 @@
 <% if @profile.account %>
 <div id="group_details" class="profile_show_section wip liquidSlider_auto_height">
 	<h2 class="hidden title">
-	Groups
+	Guests
 	</h2>
 	<div id="group_details_body" class="section_body">
 
 		<div id="help">
-		Groups are used to select one or more profiles for a particular service. For example, when booking a Flight, a group should be created if the Account Holder is travelling with a group.
-		</br>
 			<div class="toggler">
 			<%=render 'groups/form' %>
-			<%=link_to 'Add Group', '', id: "add_group_link", class: 'add_fields no-print'%>
+			<%=link_to 'Add Guest', '', id: "add_group_link", class: 'add_fields no-print'%>
 			</div>
 		</div>
 		<div class="wic"></div>	

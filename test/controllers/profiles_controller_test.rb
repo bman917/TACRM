@@ -20,9 +20,23 @@ class ProfilesControllerTest < ActionController::TestCase
     assert_difference('Profile.count') do
       post :create, profile: { birth_day: @profile.birth_day, first_name: @profile.first_name, gender: @profile.gender, last_name: @profile.last_name, middle_name: @profile.middle_name }
     end
-
     assert_redirected_to profile_path(assigns(:profile))
   end
+
+  test "Corporate Client should automatically have an Account" do
+    post :create, profile: {name: 'Corporate Test', profile_type: 'CORPORATE'}
+    Profile.find_by(name: 'Corporate Test')
+    assert Account.find_by(name: 'Corporate Test') != nil
+  end
+
+  test "Individual Client should automatically have an Account" do
+    post :create, profile: {first_name: 'Juan', last_name: 'Dela Cruz', profile_type: 'INDIVIDUAL'}
+    puts "Last account #{Account.last.name}"
+    
+    p = Profile.find_by(first_name: 'Juan', last_name: 'Dela Cruz')
+    assert p.account != nil
+  end
+
 
   test "should show profile" do
     get :show, id: @profile

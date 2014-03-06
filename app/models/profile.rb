@@ -3,11 +3,15 @@ class Profile < ActiveRecord::Base
 	has_many :addresses, as: :owner, :dependent => :delete_all
 	has_many :notes, :dependent => :delete_all
 	has_many :identifications, :dependent => :delete_all
-	has_one :account
+	has_one :account, autosave: true
 
 	validates :first_name, presence: {message: "First name must not be blank."}, unless: :corporate_client?
 	validates :last_name, presence: {message: "Last name must not be blank."}, unless: :corporate_client?
 	validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
+
+	def individual_client?
+		profile_type == 'INDIVIDUAL'
+	end
 
 	def corporate_client?
 		profile_type == 'CORPORATE'
@@ -17,7 +21,7 @@ class Profile < ActiveRecord::Base
 		if corporate_client?
 			self.name
 		else
-			"#{first_name} #{middle_name} #{last_name}"
+			"#{first_name} #{middle_name} #{last_name}".strip
 		end
 	end
 

@@ -20,6 +20,7 @@
 //= require jquery.liquid-slider-ajax
 //= require jquery.touchSwipe.min
 //= require hide_toggler
+//= require common_tools
 //= require_tree .
 
 function application_init() {
