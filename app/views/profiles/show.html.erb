@@ -30,23 +30,21 @@ $(document).ready(function(){
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
-	    <div class="tab_content">
+	    <div id="yyy" class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
 
-
-<!-- 	   <div class="tab_content">
-	      <%=render 'foid_details' %>
-	    </div> -->
 
 		<% if @profile.account %>
 		<div class="tab_content">
 			<%=render 'group_details' %>
 		</div>
 		<% end %>
-<!-- 	    <div class="tab_content">
-	      <%=render 'account_details' %>
-	    </div> -->
+
+		<div>
+		<!--Wierd fix needed so that notes for guests will work -->
+		</div>
+
 	</div>
 
 </div>
