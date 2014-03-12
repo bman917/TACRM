@@ -15,6 +15,17 @@
 	});
 <% end %>
 
+<div class="no-print session_info">
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.username %></strong>.
+      
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <!--%= link_to "Sign up", new_user_registration_path %-->
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+ </div>
+ 
 <div id="header">
 	<%=image_tag 'logo.png', size: '400x60'%>
 </div>
@@ -62,6 +73,11 @@ Processing...
 <div id="error_explanation" class="hidden">
 <div></div>
 <ul></ul>
+</div>
+
+<div>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
 </div>
 
 <%= yield %>

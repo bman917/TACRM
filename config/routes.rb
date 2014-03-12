@@ -1,4 +1,5 @@
 TACRM::Application.routes.draw do
+  devise_for :users
   resources :identifications
 
   resources :notes

@@ -55,6 +55,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -89,6 +90,12 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     debug_inspector (0.0.2)
+    devise (3.2.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
@@ -116,6 +123,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
+    orm_adapter (0.5.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-contrib (1.1.0)
@@ -176,6 +184,8 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -190,6 +200,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   common_assets!
   country_select
+  devise
   hide_toggler!
   jbuilder (~> 1.2)
   jquery-liquidslider-rails!

@@ -1,0 +1,29 @@
+div#sign_in {
+
+max-width: 800px;
+
+}
+form#new_user {
+	margin: 1em 1em;
+}
+
+#test_accounts {
+	
+	float: right;
+
+}
+
+.alert, .notice {
+	font-weight: bold;
+	
+	margin: 1em;
+}
+.alert { color: #E71818;}
+.notice { color: #00660A;}
+
+.session_info {
+	float: right;
+	margin-right: 1em;
+	font-style: italic;
+	font-size: 90%;
+}
