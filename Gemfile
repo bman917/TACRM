@@ -68,3 +68,5 @@ gem 'jquery-liquidslider-rails', github: 'bman917/jquery-liquidslider-rails'
 # gem 'common_assets', :path => '/home/jchan/work/common_assets'
 # gem 'jquery-liquidslider-rails', :path => '/home/jchan/work/jquery-liquidslider-rails'
 gem 'devise'
+
+gem 'paper_trail', '~> 3.0.1'

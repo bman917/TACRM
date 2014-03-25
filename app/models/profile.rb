@@ -4,10 +4,19 @@ class Profile < ActiveRecord::Base
 	has_many :notes, :dependent => :delete_all
 	has_many :identifications, :dependent => :delete_all
 	has_one :account, autosave: true
+	has_many :profile_versions
 
 	validates :first_name, presence: {message: "First name must not be blank."}, unless: :corporate_client?
 	validates :last_name, presence: {message: "Last name must not be blank."}, unless: :corporate_client?
 	validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
+
+	has_paper_trail
+
+	after_save :update_trail
+
+	def update_trail
+		profile_versions.create(version_id: versions.last.id)
+	end
 
 	def individual_client?
 		profile_type == 'INDIVIDUAL'

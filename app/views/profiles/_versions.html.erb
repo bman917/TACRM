@@ -1,0 +1,21 @@
+<div id="versions">
+	<h2 class="hidden title">
+	Versions
+	</h2>
+
+<table>
+
+<tr>
+	<th>Version</th>
+	<th>Description</th>
+	<th>Changed By</th>
+</tr>
+	<% @profile.profile_versions.each do | pv | %>
+		<tr>
+			<td><%=pv.index%></td>
+			<td><%="#{pv.version.event.sub(/e?$/, "ed")} #{pv.version.item_type}".humanize%></td>
+			<td><%=User.find(pv.version.whodunnit).username%></td>
+		</tr>
+	<% end %>
+</table>
+</div>
