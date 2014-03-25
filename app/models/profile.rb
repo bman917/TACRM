@@ -10,12 +10,14 @@ class Profile < ActiveRecord::Base
 	validates :last_name, presence: {message: "Last name must not be blank."}, unless: :corporate_client?
 	validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
 
-	has_paper_trail
+  	has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
-	after_save :update_trail
+	def prof
+		self.id
+	end
 
-	def update_trail
-		profile_versions.create(version_id: versions.last.id)
+	def display
+		"Client Details - #{full_name}"
 	end
 
 	def individual_client?

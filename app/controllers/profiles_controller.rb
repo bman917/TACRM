@@ -32,6 +32,8 @@ class ProfilesController < ApplicationController
     @account = Account.new(profile: @profile, name: @profile.full_name)
     @note = Note.new(profile: @profile)
     @identification = Identification.new(profile: @profile)
+
+    @versions = PaperTrail::Version.where(profile_id: @profile)
   end
 
   # GET /profiles/new

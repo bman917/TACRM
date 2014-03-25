@@ -15,9 +15,9 @@ GIT
 
 GIT
   remote: git://github.com/bman917/hide_toggler.git
-  revision: 641a915dd3f78d662b3cc405a20ba162acf62f3d
+  revision: c023ba71de0473479215fae24da5ad64c3cf3863
   specs:
-    hide_toggler (0.1.1)
+    hide_toggler (0.1.2)
       rails (>= 3.1)
 
 GIT
@@ -54,8 +54,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
-    atomic (1.1.14)
-    bcrypt-ruby (3.1.2)
+    atomic (1.1.16)
+    bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -90,8 +90,8 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     debug_inspector (0.0.2)
-    devise (3.2.2)
-      bcrypt-ruby (~> 3.0)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
@@ -118,7 +118,7 @@ GEM
       railties
     mime-types (1.25.1)
     minitest (4.7.5)
-    multi_json (1.8.4)
+    multi_json (1.9.2)
     mysql2 (0.3.15)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -146,13 +146,14 @@ GEM
       activesupport (= 4.0.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.1.1)
+    rake (10.2.0)
     rdoc (4.1.1)
       json (~> 1.4)
-    sass (3.2.14)
-    sass-rails (4.0.1)
+    sass (3.2.18)
+    sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
     sdoc (0.4.0)
       json (~> 1.8)
@@ -166,25 +167,25 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
+    sqlite3 (1.3.9)
     sshkit (1.3.0)
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
     term-ansicolor (1.3.0)
       tins (~> 1.0)
-    thor (0.18.1)
-    thread_safe (0.1.3)
-      atomic
+    thor (0.19.1)
+    thread_safe (0.3.1)
+      atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
-    tins (1.0.0)
+    tins (1.0.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (2.2.1)
       coffee-rails
-    tzinfo (0.3.38)
-    uglifier (2.4.0)
+    tzinfo (0.3.39)
+    uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     warden (1.2.3)

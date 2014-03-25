@@ -1,4 +1,7 @@
 TACRM::Application.routes.draw do
+  
+  resources :profile_versions
+
   devise_for :users
   resources :identifications
 
