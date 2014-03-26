@@ -1,22 +1,9 @@
-<div id="versions">
+<div id="versions_panel">
 	<h2 class="hidden title">
-	Updates
+		<span id="updates">Updates</p>
 	</h2>
 
-<table>
+<%= render 'profile_versions/versions'%>
 
-<tr>
-	<th>User</th>
-	<th>Description</th>
-	<th>Client</th>
-</tr>
 
-<% @versions.each do | version | %>
-		<tr>
-			<td><%=User.find(version.whodunnit).username%></td>
-			<td><%="#{version.event.sub(/e?$/, "ed").humanize} #{version.display}"%> <!--%=link_to('view', pv.version.item) if pv.version.item%--></td>
-			<td><%=version.profile.try :full_name%> <%=link_to 'view', version.profile%></td>
-		</tr>
-<% end %>
-</table>
 </div>

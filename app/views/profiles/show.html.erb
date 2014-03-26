@@ -2,6 +2,23 @@
 
 $(document).ready(function(){
   init_profiles_show();
+
+    $('#profile-tabs').liquidSlider({
+	        slideEaseDuration: 500,
+	        autoHeight: true,
+	        minHeight: 300,
+	        firstPanelToLoad: <%=@liquid_slider_panel%>
+	      });
+
+  $('#updates').on('click', function(){ 
+	Turbolinks.visit('<%=profile_panel_path(@profile.id,'5')%>');
+	//	$.ajax({
+	//	    dataType: 'script',
+	//		url: '<%=versions_profile_path(@profile.id)%>'
+	//	});
+    //
+   });
+   
 });
 <% end %>
 
@@ -10,18 +27,6 @@ $(document).ready(function(){
 
 <%=render 'profile_details' %>
 
-  <%=javascript_tag do %>
-  $(document).ready(function(){
-    $(function(){
-      $('#profile-tabs').liquidSlider({
-        slideEaseDuration: 500,
-        autoHeight: true,
-        minHeight: 300
-      });
-    });
-
- });
-<% end %>
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
    	    <div class="tab_content documents">

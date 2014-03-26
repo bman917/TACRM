@@ -1,3 +1,18 @@
 // Place all the styles related to the ProfileVersions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#versions {
+
+	.client {
+		font-style: italic;
+	}
+
+	.deleted {
+		font-style: italic;
+		color: #787878;
+	}
+}
+
+#versions_panel .client_column {
+	display: none;
+}

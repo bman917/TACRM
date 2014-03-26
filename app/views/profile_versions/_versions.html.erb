@@ -1,0 +1,35 @@
+<div id="versions">
+
+<%= will_paginate @versions %>
+
+<table>
+
+<tr>
+	<th>Time</th>
+	<th>User</th>
+	<th>Description</th>
+	<th class="client_column">Client</th>
+	
+</tr>
+
+<% @versions.each do | version | %>
+		<tr>
+			<td><%=version.created_at.to_formatted_s(:time)%></td>
+			<td><%=User.find(version.whodunnit).username%></td>
+			<td><%="#{version.event.sub(/e?$/, "ed").humanize} #{version.display}"%> <!--%=link_to('view', pv.version.item) if pv.version.item%--></td>
+			<td class="client_column">
+			<% if version.profile && version.profile.live? %>
+				<span class="client">
+				  <%=link_to(version.profile.try(:full_name), version.profile)%>
+				</span>
+			<% else %>
+				<span class="deleted">deleted</span>
+			<% end %>
+			</td>
+		</tr>
+<% end %>
+</table>
+
+<%= will_paginate @versions %>
+
+</div>

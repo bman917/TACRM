@@ -2,6 +2,7 @@ function init_profiles_show() {
 
 	$('.toggler a').on('click', toggle_form);
 	$('.best_in_place').best_in_place();
+
 }
 
 function toggle_section(event) {

@@ -20,7 +20,8 @@ TACRM::Application.routes.draw do
   resources :profiles do
     get :corporate_index, on: :collection
   end
-
+  get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'
+  get 'versions/profile/:profile_id' => 'profile_versions#index', as: 'versions_profile'
   get 'profile/search' => "profiles#search", as: "profile_search"
   get 'profile/type/:profile_type' => "profiles#index", as: "profiles_by_type"
   get 'profile/new/:profile_type' => "profiles#new", as: "new_profile_by_type"

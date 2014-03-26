@@ -70,3 +70,4 @@ gem 'jquery-liquidslider-rails', github: 'bman917/jquery-liquidslider-rails'
 gem 'devise'
 
 gem 'paper_trail', '~> 3.0.1'
+gem 'will_paginate', '~> 3.0'

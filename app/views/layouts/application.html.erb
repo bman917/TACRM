@@ -32,7 +32,7 @@
 
 <div id="navigation">
 	<ul id="menu">
-		<li><a href="">Clients</a>
+		<li><%=link_to 'Clients', profiles_path%>
 			<ul>
 				<li><%= link_to 'Show All Clients', profiles_path %></li>
 				<li><%= link_to 'Add Client', new_profile_by_type_path('INDIVIDUAL') %></li>
