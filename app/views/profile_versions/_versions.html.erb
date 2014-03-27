@@ -22,6 +22,8 @@
 				<span class="client">
 				  <%=link_to(version.profile.try(:full_name), version.profile)%>
 				</span>
+			<% elsif version.item_type == "User" %>
+				<span class="deleted">N/A</span>
 			<% else %>
 				<span class="deleted">deleted</span>
 			<% end %>

@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
+  has_paper_trail :meta => {:description => :display}
+
+  def display
+  	"User: #{self.username}"
+  end
+
   def admin?
   	self.role == "Admin"
   end
