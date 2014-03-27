@@ -5,6 +5,8 @@
 	<th>Role</th>
 	<th>User name</th>
 	<th>Email </th>
+	<th>Last Login</th>
+	<th>Login count</th>
 	<th></th>
 	<th></th>
 </tr>
@@ -14,6 +16,9 @@
 	<td> <%=user.role%></td>
 	<td> <%=user.username%></td>
 	<td> <%=user.email %></td>
+	<td> <%=user.current_sign_in_at.to_formatted_s(:time) %> </td>
+	<td> <%=user.sign_in_count %> </td>
+
 	<td><%= link_to 'Edit', edit_user_path(user) %></td>
 	<td>
 	<% if user.username != 'admin' && user.id != current_user.id %>
