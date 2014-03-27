@@ -14,4 +14,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
 
+  def check_if_user_is_admin
+    unless current_user.try :admin?
+      flash[:error] = "You are not authorized to do that action"
+      render "layouts/error"
+    end
+  end
+
 end

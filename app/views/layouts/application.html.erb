@@ -51,14 +51,16 @@
 				<li><%= link_to 'Others', '', id: 'x'%></li>
 			</ul>
 		</li>
+		<% if current_user.try :admin? %>
 		<li><a href="">Administration</a>
 			<ul>
 				<li><%= link_to 'User Activity', profile_versions_path %></li>
-				<li><%= link_to 'Add/Delete Users', '', id: 'x'%></li>
+				<li><%= link_to 'Add/Delete Users', users_path %></li>
 				<li><%= link_to 'Users Permissions', '', id: 'x'%></li>
 				<li><%= link_to 'Manage Database', '', id: 'x'%></li>
 			</ul>
 		</li>
+		<% end %>
 	
 	
 	</ul>

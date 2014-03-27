@@ -1,8 +1,20 @@
 TACRM::Application.routes.draw do
   
+  get "users/index"
+  get "users/new"
+  get "users/create"
+  get "users/edit"
+  get "users/update"
+  get "users/show"
+  get "users/destroy"
   resources :profile_versions
 
   devise_for :users
+  scope "/admin" do
+    resources :users
+  end
+
+  
   resources :identifications
 
   resources :notes
