@@ -15,7 +15,7 @@
 <% @versions.each do | version | %>
 		<tr>
 			<td><%=version.created_at.to_formatted_s(:time)%></td>
-			<td><%=User.find(version.whodunnit).username%></td>
+			<td><%=User.find_by_id(version.whodunnit).try :username%></td>
 			<td><%="#{version.event.sub(/e?$/, "ed").humanize} #{version.display}"%> <!--%=link_to('view', pv.version.item) if pv.version.item%--></td>
 			<td class="client_column">
 			<% if version.profile && version.profile.live? %>
