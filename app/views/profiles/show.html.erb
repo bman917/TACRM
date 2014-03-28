@@ -1,3 +1,4 @@
+
 <%=javascript_tag do %>
 
 $(document).ready(function(){
@@ -11,7 +12,7 @@ $(document).ready(function(){
 	      });
 
   $('#updates').on('click', function(){ 
-	Turbolinks.visit('<%=profile_panel_path(@profile.id,'5')%>');
+	Turbolinks.visit('<%=profile_panel_path(@profile.id,@profile.updates_liquid_slider_panel_number)%>');
 	//	$.ajax({
 	//	    dataType: 'script',
 	//		url: '<%=versions_profile_path(@profile.id)%>'
@@ -24,17 +25,25 @@ $(document).ready(function(){
 
 <p id="notice"><%= notice %></p>
 
+<% cache(@profile) do %>
 
 <%=render 'profile_details' %>
 
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
+		<% cache(@profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
 	      <%=render 'documents' %>
 	    </div>
+	    <% end %>
+
+	    <% cache(@profile.contact_details_cache_key) do %>
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
+	    <% end %>
+
+
 	    <div id="yyy" class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
@@ -57,3 +66,4 @@ $(document).ready(function(){
 	</div>
 
 </div>
+<% end %>

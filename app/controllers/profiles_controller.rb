@@ -33,10 +33,11 @@ class ProfilesController < ApplicationController
     @note = Note.new(profile: @profile)
     @identification = Identification.new(profile: @profile)
 
-    @versions = PaperTrail::Version.where(profile_id: @profile).paginate(:page => params[:page]).per_page(10).order("created_at desc")
+    # @versions = PaperTrail::Version.where(profile_id: @profile).paginate(:page => params[:page]).per_page(10).order("created_at desc")
+    @versions = @profile.profile_versions.includes(:user).paginate(:page => params[:page]).per_page(10).order("created_at desc")
     
     @liquid_slider_panel = params[:panel_number] || if params[:page] 
-      @liquid_slider_panel = 5 
+      @liquid_slider_panel = @profile.updates_liquid_slider_panel_number 
     else
       @liquid_slider_panel = 1
     end
