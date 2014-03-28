@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy unless (@user.username == "Admin" || @user.id = current_user.id)
+    @user.destroy unless (@user.username == "Admin" || @user.id == current_user.id)
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
