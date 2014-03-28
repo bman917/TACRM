@@ -91,16 +91,6 @@ ActiveRecord::Schema.define(version: 20140327143525) do
     t.datetime "updated_at"
   end
 
-  create_table "profile_versions", force: true do |t|
-    t.integer  "profile_id"
-    t.integer  "version_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "profile_versions", ["profile_id"], name: "index_profile_versions_on_profile_id"
-  add_index "profile_versions", ["version_id"], name: "index_profile_versions_on_version_id"
-
   create_table "profiles", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"

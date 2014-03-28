@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
 
   has_paper_trail :meta => {:description => :display}, 
   		:ignore => [:last_sign_in_ip, :current_sign_ip, 
