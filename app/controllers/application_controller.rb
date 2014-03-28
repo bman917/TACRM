@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  before_filter :miniprofiler
+  
+  private
+  def miniprofiler
+    Rack::MiniProfiler.authorize_request if current_user && current_user.username = "jchan"
+  end
+
 end
