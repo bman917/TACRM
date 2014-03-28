@@ -70,6 +70,7 @@ class Profile < ActiveRecord::Base
 	end
 
   def updates_liquid_slider_panel_number
-      self.guest ? 4 : 5 
+      (self.guest || account.nil?) ? 4 : 5 
+
   end
 end
