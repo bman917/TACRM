@@ -2,7 +2,13 @@
 <%=javascript_tag do %>
 
 $(document).ready(function(){
-  init_profiles_show();
+  	$('.toggler a').on('click', toggle_form);
+
+  	<% if can? :update, Profile %>
+		$('.best_in_place').best_in_place();
+	<% else %>
+		$('.best_in_place').removeClass('best_in_place');
+	<% end %>
 
     $('#profile-tabs').liquidSlider({
 	        slideEaseDuration: 500,
@@ -29,22 +35,24 @@ $(document).ready(function(){
 
 <%=render 'profile_details' %>
 
+<% end %>
+
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
-		<% cache(@profile.documents_cache_key) do %>
+		<% cache(add_role @profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
 	      <%=render 'documents' %>
 	    </div>
 	    <% end %>
 
-	    <% cache(@profile.contact_details_cache_key) do %>
+	    <% cache(add_role @profile.contact_details_cache_key) do %>
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
 	    <% end %>
 
 
-	    <div id="yyy" class="tab_content">
+	    <div class="tab_content">
 	      <%=render 'note_details' %>
 	    </div>          
 
@@ -66,4 +74,3 @@ $(document).ready(function(){
 	</div>
 
 </div>
-<% end %>

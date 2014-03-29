@@ -17,6 +17,14 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-  	self.role == "Admin"
+    self.role.try(:casecmp, "Admin") == 0
+  end
+
+  def viewer?
+    self.role.try(:casecmp, "Viewer") == 0
+  end
+
+  def moderator?
+    self.role.try(:casecmp, "Moderator") == 0
   end
 end

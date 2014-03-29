@@ -47,7 +47,7 @@
   			<th><%= f.label :date_issued, "Date Issued"%></th>
   			<th><%= f.label :expiration_date, "Expiration Date" %></th>
   			<th><%= f.label :issued_by, "Issued By" %></th>
-  			<th class="tiny"></th>
+  			<% if can? :create, Identification %> <th class="tiny"></th> <% end %>
   		</tr>
 
 	    <% @profile.identifications.passports.each do |passport| %>
@@ -71,10 +71,11 @@
   		</tr>
   	</table>
   <% end %>
-
-    <div class="actions">
-    <%=link_to 'Add Passport', '', id: 'add_passport_link', class: 'add_fields toggler_link'%>
-    </div>
+    <% if can? :create, Identification %>
+      <div class="actions">
+      <%=link_to 'Add Passport', '', id: 'add_passport_link', class: 'add_fields toggler_link'%>
+      </div>
+    <% end %>
 
   </div>
 </div>
@@ -97,7 +98,9 @@
           <th><%= f.label :expiration_date, "Expiration Date" %></th>
           <th><%= f.label :entry_date, "Entry Date" %></th>
           <th><%= f.label :max_stay, "Max Stay" %></th>
+          <% if can? :create, Identification %>
           <th class="tiny"></th>
+          <% end %>
         </tr>
 
         <% @profile.identifications.visas.each do |visa| %>
@@ -125,9 +128,10 @@
         </tr>
       </table>
     <% end %>
-
-    <div class="actions">
-    <%=link_to 'Add Visa', '', id: 'add_visa_link', class: 'add_fields toggler_link'%>
-    </div>
+    <% if can? :create, Identification %>
+      <div class="actions">
+      <%=link_to 'Add Visa', '', id: 'add_visa_link', class: 'add_fields toggler_link'%>
+      </div>
+    <% end %>
 
 </div>

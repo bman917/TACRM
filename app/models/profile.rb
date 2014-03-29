@@ -57,7 +57,7 @@ class Profile < ActiveRecord::Base
 		p_max_updated_at =  phones.maximum(:updated_at).try(:utc).try(:to_s, :number)
 		a_count = addresses.count
 		a_max_updated_at = addresses.maximum(:updated_at).try(:utc).try(:to_s, :number)
-		"phones/#{p_count}-#{p_max_updated_at}-addresses/#{a_count}-#{a_max_updated_at}"
+		"#{cache_key}-phones/#{p_count}-#{p_max_updated_at}-addresses/#{a_count}-#{a_max_updated_at}"
 	end
 
 	def documents_cache_key

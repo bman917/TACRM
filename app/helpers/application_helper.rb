@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def add_role(key)
+		"#{current_user.role}-#{key}"
+	end
+
 	def main_country_list
 		["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"]
 	end

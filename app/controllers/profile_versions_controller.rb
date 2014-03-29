@@ -1,4 +1,6 @@
 class ProfileVersionsController < ApplicationController
+  load_and_authorize_resource :class => "PaperTrail::Version"
+  
   def index
 
   	if params[:profile_id]

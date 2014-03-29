@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
+    puts "Current USer: #{current_user}"
     @account = Account.new(account_params)
 
     respond_to do |format|
@@ -64,6 +65,7 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
+      puts "Current USer: #{current_user}"
       @account = Account.find(params[:id])
     end
 

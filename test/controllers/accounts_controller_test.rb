@@ -2,7 +2,10 @@ require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
   setup do
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+
     @account = accounts(:one)
+
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should create account" do
     assert_difference('Account.count') do
-      post :create, account: { name: @account.name, profile_id: @account.profile_id }
+        post :create, account: { name: @account.name, profile_id: @account.profile_id }
     end
 
     assert_redirected_to profile_path(assigns(:account).profile)

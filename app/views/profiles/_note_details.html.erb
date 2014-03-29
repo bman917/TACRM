@@ -4,12 +4,15 @@
 	Notes
 	</h2>
 	<div class="section_body wip">
+		<%if can? :create, Note %>
 		<div class="toggler">
+
 			<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
 			<div>
 				<%=render 'notes/form'%>
 			</div>
 		</div>
+		<% end %>
 		
 		
 		<div id="notes_list">

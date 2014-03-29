@@ -1,5 +1,7 @@
 <li id="profile_address_<%=address.id%>">
+  <% if can? :destroy, address %>
 	<%=link_to 'X', address, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete?"} %>
+  <% end %>
 	<%=best_in_place address, :address_type, type: :select, collection: 
 		[['Home','Home'],['Business','Business']]
 	%>

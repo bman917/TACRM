@@ -59,6 +59,7 @@
               <% end %>
             </ul>
             <div class="no-print toggler">
+            <% if can? :create, @new_phone %>
               <%=link_to 'Add', '#', id: 'add_phone_link', class: 'add_fields no-print'%>
               <%= form_for(@new_phone, remote: true) do |f| %>
                     <%= f.select :phone_type, phone_types%>
@@ -68,6 +69,7 @@
                     <%= f.submit "Add", id: 'add_contact_number_submit' %>
                     <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
               <% end %>
+            <% end %>
             </div>
 
           </td>
@@ -79,6 +81,7 @@
               <% end %>
             </ul>
             <div class="no-print toggler" >
+            <% if can? :create, @new_address %>
               <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
               <%= form_for(@new_address, remote: true) do |f| %>
                     <fieldset>
@@ -100,7 +103,7 @@
                     <%= f.submit "Add", id: 'add_address_submit' %>
                     <%= link_to 'Hide', '', id: "hide_new_address_link" %>
               <% end %>
-
+            <% end %>
             </div>
           </td>
         </tr>

@@ -10,8 +10,6 @@
     </div>
   <% end %>
 
-<% cache("#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
-
 <%=javascript_tag do %>
 
 $(document).ready(function(){
@@ -37,6 +35,7 @@ Filter: <%= select_tag(:profile_type,
 options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 <% end %>
 
+<% if can? :create, Profile %>
   <span class="group">
     <%=link_to 'ADD CLIENT', new_profile_by_type_path('INDIVIDUAL'), class: 'add_fields add_client_link', remote: true%>
     <%=link_to 'ADD GUEST', new_profile_by_type_path('GUEST'), class: 'add_fields add_client_link', remote: true%>
@@ -44,7 +43,7 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
     <%=link_to 'ADD AGENT', new_profile_by_type_path('AGENT'), class: 'add_fields add_client_link', remote: true%>
 
   </span>
-
+<% end %>
   <div id="prepare_form">
   <%=image_tag 'loading_bar.gif', size: '100x15' %>
   </div>
@@ -54,11 +53,8 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 </div>
 
 <div id="section_content">
-
-  <%= render 'profile_table'%>
-
+  <% cache(add_role "#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
+    <%= render 'profile_table'%>
+  <% end %>
 <div class="table_botom_spacer">&nbsp</div>
 </div>
-
-
-<% end %>

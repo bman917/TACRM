@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
   def search
     @profiles = Profile.order(:name).where("name like ?", "%#{params[:term]}%")
@@ -10,7 +11,7 @@ class ProfilesController < ApplicationController
   def index
     index_load
     # # @profiles = Profile.all
-    # @profile = Profile.new(profile_type: 'INDIVIDUAL')
+    @profile = Profile.new(profile_type: 'INDIVIDUAL')
 
     respond_to do | format |
       format.html
