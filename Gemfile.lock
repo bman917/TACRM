@@ -21,6 +21,12 @@ GIT
       rails (>= 3.1)
 
 GIT
+  remote: git://github.com/bman917/jchan-rails_ext.git
+  revision: 5e49ce3d565398287e4495e2dcb68c2a26ca2704
+  specs:
+    jchan-rails_ext (0.0.1)
+
+GIT
   remote: git://github.com/bman917/jquery-liquidslider-rails.git
   revision: 5f2ff40e780ed66dd0270506c56186b61441716f
   specs:
@@ -212,6 +218,7 @@ DEPENDENCIES
   devise
   hide_toggler!
   jbuilder (~> 1.2)
+  jchan-rails_ext!
   jquery-liquidslider-rails!
   jquery-rails
   jquery-ui-rails
