@@ -73,4 +73,8 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:name, :profile_id)
     end
+
+    def auth_params
+      @user = User.new(user_params)
+    end
 end

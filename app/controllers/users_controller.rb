@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_filter :check_if_user_is_admin
-  load_and_authorize_resource
-
 
   def index
     @users = User.all

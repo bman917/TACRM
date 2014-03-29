@@ -12,7 +12,7 @@ class Ability
       cannot :destroy, Profile
     else
       can :read, :all
-      cannot :read, User
+      cannot :manage, User
     end
   end
 end

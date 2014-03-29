@@ -64,11 +64,6 @@ class Profile < ActiveRecord::Base
 		"identifications/#{generic_cache_key(identifications)}"
 	end
 
-	def generic_cache_key(association)
-		count = association.count
-		max_updated_at =  association.maximum(:updated_at).try(:utc).try(:to_s, :number)
-	end
-
   def updates_liquid_slider_panel_number
       (self.guest || account.nil?) ? 4 : 5 
 

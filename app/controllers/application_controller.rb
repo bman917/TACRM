@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
   load_and_authorize_resource :unless => :excluded_controllers
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def excluded_controllers
-     params[:controller] == "profile_versions" || :devise_controller?
+     (params[:controller] == "profile_versions" || devise_controller?)
   end
 
 end
