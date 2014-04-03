@@ -15,6 +15,13 @@
 	});
 <% end %>
 
+<%if "staging" == Rails.env%> 
+<div id="staging_warning">
+REMINDER: This is a staging environment (for testing only). Production environment is <%=link_to 'here', 'http://tacrm.bman917.com'%>
+</div>
+<% end %>
+
+
 <div class="no-print session_info">
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.username %></strong>.
@@ -25,7 +32,6 @@
       <%= link_to "Login", new_user_session_path %>
     <% end %>
  </div>
- 
 <div id="header">
 	<%=image_tag 'logo.png', size: '400x60'%>
 </div>

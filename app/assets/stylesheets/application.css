@@ -84,3 +84,12 @@ body {
 	background: #FFFFE9;
 	color: #8794A1;
 }
+
+#staging_warning {
+	border: 1px solid red;
+	border-bottom: 1px solid black;
+	clear: both;
+	background: red;
+	margin-bottom: 3px;
+
+}
