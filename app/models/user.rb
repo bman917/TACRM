@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   		:ignore => [:last_sign_in_ip, :current_sign_ip, 
   					:current_sign_in_at, :last_sign_in_at,
   					:remember_created_at, :reset_password_token, 
-  					:reset_password_sent_at, :sign_in_count, :updated_at ]
+  					:reset_password_sent_at, :sign_in_count, :updated_at, 
+            :remember_created_at, :current_sign_in_ip, :last_sign_in_ip]
 
   def display
   	"User: #{self.username}"

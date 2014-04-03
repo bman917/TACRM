@@ -13,7 +13,7 @@ module PaperTrail
   	end
 
   	def user_name
-  		user.try :username || "system"
+  		user.try(:username) || "system"
   	end
     
   end
