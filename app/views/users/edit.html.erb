@@ -23,9 +23,15 @@
       <%= f.email_field :email%>
     </div>
 
+
+
     <div class="field">
       <%= f.label :role %><br>
-       <%= f.select :role, ['Admin','Moderator','Viewer'] %>
+      <%unless @user.username == 'admin' %>
+        <%= f.select :role, ['Admin','Moderator','Viewer'] %>
+      <% else %>
+        <%= f.label :role, @user.role %>
+      <% end %>
     </div>
 
 
