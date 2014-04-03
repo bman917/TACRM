@@ -1,5 +1,7 @@
 set :deploy_to, '/staging/TACRM'
 
+puts "ENV['MYSQL_PASSWORD'] = #{ENV["MYSQL_PASSWORD"]}"
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
