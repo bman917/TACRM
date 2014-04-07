@@ -61,7 +61,7 @@ class Profile < ActiveRecord::Base
 	end
 
 	def documents_cache_key
-		"identifications/#{generic_cache_key(identifications)}"
+		"#{cache_key}/identifications/#{generic_cache_key(identifications)}"
 	end
 
   def updates_liquid_slider_panel_number

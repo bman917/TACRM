@@ -35,6 +35,9 @@ REMINDER: This is a staging environment (for testing only). Production environme
 <div id="header">
 	<%=image_tag 'logo.png', size: '400x60'%>
 </div>
+<div id="version">
+<%=version%>
+</div>
 
 <div id="navigation">
 	<ul id="menu">
@@ -65,6 +68,7 @@ REMINDER: This is a staging environment (for testing only). Production environme
 				<li><%= link_to 'User Activity', profile_versions_path %></li>
 				<li><%= link_to 'Manage Users', users_path %></li>
 				<li><%= link_to 'Manage Database', '', id: 'x'%></li>
+				<li><%= link_to 'System Updates', system_updates_index_path%></li>
 			</ul>
 		</li>
 		<% end %>

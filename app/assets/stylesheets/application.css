@@ -93,3 +93,11 @@ body {
 	margin-bottom: 3px;
 
 }
+
+#version {
+	float: right;
+	font-style: italic;
+	margin-right: 3px;
+	font-size: .8em;
+	color: #859572;
+}

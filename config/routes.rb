@@ -1,5 +1,6 @@
 TACRM::Application.routes.draw do
   
+  get "system_updates/index"
   get "users/index"
   get "users/new"
   get "users/create"

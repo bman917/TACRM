@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def version
+		'version: 1.0.1'
+	end
+
 	def add_role(key)
 		"#{current_user.role}-#{key}"
 	end

@@ -39,11 +39,14 @@ $(document).ready(function(){
 
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
-		<% cache(add_role @profile.documents_cache_key) do %>
+
+		<% unless @profile.corporate_client? %>
+		  <% cache(add_role @profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
-	      <%=render 'documents' %>
-	    </div>
+	        <%=render 'documents' %>
+	      </div>
 	    <% end %>
+	  <% end %>
 
 	    <% cache(add_role @profile.contact_details_cache_key) do %>
 	    <div class="tab_content">
