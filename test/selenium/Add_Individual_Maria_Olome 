@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:3000/" />
+<title>Add Bart Olome Client</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Add Bart Olome Client</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=ADD CLIENT</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=profile_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=profile_first_name</td>
+	<td>Maria</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=profile_last_name</td>
+	<td>Olome</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=profile_middle_name</td>
+	<td>C</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=profile_email</td>
+	<td>maria@olome.com</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=profile_gender</td>
+	<td>label=F</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=profile_birth_day</td>
+	<td>Aprile 1, 1995</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=profile_nationality</td>
+	<td>label=Philippines</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=new_profile_save_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=p.notice</td>
+	<td>Profile was successfully created.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span:contains(&quot;F&quot;)</td>
+	<td>F</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_passport_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_foid</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=identification_date_issued</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_date_issued</td>
+	<td>April 1, 2010</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_expiration_date</td>
+	<td>April 1, 2015</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_issued_by</td>
+	<td>DFA Manila</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#passports span</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_visa_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_country</td>
+	<td>US Visa</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_visa_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='identification_foid'])[2]</td>
+	<td>US12345678</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=visa_date_issued</td>
+	<td>April 1, 2010</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=visa_expiration_date</td>
+	<td>April 1, 2020</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_entry_date</td>
+	<td>April 1, 2010</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identification_max_stay</td>
+	<td>6 months</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#visas span</td>
+	<td>US Visa</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Client Details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_phone_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=phone_number</td>
+	<td>1234567</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_contact_number_submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

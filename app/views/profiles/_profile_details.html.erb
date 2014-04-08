@@ -12,7 +12,7 @@
 
 
 
-<% if @profile.profile_type == 'AGENT' || @profile.profile_type == 'INDIVIDUAL' || @profile.profile_type == 'GUEST'%>
+<% if @profile.person? %>
 
    <table class="table2">
         <tr>
@@ -35,16 +35,9 @@
         </tr>
     </table>
 
-
-
-
-
-
 <% end %>
 
-
-
-<% if @profile.profile_type == 'CORPORATE' %>
+<% if @profile.corporate_client? %>
 
    <table class="table2">
         <tr>
@@ -64,10 +57,34 @@
           <td> <%= best_in_place @profile, :terms%></td>
 
         </tr>
-
     </table>
-
 <% end %>
+
+
+<% if @profile.vendor? %>
+
+   <table class="table2">
+        <tr>
+          <th>Vendor Name</th>  
+          <td> <%= best_in_place @profile, :name %></td>
+          <th>Email</th>
+          <td><%= best_in_place @profile, :email %></td>
+          <th>Business Type</th>
+          <td> <%= best_in_place @profile, :business_type%></td>
+        </tr>  
+        <tr>
+          <th>Status</th>
+          <td> <%= best_in_place @profile, :status%></td>
+          <th>Credit Limit</th>
+          <td> <%= best_in_place @profile, :credit_limit%></td>
+          <th>Terms</th>
+          <td> <%= best_in_place @profile, :terms%></td>
+
+        </tr>
+    </table>
+<% end %>
+
+
 <div class="table_botom_spacer">&nbsp</div>
 
 

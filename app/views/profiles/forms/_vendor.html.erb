@@ -1,0 +1,29 @@
+      <table id="profile_add_table">
+          <tr>
+            <th>Type</th>
+            <td> <%= f.select(:profile_type, profile_types)%></td>
+            <th>Vendor Since</th>
+            <td> <%= f.text_field :client_since, value: profile.client_since.to_time.to_s(:long), tabindex: 1 %></td>
+          </tr>
+          <tr>
+            <th>Vendor Name</th>
+            <td class="name"><%= f.text_field :name, tabindex: 2  %></td>
+            <th>Business Type</th>
+            <td class="name"><%= f.text_field :business_type, tabindex: 3 %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= f.email_field :email, tabindex: 4 %></td>
+            <th>Contact Person</th>
+            <td><%= f.text_field :contact_person, tabindex: 5%></td>
+          </tr>
+          <tr>
+            <th>Credit Limit</th>
+            <td><%= f.number_field :credit_limit, tabindex: 6 %></td>
+            <th>Terms</th>
+            <td><%= f.text_field :terms, tabindex: 7 %></td>
+          </tr>
+          <tr>
+            <td colspan="4"><%= f.submit 'Save', id: 'new_profile_save_button', tabindex: 8 %></td>
+          </tr>
+      </table>

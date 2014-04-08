@@ -40,7 +40,7 @@ $(document).ready(function(){
 <div class="slider-container">
 	<div class="liquid-slider" id="profile-tabs">
 
-		<% unless @profile.corporate_client? %>
+		<% if @profile.person? %>
 		  <% cache(add_role @profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
 	        <%=render 'documents' %>

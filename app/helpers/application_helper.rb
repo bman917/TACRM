@@ -1,7 +1,7 @@
 module ApplicationHelper
 
-	def version
-		'version: 1.0.1'
+	def current_version
+		'1.1.0'
 	end
 
 	def add_role(key)
@@ -14,8 +14,8 @@ module ApplicationHelper
 
 	def gender_types
 		[
-			['Male','Male'],
-			['Female','Female']
+			['M','M'],
+			['F','F']
 		]
 	end
 
@@ -32,7 +32,8 @@ module ApplicationHelper
 			['INDIVIDUAL','INDIVIDUAL'],
 			['GUEST','GUEST'],
 			['CORPORATE','CORPORATE'],
-			['AGENT','AGENT']
+			['AGENT','AGENT'],
+			['VENDOR','VENDOR']
 
 		]
 	end

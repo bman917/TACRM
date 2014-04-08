@@ -1,3 +1,17 @@
 // Place all the styles related to the SystemUpdates controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.system_updates {
+	li {
+		margin-left: 1.5em;
+
+	}
+
+	tr.even {
+		background: #EFF6E7;
+	}
+
+	.current {
+		font-weight: bold;
+	}
+}

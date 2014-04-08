@@ -27,7 +27,7 @@
             <td><%= f.text_field :first_name, tabindex: 2 %></td>
 
             <th id="gender_column">Gender</th>
-            <td><%= f.select :gender, gender_types, {}, tabindex: 5 %></td>           
+            <td><%= f.select :gender, gender_types, {:selected => 'Male'}, tabindex: 5 %></td>           
           </tr>
           <tr>
             <th>Last name</th>  
@@ -87,6 +87,10 @@
           </tr>
       </table>
 
+<% end %>
+
+<% if @profile.vendor? %>
+  <%=render partial: 'profiles/forms/vendor', locals: {profile: @profile, f: f}%>
 <% end %>
 
 <%= f.hidden_field :profile_type %>

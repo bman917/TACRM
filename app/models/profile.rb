@@ -6,11 +6,15 @@ class Profile < ActiveRecord::Base
 	has_one :account, autosave: true
 	has_many :profile_versions, class_name: "PaperTrail::Version", foreign_key: "profile_id"
 
-	validates :first_name, presence: {message: "First name must not be blank."}, unless: :corporate_client?
-	validates :last_name, presence: {message: "Last name must not be blank."}, unless: :corporate_client?
+	validates :first_name, presence: {message: "First name must not be blank."}, if: :person?
+	validates :last_name, presence: {message: "Last name must not be blank."}, if: :person?
 	validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
 
   	has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+
+  	def person?
+  		individual_client? || guest_client? || agent?
+  	end
 
 	def prof
 		self.id
@@ -20,12 +24,16 @@ class Profile < ActiveRecord::Base
 		"Client Details - #{full_name}"
 	end
 
+	def agent?
+		profile_type.upcase == 'AGENT'
+	end
+
 	def individual_client?
-		profile_type == 'INDIVIDUAL'
+		profile_type.upcase == 'INDIVIDUAL'
 	end
 
 	def corporate_client?
-		profile_type == 'CORPORATE'
+		profile_type.upcase == 'CORPORATE'
 	end
 
 	def guest
@@ -33,14 +41,18 @@ class Profile < ActiveRecord::Base
 	end
 
 	def guest_client?
-		profile_type == 'GUEST'
+		profile_type.upcase == 'GUEST'
+	end
+
+	def vendor?
+		profile_type.upcase == 'VENDOR'
 	end
 
 	def full_name
-		if corporate_client?
-			self.name
-		else
+		if person?
 			"#{first_name} #{middle_name} #{last_name}".strip
+		else
+			self.name
 		end
 	end
 
@@ -65,7 +77,14 @@ class Profile < ActiveRecord::Base
 	end
 
   def updates_liquid_slider_panel_number
-      (self.guest || account.nil?) ? 4 : 5 
+
+  	if vendor? 
+  		3
+  	elsif person? && account != nil
+		5
+  	else
+        4 
+    end
 
   end
 end

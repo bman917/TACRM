@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 
 <div id="section_title">
-All Clients
+Profiles Index
 </div>
 <div id="section_controls">
 
@@ -41,6 +41,8 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
     <%=link_to 'ADD GUEST', new_profile_by_type_path('GUEST'), class: 'add_fields add_client_link', remote: true%>
     <%=link_to 'ADD CORPORATE CLIENT', new_profile_by_type_path('CORPORATE'), class: 'add_fields add_client_link', remote: true%>
     <%=link_to 'ADD AGENT', new_profile_by_type_path('AGENT'), class: 'add_fields add_client_link', remote: true%>
+    <%=link_to 'ADD VENDOR', new_profile_by_type_path('VENDOR'), class: 'add_fields add_client_link', remote: true%>
+
 
   </span>
 <% end %>
