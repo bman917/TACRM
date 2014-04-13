@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   def display
     if status_changed?
-  	 "User: #{self.username} status to #{status_changed?.last}"
+  	 "User: #{self.username} status to #{status_changed?.first}"
     else
       "User: #{self.username}"
     end
