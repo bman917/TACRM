@@ -14,7 +14,22 @@ class User < ActiveRecord::Base
             :remember_created_at, :current_sign_in_ip, :last_sign_in_ip]
 
   def display
-  	"User: #{self.username}"
+    if status_changed?
+  	 "User: #{self.username} status to #{status_changed?.last}"
+    else
+      "User: #{self.username}"
+    end
+  end
+
+  def status_changed?
+    last_version = versions.try :last
+    changeset = last_version.try :changeset
+    changeset[:status] if changeset
+  end
+
+
+  def root_admin?
+    username == 'admin'
   end
 
   def admin?
@@ -27,5 +42,17 @@ class User < ActiveRecord::Base
 
   def moderator?
     self.role.try(:casecmp, "Moderator") == 0
+  end
+
+  def active?
+    self.try(:status) == "Active"
+  end
+
+  def active_for_authentication?
+    super && (root_admin? || active?)
+  end
+
+  def inactive_message
+    active? ? super : "Your user account has been desctivated."
   end
 end

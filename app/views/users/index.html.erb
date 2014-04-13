@@ -2,9 +2,10 @@
 
 <table class="mini">
 <tr>
-	<th>Role</th>
 	<th>User name</th>
+	<th>Role</th>
 	<th>Email </th>
+	<th>Status</th>
 	<th>Last Login</th>
 	<th>Login count</th>
 	<th></th>
@@ -13,9 +14,10 @@
 
 <% @users.each do | user | %>
 <tr>
-	<td> <%=user.role%></td>
 	<td> <%=user.username%></td>
+	<td> <%=user.role%></td>
 	<td> <%=user.email %></td>
+	<td> <%=user.status %></td>
 	<td> <%=user.current_sign_in_at.to_formatted_s(:time) if user.current_sign_in_at %> </td>
 	<td> <%=user.sign_in_count %> </td>
 

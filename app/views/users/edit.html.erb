@@ -24,15 +24,24 @@
     </div>
 
 
-
     <div class="field">
       <%= f.label :role %><br>
-      <%unless @user.username == 'admin' %>
+      <%unless @user.root_admin? %>
         <%= f.select :role, ['Admin','Moderator','Viewer'] %>
       <% else %>
         <%= f.label :role, @user.role %>
       <% end %>
     </div>
+
+    <div class="field">
+      <%= f.label :status %><br>
+      <%unless @user.root_admin? %>
+        <%= f.select :status, ['Active','Disabled'] %>
+      <% else %>
+        <%= f.label :status, @user.status %>
+      <% end %>
+    </div>
+
 
 
     <div class="actions">
