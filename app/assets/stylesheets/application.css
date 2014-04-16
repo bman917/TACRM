@@ -8,8 +8,16 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require blueprint/reset
+ *= require blueprint/grid.css
+ *= require blueprint/typography.css
+ *= require blueprint/forms.css
+ *= require blueprint/fancy-type
+ *= require blueprint/buttons
+
+
+ 
  *= require jquery.ui.datepicker
- *= require reset
  *= require best_in_place
  *= require common
  *= require liquid-slider
@@ -18,16 +26,14 @@
  *= require_tree .
  */
 html {
-	background: #FFFFFF;
+  background: #AEC197;
+  height: 100%;
 }
 
-body {
-	/*	border-right: 7px solid #AAA59D;
-	border-left: 7px solid #AAA59D;
-	*/
-	height: 100%;
-	
+html, body {
+  min-height: 100%;
 }
+
 
 #header
 {
@@ -52,9 +58,6 @@ body {
 
 }
 
-#content {
-	margin: 1em;
-}
 
 #help {
 	

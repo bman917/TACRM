@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body  class="container">
 
 <%=javascript_tag do %>
 	$(document).ready(function(){
@@ -78,7 +78,13 @@ version: <%=current_version%>
 
 </div>
 
-<div id="content">
+<div>
+    <% if notice %><p class="notice"><%= notice %></p><% end %>
+    <% if alert %><p class="alert"><%= alert %></p><% end %>
+</div>
+
+
+<div id="content" class="span-22 prepend-1 prepend-top">
 
 <div id="wait_message" class="hidden">
 Processing...
@@ -87,11 +93,6 @@ Processing...
 <div id="error_explanation" class="hidden">
 <div></div>
 <ul></ul>
-</div>
-
-<div>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
 </div>
 
 <%= yield %>

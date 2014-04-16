@@ -76,3 +76,4 @@ gem 'paper_trail', '~> 3.0.1'
 gem 'will_paginate', '~> 3.0'
 gem 'rack-mini-profiler'
 gem "cancan"
+gem 'blueprint-rails'
