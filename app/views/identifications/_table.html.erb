@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <% if defined?(show_client_name) && show_client_name %>
+        <th>Client Name</th>
+      <% end %>
+
+      <th>Type</th>
+      <th>ID</th>
+      <th>Date Issued</th>
+      <th>Expiration Date</th>
+      <th>Entry Date</th>
+      <th>Max Stay</th>
+      <th>Issued By</th>
+      <% if can? :create, Identification %> <th class="tiny"></th> <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% identifications.each do | identification | %>
+      <%=render partial: 'identifications/identification', locals: {identification: identification,show_client_name: defined?(show_client_name) && show_client_name} %>
+    <% end %>
+  </tbody>
+</table>

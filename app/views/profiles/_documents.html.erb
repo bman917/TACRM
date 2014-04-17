@@ -32,10 +32,56 @@
 
 <h2 class="title hidden">Documents</h2>
 
+<div id="visas" class="profile_show_section wip toggler_parent">
+
+  <h3 class="titleize">Documents</h3>
+
+  <%= form_for(@identification, remote: true,  html: {id: "new_document"}) do |f| %>
+    <%= f.hidden_field :profile_id %>
+    <table class='table2'>
+      <tr>
+        <th><%= f.label :foid_type, "Type"%></th>
+        <th><%= f.label :foid, "ID"%></th>
+        <th><%= f.label :date_issued, "Date Issued"%></th>
+        <th><%= f.label :expiration_date, "Expiration Date" %></th>
+        <% if can? :create, Identification %> <th class="tiny"></th> <% end %>
+      </tr>
+
+      <% @profile.identifications.other.each do |identification| %>
+        <%= render partial: 'identifications/other', locals: {identification: identification} %>
+      <% end %>
+
+      <tr id="loading">
+        <td colspan="5">
+          <%=image_tag 'loading_bar.gif', size: '200x13'%>
+        </td>
+      </tr>
+
+      <tr id="new_document_row" class="togger_child hidden">
+        <td><%= f.text_field :foid_type%></td>
+        <td><%= f.text_field :foid%></td>
+        <td><%= f.text_field :date_issued, class: 'date' %></td>
+        <td><%= f.text_field :expiration_date, class: 'date' %></td>
+        <td>
+          <%= f.submit "Save", data: {:disable_with => 'Saving...'} %>
+          <%=link_to 'Hide', '', class: 'toggler_link'%>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+
+  <% if can? :create, Identification %>
+    <div class="actions">
+    <%=link_to 'Add', '', class: 'add_fields toggler_link'%>
+    </div>
+  <% end %>
+
+</div>
+
 <div id="passports" class="profile_show_section">
   <div class="section_body wip toggler_parent">
 
-  <h2>Passports</h2>
+  <h3 class="titleize">Passports</h3>
 
   <%= form_for(@identification, remote: true) do |f| %>
   	<%= f.hidden_field :profile_id %>
@@ -83,7 +129,7 @@
 
 <div id="visas" class="profile_show_section wip toggler_parent">
 
-  <h2>Visas</h2>
+  <h3 class="titleize">Visas</h3>
 
     <%= form_for(@identification, remote: true, html: {id: "new_visa"}) do |f| %>
      <%= f.hidden_field :profile_id %>
