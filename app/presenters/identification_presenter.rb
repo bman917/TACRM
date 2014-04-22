@@ -33,7 +33,7 @@ class IdentificationPresenter < BasePresenter
         content_tag(:li, "Issued By: #{identification.issued_by}")
 
       elsif visa?
-        content = content_tag(:li, "Entry Date: #{identification.entry_date.to_time.to_s(:med)}")
+        content = content_tag(:li, "Entry Date: #{identification.try(:entry_date).try(:to_time).try(:to_s,:med)}")
         content << content_tag(:li, "Max Stay: #{identification.max_stay}")
       end
     end.html_safe
