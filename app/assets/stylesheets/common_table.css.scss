@@ -1,17 +1,17 @@
 table
 {
-	margin: 1.5em;
-	width: 800px;
+	width: 100%;
 	//text-align: center;
 	border-collapse: collapse;
-	border: 1px solid #C7DBB1;
-	border-top: 7px solid #C7DBB1;
-	border-bottom: 7px solid #C7DBB1;
+	// border: 1px solid #C7DBB1;
+	// border-top: 7px solid #C7DBB1;
+	// border-bottom: 7px solid #C7DBB1;
 
 
 	//background: #e8edff; 
 	//tr:hover { background: #C4CFF6; }
 	//.e     { background: #CFD8F8; }
+	margin-bottom: 0;
 }
 
 thead th, th
@@ -31,10 +31,7 @@ thead th, th
 td
 {
 	padding: 3px;
-	
-	border-left: 1px solid #ABC391;
-	border-right: 1px solid #ABC391;
-	//color: #669;
+	border: 1px solid #ABC391;
 }
 
 tr:hover {

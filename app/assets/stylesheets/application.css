@@ -14,14 +14,13 @@
  *= require blueprint/forms.css
  *= require blueprint/fancy-type
  *= require blueprint/buttons
-
-
  
  *= require jquery.ui.datepicker
  *= require best_in_place
  *= require common
  *= require liquid-slider
  *= require animate
+  *= require data_table
  *= require_self
  *= require_tree .
  */

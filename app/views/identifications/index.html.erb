@@ -1,3 +1,16 @@
 <h2 class="titleize">Client Documents</h2>
 
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+    $('#identification_table').dataTable( {
+        bJQueryUI: true,
+        iDisplayLength: 100,
+        "sPaginationType": "full_numbers",
+    } );
+});
+
+<% end %>
+
+
 <%=render partial: 'table', locals: {identifications: @identifications, show_client_name: true}%>

@@ -1,0 +1,26 @@
+.ui-widget-header {
+	background-color: #D4E6BF;
+	background-image: none;
+	border-color: #ABC391; 
+	border-radius: 0;
+
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	
+	background: #E4F4D3;
+	border-color: #D4E6BF; 
+
+}
+
+table.dataTable {
+
+  td.sorting_1 {
+    background: #D4E6BF;
+  }
+
+  th, tr td {
+  	border-color: #ABC391;
+  }
+}
