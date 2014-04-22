@@ -1,19 +1,16 @@
-<tr id="foid_<%=identification.id%>">
-    <% if defined?(show_client_name) && show_client_name %>
-      <td><%=link_to identification.profile.full_name, identification.profile%></td>
-    <% end %>
+<% present identification do | identification_presenter | %>
+  <tr id="foid_<%=identification.id%>">
+      <% if defined?(show_client_name) && show_client_name %>
+        <td><%=identification_presenter.profile_link%></td>
+      <% end %>
 
-	<td>
-	<%=identification.country%>
-	<%=identification.foid_type%>
-	<%=identification.visa_type%></td>
-	<td><%=identification.foid%></td>
-	<td><%=identification.date_issued%></td>
-	<td><%=identification.expiration_date%></td>
-	<td><%=identification.entry_date%></td>
-	<td><%=identification.max_stay%></td>
-	<td><%=identification.issued_by%></td>
-	<td>
-   	<%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove [#{identification.foid_type} - #{identification.foid}]?"} %>
-   	</td>
-</tr>
+    <td><%=identification_presenter.type%></td>
+    <td><%=identification.foid%></td>
+    <td><%=identification_presenter.date_issued%></td>
+    <td><%=identification_presenter.expiration_date%></td>
+    <td><%=identification_presenter.other_details%></td>
+    <td>
+      <%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove [#{identification.foid_type} - #{identification.foid}]?"} %>
+      </td>
+  </tr>
+<% end %>

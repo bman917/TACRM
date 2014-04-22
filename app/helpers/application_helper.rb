@@ -47,8 +47,9 @@ module ApplicationHelper
 
   def foid_types
     [
-      ['Drivers License', 'Drivers License'],
+      ['Driver License', 'Driver License'],
       ['Passport','Passport'],
+      ['Visa','Visa'],
       ['Company ID', 'Company ID'],
       ['SSS ID', 'SSS ID']
     ]

@@ -10,13 +10,33 @@
       </ul>
     </div>
   <% end %>
+  <fieldset>
+    <p>
+      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, {:selected => 'Passport'}, tabindex: 1%>
+    </p>
 
-  <tr>
-    <td><%= f.text_field :foid_type %></td>
-    <td><%= f.text_field :foid %></td>
-    <td><%= f.text_field :notes %></td>
-    <td><%= f.text_field :profile_id %></td>
-    <td><%= f.submit %></td>
-    <td></td>
-  </tr>
+    <p>
+      <%=f.label :foid_type, "Country: "%></br>
+      <%= f.country_select :country,main_country_list, {}, tabindex: 2 %>
+    </p>
+    <p>
+      <%=f.label :foid, "ID Number: "%></br><%=f.text_field :foid, tabindex: 3%>
+    </p>
+    <p>
+      <%=f.label :date_issued, "Date Issued: "%></br><%=f.date_select :date_issued, {start_year: Time.now.year - 15}%>
+    </p>
+
+    <p>
+      <%=f.label :expiration_date, "Expiration Date: "%></br><%=f.date_select :expiration_date, {end_year: Time.now.year + 15}%>
+    </p>
+
+    <p>
+      <%=f.label :foid, "Issued By: "%></br><%=f.text_field :issued_by, value: 'DFA Manila', tabindex: 3%>
+    </p>
+
+
+    <%= f.submit %>
+
+  </fieldset>
+  <%= f.hidden_field :profile_id %>
 <% end %>
