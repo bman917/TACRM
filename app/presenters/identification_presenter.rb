@@ -2,10 +2,6 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, to: :identification
 
-  def css_id
-    "identification_#{identification.id}"
-  end
-
   def profile_link
     if identification.profile
       link_to identification.profile.full_name, identification.profile 
@@ -16,7 +12,7 @@ class IdentificationPresenter < BasePresenter
 
   def type
     if visa?
-      "#{identification.country} #{identification.foid_type} #{identification.visa_type}"
+      "#{identification.country} #{identification.visa_type} #{identification.foid_type} "
     else
       "#{identification.country} #{identification.foid_type}"
     end

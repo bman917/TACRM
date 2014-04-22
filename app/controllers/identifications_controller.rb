@@ -29,7 +29,7 @@ class IdentificationsController < ApplicationController
 
     respond_to do |format|
       if @identification.save
-        format.html { redirect_to @identification, notice: 'Identification was successfully created.' }
+        format.html { redirect_to identifications_path, notice: 'Identification was successfully created.' }
         format.json { render action: 'show', status: :created, location: @identification }
         format.js { render "add_#{@identification.foid_type.try :downcase}" }
       else

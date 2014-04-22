@@ -44,7 +44,6 @@ version: <%=current_version%>
 		<li><%=link_to 'Clients', profiles_path%>
 			<ul>
 				<li><%= link_to 'All Clients', profiles_path %></li>
-				<li><%= link_to 'All Documents', identifications_path %></li>
 				<% if can? :create, Profile %>
 				<li><%= link_to 'Add Client', new_profile_by_type_path('INDIVIDUAL') %></li>
 				<% end %>
@@ -53,6 +52,10 @@ version: <%=current_version%>
 		<li><%= link_to 'Documents', identifications_path %>
 			<ul>
 				<li><%= link_to 'All Documents', identifications_path %></li>
+				<% if can? :create, Identification %>
+				<li><%= link_to 'Add Document', new_identification_path %></li>
+				<% end %>
+
 			</ul>
 		</li>
 

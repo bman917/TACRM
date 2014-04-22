@@ -1,5 +1,5 @@
 <% present identification do | identification_presenter | %>
-  <tr id="foid_<%=identification.id%>">
+  <tr id="<%=identification.css_id%>">
       <% if defined?(show_client_name) && show_client_name %>
         <td><%=identification_presenter.profile_link%></td>
       <% end %>

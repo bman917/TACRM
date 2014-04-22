@@ -7,6 +7,10 @@ class Identification < ActiveRecord::Base
 
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
+  def css_id
+    "identification_#{id}"
+  end
+
   def prof
     self.profile_id
   end

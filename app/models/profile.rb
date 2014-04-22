@@ -10,6 +10,9 @@ class Profile < ActiveRecord::Base
 	validates :last_name, presence: {message: "Last name must not be blank."}, if: :person?
 	validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
 
+	scope :person, -> {where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
+
+
   	has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
   	def person?
