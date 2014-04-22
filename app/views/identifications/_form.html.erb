@@ -1,3 +1,39 @@
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+  configure_fields();
+
+  $('#identification_foid_type').change(function() {
+    configure_fields();
+  });
+});
+
+function configure_fields() {
+  
+    foid_type = $('#identification_foid_type').val();
+
+    if(foid_type == 'Visa') {
+      $('.passport_field').slideUp('slow');
+      $('.visa_field').slideDown('slow');
+
+      $('label#foid').text('Visa Number');
+    }
+    else if(foid_type == 'Passport') {
+      $('.passport_field').slideDown('slow');
+      $('.visa_field').slideUp('slow');
+      $('label#foid').text('Passport Number');
+    }
+    else {
+      $('.passport_field').slideUp('slow');
+      $('.visa_field').slideUp('slow');
+      $('label#foid').text('ID Number');
+    }
+
+}
+
+<% end %>
+
+
 <%= form_for(@identification) do |f| %>
   <% if @identification.errors.any? %>
     <div id="error_explanation">
@@ -10,13 +46,49 @@
       </ul>
     </div>
   <% end %>
+  <fieldset>
+  <legend>Select Client</legend>
+    <%=f.label :profile_id, "Name: "%></br>
+    <%= f.select :profile_id, Profile.person.map{ |p| [p.full_name, p.id]} %>
+  </fieldset>
+  <fieldset>
+  <legend>Document Details</legend>
+    <p>
+      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, {:selected => 'Passport'}, tabindex: 1%>
+    </p>
+    <p>
+      <%=f.label :foid_type, "Country: "%></br>
+      <%= f.country_select :country,main_country_list, {}, tabindex: 2 %>
+    </p>
+    <p class="visa_field hidden">
+      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type, value: 'TOURIST', tabindex: 3%>
+    </p>
+    <p>
+      <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, autofocus: true, tabindex: 4%>
+    </p>
 
-  <tr>
-    <td><%= f.text_field :foid_type %></td>
-    <td><%= f.text_field :foid %></td>
-    <td><%= f.text_field :notes %></td>
-    <td><%= f.text_field :profile_id %></td>
-    <td><%= f.submit %></td>
-    <td></td>
-  </tr>
+    <p>
+      <%=f.label :date_issued, "Date Issued: "%></br>
+      <%=f.date_select :date_issued, {start_year: Time.now.year - 15}, {tabindex: 5}%>
+    </p>
+
+    <p>
+      <%=f.label :expiration_date, "Expiration Date: "%></br><%=f.date_select :expiration_date, {end_year: Time.now.year + 15}, {tabindex: 6}%>
+    </p>
+
+    <p class="passport_field">
+      <%=f.label :foid, "Issued By: "%></br><%=f.text_field :issued_by, value: 'DFA Manila', tabindex: 7%>
+    </p>
+
+    <p class="visa_field hidden">
+      <%=f.label :expiration_date, "Entry Date: "%></br><%=f.date_select :entry_date, {end_year: Time.now.year + 15}, {tabindex: 8}%>
+    </p>
+
+    <p class="visa_field hidden">
+      <%=f.label :foid, "Max Stay: "%></br><%=f.text_field :max_stay, tabindex: 9%>
+    </p>
+
+    <%= f.submit 'Save', tabindex: 10 %>
+
+  </fieldset>
 <% end %>

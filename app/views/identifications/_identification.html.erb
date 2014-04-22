@@ -1,7 +1,16 @@
-<li id="foid_<%=identification.id%>"> 
-   	<%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove [#{identification.foid_type} - #{identification.foid}]?"} %>
+<% present identification do | identification_presenter | %>
+  <tr id="<%=identification.css_id%>">
+      <% if defined?(show_client_name) && show_client_name %>
+        <td><%=identification_presenter.profile_link%></td>
+      <% end %>
 
-<%= best_in_place identification, :foid_type, type: :select,
-		collection: foid_types %> -
-<%= best_in_place identification, :foid %>
-</li>
+    <td><%=identification_presenter.type%></td>
+    <td><%=identification.foid%></td>
+    <td><%=identification_presenter.date_issued%></td>
+    <td><%=identification_presenter.expiration_date%></td>
+    <td><%=identification_presenter.other_details%></td>
+    <td>
+      <%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Remove [#{identification.foid_type} - #{identification.foid}]?"} %>
+      </td>
+  </tr>
+<% end %>

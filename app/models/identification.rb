@@ -3,19 +3,26 @@ class Identification < ActiveRecord::Base
 
   scope :passports, -> { where(foid_type: 'Passport')}
   scope :visas, -> { where(foid_type: 'Visa')}
+  scope :other, -> { where.not(foid_type: ['Visa','Passport'])}
 
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+
+  def css_id
+    "identification_#{id}"
+  end
 
   def prof
     self.profile_id
   end
 
   def display
-    if passport?
-      "Passport #{foid}"
-    else
-      "#{country} (#{visa_type} Visa) #{foid}"
-    end
+    "Passport #{foid}" if passport?
+    "#{country} (#{visa_type} Visa) #{foid}" if visa?
+    "#{foid_type} - #{foid}"
+  end
+
+  def visa?
+    foid_type == 'Visa'
   end
   
   def passport?

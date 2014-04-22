@@ -14,7 +14,7 @@ table
 	//.e     { background: #CFD8F8; }
 }
 
-th
+thead th, th
 {
 	font-size: .95em;
 
@@ -39,6 +39,18 @@ td
 
 tr:hover {
 	// background: #E0F5C8;
+}
+
+tr.even {
+	background: #EFF6E7;
+}
+
+tr:hover {
+	background: #E0F5C8;
+}
+
+tbody tr:nth-child(even) td, tbody tr.even td {
+	background: #EFF6E7;
 }
 
 .updated, tr.updated:hover {

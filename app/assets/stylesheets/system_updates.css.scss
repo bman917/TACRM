@@ -2,16 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .system_updates {
-	li {
-		margin-left: 1.5em;
+  border-collapse: collapse;
 
-	}
+  tr td { 
+    border: 1px solid #C7DBB1;
+  }
 
-	tr.even {
-		background: #EFF6E7;
-	}
+  li {
+    margin-left: 1.5em;
 
-	.current {
-		font-weight: bold;
-	}
+  }
+
+  tr.current td {
+    font-weight: bold;
+  }
 }

@@ -1,0 +1,10 @@
+
+<tr id="<%=present(identification).css_id%>">
+	<td><%= best_in_place identification, :foid_type%></td>
+	<td><%= best_in_place identification, :foid%></td>
+	<td><%= best_in_place identification, :date_issued, :type => :date, :display_with => lambda { |v| format_date(v)} %></td>
+	<td><%= best_in_place identification, :expiration_date, :type => :date, :display_with => lambda { |v| format_date(v)}%></td>
+	<% if can? :destroy, identification %>
+	<td>   	<%=link_to 'X', identification, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete [#{identification.foid_type} - #{identification.foid}]?"} %></td>
+	<% end %>
+</tr>

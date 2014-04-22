@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body  class="container">
 
 <%=javascript_tag do %>
 	$(document).ready(function(){
@@ -43,12 +43,22 @@ version: <%=current_version%>
 	<ul id="menu">
 		<li><%=link_to 'Clients', profiles_path%>
 			<ul>
-				<li><%= link_to 'Show All Clients', profiles_path %></li>
+				<li><%= link_to 'All Clients', profiles_path %></li>
 				<% if can? :create, Profile %>
 				<li><%= link_to 'Add Client', new_profile_by_type_path('INDIVIDUAL') %></li>
 				<% end %>
 			</ul>
 		</li>
+		<li><%= link_to 'Documents', identifications_path %>
+			<ul>
+				<li><%= link_to 'All Documents', identifications_path %></li>
+				<% if can? :create, Identification %>
+				<li><%= link_to 'Add Document', new_identification_path %></li>
+				<% end %>
+
+			</ul>
+		</li>
+
 		<li><a id='x' href="">Transactions</a>
 			<ul>
 				<li><%= link_to 'Domestic Ticketing', '', id: 'x'%></li>
@@ -78,7 +88,13 @@ version: <%=current_version%>
 
 </div>
 
-<div id="content">
+<div>
+    <% if notice %><p class="notice"><%= notice %></p><% end %>
+    <% if alert %><p class="alert"><%= alert %></p><% end %>
+</div>
+
+
+<div id="content" class="span-22 prepend-1 prepend-top">
 
 <div id="wait_message" class="hidden">
 Processing...
@@ -87,11 +103,6 @@ Processing...
 <div id="error_explanation" class="hidden">
 <div></div>
 <ul></ul>
-</div>
-
-<div>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
 </div>
 
 <%= yield %>

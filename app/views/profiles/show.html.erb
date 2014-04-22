@@ -37,13 +37,13 @@ $(document).ready(function(){
 
 <% end %>
 
-<div class="slider-container">
+<div class="slider-container span-22">
 	<div class="liquid-slider" id="profile-tabs">
 
 		<% if @profile.person? %>
 		  <% cache(add_role @profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
-	        <%=render 'documents' %>
+	        <%=render 'documents_all' %>
 	      </div>
 	    <% end %>
 	  <% end %>
@@ -75,5 +75,4 @@ $(document).ready(function(){
 		</div>
 
 	</div>
-
 </div>
