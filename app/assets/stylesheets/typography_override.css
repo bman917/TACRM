@@ -1,3 +1,7 @@
 tbody tr:nth-child(even) td, tbody tr.even td {
 	background: #EFF6E7;
 }
+
+fieldset {
+	background: #D9E9C5;
+}

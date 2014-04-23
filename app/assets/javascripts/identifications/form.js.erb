@@ -1,0 +1,86 @@
+/*
+
+This script is used by:
+  identifications/_form.html.erb
+
+*/
+
+<% url = TACRM::Application.routes.url_helpers %>
+
+function identifications_form_init() {
+  $('#profile_full_name').autocomplete({
+      source: '<%=url.profile_full_names_path%>',
+      minLength: 2,
+      select: set_profile_id
+    });
+
+  $('#profile_full_name').focusout(function() {
+    is_ok = ($('#identification_profile_id').val() != false);
+    mark_identification(is_ok);
+  });
+
+  configure_fields();
+
+  $('#identification_foid_type').change(function() {
+    configure_fields();
+  });
+
+
+  $('#select_client a').on('click', function() {
+    event.preventDefault();
+    $('#identification_profile_id').val('');
+    $('#profile_full_name').val('');
+    $('#profile_full_name').removeAttr('disabled');
+    $('#profile_full_name').focus();
+    $(this).hide();
+  });
+
+}
+
+function mark_identification(is_ok) {
+  if(is_ok) {
+    $('#select_client').removeClass('alert');
+    $('#save_identification').removeAttr('disabled');
+    $('#select_client a').show();
+  } else {
+    $('#select_client').addClass('alert');
+    $('#save_identification').prop("disabled",true);
+    $('#select_client a').hide();
+  }
+}
+
+/* 
+Call back method for autocomplete. 
+Sets the profile id of the profile selected from the autocomplete dropdown
+*/
+function set_profile_id(event, ui)
+{
+  $('#identification_profile_id').val(ui.item.id);
+  mark_identification(true);
+  $('#profile_full_name').prop("disabled",true);
+}
+
+/*
+Hides or shows inputs depending on the foid type that is selected.
+For example, for Visa, Max Stay input field is shown, etc.
+*/
+function configure_fields() {
+    foid_type = $('#identification_foid_type').val();
+
+    if(foid_type == 'Visa') {
+      $('.passport_field').slideUp('slow');
+      $('.visa_field').slideDown('slow');
+
+      $('label#foid').text('Visa Number');
+    }
+    else if(foid_type == 'Passport') {
+      $('.passport_field').slideDown('slow');
+      $('.visa_field').slideUp('slow');
+      $('label#foid').text('Passport Number');
+    }
+    else {
+      $('.passport_field').slideUp('slow');
+      $('.visa_field').slideUp('slow');
+      $('label#foid').text('ID Number');
+    }
+}

@@ -2,6 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
+  def full_names
+    @profiles = Profile.search_by_name(params[:term])
+    render json: @profiles.to_json(methods: :label) 
+  end
+
   def search
     @profiles = Profile.order(:name).where("name like ?", "%#{params[:term]}%")
   end

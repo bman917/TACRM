@@ -39,6 +39,8 @@ TACRM::Application.routes.draw do
   get 'profile/type/:profile_type' => "profiles#index", as: "profiles_by_type"
   get 'profile/new/:profile_type' => "profiles#new", as: "new_profile_by_type"
 
+  get 'profile/full_names', to: 'profiles#full_names'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

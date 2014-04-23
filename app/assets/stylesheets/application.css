@@ -20,7 +20,8 @@
  *= require common
  *= require liquid-slider
  *= require animate
-  *= require data_table
+ *= require data_table
+ *= require jchan-jquery-ui
  *= require_self
  *= require_tree .
  */
