@@ -5,4 +5,8 @@
 	
 	background: #D4E6BF;
 	border: 3px solid #C7DBB1;
+	input:focus, select:focus {
+		border: 3px solid #5F872D;
+		background: #E4FFC1;
+	}
 }

@@ -26,7 +26,7 @@ function identifications_form_init() {
   });
 
 
-  $('#select_client a').on('click', function() {
+  $('#select_client a').on('click', function(event) {
     event.preventDefault();
     $('#identification_profile_id').val('');
     $('#profile_full_name').val('');
@@ -58,6 +58,7 @@ function set_profile_id(event, ui)
   $('#identification_profile_id').val(ui.item.id);
   mark_identification(true);
   $('#profile_full_name').prop("disabled",true);
+  $('#identification_foid_type').focus();
 }
 
 /*

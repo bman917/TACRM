@@ -24,7 +24,7 @@ $(document).ready(function(){
   <legend>Select Client</legend>
     <%=f.label :profile_id, "Name: "%><%=image_tag("question.png", size: "14x14", title: "Start typing and profile names will appear. Select a profile from the drop down.")%></br>
     <%=f.hidden_field :profile_id%>
-    <%= text_field_tag :profile_full_name, [], size: 35, placeholder: "Start typing and profile names will appear...",  autofocus: true%>
+    <%= text_field_tag :profile_full_name, [], size: 35, placeholder: "Start typing and profile names will appear...",  autofocus: true, class: 'text'%>
     <%=link_to 'change', '', class: 'hidden'%>
   </fieldset>
 
