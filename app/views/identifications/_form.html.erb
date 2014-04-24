@@ -44,7 +44,7 @@ $(document).ready(function(){
       <%= f.country_select :country,main_country_list, {}, tabindex: 2 %>
     </p>
     <p class="visa_field hidden">
-      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type, value: 'TOURIST', tabindex: 3%>
+      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type,tabindex: 3%>
     </p>
     <p>
       <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, tabindex: 4%>

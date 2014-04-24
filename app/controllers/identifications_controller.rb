@@ -16,6 +16,7 @@ class IdentificationsController < ApplicationController
   # GET /identifications/new
   def new
     @identification = Identification.new
+    @identification.visa_type = "TOURIST"
   end
 
   # GET /identifications/1/edit
