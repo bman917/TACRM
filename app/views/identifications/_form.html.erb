@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 <% end %>
 
+<% identification_presenter = present(@identification) %>
 
 <%= form_for(@identification) do |f| %>
   <% if @identification.errors.any? %>
@@ -21,17 +22,22 @@ $(document).ready(function(){
   <% end %>
   
   <fieldset id="select_client">
-  <legend>Select Client</legend>
-    <%=f.label :profile_id, "Name: "%><%=image_tag("question.png", size: "14x14", title: "Start typing and profile names will appear. Select a profile from the drop down.")%></br>
+  <legend><%=identification_presenter.profile_select_legend%></legend>
+
     <%=f.hidden_field :profile_id%>
-    <%= text_field_tag :profile_full_name, [], size: 35, placeholder: "Start typing and profile names will appear...",  autofocus: true, class: 'text'%>
+
+    <%=identification_presenter.client_name_label%>
+
+    <%= identification_presenter.profile_full_name_field %>
     <%=link_to 'change', '', class: 'hidden'%>
+
+
   </fieldset>
 
   <fieldset>
   <legend>Document Details</legend>
     <p>
-      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, {:selected => 'Passport'}, tabindex: 1%>
+      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, tabindex: 1%>
     </p>
     <p>
       <%=f.label :foid_type, "Country: "%></br>
@@ -65,7 +71,7 @@ $(document).ready(function(){
       <%=f.label :foid, "Max Stay: "%></br><%=f.text_field :max_stay, tabindex: 9%>
     </p>
 
-    <%= f.submit 'Save', id: 'save_identification', tabindex: 10, disabled: true %>
+    <%= f.submit 'Save', id: 'save_identification', tabindex: 10 %>
 
   </fieldset>
 <% end %>

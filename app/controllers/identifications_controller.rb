@@ -5,7 +5,7 @@ class IdentificationsController < ApplicationController
   # GET /identifications.json
   def index
     @identifications = Identification.all
-    @identification = Identification.new
+
   end
 
   # GET /identifications/1
@@ -29,7 +29,9 @@ class IdentificationsController < ApplicationController
 
     respond_to do |format|
       if @identification.save
-        format.html { redirect_to identifications_path, notice: 'Identification was successfully created.' }
+
+        notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully created."
+        format.html { redirect_to identifications_path, flash: {identification_notice: notice}}
         format.json { render action: 'show', status: :created, location: @identification }
         format.js { render "add_#{@identification.foid_type.try :downcase}" }
       else
@@ -45,7 +47,9 @@ class IdentificationsController < ApplicationController
   def update
     respond_to do |format|
       if @identification.update(identification_params)
-        format.html { redirect_to @identification, notice: 'Identification was successfully updated.' }
+
+        notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully updated."
+        format.html { redirect_to identifications_path,  flash: {identification_notice: notice}}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

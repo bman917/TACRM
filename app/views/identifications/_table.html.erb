@@ -10,7 +10,8 @@
       <th>Date Issued</th>
       <th>Expiration Date</th>
       <th>Other Details</th>
-      <% if can? :create, Identification %> <th class="tiny"></th> <% end %>
+      <% if can? :edit, Identification %> <th class="tiny"></th> <% end %>
+      <% if can? :destroy, Identification %> <th class="tiny"></th> <% end %>
     </tr>
   </thead>
   <tbody>

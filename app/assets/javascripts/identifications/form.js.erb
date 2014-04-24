@@ -7,25 +7,19 @@ This script is used by:
 
 <% url = TACRM::Application.routes.url_helpers %>
 
+/*
+MAIN init method
+*/
 function identifications_form_init() {
+
+  /*Setup autocomplete field for profile names*/
   $('#profile_full_name').autocomplete({
       source: '<%=url.profile_full_names_path%>',
       minLength: 2,
       select: set_profile_id
     });
 
-  $('#profile_full_name').focusout(function() {
-    is_ok = ($('#identification_profile_id').val() != false);
-    mark_identification(is_ok);
-  });
-
-  configure_fields();
-
-  $('#identification_foid_type').change(function() {
-    configure_fields();
-  });
-
-
+  /*Reset profile autocomplet field*/
   $('#select_client a').on('click', function(event) {
     event.preventDefault();
     $('#identification_profile_id').val('');
@@ -33,6 +27,38 @@ function identifications_form_init() {
     $('#profile_full_name').removeAttr('disabled');
     $('#profile_full_name').focus();
     $(this).hide();
+  });
+
+  $('#profile_full_name').focusout(function() {
+    is_ok = ($('#identification_profile_id').val() != false);
+    mark_identification(is_ok);
+  });
+
+  $('#profile_full_name').focusin(function() {
+    $('#select_client').removeClass('alert');
+  });
+
+  /* When user selects a different identification type (passposrt, vis, etc) */
+  $('#identification_foid_type').change(function() {
+    configure_fields();
+  });
+
+  configure_fields();
+
+  /*Validation: foid must not be blank*/
+  $('form#new_identification').submit(function(event) {
+    var foid = $.trim($('#identification_foid').val());
+    if (foid == false)
+    {
+      $('#identification_foid').effect('shake');
+      $('#identification_foid').focus();
+      event.preventDefault();
+    }
+    else
+    {
+      $('#save_identification').prop('disabled', true);
+      $('#save_identification').prop('value', 'Please wait....');
+    }
   });
 
 }

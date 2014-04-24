@@ -12,5 +12,17 @@ $(document).ready(function(){
 
 <% end %>
 
+<% if flash[:identification_notice] %>
+	<%=javascript_tag do %>
+		setTimeout(function() {
+			$('#identification_notice').fadeOut('slow', function() {
+				$('#identification_notice').remove();
+			});
+		},20000);
+	<% end %>
+	<div id="identification_notice" class="success">
+		<%= flash[:identification_notice]%>
+	</div>
+<% end %>
 
 <%=render partial: 'table', locals: {identifications: @identifications, show_client_name: true}%>
