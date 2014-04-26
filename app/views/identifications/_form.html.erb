@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 <% identification_presenter = present(@identification) %>
 
-<%= form_for(@identification) do |f| %>
+<%= form_for(@identification, html:{id: 'identification_form'}) do |f| %>
   <% if @identification.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@identification.errors.count, "error") %> prohibited this identification from being saved:</h2>
@@ -34,44 +34,50 @@ $(document).ready(function(){
 
   </fieldset>
 
+
   <fieldset>
   <legend>Document Details</legend>
-    <p>
+    <div>
       <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, tabindex: 1%>
-    </p>
-    <p>
-      <%=f.label :foid_type, "Country: "%></br>
-      <%= f.country_select :country,main_country_list, {}, tabindex: 2 %>
-    </p>
-    <p class="visa_field hidden">
-      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type,tabindex: 3%>
-    </p>
-    <p>
-      <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, tabindex: 4%>
-    </p>
+    </div>
 
-    <p>
+    <div>
+      <%=f.label :foid_type, "Country: "%></br>
+      <%= f.country_select :country, main_country_list, {prompt: 'Select Country...'},
+          class: 'required', tabindex: 2 %>
+    </div>
+
+    <div class="visa_field hidden">
+      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type,tabindex: 3%>
+    </div>
+
+    <div>
+      <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, class: 'required', tabindex: 4%>
+    </div>
+
+    <div>
       <%=f.label :date_issued, "Date Issued: "%></br>
       <%=f.date_select :date_issued, {start_year: Time.now.year - 15}, {tabindex: 5}%>
-    </p>
+    </div>
 
-    <p>
+    <div>
       <%=f.label :expiration_date, "Expiration Date: "%></br><%=f.date_select :expiration_date, {end_year: Time.now.year + 15}, {tabindex: 6}%>
-    </p>
+    </div>
 
-    <p class="passport_field">
+    <div class="passport_field">
       <%=f.label :foid, "Issued By: "%></br><%=f.text_field :issued_by, value: 'DFA Manila', tabindex: 7%>
-    </p>
+    </div>
 
-    <p class="visa_field hidden">
+    <div class="visa_field hidden">
       <%=f.label :expiration_date, "Entry Date: "%></br><%=f.date_select :entry_date, {end_year: Time.now.year + 15}, {tabindex: 8}%>
-    </p>
+    </div>
 
-    <p class="visa_field hidden">
+    <div class="visa_field hidden">
       <%=f.label :foid, "Max Stay: "%></br><%=f.text_field :max_stay, tabindex: 9%>
-    </p>
+    </div>
 
     <%= f.submit 'Save', id: 'save_identification', tabindex: 10 %>
 
   </fieldset>
+
 <% end %>

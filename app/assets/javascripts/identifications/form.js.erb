@@ -46,19 +46,24 @@ function identifications_form_init() {
   configure_fields();
 
   /*Validation: foid must not be blank*/
-  $('form#new_identification').submit(function(event) {
-    var foid = $.trim($('#identification_foid').val());
-    if (foid == false)
-    {
-      $('#identification_foid').effect('shake');
-      $('#identification_foid').focus();
+  $('form#identification_form').submit(function(event) {
+    var isFormValid = true
+
+    $(".required").each(function(){
+        if ($.trim($(this).val()).length == 0){
+            $(this).effect('shake');
+            $(this).focus();
+            isFormValid = false;
+        }
+    });
+
+    if (!isFormValid) {
       event.preventDefault();
-    }
-    else
-    {
+    } else {
       $('#save_identification').prop('disabled', true);
       $('#save_identification').prop('value', 'Please wait....');
     }
+
   });
 
 }

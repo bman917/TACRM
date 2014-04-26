@@ -19,3 +19,16 @@
 	}
 
 }
+
+.country_not_found {
+	padding: 0;
+	margin: 0;
+	display: inline;
+	span {
+		margin-right: .25em;
+		font-style: italic;
+	}
+	span.obsolete_msg {
+		color: grey;	
+	}
+}

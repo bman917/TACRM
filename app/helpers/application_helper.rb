@@ -16,8 +16,21 @@ module ApplicationHelper
   end
 
   def main_country_list
-    ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States"]
+    ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States", "Schengen"]
   end
+
+  def country_list
+    ISO3166::Country.all.map {|c| c[0].titleize} 
+  end
+
+  def visa_country_list
+    ["Philippines","Japan", "Korea", "Singapore", "Thailand", "United States", "Schengen", "--------------"] + country_list
+  end
+
+  def matched?(country)
+    visa_country_list.include?(country) || (ISO3166::Country.find_all_by(:name, country) || ISO3166::Country.find_all_by(:alpha2, country) || ISO3166::Country.find_all_by(:alpha3, country)).empty? == false
+  end
+
 
   def gender_types
     [

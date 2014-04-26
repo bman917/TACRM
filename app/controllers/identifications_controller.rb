@@ -21,7 +21,7 @@ class IdentificationsController < ApplicationController
 
   # GET /identifications/1/edit
   def edit
-    @identification.country = @identification.country.humanize
+    @identification.country = @identification.country.titleize
   end
 
   # POST /identifications
