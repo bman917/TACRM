@@ -2,6 +2,10 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, to: :identification
 
+  def title
+    params[:action] == 'edit' ? 'Edit Document' : 'New Document'
+  end
+
   def profile_full_name_field
     unless identification.profile
       text_field_tag :profile_full_name, [], size: 35, 
@@ -13,14 +17,18 @@ class IdentificationPresenter < BasePresenter
   end
 
   def profile_select_legend
-    params[:action] == 'edit' ? 'Client' : 'Select Client'
+    identification.profile ? 'Client' : 'Select Client'
   end
 
   def client_name_label
-    content_tag :div do
-      content = content_tag :label, "Name: "
-      content << image_tag("question.png", size: "14x14", title: "Start typing and profile names will appear. Select a profile from the drop down.")
-    end.html_safe
+    unless identification.profile
+      content_tag :div do
+        content = content_tag :label, "Name: "
+          content << image_tag("question.png", 
+            size: "14x14", 
+            title: "Start typing and profile names will appear. Select a profile from the drop down.")
+      end.html_safe
+    end
   end
 
   def profile_link

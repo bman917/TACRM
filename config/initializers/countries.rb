@@ -8,7 +8,7 @@ module ActionView
       def country_select(method_name, priority_list = nil, options = {}, html_options = {})
 
         country = @object.method(method_name).call
-        puts "XXXXXXXXXXXXXXXXXXXXXX #{country}. Match #{matched?(country)}"
+        
         options_for_select = all_countries
         if priority_list
           options[:disabled] = "--------------"

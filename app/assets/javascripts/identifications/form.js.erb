@@ -100,19 +100,19 @@ function configure_fields() {
     foid_type = $('#identification_foid_type').val();
 
     if(foid_type == 'Visa') {
-      $('.passport_field').slideUp('slow');
-      $('.visa_field').slideDown('slow');
+      $('.passport_field').slideUp('fast');
+      $('.visa_field').slideDown('fast');
 
       $('label#foid').text('Visa Number');
     }
     else if(foid_type == 'Passport') {
-      $('.passport_field').slideDown('slow');
-      $('.visa_field').slideUp('slow');
+      $('.passport_field').slideDown('fast');
+      $('.visa_field').slideUp('fast');
       $('label#foid').text('Passport Number');
     }
     else {
-      $('.passport_field').slideUp('slow');
-      $('.visa_field').slideUp('slow');
+      $('.passport_field').slideUp('fast');
+      $('.visa_field').slideUp('fast');
       $('label#foid').text('ID Number');
     }
 }

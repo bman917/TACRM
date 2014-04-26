@@ -1,13 +1,22 @@
 // Place all the styles related to the Identifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.box {
-	
+#identification_form {
+	padding: 1em;
 	background: #D4E6BF;
+	// margin: auto 0;
 	border: 3px solid #C7DBB1;
 	input:focus, select:focus {
 		border: 3px solid #5F872D;
 		background: #E4FFC1;
+	}
+
+	h2 {
+		margin-top: -.25em;
+	}
+
+	.close {
+		float: right;
 	}
 }
 

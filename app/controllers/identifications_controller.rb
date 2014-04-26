@@ -17,11 +17,23 @@ class IdentificationsController < ApplicationController
   def new
     @identification = Identification.new
     @identification.visa_type = "TOURIST"
+    @identification.profile_id = params[:profile_id]
+
+    respond_to do | format |
+      format.html
+      format.js { render 'remote_form'}
+    end
   end
 
   # GET /identifications/1/edit
   def edit
     @identification.country = @identification.try(:country).try(:titleize)
+
+    respond_to do | format |
+      format.html
+      format.js { render 'remote_form'}
+    end
+
   end
 
   # POST /identifications

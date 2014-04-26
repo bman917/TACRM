@@ -33,6 +33,7 @@ TACRM::Application.routes.draw do
   resources :profiles do
     get :corporate_index, on: :collection
   end
+  get 'identifications/new/profile/:profile_id' => 'identifications#new', as: 'profile_new_identification'
   get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'
   get 'versions/profile/:profile_id' => 'profile_versions#index', as: 'versions_profile'
   get 'profile/search' => "profiles#search", as: "profile_search"

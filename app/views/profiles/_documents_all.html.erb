@@ -1,3 +1,10 @@
 <h2 class="title hidden">Documents</h2>
 
-<%=render partial: 'identifications/table', locals: {identifications: @profile.identifications}%>
+<div id="documents_all">
+<%=link_to 'New', profile_new_identification_path(@profile), remote: true %>
+	<div id="new_document">
+	
+	</div>
+
+<%=render partial: 'identifications/table', locals: {identifications: @profile.identifications, remote: true}%>
+</div>

@@ -1,0 +1,8 @@
+$('body').append('<div class="overlay-5"></div>');
+$('#content').append('<%=j render("form")%>');
+$('#identification_form').center();
+$('#identification_form').addClass('modal-1')
+$('#identification_form').hide().slideDown('fast');
+
+$('#identification_form').prepend('<%=link_to 'Close', '', class: 'close'%>');
+$('#identification_foid_type').focus();

@@ -16,7 +16,13 @@
   </thead>
   <tbody>
     <% identifications.each do | identification | %>
-      <%=render partial: 'identifications/identification', locals: {identification: identification,show_client_name: defined?(show_client_name) && show_client_name} %>
+      <%=render partial: 'identifications/identification', 
+        locals: {
+          identification: identification, 
+          show_client_name: defined?(show_client_name) && show_client_name,
+          remote: defined?(remote) && remote
+        }
+      %>
     <% end %>
   </tbody>
 </table>
