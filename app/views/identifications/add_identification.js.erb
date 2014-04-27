@@ -1,0 +1,8 @@
+ $('#identification_form_container').remove();
+ $('#identification_table').remove();
+ $('#documents_all').append('<%=j render(partial: 'identifications/table', 
+ 	locals: {identifications: @profile.identifications, remote: true})%>');
+ adjustHeight();
+ $('.overlay-5').remove();
+
+$('#<%=@identification.css_id%>').addClass('new');

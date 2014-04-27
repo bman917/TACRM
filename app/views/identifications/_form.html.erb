@@ -1,3 +1,4 @@
+<div id="identification_form_container">
 <%=javascript_tag do %>
 
 $(document).ready(function(){
@@ -45,46 +46,47 @@ $(document).ready(function(){
   <fieldset>
   <legend>Document Details</legend>
     <div>
-      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, tabindex: 1%>
+      <%=f.label :foid_type, "Type: "%></br><%=f.select :foid_type, foid_types, {}, tabindex: 2%>
     </div>
 
     <div>
       <%=f.label :foid_type, "Country: "%></br>
       <%= f.country_select :country, main_country_list, {prompt: 'Select Country...'},
-          class: 'required', tabindex: 2 %>
+          class: 'required', tabindex: 3 %>
     </div>
 
     <div class="visa_field hidden">
-      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type,tabindex: 3%>
+      <%=f.label :visa_type, "Visa Type: "%></br><%=f.text_field :visa_type,tabindex: 4%>
     </div>
 
     <div>
-      <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, class: 'required', tabindex: 4%>
+      <%=f.label :foid, "ID Number: ", id: 'foid'%></br><%=f.text_field :foid, class: 'required', tabindex: 5%>
     </div>
 
     <div>
       <%=f.label :date_issued, "Date Issued: "%></br>
-      <%=f.date_select :date_issued, {start_year: Time.now.year - 15}, {tabindex: 5}%>
+      <%=f.date_select :date_issued, {start_year: Time.now.year - 15}, {tabindex: 6}%>
     </div>
 
     <div>
-      <%=f.label :expiration_date, "Expiration Date: "%></br><%=f.date_select :expiration_date, {end_year: Time.now.year + 15}, {tabindex: 6}%>
+      <%=f.label :expiration_date, "Expiration Date: "%></br><%=f.date_select :expiration_date, {end_year: Time.now.year + 15}, {tabindex: 7}%>
     </div>
 
     <div class="passport_field">
-      <%=f.label :foid, "Issued By: "%></br><%=f.text_field :issued_by, value: 'DFA Manila', tabindex: 7%>
+      <%=f.label :foid, "Issued By: "%></br><%=f.text_field :issued_by, value: 'DFA Manila', tabindex: 8%>
     </div>
 
     <div class="visa_field hidden">
-      <%=f.label :expiration_date, "Entry Date: "%></br><%=f.date_select :entry_date, {end_year: Time.now.year + 15}, {tabindex: 8}%>
+      <%=f.label :expiration_date, "Entry Date: "%></br><%=f.date_select :entry_date, {end_year: Time.now.year + 15}, {tabindex: 9}%>
     </div>
 
     <div class="visa_field hidden">
-      <%=f.label :foid, "Max Stay: "%></br><%=f.text_field :max_stay, tabindex: 9%>
+      <%=f.label :foid, "Max Stay: "%></br><%=f.text_field :max_stay, tabindex: 10%>
     </div>
 
-    <%= f.submit 'Save', id: 'save_identification', tabindex: 10 %>
+    <%= f.submit 'Save', id: 'save_identification', tabindex: 11 %>
 
   </fieldset>
 
 <% end %>
+</div>

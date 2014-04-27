@@ -1,5 +1,6 @@
 $('body').append('<div class="overlay-5"></div>');
 $('#content').append('<%=j render("form")%>');
+$('#identification_form').attr('data-remote', 'true');
 $('#identification_form').center();
 $('#identification_form').addClass('modal-1')
 $('#identification_form').hide().slideDown('fast');

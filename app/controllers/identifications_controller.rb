@@ -40,6 +40,7 @@ class IdentificationsController < ApplicationController
   # POST /identifications.json
   def create
     @identification = Identification.new(identification_params)
+    @profile = @identification.try :profile
 
     respond_to do |format|
       if @identification.save
@@ -47,7 +48,8 @@ class IdentificationsController < ApplicationController
         notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully created."
         format.html { redirect_to identifications_path, flash: {identification_notice: notice}}
         format.json { render action: 'show', status: :created, location: @identification }
-        format.js { render "add_#{@identification.foid_type.try :downcase}" }
+        # format.js { render "add_#{@identification.foid_type.try :downcase}" }
+        format.js { render 'add_identification'}
       else
         format.html { render action: 'new' }
         format.json { render json: @identification.errors, status: :unprocessable_entity }
@@ -61,10 +63,10 @@ class IdentificationsController < ApplicationController
   def update
     respond_to do |format|
       if @identification.update(identification_params)
-
         notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully updated."
         format.html { redirect_to identifications_path,  flash: {identification_notice: notice}}
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @identification.errors, status: :unprocessable_entity }
@@ -87,6 +89,7 @@ class IdentificationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_identification
       @identification = Identification.find(params[:id])
+      @profile = @identification.try :profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

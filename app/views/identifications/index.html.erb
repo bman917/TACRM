@@ -25,4 +25,7 @@ $(document).ready(function(){
 	</div>
 <% end %>
 
+<!-- Note: documents_all div is needed by update.js.erb -->
+<div id="documents_all">
 <%=render partial: 'table', locals: {identifications: @identifications, show_client_name: true}%>
+</div>
