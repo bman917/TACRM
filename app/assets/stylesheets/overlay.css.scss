@@ -20,28 +20,18 @@
 }
 
 
-/* just some content with arbitrary styles for explanation purposes */
 .modal {
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
-    position: fixed;
-    top: 10px; 
-    left: 85%;
-    // margin-top: -70px;
-    // margin-left: -150px;
-    background-color: #D5E6C2;
-    border-radius: 3px;
-    text-align: center;
-    border: 2px solid #85AA59;
-    font-size: 15px;
-    font-weight: normal;
-    color: #39610B;
-    z-index: 15; /* 1px higher than the overlay layer */
+  height: 40px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  text-align: center;
+  z-index: 11; /* 1px higher than the overlay layer */
 }
 
 .modal-1 {
     z-index: 15; /* 1px higher than the overlay layer */
 }
+
 
 

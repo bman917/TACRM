@@ -27,6 +27,7 @@ class IdentificationsController < ApplicationController
 
   # GET /identifications/1/edit
   def edit
+    sleep 3
     @identification.country = @identification.try(:country).try(:titleize)
 
     respond_to do | format |
