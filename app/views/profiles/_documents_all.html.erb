@@ -1,7 +1,8 @@
 <h2 class="title hidden">Documents</h2>
 
 <div id="documents_all">
-<%=link_to 'New', profile_new_identification_path(@profile), remote: true %>
+<%=link_to 'Add New', profile_new_identification_path(@profile), remote: true,
+	class: 'std_button' %>
 	<div id="new_document">
 	
 	</div>

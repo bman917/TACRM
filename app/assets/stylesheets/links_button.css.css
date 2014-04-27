@@ -1,0 +1,12 @@
+.std_button {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+
+	border: 1px solid #4C6432;
+	background: #8FA577;
+	color: white;
+	text-decoration: none;
+	font-size: .8em;
+}
