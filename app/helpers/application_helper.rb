@@ -64,7 +64,9 @@ module ApplicationHelper
       ['Visa','Visa'],
       ['Drivers License', 'Drivers License'],
       ['Company ID', 'Company ID'],
-      ['SSS ID', 'SSS ID']
+      ['SSS ID', 'SSS ID'],
+      ['TIN', 'TIN'],
+      ['Other', 'Other']
     ]
   end
   def phone_types

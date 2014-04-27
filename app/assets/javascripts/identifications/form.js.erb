@@ -19,13 +19,10 @@ function identifications_form_init() {
       select: set_profile_id
     });
 
-  /*Reset profile autocomplet field*/
+  /*For the change link. Reset profile autocomplet field. */
   $('#select_client a').on('click', function(event) {
     event.preventDefault();
-    $('#identification_profile_id').val('');
-    $('#profile_full_name').val('');
-    $('#profile_full_name').removeAttr('disabled');
-    $('#profile_full_name').focus();
+    reset_select_client_field();
     $(this).hide();
   });
 
@@ -45,18 +42,30 @@ function identifications_form_init() {
 
   configure_fields();
 
-  /*Validation: foid must not be blank*/
-  $('form#identification_form').submit(function(event) {
+  /*Add identification form validation listener*/
+  $('form#identification_form').submit(identification_form_submit_validation);
+
+}
+
+function identification_form_submit_validation(event) {
     var isFormValid = true
 
-    $(".required").each(function(){
-        if ($.trim($(this).val()).length == 0){
-            $(this).effect('shake');
-            $(this).focus();
-            isFormValid = false;
-            
-        }
-    });
+    if ($('#identification_profile_id').val() == false)
+    {
+      isFormValid = false;
+      mark_identification(false);
+      $('#profile_full_name').effect('shake').focus();
+    }
+    else {
+      $(".required").each(function(){
+          if ($.trim($(this).val()).length == 0){
+              $(this).effect('shake');
+              $(this).focus();
+              isFormValid = false;
+          }
+      });
+    }
+
     if (!isFormValid) {
       event.preventDefault();
       event.stopPropagation();
@@ -65,8 +74,16 @@ function identifications_form_init() {
       $('#save_identification').prop('value', 'Please wait....');
       $('#identification_form').spin();
     }
-  });
+  }
 
+
+/* Reset the input field(s) for client/profile */
+function reset_select_client_field() {
+  $('#identification_profile_id').val('');
+  $('#profile_full_name').val('');
+  $('#profile_full_name').removeAttr('disabled');
+  $('#profile_full_name').focus();
+  $('#select_client a').hide();
 }
 
 function mark_identification(is_ok) {
@@ -74,10 +91,11 @@ function mark_identification(is_ok) {
     $('#select_client').removeClass('alert');
     $('#save_identification').removeAttr('disabled');
     $('#select_client a').show();
+    $('#profile_full_name').prop("disabled",true);
   } else {
+    reset_select_client_field();
     $('#select_client').addClass('alert');
     $('#save_identification').prop("disabled",true);
-    $('#select_client a').hide();
   }
 }
 
@@ -89,7 +107,7 @@ function set_profile_id(event, ui)
 {
   $('#identification_profile_id').val(ui.item.id);
   mark_identification(true);
-  $('#profile_full_name').prop("disabled",true);
+  
   $('#identification_foid_type').focus();
 }
 
@@ -100,20 +118,28 @@ For example, for Visa, Max Stay input field is shown, etc.
 function configure_fields() {
     foid_type = $('#identification_foid_type').val();
 
-    if(foid_type == 'Visa') {
-      $('.passport_field').slideUp('fast');
-      $('.visa_field').slideDown('fast');
+    $('.country_field').show();
+    $('#identification_country').addClass('required');
+    $('#identification_description').removeClass('required');
 
+    $('.passport_field').hide();
+    $('.visa_field').hide();
+    $('.other_field').hide();
+    $('label#foid').text('ID Number');
+
+    if(foid_type == 'Visa') {
+      $('.visa_field').slideDown('slow');
       $('label#foid').text('Visa Number');
     }
     else if(foid_type == 'Passport') {
-      $('.passport_field').slideDown('fast');
-      $('.visa_field').slideUp('fast');
+      $('.passport_field').slideDown('slow');
       $('label#foid').text('Passport Number');
     }
-    else {
-      $('.passport_field').slideUp('fast');
-      $('.visa_field').slideUp('fast');
-      $('label#foid').text('ID Number');
+    else if(foid_type == 'Other') {
+      $('.country_field').hide();
+      $('#identification_description').addClass('required');
+      $('#identification_country').removeClass('required');
+      $('.other_field').slideDown('slow');
+
     }
 }

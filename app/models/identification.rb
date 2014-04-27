@@ -1,6 +1,8 @@
 class Identification < ActiveRecord::Base
   belongs_to :profile
 
+  validates_presence_of :profile_id, :foid, :foid_type
+
   scope :passports, -> { where(foid_type: 'Passport')}
   scope :visas, -> { where(foid_type: 'Visa')}
   scope :other, -> { where.not(foid_type: ['Visa','Passport'])}
@@ -21,6 +23,10 @@ class Identification < ActiveRecord::Base
     "#{foid_type} - #{foid}"
   end
 
+  def other?
+    foid_type == 'Other'
+  end
+  
   def visa?
     foid_type == 'Visa'
   end

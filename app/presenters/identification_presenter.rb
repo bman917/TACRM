@@ -1,6 +1,6 @@
 class IdentificationPresenter < BasePresenter
   presents :identification
-  delegate :visa?, :passport?, to: :identification
+  delegate :visa?, :passport?, :other?, to: :identification
 
   def title
     params[:action] == 'edit' ? 'Edit Document' : 'New Document'
@@ -64,6 +64,8 @@ class IdentificationPresenter < BasePresenter
       elsif visa?
         content = content_tag(:li, "Entry Date: #{identification.try(:entry_date).try(:to_time).try(:to_s,:med)}")
         content << content_tag(:li, "Max Stay: #{identification.max_stay}")
+      elsif other?
+        content_tag(:li, identification.description)
       end
     end.html_safe
   end

@@ -95,7 +95,7 @@ class IdentificationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def identification_params
       params.require(:identification).permit(:foid_type, :foid, :notes, 
-        :profile_id, :date_issued, :expiration_date, :issued_by,
-        :country, :sub_type, :visa_type, :entry_date, :max_stay )
+        :profile_id, :date_issued, :expiration_date, :issued_by, :description,
+        :country, :sub_type, :visa_type, :entry_date, :max_stay)
     end
 end
