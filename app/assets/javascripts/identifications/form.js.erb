@@ -54,11 +54,12 @@ function identifications_form_init() {
             $(this).effect('shake');
             $(this).focus();
             isFormValid = false;
+            
         }
     });
-
     if (!isFormValid) {
       event.preventDefault();
+      event.stopPropagation();
     } else {
       $('#save_identification').prop('disabled', true);
       $('#save_identification').prop('value', 'Please wait....');

@@ -35,10 +35,6 @@ function application_init() {
 	$('a.slow_link').on('click', show_waiting);
 
 	liquid_slider_auto_height();
-
-	$("a[data-remote='true']").on('click', function() {
-		overlay();
-	});
 }
 
 function show_waiting() {

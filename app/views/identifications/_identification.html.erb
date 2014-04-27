@@ -12,7 +12,7 @@
 
     <% if can? :edit, Identification %>
     <td>
-    <%= link_to edit_img, edit_identification_path(identification), title: 'Edit', class: 'efoid', remote: true %>
+    <%= link_to edit_img, edit_identification_path(identification), title: 'Edit', class: 'efoid', remote: defined?(remote) && remote %>
     </td>
     <% end %>
 
