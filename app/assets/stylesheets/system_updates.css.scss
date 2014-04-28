@@ -13,7 +13,7 @@
 
   }
 
-  tr.current td {
+  tr:last-child td {
     font-weight: bold;
   }
 }

@@ -1,10 +1,38 @@
+/* the search text field */
+.dataTables_filter {
+  float: right;
+  input { background: #EFF6E7; }
+}
+
 .ui-widget-header {
 	background-color: #D4E6BF;
 	background-image: none;
 	border-color: #ABC391; 
 	border-radius: 0;
 
+  .dataTables_paginate {
+    display: block;
+    float: right;
+    margin: 0 1em;  
+
+    a {
+        padding: 3px 7px;
+        float: none;
+        border: 1px solid #4C6432;
+        background: #8FA577;
+        color: white;
+        text-decoration: none;
+        font-size: .8em;
+        cursor: pointer;
+    }
+
+    a.ui-state-disabled {
+      color: black;
+    }
+  }
 }
+
+
 
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {

@@ -54,7 +54,7 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 
 </div>
 
-<div id="section_content">
+<div id="profile_index_table_container">
   <% cache(add_role "#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
     <%= render 'profile_table'%>
   <% end %>

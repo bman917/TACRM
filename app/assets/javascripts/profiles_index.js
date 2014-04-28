@@ -28,4 +28,18 @@ function init_profiles_index() {
 			$('#prepare_form').fadeIn('fast');
 		}
 	});
+
+
+	profile_index_init_data_table();
+
+}
+
+function profile_index_init_data_table() {
+	$('table#profile_index').dataTable( {
+        bJQueryUI: true,
+        iDisplayLength: 10,
+        "sPaginationType": "full_numbers",
+    } );
+
+    $('#profile_index_filter input').focus();
 }

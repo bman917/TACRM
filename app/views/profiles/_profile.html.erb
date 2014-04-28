@@ -12,7 +12,7 @@
         <td><%= truncate profile.addresses.first.try(:display) %></td>
         <% if can? :destroy, Profile %>
         <td>
-        <%= link_to 'X', profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
+        <%= link_to delete_img, profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
         
         </td>
         <% end %>
