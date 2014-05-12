@@ -124,7 +124,7 @@ class ProfilesController < ApplicationController
       @profile.locked = status
       @profile.save!
 
-      flash[:notice] = "Profile of '#{@profile.full_name}' is now '#{@profile.status}'"
+      flash[:notice] = "Profile of '#{@profile.full_name}' is now '#{@profile.lock_status}'"
 
       if params[:render] && params[:render] == 'show'
         redirect_to action: :show

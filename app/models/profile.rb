@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
 
     has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
-    def status
+    def lock_status
       if locked?
         'LOCKED'
       else
