@@ -4,10 +4,11 @@
 $(document).ready(function(){
   	$('.toggler a').on('click', toggle_form);
 
-  	<% if can? :update, Profile %>
+  	<% if can?(:update, Profile) && @profile.unlocked?%>
 		$('.best_in_place').best_in_place();
 	<% else %>
 		$('.best_in_place').removeClass('best_in_place');
+		$('#profile-tabs a').remove();
 	<% end %>
 
     $('#profile-tabs').liquidSlider({
@@ -27,6 +28,12 @@ $(document).ready(function(){
    });
    
 });
+<% end %>
+
+<% if @profile.locked? && cannot?(:unlock, Profile) %>
+<div class="locked-alert span-22">
+	<div class="titleize">This Profile is Locked. No edits allowed. Only an Administrator can unlock it.</div>
+</div>
 <% end %>
 
 <% cache(@profile) do %>

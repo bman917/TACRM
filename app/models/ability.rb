@@ -7,9 +7,11 @@ class Ability
       can :manage, :all
     elsif  user.moderator?
       can :manage, :all
+      cannot :update, Profile, :locked => true
       cannot :manage, User
       cannot :delete, Profile
       cannot :destroy, Profile
+      cannot [:unlock, :lock], Profile
     else
       can :read, :all
       cannot :manage, User

@@ -1,6 +1,14 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :lock, :unlock]
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
+
+  def lock
+    do_lock(true)
+  end
+
+  def unlock
+    do_lock(false)
+  end
 
   def full_names
     @profiles = Profile.search_by_name(params[:term])
@@ -112,6 +120,19 @@ class ProfilesController < ApplicationController
   end
 
   private
+    def do_lock(status)
+      @profile.locked = status
+      @profile.save!
+
+      flash[:notice] = "Profile of '#{@profile.full_name}' is now '#{@profile.status}'"
+
+      if params[:render] && params[:render] == 'show'
+        redirect_to action: :show
+      else
+        redirect_to action: :index
+      end
+    end
+
     def index_load
       @profile_type = params[:profile_type] || 'ALL'
 

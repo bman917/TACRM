@@ -1,94 +1,112 @@
 
+<% present @profile do | profile_presenter | %>
 
-<div class="profile_detail">
-  <div id="section_title">
-  Client Details
+  <div class="profile_detail span-22">
+
+    <div class="span-22">
+      <div class="w-set b-top b-left b-right title-bg title-font">
+        <p>Client Details</p>
+      </div>
+    </div>
+    <div class="span-22">
+      <div class="w-set b-top b-left b-right ctrl-bg ctrl-font">
+        <div class="span-5">
+          <p><strong>Client Type:</strong> <%= @profile.profile_type %></p>
+        </div>
+        <div class="span-7">
+          <p>
+            <strong>Client Since</strong>: 
+            <%= best_in_place @profile, :client_since, :type => :date %>
+          </p>
+        </div>
+        <div class="profile_status">
+          <p>
+            <%=profile_presenter.lock_link(render: 'show')%> 
+          </p>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  <div class="span-22">
+
+      <% if @profile.person? %>
+
+         <table class="table2">
+              <tr>
+                <th>First Name</th>  
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+                <th>Email</th>
+              </tr>  
+              <tr>
+                <td> <%= best_in_place @profile, :first_name %></td>
+                <td><%= best_in_place @profile, :middle_name %></td>
+                <td><%= best_in_place @profile, :last_name %></td>
+                <td><%= best_in_place @profile, :gender, type: :select, 
+                collection: [['M','M'],['F','F']] %></td>
+                <td ><%= best_in_place @profile, :birth_day, :type => :date,
+                  :display_as => :birth_day_med_format %></td>
+                <td><%= best_in_place @profile, :email %></td>
+              </tr>
+          </table>
+
+      <% end %>
+
+      <% if @profile.corporate_client? %>
+
+         <table class="table2">
+              <tr>
+                <th>Company Name</th>  
+                <td> <%= best_in_place @profile, :name %></td>
+                <th>Email</th>
+                <td><%= best_in_place @profile, :email %></td>
+                <th>Business Type</th>
+                <td> <%= best_in_place @profile, :business_type%></td>
+              </tr>  
+              <tr>
+                <th>Status</th>
+                <td> <%= best_in_place @profile, :status%></td>
+                <th>Credit Limit</th>
+                <td> <%= best_in_place @profile, :credit_limit%></td>
+                <th>Terms</th>
+                <td> <%= best_in_place @profile, :terms%></td>
+
+              </tr>
+          </table>
+      <% end %>
+
+
+      <% if @profile.vendor? %>
+
+         <table class="table2">
+              <tr>
+                <th>Vendor Name</th>  
+                <td> <%= best_in_place @profile, :name %></td>
+                <th>Email</th>
+                <td><%= best_in_place @profile, :email %></td>
+                <th>Business Type</th>
+                <td> <%= best_in_place @profile, :business_type%></td>
+              </tr>  
+              <tr>
+                <th>Status</th>
+                <td> <%= best_in_place @profile, :status%></td>
+                <th>Credit Limit</th>
+                <td> <%= best_in_place @profile, :credit_limit%></td>
+                <th>Terms</th>
+                <td> <%= best_in_place @profile, :terms%></td>
+
+              </tr>
+          </table>
+      <% end %>
+      <div class="table_botom_spacer">&nbsp</div>
+    </div>
   </div>
-  <div id="section_controls">
-    <div style="display:inline"><strong>Client Type:</strong> <%= @profile.profile_type %></div>
-    <div style="display:inline;margin-left:4em;"><strong>Client Since</strong>: <%= best_in_place @profile, :client_since, :type => :date %></div>
-  </div>
 
-
-
-
-<% if @profile.person? %>
-
-   <table class="table2">
-        <tr>
-          <th>First Name</th>  
-          <th>Middle Name</th>
-          <th>Last Name</th>
-          <th>Gender</th>
-          <th>Birth Date</th>
-          <th>Email</th>
-        </tr>  
-        <tr>
-          <td> <%= best_in_place @profile, :first_name %></td>
-          <td><%= best_in_place @profile, :middle_name %></td>
-          <td><%= best_in_place @profile, :last_name %></td>
-          <td><%= best_in_place @profile, :gender, type: :select, 
-          collection: [['M','M'],['F','F']] %></td>
-          <td ><%= best_in_place @profile, :birth_day, :type => :date,
-            :display_as => :birth_day_med_format %></td>
-          <td><%= best_in_place @profile, :email %></td>
-        </tr>
-    </table>
 
 <% end %>
-
-<% if @profile.corporate_client? %>
-
-   <table class="table2">
-        <tr>
-          <th>Company Name</th>  
-          <td> <%= best_in_place @profile, :name %></td>
-          <th>Email</th>
-          <td><%= best_in_place @profile, :email %></td>
-          <th>Business Type</th>
-          <td> <%= best_in_place @profile, :business_type%></td>
-        </tr>  
-        <tr>
-          <th>Status</th>
-          <td> <%= best_in_place @profile, :status%></td>
-          <th>Credit Limit</th>
-          <td> <%= best_in_place @profile, :credit_limit%></td>
-          <th>Terms</th>
-          <td> <%= best_in_place @profile, :terms%></td>
-
-        </tr>
-    </table>
-<% end %>
-
-
-<% if @profile.vendor? %>
-
-   <table class="table2">
-        <tr>
-          <th>Vendor Name</th>  
-          <td> <%= best_in_place @profile, :name %></td>
-          <th>Email</th>
-          <td><%= best_in_place @profile, :email %></td>
-          <th>Business Type</th>
-          <td> <%= best_in_place @profile, :business_type%></td>
-        </tr>  
-        <tr>
-          <th>Status</th>
-          <td> <%= best_in_place @profile, :status%></td>
-          <th>Credit Limit</th>
-          <td> <%= best_in_place @profile, :credit_limit%></td>
-          <th>Terms</th>
-          <td> <%= best_in_place @profile, :terms%></td>
-
-        </tr>
-    </table>
-<% end %>
-
-
-<div class="table_botom_spacer">&nbsp</div>
-
-
-</div>
-
 
 

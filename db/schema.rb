@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427174629) do
+ActiveRecord::Schema.define(version: 20140512155030) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140427174629) do
     t.string   "occupation"
     t.string   "employer"
     t.string   "job_position"
+    t.boolean  "locked"
   end
 
   create_table "users", force: true do |t|

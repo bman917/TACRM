@@ -32,6 +32,8 @@ TACRM::Application.routes.draw do
 
   resources :profiles do
     get :corporate_index, on: :collection
+    get :lock, on: :member
+    get :unlock, on: :member
   end
   get 'identifications/new/profile/:profile_id' => 'identifications#new', as: 'profile_new_identification'
   get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'
