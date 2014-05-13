@@ -5,12 +5,14 @@ class ProfilesController < ApplicationController
   def lock_all
     Profile.update_all(locked: true)
     flash[:notice] = "All Profiles Locked!!"
+    Rails.cache.clear
     redirect_to action: :index
   end
 
   def unlock_all
     Profile.update_all(locked: false)
     flash[:notice] = "All Profiles UnLocked!!"
+    Rails.cache.clear
     redirect_to action: :index
   end
   
@@ -137,7 +139,6 @@ class ProfilesController < ApplicationController
 
   private
     def do_lock(status)
-      sleep 1
       @profile.locked = status
       @profile.save!
 
