@@ -121,16 +121,26 @@ class ProfilesController < ApplicationController
 
   private
     def do_lock(status)
+      sleep 1
       @profile.locked = status
       @profile.save!
 
-      flash[:notice] = "Profile of '#{@profile.full_name}' is now '#{@profile.lock_status}'"
+      respond_to do |format|
 
-      if params[:render] && params[:render] == 'show'
-        redirect_to action: :show
-      else
-        redirect_to action: :index
+        format.html do 
+          flash[:notice] = "Profile of '#{@profile.full_name}' is now '#{@profile.lock_status}'"
+          if params[:render] && params[:render] == 'show'
+            redirect_to action: :show
+          else
+            redirect_to action: :index
+          end
+        end
+
+        format.js { render 'lock' }
+
       end
+
+
     end
 
     def index_load

@@ -23,6 +23,7 @@
 //= require hide_toggler
 //= require common_tools
 //= require common_tools/jquery-spin
+//= require common_tools/best_in_place_default_binds
 //= require_tree .
 
 function application_init() {

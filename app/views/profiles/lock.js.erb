@@ -1,0 +1,13 @@
+<% present @profile do | profile_presenter | %>
+
+var parent = $('#<%=profile_presenter.padlock_css_id%>').parent();
+$('#<%=profile_presenter.padlock_css_id%>').remove();
+parent.append('<%=profile_presenter.lock_link%>');
+var data = parent.stop_spinner();
+remove_overlay();
+
+$('#<%=profile_presenter.padlock_css_id%>').on('click', spin_and_overlay);
+
+flash_success('<%=" #{@profile.lock_status} -- #{@profile.full_name}"%>');
+
+<% end %>

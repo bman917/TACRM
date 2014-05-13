@@ -1,8 +1,20 @@
 class ProfilePresenter < BasePresenter
   presents :profile
-  # delegate :visa?, :passport?, :other?, to: :identification
 
-  def lock_link(link_params={}, img_params={size: '20x20'}, link_to_options={method: :get, class: 'slow_link'})
+  def padlock_css_id
+    "#{profile.id}_padlock"
+  end
+
+  def lock_link(link_params={}, img_params={size: '20x20'}, link_to_options={})
+    
+
+    link_to_options[:id]     ||= padlock_css_id
+    link_to_options[:mothod] ||= :get
+    link_to_options[:remote] = true if link_to_options[:remote].nil?
+    link_to_options[:class]   ||= 'spin_on_click'
+
+    
+
     if can? :lock, Profile
       if profile.locked?
         link_to locked_img('Unlock Profile', img_params), 

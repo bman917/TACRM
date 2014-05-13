@@ -7,5 +7,4 @@ module ProfilesHelper
 	    -#{PhonesHelper.cache_key_for_phones}
 	    -#{AddressesHelper.cache_key_for_addresses}"
 	end
-
 end
