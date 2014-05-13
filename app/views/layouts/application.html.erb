@@ -45,7 +45,19 @@ version: <%=current_version%>
       <ul>
         <li><%= link_to 'All Clients', profiles_path %></li>
         <% if can? :create, Profile %>
-        <li><%= link_to 'Add Client', new_profile_by_type_path('INDIVIDUAL') %></li>
+          <li><%= link_to 'Add Client', new_profile_by_type_path('INDIVIDUAL') %></li>
+        <% end %>
+
+        <% if can? :lock, Profile %>
+
+          <li>
+            <%=link_to 'Lock All Profiles', lock_all_profiles_path, 
+                data: { confirm: "Lock All Profiles?"} %>
+          </li>
+          <li>
+            <%=link_to 'UNLOCK All Profiles', unlock_all_profiles_path, 
+                data: { confirm: "UNLOCK All Profiles?"} %>
+          </li>
         <% end %>
       </ul>
     </li>
@@ -77,13 +89,10 @@ version: <%=current_version%>
       <ul>
         <li><%= link_to 'User Activity', profile_versions_path %></li>
         <li><%= link_to 'Manage Users', users_path %></li>
-        <li><%= link_to 'Manage Database', '', id: 'x'%></li>
         <li><%= link_to 'System Updates', system_updates_index_path%></li>
       </ul>
     </li>
     <% end %>
-  
-  
   </ul>
 
 </div>

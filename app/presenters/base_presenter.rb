@@ -3,7 +3,7 @@ class BasePresenter
     @object = object
     @template = template
   end
-
+  
 private
 
   def self.presents(name)

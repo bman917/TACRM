@@ -2,8 +2,32 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, :other?, to: :identification
 
+  def destroy_link
+    lock_check do
+      link_to delete_img, identification, remote: true, method: :delete, title: 'Delete!!!', class: "remove_fields no-print", data: {confirm: "Delete [#{identification.foid_type} - #{identification.foid}]?"}
+    end
+  end
+
+  def edit_link
+    lock_check do
+      link_to edit_img, edit_identification_path(identification), title: 'Edit', class: 'efoid', remote: defined?(remote) && remote
+    end
+  end
+
+  def lock_check
+    if identification.try(:profile).try(:locked?)
+      locked_img
+    else
+      yield
+    end
+  end
+
   def title
-    params[:action] == 'edit' ? 'Edit Document' : 'New Document'
+    if params[:action] == 'edit' || params[:action] == 'update'
+      'Edit Document'
+    else
+      'New Document'
+    end
   end
 
   def profile_full_name_field

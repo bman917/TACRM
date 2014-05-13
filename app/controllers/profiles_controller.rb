@@ -2,6 +2,18 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy, :lock, :unlock]
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
+  def lock_all
+    Profile.update_all(locked: true)
+    flash[:notice] = "All Profiles Locked!!"
+    redirect_to action: :index
+  end
+
+  def unlock_all
+    Profile.update_all(locked: false)
+    flash[:notice] = "All Profiles UnLocked!!"
+    redirect_to action: :index
+  end
+  
   def lock
     do_lock(true)
   end
@@ -112,10 +124,14 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
-    @profile.destroy
-    respond_to do |format|
-      format.html { redirect_to profiles_url }
-      format.json { head :no_content }
+    if @profile.locked?
+      redirect_to profiles_url,  notice: "#{@profile.full_name} cannot be deleted because it is LOCKED."
+    else
+      @profile.destroy
+      respond_to do |format|
+        format.html { redirect_to profiles_url }
+        format.json { head :no_content }
+      end
     end
   end
 

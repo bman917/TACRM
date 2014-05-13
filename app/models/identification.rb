@@ -2,12 +2,21 @@ class Identification < ActiveRecord::Base
   belongs_to :profile
 
   validates_presence_of :profile_id, :foid, :foid_type
+  validate :profile_not_locked
+  before_destroy :profile_not_locked
 
   scope :passports, -> { where(foid_type: 'Passport')}
   scope :visas, -> { where(foid_type: 'Visa')}
   scope :other, -> { where.not(foid_type: ['Visa','Passport'])}
 
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+
+  def profile_not_locked
+    if profile.try :locked?
+      errors.add(:profile, "is locked. Unlock profile before editing this document.")
+      return false
+    end
+  end
 
   def css_id
     "identification_#{id}"

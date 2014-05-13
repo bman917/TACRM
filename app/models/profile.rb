@@ -11,6 +11,7 @@ class Profile < ActiveRecord::Base
   validates :first_name, presence: {message: "First name must not be blank."}, if: :person?
   validates :last_name, presence: {message: "Last name must not be blank."}, if: :person?
   validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
+  before_destroy :profile_not_locked
 
   scope :person, -> {where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
   scope :search_by_name, -> (term) { 
@@ -18,7 +19,14 @@ class Profile < ActiveRecord::Base
       "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
 
 
-    has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+  has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+
+  def profile_not_locked
+    if locked?
+      errors.add(:profile, "is locked. Unlock profile before editing.")
+      return false
+    end
+  end
 
     def lock_status
       if locked?

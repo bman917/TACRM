@@ -12,13 +12,13 @@
 
     <% if can? :edit, Identification %>
     <td>
-    <%= link_to edit_img, edit_identification_path(identification), title: 'Edit', class: 'efoid', remote: defined?(remote) && remote %>
+    <%= identification_presenter.edit_link %>
     </td>
     <% end %>
 
     <% if can? :destroy, identification %>
     <td>
-    <%=link_to delete_img, identification, remote: true, method: :delete, title: 'Delete!!!', class: "remove_fields no-print", data: {confirm: "Delete [#{identification.foid_type} - #{identification.foid}]?"} %>
+    <%= identification_presenter.destroy_link%>
     </td>
     <% end %>
 

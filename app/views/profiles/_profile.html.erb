@@ -1,5 +1,5 @@
 <% present profile do | profile_presenter | %>
-  <tr class="<%=cycle('odd','even')%>">
+  <tr id="<%=profile_presenter.profile_css_id%>" class="<%=cycle('odd','even')%>">
     <td class="view">
       <div>
       <%= link_to 'View Details', profile, class: 'slow_link std_button' %>
@@ -17,7 +17,7 @@
 
     <% if can? :destroy, Profile %>
         <td>
-        <%= link_to delete_img, profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" } %>
+        <%= profile_presenter.destroy_link %>
         </td>
     <% end %>
   </tr>
