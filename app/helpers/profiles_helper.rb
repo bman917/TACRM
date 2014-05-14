@@ -7,4 +7,8 @@ module ProfilesHelper
 	    -#{PhonesHelper.cache_key_for_phones}
 	    -#{AddressesHelper.cache_key_for_addresses}"
 	end
+
+	def profile_form(partial_name, profile, f)
+		render partial: "profiles/forms/#{partial_name}", locals: {profile: profile, f: f}
+	end
 end

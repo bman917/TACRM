@@ -1,0 +1,18 @@
+<div id="identification_form_container">
+
+<%= simple_form_for @profile, html: {id: 'new_profile_form', class: 'span-11'} do | f | %>
+
+  <%= f.input :profile_type, collection: profile_types, include_blank: false%>
+
+  <fieldset>
+  <legend>Client Details</legend>
+
+  <%= profile_form('person_fields', @profile, f) if @profile.person?%>
+  <%= profile_form('vendor_fields', @profile, f) if @profile.vendor?%>
+  <%= profile_form('corporate_fields', @profile, f) if @profile.corporate_client?%>
+
+  <%= f.button :submit, 'Save' %>
+  </fieldset>
+<% end %>
+
+</div>

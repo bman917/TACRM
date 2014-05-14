@@ -78,3 +78,4 @@ gem 'rack-mini-profiler'
 gem "cancan"
 gem 'blueprint-rails'
 gem 'jquery-datatables-rails'
+gem 'simple_form'

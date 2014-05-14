@@ -77,6 +77,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
     @profile.client_since = Date.today
     @profile.profile_type = params[:profile_type] || 'INDIVIDUAL'
+    render 'new2'
   end
 
   # GET /profiles/1/edit

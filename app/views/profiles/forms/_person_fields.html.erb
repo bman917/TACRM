@@ -1,0 +1,6 @@
+<%= f.input :first_name%>
+<%= f.input :middle_name%>
+<%= f.input :last_name%>
+<%= f.input :birth_day, label: 'Date of Birth'%>
+<%= f.input :gender, collection: gender_types, include_blank: false, :selected => 'F'%>
+<%= f.input :email %>
