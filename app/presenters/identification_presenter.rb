@@ -8,7 +8,7 @@ class IdentificationPresenter < BasePresenter
     end
   end
 
-  def edit_link
+  def edit_link(remote=nil)
     lock_check do
       link_to edit_img, edit_identification_path(identification), title: 'Edit', class: 'efoid', remote: defined?(remote) && remote
     end

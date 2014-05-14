@@ -12,7 +12,7 @@
 
     <% if can? :edit, Identification %>
     <td>
-    <%= identification_presenter.edit_link %>
+    <%= identification_presenter.edit_link(remote) %>
     </td>
     <% end %>
 

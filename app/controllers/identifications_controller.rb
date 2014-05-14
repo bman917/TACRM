@@ -66,7 +66,7 @@ class IdentificationsController < ApplicationController
         notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully updated."
         format.html { redirect_to identifications_path,  flash: {identification_notice: notice}}
         format.json { head :no_content }
-        format.js
+        format.js { render 'add_identification'}
       else
         format.html { render action: 'edit' }
         format.json { render json: @identification.errors, status: :unprocessable_entity }
