@@ -1,0 +1,7 @@
+remove_overlay();
+
+$('body').append('<div class="overlay-5"></div>');
+$('#content').append('<%=j render("add_profile")%>');
+$('.add_profile').center();
+$('.add_profile').addClass('modal-1');
+$('.add_profile').slideDown('fast', init_add_profile_form);
