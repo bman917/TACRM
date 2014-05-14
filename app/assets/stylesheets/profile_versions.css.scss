@@ -2,15 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #versions {
-
+	font-size: .9em;
 	.client {
 		font-style: italic;
 	}
 
-	.deleted {
+	.deleted, .u, .n {
 		font-style: italic;
 		color: #787878;
 	}
+	ul {
+		padding: 0;
+		font-size: .9em;
+	}
+
+	li {
+		list-style-type: none;
+	}
+
+
 }
 
 #versions_panel .client_column {

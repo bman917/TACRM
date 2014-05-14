@@ -19,7 +19,8 @@ class Profile < ActiveRecord::Base
       "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
 
 
-  has_paper_trail :meta => { :profile_id => :prof, :description => :display}
+  has_paper_trail :meta => { :profile_id => :prof, :description => :display}, 
+    :ignore => [:updated_at]
 
   def profile_not_locked
     if locked?

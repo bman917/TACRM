@@ -8,16 +8,19 @@
 	<th>Time</th>
 	<th>User</th>
 	<th>Description</th>
+	<th>Changes</th>
 	<th class="client_column">Client</th>
 	
 </tr>
 
 <% @versions.each do | version | %>
 	
+	<%  version_presenter = VersionPresenter.new(version,self) %>
 		<tr>
 			<td><%=version.created_at.to_formatted_s(:time)%></td>
 			<td><%=version.user_name%></td>
-			<td><%="#{version.event.sub(/e?$/, "ed").humanize} #{version.display}"%> <!--%=link_to('view', pv.version.item) if pv.version.item%--></td>
+			<td><%="#{version.event.sub(/e?$/, "ed").humanize} #{version.display}"%></td>
+			<td><%=version_presenter.changeset%></td>
 			<td class="client_column">
 			<% if version.profile && version.profile.live? %>
 				<span class="client">

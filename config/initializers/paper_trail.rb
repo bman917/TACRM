@@ -9,7 +9,6 @@ module PaperTrail
 
   	def display
   		description || item_type
-
   	end
 
   	def user_name
