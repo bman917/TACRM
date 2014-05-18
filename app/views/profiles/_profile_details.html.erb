@@ -16,7 +16,7 @@
         <div class="span-7">
           <p>
             <strong>Client Since</strong>: 
-            <%=@profile.client_since%>
+            <%=@profile.client_since.try(:to_time).try(:to_s, :med)%>
           </p>
         </div>
         <div>
@@ -26,6 +26,7 @@
           <p>
             <%=profile_presenter.edit_link%>
             <%=profile_presenter.lock_link({render: 'show'},{}, {remote: false})%> 
+            
           </p>
         </div>
       </div>

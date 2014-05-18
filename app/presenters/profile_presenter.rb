@@ -28,9 +28,10 @@ class ProfilePresenter < BasePresenter
     "#{profile.id}_padlock"
   end
 
-  def destroy_link
+  def destroy_link(options={}, path_params={}, html_options={})
     lock_check do
-      link_to delete_img, profile, method: :delete, class: "remove_fields", data: { confirm: "Delete Record for '#{profile.full_name}'?" }
+      options[:size] ||= '24x24'
+      link_to delete_img(options), profile, method: :delete, class: "remove_fields", data: { confirm: "WARNING!!! Delete Record for '#{profile.full_name}'?" }
     end
   end
 

@@ -10,7 +10,6 @@ $(document).ready(function(){
 <%= simple_form_for @profile, html: {id: 'new_profile_form', class: 'span-14', remote: params[:remote]} do | f | %>
 
   <%=link_to 'Close', '', class: 'close std_button'%>
-  <%= hidden_field_tag :source %>
 
   <%= f.hidden_field :profile_type%>
   <h1 class="titleize">

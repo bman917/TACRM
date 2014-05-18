@@ -15,10 +15,10 @@
       <%= profile_presenter.lock_link%> 
     </td>
     <% if can? :update, Profile %>
-        <td><%=profile_presenter.edit_link({}, {source: 'index', remote: 'true'}) %></td>
+        <td><%=profile_presenter.edit_link({size: '18x18'}, {remote: 'true'}) %></td>
     <% end %>
     <% if can? :destroy, Profile %>
-        <td><%= profile_presenter.destroy_link %></td>
+        <td><%= profile_presenter.destroy_link(size: '14x14') %></td>
     <% end %>
   </tr>
 <% end %>

@@ -115,14 +115,9 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        if params[:source]
-          index_load
-          format.html { render action: params[:source] }
-          format.js
-        else
           format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+          format.js { index_load }
           format.json { render json: @profile }
-        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -138,7 +133,7 @@ class ProfilesController < ApplicationController
     else
       @profile.destroy
       respond_to do |format|
-        format.html { redirect_to profiles_url }
+        format.html { redirect_to profiles_url, notice: "Deleted #{@profile.full_name}" }
         format.json { head :no_content }
       end
     end
