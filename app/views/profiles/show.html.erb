@@ -31,7 +31,7 @@ $(document).ready(function(){
 <% end %>
 
 <% if @profile.locked? && cannot?(:unlock, Profile) %>
-<div class="locked-alert span-22">
+<div class="locked-alert span-26">
 	<div class="titleize">This Profile is Locked. No edits allowed. Only an Administrator can unlock it.</div>
 </div>
 <% end %>
@@ -42,8 +42,8 @@ $(document).ready(function(){
 
 <% end %>
 
-<div class="slider-container span-22">
-	<div class="liquid-slider" id="profile-tabs">
+<div class="slider-container span-26">
+	<div class="liquid-slider span-26" id="profile-tabs">
 
 		<% if @profile.person? %>
 		  <% cache(add_role @profile.documents_cache_key) do %>
