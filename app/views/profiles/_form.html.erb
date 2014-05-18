@@ -1,41 +1,31 @@
-<%= form_for(@profile) do |f| %>
-  <% if @profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-      <ul>
-      <% @profile.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :middle_name %><br>
-    <%= f.text_field :middle_name %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_day %><br>
-    <%= f.date_select :birth_day %>
-  </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div id="profile_form_container">
+<%=javascript_tag do %>
+$(document).ready(function(){
+  init_profile_form_container();
+});
 <% end %>
+
+
+<%= simple_form_for @profile, html: {id: 'new_profile_form', class: 'span-14', remote: params[:remote]} do | f | %>
+
+  <%=link_to 'Close', '', class: 'close std_button'%>
+  <%= hidden_field_tag :source %>
+
+  <%= f.hidden_field :profile_type%>
+  <h1 class="titleize">
+  <%= @profile.profile_type%>
+  </h1>
+
+  <fieldset>
+  <legend><%=@profile.profile_type.humanize%> Details</legend>
+
+  <%= profile_form('person_fields', @profile, f) if @profile.person?%>
+  <%= profile_form('vendor_fields', @profile, f) if @profile.vendor?%>
+  <%= profile_form('corporate_fields', @profile, f) if @profile.corporate_client?%>
+
+  <%= f.button :submit, 'Save' %>
+  </fieldset>
+<% end %>
+
+</div>

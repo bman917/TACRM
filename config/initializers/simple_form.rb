@@ -143,3 +143,21 @@ SimpleForm.setup do |config|
   # Default class for inputs
   # config.input_class = nil
 end
+
+
+module SimpleForm
+  class FormBuilder < ActionView::Helpers::FormBuilder
+
+    def input_date_of_birth(field_name=:date_of_birth)
+      input_date field_name, label: 'Date of Birth', start_year: 1900
+    end
+
+    def input_date(field_name, options={})
+      options[:include_blank] = true if options[:include_blank].nil?
+      options[:start_year] ||= 1970
+      options[:end_year] ||= Date.today.year
+      input field_name, options
+    end
+  end
+end
+

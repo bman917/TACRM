@@ -8,6 +8,9 @@
       <th>Contact Number</th>
       <th>Address</th>
       <th></th>
+      <% if can? :update, Profile %>
+          <th></th>
+      <% end %>
       <% if can? :destroy, Profile %>
         <th></th>
       <% end %>

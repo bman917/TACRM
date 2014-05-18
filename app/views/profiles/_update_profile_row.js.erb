@@ -1,0 +1,6 @@
+<% present profile do | profile_presenter | %>
+
+var new_row = "<%=j render @profile%>";
+$('#<%=profile_presenter.profile_css_id%>').replaceWith(new_row);
+
+<% end %>

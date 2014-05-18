@@ -1,6 +1,9 @@
-<%= f.input :first_name%>
+<% present profile do | profile_presenter | %>
+<%= f.input :first_name, input_html: {class: 'required'} %>
 <%= f.input :middle_name%>
-<%= f.input :last_name%>
-<%= f.input :birth_day, label: 'Date of Birth'%>
-<%= f.input :gender, collection: gender_types, include_blank: false, :selected => 'F'%>
+<%= f.input :last_name, input_html: {class: 'required'} %>
+<%= f.input_date_of_birth :birth_day%>
+<%= f.input :gender, collection: gender_types, include_blank: false%>
 <%= f.input :email %>
+<%= f.input_date :client_since, label: profile_presenter.client_since_label %> 
+<% end %>

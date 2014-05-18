@@ -1,0 +1,8 @@
+profile_form_close();
+<%=render partial: 'update_profile_row', locals: {profile: @profile}%>
+flash_success('<%="Updated #{@profile.full_name}"%>');
+
+//Highlight the newly updated profile 
+<% present @profile do | profile_presenter | %>
+$('#<%=profile_presenter.profile_css_id%>').highlight();
+<% end %>

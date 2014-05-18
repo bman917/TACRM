@@ -15,32 +15,27 @@ function init_profiles_index() {
     $('#type_filter').submit();
   });
 
-  /*  
-  This is the link that retreives the Add Profile form.
-  When the button is clicked the #prepare_form div that shows
-  a waiting message is made visible. When the waiting message 
-  is visible subsequent clicks to .add_client_link buttons should
-  be disabled.
-  */
-  $('.add_client_link').on('click', function(e) {
 
-    if ($('#prepare_form').is(":visible")) {
-      e.preventDefault();
-      return false;
-    } else {
-      $('.add_profile').fadeOut('fast', function() { $(this).remove();});
-      $('#prepare_form').fadeIn('fast');
-    }
-  });
 
 
   profile_index_init_data_table();
 
 }
 
+/* currently used for locking and ulocking profiles. but i think this might be reusable.*/
 function spin_and_overlay() {
-  $(this).parent().spin('small');
-  overlay();
+
+  //this only works when the link has a data-confirm attribute.
+  //what this says is wait for the user to confirm/cancel before doing anything.
+  $(this).on('confirm:complete', function(e,answer) {
+    if (answer) {
+      $(this).parent().spin('small');
+      overlay();
+    }else {
+      $(this).parent().stop_spinner();
+      remove_overlay();
+    }
+  });
 }
 
 function profile_index_init_data_table() {

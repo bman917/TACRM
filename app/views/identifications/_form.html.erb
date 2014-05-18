@@ -1,16 +1,4 @@
 <div id="identification_form_container">
-<%=javascript_tag do %>
-
-$(document).ready(function(){
-  identifications_form_init();
-});
-
-
-
-<% end %>
-
-
-
 <% identification_presenter = present(@identification) %>
 
 <%= form_for(@identification, html:{id: 'identification_form', class: 'span-12'}) do |f| %>
@@ -101,4 +89,11 @@ $(document).ready(function(){
   </fieldset>
 
 <% end %>
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+  identifications_form_init();
+});
+<% end %>
+
 </div>

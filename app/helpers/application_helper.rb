@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+  def add_profile_link(options={})
+    css_class = options[:class] || 'add_fields add_client_link'
+    profile_type = options[:profile_type] || 'INDIVIDUAL'
+    label = options[:label] || "Add #{profile_type}".upcase
+    label = label.titleize if options[:titleize]
+
+    link_to label, new_profile_by_type_path(profile_type.to_s.upcase), class: css_class, remote: true
+  end
+
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
     presenter = klass.new(object, self)
@@ -50,7 +59,6 @@ module ApplicationHelper
   def profile_types
     [
       ['INDIVIDUAL','INDIVIDUAL'],
-      ['GUEST','GUEST'],
       ['CORPORATE','CORPORATE'],
       ['AGENT','AGENT'],
       ['VENDOR','VENDOR']

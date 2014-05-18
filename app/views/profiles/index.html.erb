@@ -37,11 +37,10 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 
 <% if can? :create, Profile %>
   <span class="group">
-    <%=link_to 'ADD CLIENT', new_profile_by_type_path('INDIVIDUAL'), class: 'add_fields add_client_link', remote: true%>
-    <%=link_to 'ADD GUEST', new_profile_by_type_path('GUEST'), class: 'add_fields add_client_link', remote: true%>
-    <%=link_to 'ADD CORPORATE CLIENT', new_profile_by_type_path('CORPORATE'), class: 'add_fields add_client_link', remote: true%>
-    <%=link_to 'ADD AGENT', new_profile_by_type_path('AGENT'), class: 'add_fields add_client_link', remote: true%>
-    <%=link_to 'ADD VENDOR', new_profile_by_type_path('VENDOR'), class: 'add_fields add_client_link', remote: true%>
+    <%=add_profile_link%>
+    <%=add_profile_link profile_type: 'CORPORATE'%>
+    <%=add_profile_link profile_type: 'AGENT'%>
+    <%=add_profile_link profile_type: 'VENDOR'%>
   </span>
 <% end %>
 

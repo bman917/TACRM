@@ -1,6 +1,7 @@
-<%= f.input :name, label: 'Company Name'%>
+<%= f.input :name, label: 'Company Name', input_html: {class: 'required'} %>
 <%= f.input :business_type%>
 <%= f.input :email%>
 <%= f.input :contact_person%>
-<%= f.input :credit_limit %>
 <%= f.input :terms %>
+<%= f.input :credit_limit %>
+<%= f.input_date :client_since %>

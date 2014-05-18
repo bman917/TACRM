@@ -7,13 +7,6 @@ GIT
       rails (>= 3.1)
 
 GIT
-  remote: git://github.com/bman917/common_assets.git
-  revision: 05b7a5e9bc48117f2702aefadf8b384d99a46148
-  specs:
-    common_assets (0.1.5)
-      rails (>= 3.1)
-
-GIT
   remote: git://github.com/bman917/hide_toggler.git
   revision: d28b2922c87a9e9f876a4262865b8b7f8d5e1071
   specs:
@@ -31,6 +24,12 @@ GIT
   revision: 5f2ff40e780ed66dd0270506c56186b61441716f
   specs:
     jquery-liquidslider-rails (2.0.12.1)
+
+PATH
+  remote: /home/jchan/work/common_assets
+  specs:
+    common_assets (0.1.5)
+      rails (>= 3.1)
 
 GEM
   remote: https://rubygems.org/

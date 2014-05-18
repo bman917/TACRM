@@ -1,3 +1,12 @@
+.simple_form {
+  div {
+    width: 450px;
+  }
+  div, input[type=submit] {
+    float: left;
+  }
+}
+
 .simple_form label {
   float: left;
   width: 100px;
@@ -5,8 +14,20 @@
   margin: 9px 10px;
 }
 
+.simple_form {
+  input[type=submit], input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
+    float:left;
+  }
+
+  select {
+    margin-right: 3px;
+  }
+
+}
+
 .simple_form div.input {
   margin-bottom: 10px;
+  margin-left: 2em;
 }
 
 .simple_form div.boolean, .simple_form input[type='submit'] {

@@ -75,9 +75,9 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
-    @profile.client_since = Date.today
+    # @profile.client_since = Date.today
     @profile.profile_type = params[:profile_type] || 'INDIVIDUAL'
-    render 'new2'
+    # render 'new2'
   end
 
   # GET /profiles/1/edit
@@ -115,8 +115,14 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
-        format.json { render json: @profile }
+        if params[:source]
+          index_load
+          format.html { render action: params[:source] }
+          format.js
+        else
+          format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+          format.json { render json: @profile }
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }

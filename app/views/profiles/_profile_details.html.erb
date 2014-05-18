@@ -16,11 +16,15 @@
         <div class="span-7">
           <p>
             <strong>Client Since</strong>: 
-            <%= best_in_place @profile, :client_since, :type => :date %>
+            <%=@profile.client_since%>
           </p>
+        </div>
+        <div>
+
         </div>
         <div class="profile_status">
           <p>
+            <%=profile_presenter.edit_link%>
             <%=profile_presenter.lock_link({render: 'show'},{}, {remote: false})%> 
           </p>
         </div>
