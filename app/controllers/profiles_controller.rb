@@ -164,7 +164,8 @@ class ProfilesController < ApplicationController
 
     def index_load
       @profile_type = params[:profile_type] || 'ALL'
-
+      @profile_type.upcase!
+      
       if @profile_type == 'ALL'
         @profiles = Profile.all
       else
