@@ -1,10 +1,5 @@
 <% present @profile do | profile_presenter | %>
-
-remove_overlay();
-
-<%=render partial: 'update_profile_row', locals: {profile: @profile}%>
-
-$('#<%=profile_presenter.padlock_css_id%>').on('click', spin_and_overlay);
-flash_success('<%=" #{@profile.lock_status} -- #{@profile.full_name}"%>');
-
+  remove_overlay();
+  <%=render partial: 'update_profile_row', locals: {profile: @profile}%>
+  flash_success('<%=" #{@profile.lock_status} -- #{@profile.full_name}"%>');
 <% end %>

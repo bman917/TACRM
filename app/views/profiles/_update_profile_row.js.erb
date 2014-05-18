@@ -1,6 +1,9 @@
 <% present profile do | profile_presenter | %>
 
-var new_row = "<%=j render @profile%>";
-$('#<%=profile_presenter.profile_css_id%>').replaceWith(new_row);
+  var new_row = "<%=j render @profile%>";
 
+  //Activate the link behavior
+  $('#<%=profile_presenter.profile_css_id%>').replaceWith(new_row);
+  $('#<%=profile_presenter.padlock_css_id%>').on('click', spin_and_overlay);
+  $('#<%=profile_presenter.profile_css_id%> a.slow_link').on('click',  overlay);
 <% end %>
