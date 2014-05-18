@@ -16,6 +16,7 @@ class ProfilePresenter < BasePresenter
       options[:size] ||= '24x24'
       html_options[:remote] = true if html_options[:remote].nil?
       html_options[:id] = "e_prfl_#{profile.id}"
+      html_options[:class] ||= 'slow_link'   
       link_to(edit_img(options), edit_profile_path(profile, path_params), html_options) if profile.unlocked?
     end
   end
