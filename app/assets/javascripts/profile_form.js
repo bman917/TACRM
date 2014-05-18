@@ -1,4 +1,6 @@
 function init_profile_form_container() {
+  remove_overlay();
+
   //Action when close link is clicked
   $('#profile_form_container a.close').on('click', function(e){
     e.preventDefault();

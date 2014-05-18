@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def add_profile_link(options={})
     css_class = options[:class] || 'add_fields add_client_link'
+    css_class << " slow_link"
     profile_type = options[:profile_type] || 'INDIVIDUAL'
     label = options[:label] || "Add #{profile_type}".upcase
     label = label.titleize if options[:titleize]
