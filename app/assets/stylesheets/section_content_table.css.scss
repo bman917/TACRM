@@ -10,18 +10,19 @@
 
 	td
 	{
-		padding: 3px;
-		
+		padding: 3px 5px;
 		border-left: 1px solid #ABC391;
 		border-right: 1px solid #ABC391;
 	}
 
-}
+	td.view {
+		padding: 3px 7;
+		background-color: #D4E6BF;
+	}
 
-td.view {
-	text-align: center;
-	width: 7em;
-	min-width: 50px;
-}
+	td.ppt {
+		font-size: 85%;
+	}
 
+}
 

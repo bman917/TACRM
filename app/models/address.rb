@@ -13,6 +13,6 @@ class Address < ActiveRecord::Base
   end
 
   def display
-  	"#{address_type} - #{line_one}, #{city}, #{state_region}, #{zipcode} #{country}"
+  	"#{line_one.truncate(15)}, #{city}"
   end
 end

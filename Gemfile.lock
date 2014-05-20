@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/bman917/common_assets.git
-  revision: 083ad11b7eb3cc6ba83f713461945cda4d6a90ed
+  revision: 64f258296aef1133e59600c383f3b11eea0c31b1
   specs:
-    common_assets (0.1.5.1)
+    common_assets (0.1.5.2)
       rails (>= 3.1)
 
 GIT

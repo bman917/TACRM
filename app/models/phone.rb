@@ -9,6 +9,6 @@ class Phone < ActiveRecord::Base
   end
 
   def display
-  	"Phone (#{phone_type}) - #{number}"
+  	"(#{phone_type})- #{number}"
   end
 end
