@@ -23,6 +23,7 @@
  *= require animate
  *= require data_table
  *= require jchan-jquery-ui
+ *= require hide_toggler.overlay
  *= require_self
  *= require_tree .
  */

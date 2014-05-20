@@ -33,15 +33,9 @@ function application_init() {
 		changeYear: true,
 		yearRange: "c-100:c+50"});
 
-	$('a.slow_link').on('click', show_waiting);
+	$('a.slow_link').on('click', overlay);
 
 	liquid_slider_auto_height();
-}
-
-function show_waiting() {
-	$('#content').append("<div class='overlay'></div>");
-	$('#wait_message').toggle();
-	$('#wait_message').addClass('modal');
 }
 
 // For this to work, the form and the 'show link' must enclosed in a .toggler class.
