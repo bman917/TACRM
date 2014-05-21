@@ -13,6 +13,7 @@ class Profile < ActiveRecord::Base
   validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
   before_destroy :profile_not_locked
 
+  scope :no_contact_detail, -> {where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
   scope :person, -> {where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
   scope :search_by_name, -> (term) { 
     where("first_name like ? or middle_name like ? or last_name like ?",
@@ -66,15 +67,15 @@ class Profile < ActiveRecord::Base
   end
 
   def agent?
-    profile_type.upcase == 'AGENT'
+    profile_type.try(:upcase) == 'AGENT'
   end
 
   def individual_client?
-    profile_type.upcase == 'INDIVIDUAL'
+    profile_type.try(:upcase) == 'INDIVIDUAL'
   end
 
   def corporate_client?
-    profile_type.upcase == 'CORPORATE'
+    profile_type.try(:upcase) == 'CORPORATE'
   end
 
   def guest
@@ -82,11 +83,11 @@ class Profile < ActiveRecord::Base
   end
 
   def guest_client?
-    profile_type.upcase == 'GUEST'
+    profile_type.try(:upcase) == 'GUEST'
   end
 
   def vendor?
-    profile_type.upcase == 'VENDOR'
+    profile_type.try :upcase == 'VENDOR'
   end
 
   def full_name

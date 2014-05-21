@@ -32,6 +32,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+	gem "factory_girl_rails", "~> 4.0"
+	gem 'rspec-rails', '~> 3.0.0.beta'
+	gem 'rspec-expectations'
+	gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+	gem 'launchy'
+end
+
 group :development do
 	gem 'better_errors'
 	gem 'meta_request'

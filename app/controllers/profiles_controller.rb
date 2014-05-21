@@ -171,7 +171,6 @@ class ProfilesController < ApplicationController
       else
         @profiles = Profile.where(profile_type: @profile_type)
       end
-
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile

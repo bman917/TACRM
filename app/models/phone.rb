@@ -2,6 +2,7 @@ class Phone < ActiveRecord::Base
   belongs_to :contact_detail
   validates :number, presence: {message: "Phone number must not be blank."}
 
+  scope :for_profiles, -> {where(contact_detail_type: 'Profile')}
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
   def prof
