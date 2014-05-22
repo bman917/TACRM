@@ -32,7 +32,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -57,5 +57,21 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
-  
+
+  config.before(:suite) do
+    @admin = FactoryGirl.create(:admin, username: 'admin') unless User.find_by_username('admin')
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.after(:suite) do
+    DatabaseCleaner.clean
+  end
 end
+
+def sign_in 
+  visit new_user_session_path
+  fill_in 'user_username', :with => 'admin'
+  fill_in 'user_password', :with => 'password'
+  click_button 'Sign in'
+end
+

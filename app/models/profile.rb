@@ -87,7 +87,7 @@ class Profile < ActiveRecord::Base
   end
 
   def vendor?
-    profile_type.try :upcase == 'VENDOR'
+    profile_type.try(:upcase) == 'VENDOR'
   end
 
   def full_name

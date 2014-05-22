@@ -38,6 +38,9 @@ group :development, :test do
 	gem 'rspec-expectations'
 	gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 	gem 'launchy'
+	gem 'selenium-webdriver'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
