@@ -26,7 +26,11 @@ class ProfilePresenter < BasePresenter
   end
 
   def padlock_css_id
-    "#{profile.id}_padlock"
+    if profile.locked?
+      "p#{profile.id}_locked"
+    else
+      "p#{profile.id}_unlokced"
+    end
   end
 
   def destroy_link(options={}, path_params={}, html_options={})

@@ -59,7 +59,6 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
 
   config.before(:suite) do
-    @admin = FactoryGirl.create(:admin, username: 'admin') unless User.find_by_username('admin')
     DatabaseCleaner.strategy = :truncation
   end
 
@@ -68,10 +67,14 @@ RSpec.configure do |config|
   end
 end
 
+def create_admin
+  @admin = FactoryGirl.create(:admin, username: 'admin') unless User.find_by_username('admin')
+end
+
 def sign_in 
+  create_admin
   visit new_user_session_path
   fill_in 'user_username', :with => 'admin'
   fill_in 'user_password', :with => 'password'
   click_button 'Sign in'
 end
-

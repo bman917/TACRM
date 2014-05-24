@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Users" do
+  before(:each) do
+    create_admin
+  end
+  
   describe "the signin process" do
     it "signs me in" do
       visit new_user_session_path

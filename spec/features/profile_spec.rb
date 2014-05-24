@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Profiles" do
+describe Profile do
   before(:each) do
     sign_in
   end
@@ -14,8 +14,18 @@ describe "Profiles" do
     end
   end
 
-  describe "Profile Create" do
-    it "can create a profile for an INDIVIDUAL", js: true do
+  describe "Create", js: true do
+
+    it "can open and close a form" do
+      click_on 'ADD INDIVIDUAL'
+      expect(page).to have_css('#new_profile_form')
+
+      click_link 'Close'
+      sleep 0.25
+      expect(page).to have_no_css('#new_profile_form')   
+    end
+
+    it "can create a profile for an INDIVIDUAL" do
 
       click_on 'ADD INDIVIDUAL'
 
@@ -68,6 +78,19 @@ describe "Profiles" do
       expect(current_path).to eq profile_path(saved_p)
 
       assert saved_p.vendor?
+    end
+  end
+
+  describe "Lock", js: true do 
+    it "can be locked" do
+      p = create(:person, first_name: 'Lock', last_name: 'Test')
+      visit profiles_path
+      within("tr#profile_#{p.id}") do
+        click_on 'Lock Profile'
+        alert = page.driver.browser.switch_to.alert
+        alert.accept
+      end
+      expect(page).to have_css("#p#{p.id}_locked")
     end
   end
 end

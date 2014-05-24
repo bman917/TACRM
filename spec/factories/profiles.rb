@@ -5,6 +5,7 @@ FactoryGirl.define do
     factory :person do
       first_name 'Juan'
       last_name 'Dela Cruz'
+      profile_type 'INDIVIDUAL'
     end
   end
 end
