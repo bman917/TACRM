@@ -5,12 +5,21 @@ describe Profile do
     sign_in
   end
 
-  describe "Profile Index Filters" do
+  describe "Filters" do
     it "preselects according to the profile type filter" do 
       click_on 'Agents'
       expect(find(:css, 'select#profile_type').value).to eq 'AGENT'
       click_on 'Vendor'
       expect(find(:css, 'select#profile_type').value).to eq 'VENDOR'
+      click_on 'No Contact Details'
+      expect(find(:css, 'select#profile_type').value).to eq 'NO_CONACT_DETAILS'
+    end
+
+    it "can select profiles with incomplete contact details", js: true do
+      p = create(:person, first_name: 'Incomplete', last_name: 'Contact Details')
+      select 'No Contact Details'
+      sleep 0.25
+      expect(page).to have_content('Incomplete')
     end
   end
 
@@ -82,7 +91,7 @@ describe Profile do
   end
 
   describe "Lock", js: true do 
-    it "can be locked" do
+    it "can be locked and unlocked on Index page" do
       p = create(:person, first_name: 'Lock', last_name: 'Test')
       visit profiles_path
       within("tr#profile_#{p.id}") do
@@ -93,9 +102,28 @@ describe Profile do
       expect(page).to have_css("#p#{p.id}_locked")
 
       within("tr#profile_#{p.id}") do
+        click_on 'Unlock Profile'
+        alert = page.driver.browser.switch_to.alert
+        alert.accept
+      end
+      expect(page).to have_css("#p#{p.id}_unlocked")
+    end
+
+    it "can be locked on Show Page" do
+      p = create(:person, first_name: 'Show', last_name: 'Lock')
+      visit profiles_path
+      within("tr#profile_#{p.id}") do
         click_on 'View'
         sleep 0.25
       end
+      expect(current_path).to eq profile_path(p)
+      click_on 'Lock Profile'
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_css("#p#{p.id}_locked") 
+
+      click_on 'Unlock Profile'
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_css("#p#{p.id}_unlocked") 
     end
   end
 end

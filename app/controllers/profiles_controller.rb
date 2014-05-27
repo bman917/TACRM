@@ -165,9 +165,12 @@ class ProfilesController < ApplicationController
     def index_load
       @profile_type = params[:profile_type] || 'ALL'
       @profile_type.upcase!
-      
-      if @profile_type == 'ALL'
+
+      case @profile_type
+      when 'ALL'
         @profiles = Profile.all
+      when 'NO_CONACT_DETAILS'
+        @profiles = Profile.no_contact_detail
       else
         @profiles = Profile.where(profile_type: @profile_type)
       end

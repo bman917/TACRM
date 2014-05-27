@@ -53,6 +53,8 @@ version: <%=current_version%>
         <li><%= link_to 'Agents', profiles_path(profile_type: 'Agent') %></li>
         <li><%= link_to 'Vendor', profiles_path(profile_type: 'Vendor') %></li>
         <li><%=link_to '-------', '#'%></li>
+        <li><%= link_to 'No Contact Details', profiles_path(profile_type: 'NO_CONACT_DETAILS') %></li>
+        <li><%=link_to '-------', '#'%></li>
         <% if can? :create, Profile %>
         <li><%=add_profile_link titleize: true, class: '', profile_type: :individual%></li>
         <li><%=add_profile_link titleize: true, class: '', profile_type: :corporate%></li>

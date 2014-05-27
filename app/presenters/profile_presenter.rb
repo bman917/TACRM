@@ -29,7 +29,7 @@ class ProfilePresenter < BasePresenter
     if profile.locked?
       "p#{profile.id}_locked"
     else
-      "p#{profile.id}_unlokced"
+      "p#{profile.id}_unlocked"
     end
   end
 
