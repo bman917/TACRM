@@ -91,6 +91,11 @@ describe Profile do
         alert.accept
       end
       expect(page).to have_css("#p#{p.id}_locked")
+
+      within("tr#profile_#{p.id}") do
+        click_on 'View'
+        sleep 0.25
+      end
     end
   end
 end
