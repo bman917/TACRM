@@ -1,5 +1,5 @@
 class Phone < ActiveRecord::Base
-  belongs_to :contact_detail
+  belongs_to :contact_detail, polymorphic: true
   validates :number, presence: {message: "Phone number must not be blank."}
 
   scope :for_profiles, -> {where(contact_detail_type: 'Profile')}
@@ -12,4 +12,6 @@ class Phone < ActiveRecord::Base
   def display
   	"(#{phone_type})- #{number}"
   end
+
+  
 end

@@ -14,7 +14,7 @@ class PhonesController < ApplicationController
 
   # GET /phones/new
   def new
-    @phone = Phone.new
+    @phone = Phone.new(contact_detail_type: 'Profile', contact_detail_id: params[:profile_id])
   end
 
   # GET /phones/1/edit
@@ -28,7 +28,7 @@ class PhonesController < ApplicationController
 
     respond_to do |format|
       if @phone.save
-        format.html { redirect_to @phone, notice: 'Phone was successfully created.' }
+        format.html { redirect_to profiles_path, notice: 'Phone was successfully created.' }
         format.json { render action: 'show', status: :created, location: @phone }
         format.js
       else

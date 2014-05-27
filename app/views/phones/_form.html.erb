@@ -1,29 +1,21 @@
-<%= form_for(@phone) do |f| %>
-  <% if @phone.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@phone.errors.count, "error") %> prohibited this phone from being saved:</h2>
+<div id="phone_form_container">
+<%=javascript_tag do %>
+$(document).ready(function(){
+  init_phone_form_container();
+});
+<% end %>
 
-      <ul>
-      <% @phone.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @phone, html: {id: 'new_phone_form', class: 'span-14', remote: params[:remote]} do | f | %>
 
-  <div class="field">
-    <%= f.label :phone_type %><br>
-    <%= f.text_field :phone_type %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_detail_id %><br>
-    <%= f.text_field :contact_detail_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%=link_to 'Close', '', class: 'close std_button'%>
+  <fieldset>
+  <legend><%=@phone.contact_detail.full_name%></legend>
+  
+  <%= f.hidden_field :contact_detail_id %>
+  <%= f.hidden_field :contact_detail_type %>
+  <%= f.input :phone_type, collection: phone_types, include_blank: false%>
+  <%= f.input :number %>
+  <%= f.button :submit, 'Save' %>
+  </fieldset>
+
 <% end %>

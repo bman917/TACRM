@@ -1,6 +1,18 @@
 class ProfilePresenter < BasePresenter
   presents :profile
 
+  def phone
+    if profile.phones.size == 0
+      link_to 'Add Phone', new_phone_path(profile_id: profile.id), remote: true
+    else
+      profile.phones.first.try :display
+    end
+  end
+
+  def address
+    truncate profile.addresses.first.try(:display)
+  end
+
   def client_since_label
     if profile.vendor?
       'Vendor Since'

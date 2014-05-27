@@ -7,8 +7,8 @@
     <td><%= profile.full_name %></td>
     <td class="ppt"><%= profile.profile_type %></td>
     <td><%= profile.email %></td>
-    <td><%= profile.phones.first.try :display %></td>
-    <td><%= truncate profile.addresses.first.try(:display) %></td>
+    <td><%= profile_presenter.phone %></td>
+    <td><%= profile_presenter.address  %></td>
     <td>
       <%= profile_presenter.lock_link%> 
     </td>
