@@ -7,3 +7,9 @@
   $('#<%=profile_presenter.padlock_css_id%>').on('click', spin_and_overlay);
   $('#<%=profile_presenter.profile_css_id%> a.slow_link').on('click',  overlay);
 <% end %>
+flash_success('<%="Updated #{@profile.full_name}"%>');
+
+//Highlight the newly updated profile 
+<% present @profile do | profile_presenter | %>
+$('#<%=profile_presenter.profile_css_id%>').highlight();
+<% end %>
