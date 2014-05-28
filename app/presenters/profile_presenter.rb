@@ -3,7 +3,7 @@ class ProfilePresenter < BasePresenter
 
   def phone
     if profile.phones.size == 0 && profile.unlocked?
-      link_to 'Add Phone', new_phone_path(profile_id: profile.id, source: 'index', remote: true), remote: true, class: 'std_button'
+      link_to add_img(alt: 'Add Phone', title: 'Add Phone'), new_phone_path(profile_id: profile.id, source: 'index', remote: true), remote: true
     else
       profile.phones.first.try :display
     end
