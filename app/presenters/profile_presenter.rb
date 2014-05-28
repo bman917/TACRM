@@ -2,8 +2,8 @@ class ProfilePresenter < BasePresenter
   presents :profile
 
   def phone
-    if profile.phones.size == 0
-      link_to 'Add Phone', new_phone_path(profile_id: profile.id), remote: true
+    if profile.phones.size == 0 && profile.unlocked?
+      link_to 'Add Phone', new_phone_path(profile_id: profile.id, source: 'index', remote: true), remote: true, class: 'std_button'
     else
       profile.phones.first.try :display
     end

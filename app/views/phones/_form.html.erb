@@ -8,9 +8,15 @@ $(document).ready(function(){
 <%= simple_form_for @phone, html: {id: 'new_phone_form', class: 'span-14', remote: params[:remote]} do | f | %>
 
   <%=link_to 'Close', '', class: 'close std_button'%>
+
+  <h3 class="titleize">
+  Add Phone Number
+  </h3>
+
   <fieldset>
   <legend><%=@phone.contact_detail.full_name%></legend>
-  
+
+  <%= hidden_field_tag :source, @source  %>
   <%= f.hidden_field :contact_detail_id %>
   <%= f.hidden_field :contact_detail_type %>
   <%= f.input :phone_type, collection: phone_types, include_blank: false%>

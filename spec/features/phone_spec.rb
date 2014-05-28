@@ -6,13 +6,16 @@ describe Phone do
   end
 
   describe "Create", js: true do
-
     before(:each) do
       @p = create(:person, first_name: 'Incomplete', last_name: 'Contact Details')
       visit profiles_path
       within("tr#profile_#{@p.id}") do
         click_on 'Add Phone'
       end
+    end
+
+    after(:each) do
+      Profile.destroy_all
     end
 
     it "opens create form" do
@@ -39,6 +42,17 @@ describe Phone do
        click_button 'Save'
        expect(page).to have_css('#new_phone_form')
     end
+  end
 
+  describe 'Locked Profile' do
+    it "has no add link if Profile is locked" do
+      Profile.destroy_all
+      @p = create(:person, first_name: 'Incomplete', last_name: 'Contact Details', locked: true)
+      visit profiles_path
+
+      within("tr#profile_#{@p.id}") do
+        assert has_no_link?('Add Phone')
+      end
+    end
   end
 end

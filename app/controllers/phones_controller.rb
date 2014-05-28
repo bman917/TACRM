@@ -15,6 +15,7 @@ class PhonesController < ApplicationController
   # GET /phones/new
   def new
     @phone = Phone.new(contact_detail_type: 'Profile', contact_detail_id: params[:profile_id])
+    @source = params[:source]
   end
 
   # GET /phones/1/edit
@@ -25,12 +26,19 @@ class PhonesController < ApplicationController
   # POST /phones.json
   def create
     @phone = Phone.new(phone_params)
-
     respond_to do |format|
       if @phone.save
+
+        @profile = @phone.contact_detail
         format.html { redirect_to profiles_path, notice: 'Phone was successfully created.' }
         format.json { render action: 'show', status: :created, location: @phone }
-        format.js
+        format.js do
+          if params[:source] == 'index'
+            render 'update'
+          else
+            render 'create'
+          end
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @phone.errors, status: :unprocessable_entity }
