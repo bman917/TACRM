@@ -1,8 +1,1 @@
-
-$('body').append('<div class="overlay-5"></div>');
-$('body').append('<%=j render("form")%>');
-$('#phone_form_container').center();
-$('#phone_form_container').addClass('modal-1');
-$('#phone_form_container').hide().slideDown('fast', function() {
-  $('#new_phone_form input:text').first().focus();
-});
+<%=overlay_form class_name: 'phone'%>

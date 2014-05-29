@@ -3,15 +3,11 @@
 	<h2 class="section_divider hidden title">
 	Notes
 	</h2>
-	<div class="section_body wip">
+	<div class="section_body">
 		<%if can? :create, Note %>
-		<div class="toggler">
-
-			<%=link_to 'Add Note', '', id: "add_note_link", class: 'std_button'%>
-			<div>
-				<%=render 'notes/form'%>
-			</div>
-		</div>
+<%=link_to 'Add Note', 
+	new_note_path(profile_id: @profile.id, source: 'show', remote: true), 
+	class: 'std_button', remote: true%>
 		<% end %>
 		
 		<table id="notes_list">
@@ -26,9 +22,6 @@
 				<%=render note%>
 			<% end %>
 		</table>
-
-		<div class="wic">
-		</div>
 		
 	</div>
 </div>

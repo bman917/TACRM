@@ -1,20 +1,22 @@
-<%= form_for(@note, remote: true) do |f| %>
-  <% if @note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+<div id="note_form_container">
+<%=javascript_tag do %>
+$(document).ready(function(){
+ // init_note_form_container();
+});
+<% end %>
 
-      <ul>
-      <% @note.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @note, html: {id: 'new_note_form', class: 'span-14', remote: params[:remote]} do | f | %>
+
+  <h3 class="titleize">
+  Note For...
+  </h3>
 
    <%= f.hidden_field :profile_id %>
-  <div class="field">
-    <%= f.text_area :note, class: 'focus_on_toggle' %></br>
-    <%= f.submit %>
-    <%= link_to 'Hide', '', id: "hide_note_form_link" %>
-  </div>
+
+   <fieldset>
+   <legend><%=@note.profile.full_name%></legend>
+    <%= f.input :note, label: false, input_html: {:autofocus => true}%>
+    <%= f.button :submit, 'Save' %>
+  </fieldset>
+
 <% end %>

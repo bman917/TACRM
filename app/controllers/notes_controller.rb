@@ -14,7 +14,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = Note.new(profile_id: params[:profile_id])
   end
 
   # GET /notes/1/edit

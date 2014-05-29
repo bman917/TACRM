@@ -1,7 +1,8 @@
 // Place all the styles related to the Identifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#identification_form, #new_profile_form, #new_phone_form {
+
+.modal_form, #identification_form {
 	padding: 1em;
 	background: #D4E6BF;
 	// margin: auto 0;

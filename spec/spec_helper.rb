@@ -78,3 +78,10 @@ def sign_in
   fill_in 'user_password', :with => 'password'
   click_button 'Sign in'
 end
+
+def view_profile(p)
+  within("tr#profile_#{p.id}") do
+    click_on 'View'
+    sleep 0.25
+  end
+end
