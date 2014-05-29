@@ -7,13 +7,6 @@ GIT
       rails (>= 3.1)
 
 GIT
-  remote: git://github.com/bman917/common_assets.git
-  revision: fd5befaee093e707d33c72231642dfb93318bfa3
-  specs:
-    common_assets (0.1.5.4)
-      rails (>= 3.1)
-
-GIT
   remote: git://github.com/bman917/hide_toggler.git
   revision: 7a6696931da0b478bfb049f68dcdc78cdfc79b72
   specs:
@@ -42,6 +35,12 @@ GIT
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+
+PATH
+  remote: /home/jchan/work/common_assets
+  specs:
+    common_assets (0.1.5.4)
+      rails (>= 3.1)
 
 GEM
   remote: https://rubygems.org/

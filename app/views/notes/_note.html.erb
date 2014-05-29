@@ -1,8 +1,16 @@
-<div id="note_<%=note.id%>" class="profile_note">
-	<%=link_to 'X', note, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete Note?"} %>
-	<strong>Date: </strong><span><%=note.updated_at.to_time.to_s(:med)%></span>
-
-	<div class="note_text">
+<tr id="note_<%=note.id%>" class="profile_note">
+	<td class="note_text text">
 		<%=best_in_place note, :note, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %>
-	</div>
-</div>
+	</td>
+  <td class="w-8">
+  <%=User.find(Note.last.originator).username%>
+  </td>
+  <td class="w-datetime">
+  <%=note.updated_at.to_s(:time)%>
+  </td>
+
+  <td class="w-2">
+  <%=link_to delete_img, note, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete Note?"} %>
+  </td>
+
+</tr>

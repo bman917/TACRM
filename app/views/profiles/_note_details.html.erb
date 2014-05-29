@@ -1,26 +1,31 @@
 <div id="note_details" class="profile_show_section liquidSlider_auto_height">
 
-	<h2 class="section_divider title">
+	<h2 class="section_divider hidden title">
 	Notes
 	</h2>
 	<div class="section_body wip">
 		<%if can? :create, Note %>
 		<div class="toggler">
 
-			<%=link_to 'Add Note', '', id: "add_note_link", class: 'add_fields no-print'%>
+			<%=link_to 'Add Note', '', id: "add_note_link", class: 'std_button'%>
 			<div>
 				<%=render 'notes/form'%>
 			</div>
 		</div>
 		<% end %>
 		
-		
-		<div id="notes_list">
+		<table id="notes_list">
+			<tbody>
+				<th>Note</th>
+				<th>User</th>
+				<th>Date</th>
+				<th></th>
+			</tbody>
 
 			<%@profile.notes.each do | note | %>
 				<%=render note%>
 			<% end %>
-		</div>
+		</table>
 
 		<div class="wic">
 		</div>

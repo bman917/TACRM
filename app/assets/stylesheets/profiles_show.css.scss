@@ -3,10 +3,14 @@
 
 }
 
+.profile_note {
+
+}
+
 #add_note_link {
 	clear: both;
 }
-.profile_group, .profile_note {
+.profile_group {
 	float: left;
 	width: 350px;
 	border: 1px solid #BCB7B2;
@@ -88,10 +92,6 @@ form#new_group, #new_account, #new_note {
 
 #group_details #add_group_link, #create_account_link {
 	font-size: 1em;
-}
-
-#notes_list{
-	overflow: hidden;
 }
 
 .profile_status {
