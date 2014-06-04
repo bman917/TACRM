@@ -45,34 +45,21 @@
     </table>
 <% end %>     
 
+<br>
+<br>
 
+<div id="phone_numbers">
+  <%=link_to 'Add Phone Number', new_phone_path(profile_id: @profile.id, source: 'show', remote: true), remote: true,
+    class: 'std_button add_overlay' %>
+  <%=render partial: 'phones/table', locals: {phones: @profile.phones, remote: true}%>
+</div>
 
+<br>
+<br>
 
   <div class="section_body">
       <table id="contact_details_table">
         <tr>
-          <td id="phone_column" class="wip">
-            <h4>Contact Numbers</h4>
-            <ul id="phone_ul" class="wic">
-              <% @profile.phones.each do | phone | %>
-                <%= render phone %>
-              <% end %>
-            </ul>
-            <div class="no-print toggler">
-            <% if can? :create, @new_phone %>
-              <%=link_to 'Add', '#', id: 'add_phone_link', class: 'add_fields no-print'%>
-              <%= form_for(@new_phone, remote: true) do |f| %>
-                    <%= f.select :phone_type, phone_types%>
-                    <%= f.telephone_field :number, class: "contact_numbers focus_on_toggle" %>
-                    <%= f.hidden_field :contact_detail_type%>
-                    <%= f.hidden_field :contact_detail_id%>
-                    <%= f.submit "Add", id: 'add_contact_number_submit' %>
-                    <%= link_to 'Hide', '', id: "hide_new_purchase_order_number_link" %>
-              <% end %>
-            <% end %>
-            </div>
-
-          </td>
           <td id="address_column"  class="wip">
            <h4>Addresses</h4>
             <ul id="addresses_ul" class="wic">

@@ -1,7 +1,17 @@
-<li id="profile_phone_<%=phone.id%>">
-<%=link_to 'X', phone, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete #{number_to_phone phone.number}?"} %>
-
-<%=best_in_place phone, :phone_type, type: :select, 
-		collection: phone_types %> - 
-<%=best_in_place phone, :number, display_with: :number_to_phone%>
-</li>
+<tr id="profile_phone_<%=phone.id%>">
+  <td>
+  <%=phone.phone_type%>
+  </td>
+  <td>
+    <%=number_to_phone phone.number%>
+  </td>
+  <td>
+    <%=phone.description%>
+  </td>
+  <td class="w-2">
+    <%=link_to edit_img, edit_phone_path(phone, source: 'show', remote: true), class: 'add_overlay', remote: true %>
+  </td>
+  <td class="w-2">
+    <%=link_to delete_img, phone, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete #{number_to_phone phone.number}?"} %>
+  </td>
+</tr>

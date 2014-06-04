@@ -1,0 +1,10 @@
+modal_form_close();
+$('#phone_list').remove();
+$('#phone_numbers').append('<%=j render partial: 'phones/table', 
+  locals: {phones: @profile.phones, remote: true}%>')
+$('#profile_phone_<%=@phone.id%>').addClass('new');
+adjustHeight();
+$('#phone_list .add_overlay').on('click', function() {
+    overlay();
+});
+flash_success('<%="Updated Contact Details for #{@profile.full_name}"%>');

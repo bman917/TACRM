@@ -19,7 +19,8 @@ $(document).ready(function(){
   <%= f.hidden_field :contact_detail_type %>
   <%= f.input :phone_type, collection: phone_types, include_blank: false%>
   <%= f.input :number %>
-  <%= f.button :submit, 'Save' %>
+  <%= f.input :description %>
+  <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
   </fieldset>
 
 <% end %>
