@@ -10,6 +10,9 @@
   </td>
 
   <td class="w-2">
+  <%=link_to edit_img, edit_note_path(note, source: 'show', remote: true), remote: true %>
+  </td>
+  <td class="w-2">
   <%=link_to delete_img, note, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete Note?"} %>
   </td>
 

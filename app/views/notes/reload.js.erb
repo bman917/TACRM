@@ -1,0 +1,8 @@
+modal_form_close();
+<% if params[:source] == 'show' %>
+  $('#notes_list').remove();
+  $('#note_details').append('<%=j render(partial: 'notes/table', 
+    locals: {notes: @profile.notes, remote: true})%>');
+  $('#note_<%=@note.id%>').addClass('new');
+  adjustHeight();
+<% end %>

@@ -1,27 +1,13 @@
-<div id="note_details" class="profile_show_section liquidSlider_auto_height">
+<h2 class="hidden title">Notes</h2>
 
-	<h2 class="section_divider hidden title">
-	Notes
-	</h2>
-	<div class="section_body">
-		<%if can? :create, Note %>
-<%=link_to 'Add Note', 
-	new_note_path(profile_id: @profile.id, source: 'show', remote: true), 
-	class: 'std_button', remote: true%>
-		<% end %>
-		
-		<table id="notes_list">
-			<tbody>
-				<th>Note</th>
-				<th>User</th>
-				<th>Date</th>
-				<th></th>
-			</tbody>
+<div id="note_details">
 
-			<%@profile.notes.each do | note | %>
-				<%=render note%>
-			<% end %>
-		</table>
-		
-	</div>
+	<%if can? :create, Note %>
+		<%=link_to 'Add Note', 
+			new_note_path(profile_id: @profile.id, source: 'show', remote: true), 
+			class: 'std_button', remote: true%>
+	<% end %>
+
+	<%=render partial: 'notes/table', locals: {notes: @profile.notes, remote: true}%>
+
 </div>

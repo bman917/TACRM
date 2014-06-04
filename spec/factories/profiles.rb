@@ -6,6 +6,20 @@ FactoryGirl.define do
       first_name 'Juan'
       last_name 'Dela Cruz'
       profile_type 'INDIVIDUAL'
+
+      factory :person_with_notes do
+        ignore do
+          notes_count 1
+        end
+        after(:create) do |profile, evaluator|
+          create_list(:note, evaluator.notes_count, profile: profile)
+        end      
+      end
     end
+  end
+
+  factory :note do
+    note "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed o eiusmod tempor"
+    profile
   end
 end
