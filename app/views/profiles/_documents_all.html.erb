@@ -1,15 +1,5 @@
 <h2 class="title hidden">Documents</h2>
 
-<%=javascript_tag do %>
-
-$(document).ready(function(){
-  $('.add_overlay').on('click', function() {
-    overlay();
-  });
-});
-<% end %>
-
-
 <div id="documents_all">
 <%=link_to 'Add New', profile_new_identification_path(@profile), remote: true,
 	class: 'std_button add_overlay' %>

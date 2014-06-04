@@ -5,7 +5,7 @@
 	<%if can? :create, Note %>
 		<%=link_to 'Add Note', 
 			new_note_path(profile_id: @profile.id, source: 'show', remote: true), 
-			class: 'std_button', remote: true%>
+			class: 'std_button add_overlay', remote: true%>
 	<% end %>
 
 	<%=render partial: 'notes/table', locals: {notes: @profile.notes, remote: true}%>

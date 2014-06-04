@@ -1,6 +1,6 @@
 <tr id="note_<%=note.id%>" class="profile_note">
 	<td class="note_text text">
-		<%=best_in_place note, :note, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %>
+		<%= simple_format note.note%>
 	</td>
   <td class="w-8">
   <%=User.find_by_id(Note.last.originator).try :username%>
@@ -10,7 +10,7 @@
   </td>
 
   <td class="w-2">
-  <%=link_to edit_img, edit_note_path(note, source: 'show', remote: true), remote: true %>
+  <%=link_to edit_img, edit_note_path(note, source: 'show', remote: true), class: 'add_overlay', remote: true %>
   </td>
   <td class="w-2">
   <%=link_to delete_img, note, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete Note?"} %>

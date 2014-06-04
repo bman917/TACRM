@@ -2,6 +2,11 @@
 <%=javascript_tag do %>
 
 $(document).ready(function(){
+
+  $('.add_overlay').on('click', function() {
+    overlay();
+  });
+  
   	$('.toggler a').on('click', toggle_form);
 
   	<% if can?(:update, Profile) && @profile.unlocked?%>
@@ -19,14 +24,8 @@ $(document).ready(function(){
 	      });
 
   $('#updates').on('click', function(){ 
-	Turbolinks.visit('<%=profile_panel_path(@profile.id,@profile.updates_liquid_slider_panel_number)%>');
-	//	$.ajax({
-	//	    dataType: 'script',
-	//		url: '<%=versions_profile_path(@profile.id)%>'
-	//	});
-    //
-   });
-   
+		Turbolinks.visit('<%=profile_panel_path(@profile.id,@profile.updates_liquid_slider_panel_number)%>');
+  });
 });
 <% end %>
 

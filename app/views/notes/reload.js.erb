@@ -5,4 +5,9 @@ modal_form_close();
     locals: {notes: @profile.notes, remote: true})%>');
   $('#note_<%=@note.id%>').addClass('new');
   adjustHeight();
+
+  $('#notes_list .add_overlay').on('click', function() {
+    overlay();
+  });
+
 <% end %>

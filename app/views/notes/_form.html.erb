@@ -1,7 +1,7 @@
 <div id="note_form_container">
 <%=javascript_tag do %>
 $(document).ready(function(){
- // init_note_form_container();
+  init_note_form_container();
 });
 <% end %>
 
@@ -17,7 +17,7 @@ $(document).ready(function(){
    <fieldset>
    <legend><%=@note.profile.full_name%></legend>
     <%= f.input :note, label: false, input_html: {:autofocus => true}%>
-    <%= f.button :submit, 'Save' %>
+    <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
   </fieldset>
 
 <% end %>
