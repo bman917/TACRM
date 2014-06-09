@@ -5,10 +5,10 @@
   });
   <% end %>
 
-  <%= simple_form_for @address, html: {id: 'new_address_form', class: 'span-20', remote: params[:remote]} do | f | %>
+  <%= simple_form_for @address, html: {id: 'new_address_form', class: 'span-22', remote: params[:remote]} do | f | %>
 
     <h3 class="titleize">
-    Add Address
+    Address
     </h3>
 
     <fieldset>
@@ -17,12 +17,12 @@
     <%= hidden_field_tag :source, @source  %>
     <%= f.hidden_field :owner_id %>
     <%= f.hidden_field :owner_type %>
-    <%= f.input :line_one, label: 'Address Line 1', input_html: {maxlength: 70, autofocus: true}, placeholder: 'House Number/Building Name, Street...'%>
-    <%= f.input :line_two, label: 'Address Line 2', input_html: {maxlength: 70}, placeholder: 'Town / Village / Municipality...'%>
-    <%= f.input :city %>
-    <%= f.input :state_region %>
-    <%= f.input :zipcode %>
-    <%= f.input :country, selected: 'Philippines', include_blank: true, wrapper_html: {class: 'span-12'}%>
+    <%= f.input :line_one, label: 'Address Line 1', input_html: {maxlength: 60, autofocus: true}, placeholder: 'House Number/Building Name, Street...'%>
+    <%= f.input :line_two, label: 'Address Line 2', input_html: {maxlength: 60}, placeholder: 'Town / Village / Municipality...'%>
+    <%= f.input :city, wrapper_html: {class: 'span-12'}%>
+    <%= f.input :state_region, wrapper_html: {class: 'span-12'}%>
+    <%= f.input :zipcode, wrapper_html: {class: 'span-12'}%>
+    <%= f.input :country, include_blank: true, priority: main_country_list, wrapper_html: {class: 'span-12'}%>
     <%= f.input :address_type, label: 'Description', placeholder: 'Home, Business, etc...' %>
     <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
 
