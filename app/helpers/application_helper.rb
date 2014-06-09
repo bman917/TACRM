@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def current_version
-    '1.6.7-alpha'
+    '1.6.7'
   end
 
   def add_role(key)
@@ -63,7 +63,8 @@ module ApplicationHelper
       ['CORPORATE','CORPORATE'],
       ['AGENT','AGENT'],
       ['VENDOR','VENDOR'],
-      ['No Contact Details', 'NO_CONACT_DETAILS']
+      ['No Contact Details', 'NO_CONACT_DETAILS'],
+      ['No Address', 'NO_ADDRESS']
 
     ]
   end

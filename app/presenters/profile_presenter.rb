@@ -10,7 +10,11 @@ class ProfilePresenter < BasePresenter
   end
 
   def address
-    truncate profile.addresses.first.try(:display)
+    if profile.addresses.size == 0 && profile.unlocked?
+      link_to add_img(alt: 'Add Address', title: 'Add Address'), new_address_path(profile_id: profile.id, source: 'index', remote: true), remote: true
+    else
+      truncate profile.addresses.first.try(:display)
+    end
   end
 
   def client_since_label

@@ -1,26 +1,27 @@
 <div id="phone_form_container">
-<%=javascript_tag do %>
-$(document).ready(function(){
-  init_phone_form_container();
-});
-<% end %>
+  <%=javascript_tag do %>
+  $(document).ready(function(){
+    init_phone_form_container();
+  });
+  <% end %>
 
-<%= simple_form_for @phone, html: {id: 'new_phone_form', class: 'span-14', remote: params[:remote]} do | f | %>
+  <%= simple_form_for @phone, html: {id: 'new_phone_form', class: 'span-14', remote: params[:remote]} do | f | %>
 
-  <h3 class="titleize">
-  Add Phone Number
-  </h3>
+    <h3 class="titleize">
+    Add Phone Number
+    </h3>
 
-  <fieldset>
-  <legend><%=@phone.contact_detail.full_name%></legend>
+    <fieldset>
+    <legend><%=@phone.contact_detail.full_name%></legend>
 
-  <%= hidden_field_tag :source, @source  %>
-  <%= f.hidden_field :contact_detail_id %>
-  <%= f.hidden_field :contact_detail_type %>
-  <%= f.input :phone_type, collection: phone_types, include_blank: false%>
-  <%= f.input :number %>
-  <%= f.input :description %>
-  <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
-  </fieldset>
+    <%= hidden_field_tag :source, @source  %>
+    <%= f.hidden_field :contact_detail_id %>
+    <%= f.hidden_field :contact_detail_type %>
+    <%= f.input :phone_type, collection: phone_types, include_blank: false%>
+    <%= f.input :number %>
+    <%= f.input :description %>
+    <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
+    </fieldset>
 
-<% end %>
+  <% end %>
+</div>

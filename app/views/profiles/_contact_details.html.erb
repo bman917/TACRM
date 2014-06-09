@@ -57,43 +57,11 @@
 <br>
 <br>
 
-  <div class="section_body">
-      <table id="contact_details_table">
-        <tr>
-          <td id="address_column"  class="wip">
-           <h4>Addresses</h4>
-            <ul id="addresses_ul" class="wic">
-              <% @profile.addresses.each do | addresses | %>
-                <%= render addresses %>
-              <% end %>
-            </ul>
-            <div class="no-print toggler" >
-            <% if can? :create, @new_address %>
-              <%=link_to 'Add', '', id: 'add_address_link', class: 'add_fields no-print'%>
-              <%= form_for(@new_address, remote: true) do |f| %>
-                    <fieldset>
-                      <%=f.label 'Type'%>
-                      <%=f.select :address_type, ['Home', 'Business']%>
-                    </fieldset>
-                    <fieldset><%=f.label 'Address Line 1:'%>
-                    <%= f.text_area :line_one, class: 'focus_on_toggle'%></fieldset>
-                    <fieldset>
-                      <%=f.label 'City: '%><%= f.text_field :city%>
-                      <%=f.label 'State/Region'%><%= f.text_field :state_region%>
-                    </fieldset>
-                    <fieldset>
-                    <%=f.label 'Zip Code:'%><%= f.text_field :zipcode%>
-                    <%=f.label 'Country'%><%= f.text_field :country%>
-                    </fieldset>
-                    <%= f.hidden_field :owner_type%>
-                    <%= f.hidden_field :owner_id%>
-                    <%= f.submit "Add", id: 'add_address_submit' %>
-                    <%= link_to 'Hide', '', id: "hide_new_address_link" %>
-              <% end %>
-            <% end %>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+<div id="addresses">
+  <%=link_to 'Add Address', new_address_path(profile_id: @profile.id, source: 'show', remote: true), remote: true,
+  class: 'std_button add_overlay' %>
+  <%=render partial: 'addresses/table', locals: {addresses: @profile.addresses, remote: true}%>
+</div>
+
+ 
 </div>

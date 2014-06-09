@@ -1,7 +1,5 @@
 .simple_form {
-  div {
-    width: 450px;
-  }
+
   div, input[type=submit] {
     float: left;
   }
@@ -17,6 +15,10 @@
 .simple_form {
   input[type=submit], input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
     float:left;
+  }
+
+  input[type="submit"] {
+    clear: both;
   }
 
   select {

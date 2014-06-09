@@ -1,0 +1,15 @@
+<table id="address_list" class="dynamic">
+  <tbody>
+    <th>Address</th>
+    <th>City</th>
+    <th>Zipcode/Region</th>
+    <th>Country</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tbody>
+
+  <%addresses.each do | address | %>
+    <%=render address%>
+  <% end %>
+</table>

@@ -1,41 +1,31 @@
-<%= form_for(@address) do |f| %>
-  <% if @address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
-
-      <ul>
-      <% @address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<div id="phone_form_container">
+  <%=javascript_tag do %>
+  $(document).ready(function(){
+    init_address_form_container();
+  });
   <% end %>
 
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.text_field :owner_id %>
-  </div>
-  <div class="field">
-    <%= f.label :line_one %><br>
-    <%= f.text_field :line_one %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :state_region %><br>
-    <%= f.text_field :state_region %>
-  </div>
-  <div class="field">
-    <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode %>
-  </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= simple_form_for @address, html: {id: 'new_address_form', class: 'span-20', remote: params[:remote]} do | f | %>
+
+    <h3 class="titleize">
+    Add Address
+    </h3>
+
+    <fieldset>
+    <legend><%=@address.owner.try :full_name%></legend>
+    
+    <%= hidden_field_tag :source, @source  %>
+    <%= f.hidden_field :owner_id %>
+    <%= f.hidden_field :owner_type %>
+    <%= f.input :line_one, label: 'Address Line 1', input_html: {maxlength: 70, autofocus: true}, placeholder: 'House Number/Building Name, Street...'%>
+    <%= f.input :line_two, label: 'Address Line 2', input_html: {maxlength: 70}, placeholder: 'Town / Village / Municipality...'%>
+    <%= f.input :city %>
+    <%= f.input :state_region %>
+    <%= f.input :zipcode %>
+    <%= f.input :country, selected: 'Philippines', include_blank: true, wrapper_html: {class: 'span-12'}%>
+    <%= f.input :address_type, label: 'Description', placeholder: 'Home, Business, etc...' %>
+    <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
+
+    </fieldset>
+  <% end %>
+</div>

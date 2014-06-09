@@ -1,15 +1,24 @@
-<li id="profile_address_<%=address.id%>">
-  <% if can? :destroy, address %>
-	<%=link_to 'X', address, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete?"} %>
-  <% end %>
-	<%=best_in_place address, :address_type, type: :select, collection: 
-		[['Home','Home'],['Business','Business']]
-	%>
-	-
-	<%=best_in_place address, :line_one %>,
-	<%=best_in_place address, :city %>,
-	<%=best_in_place address, :state_region %>,
-	<%=best_in_place address, :zipcode %>
-	<%=best_in_place address, :country %>
+<tr id="profile_address_<%=address.id%>">
+	<td>
+	  <%=address.line_one_two%>
+	</td>
+	<td>
+		<%=address.city%>
+	</td>
+	<td>
+	  <%=address.zip_state_region%>
+	</td>
+	<td>
+	  <%=address.country%>
+	</td>
+	<td>
+	  <%=address.address_type%>
+	</td>
 
-</li>
+  <td class="w-2">
+    <%=link_to edit_img, edit_address_path(address, source: 'show', remote: true), class: 'add_overlay', remote: true %>
+  </td>
+  <td class="w-2">
+    <%=link_to delete_img, address, remote: true, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete?"} %>
+  </td>
+</tr>

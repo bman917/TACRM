@@ -14,6 +14,7 @@ class Profile < ActiveRecord::Base
   before_destroy :profile_not_locked
 
   scope :no_contact_detail, -> {where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
+  scope :no_address, -> {where("id not in (select owner_id from addresses where owner_type = \"Profile\")")}
   scope :person, -> {where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
   scope :search_by_name, -> (term) { 
     where("first_name like ? or middle_name like ? or last_name like ?",

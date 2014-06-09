@@ -171,6 +171,8 @@ class ProfilesController < ApplicationController
         @profiles = Profile.all
       when 'NO_CONACT_DETAILS'
         @profiles = Profile.no_contact_detail
+      when 'NO_ADDRESS'
+        @profiles = Profile.no_address
       else
         @profiles = Profile.where(profile_type: @profile_type)
       end

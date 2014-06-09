@@ -13,6 +13,8 @@ describe Profile do
       expect(find(:css, 'select#profile_type').value).to eq 'VENDOR'
       click_on 'No Contact Details'
       expect(find(:css, 'select#profile_type').value).to eq 'NO_CONACT_DETAILS'
+      click_on 'No Address'
+      expect(find(:css, 'select#profile_type').value).to eq 'NO_ADDRESS'
     end
 
     it "can select profiles with incomplete contact details", js: true do
@@ -20,6 +22,12 @@ describe Profile do
       select 'No Contact Details'
       sleep 0.25
       expect(page).to have_content('Incomplete')
+    end
+
+    it "can select profile with no address", js: true do
+      p = create(:person, first_name: 'Firstname No Address', last_name: 'Person')
+      select 'No Address'
+      expect(page).to have_content('Firstname No Address')
     end
   end
 

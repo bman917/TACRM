@@ -1,0 +1,10 @@
+modal_form_close();
+$('#address_list').remove();
+$('#addresses').append('<%=j render partial: 'addresses/table', 
+  locals: {addresses: @profile.addresses, remote: true}%>')
+$('#profile_address_<%=@address.id%>').addClass('new');
+adjustHeight();
+$('#address_list .add_overlay').on('click', function() {
+    overlay();
+});
+flash_success('<%="Updated Address for #{@profile.full_name}"%>');
