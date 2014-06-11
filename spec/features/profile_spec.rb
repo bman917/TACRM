@@ -19,6 +19,7 @@ describe Profile do
 
     it "can select profiles with incomplete contact details", js: true do
       p = create(:person, first_name: 'Incomplete', last_name: 'Contact Details')
+      sleep 0.25
       select 'No Contact Details'
       sleep 0.25
       expect(page).to have_content('Incomplete')
@@ -26,7 +27,9 @@ describe Profile do
 
     it "can select profile with no address", js: true do
       p = create(:person, first_name: 'Firstname No Address', last_name: 'Person')
+      sleep 0.25
       select 'No Address'
+      sleep 0.25
       expect(page).to have_content('Firstname No Address')
     end
   end
@@ -108,6 +111,7 @@ describe Profile do
     it "can be locked and unlocked on Index page" do
       p = create(:person, first_name: 'Lock', last_name: 'Test')
       visit profiles_path
+      sleep 0.25
       within("tr#profile_#{p.id}") do
         click_on 'Lock Profile'
         alert = page.driver.browser.switch_to.alert
@@ -125,11 +129,7 @@ describe Profile do
 
     it "can be locked on Show Page" do
       p = create(:person, first_name: 'Show', last_name: 'Lock')
-      visit profiles_path
-      within("tr#profile_#{p.id}") do
-        click_on 'View'
-        sleep 0.25
-      end
+      visit profile_path(p)
       expect(current_path).to eq profile_path(p)
       click_on 'Lock Profile'
       page.driver.browser.switch_to.alert.accept

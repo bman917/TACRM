@@ -3,16 +3,16 @@
   <%= simple_form_for @member, html: {id: 'new_member_form', class: 'span-14', remote: params[:remote]} do | f | %>
 
     <h3 class="titleize">
-    Add Member
+    <%=params[:action].titleize%> Member
     </h3>
 
     <%= f.hidden_field :group_id %>
 
     <fieldset>
-    <legend><%=@member.owner.try :full_name%></legend>
+    <legend>For <%=@member.owner.try :full_name%></legend>
 
     
-    <%= f.input :profile_id, label: 'Profile', collection: @member.owner.non_members, 
+    <%= f.input :profile_id, label: 'Member', collection: @member.owner.non_members(included_profile_ids: [@included_profile_ids]), 
         value_method: :id, label_method: :full_name, include_blank: false%> 
     <%= f.input :relationship %>
         

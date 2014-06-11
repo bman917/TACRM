@@ -20,6 +20,8 @@ class MembersController < ApplicationController
 
   # GET /addresses/1/edit
   def edit
+    @included_profile_ids = @member.profile_id
+
     respond_to do |format|
       format.html
       format.js

@@ -1,6 +1,9 @@
 <tr id="member_<%=member.id%>">
   <td>
-	 <%=member.profile.full_name%>
+	 <%=link_to member.profile.full_name, profile_path(member.profile)%>
+  </td>
+  <td>
+    <%=member.profile.occupation_posistion%>
   </td>
   <td>
     <%=member.relationship%>

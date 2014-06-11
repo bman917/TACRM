@@ -28,4 +28,5 @@ FactoryGirl.define do
     name 'Default'
     profile
   end
+  
 end

@@ -120,15 +120,13 @@ class Profile < ActiveRecord::Base
   end
 
   def updates_liquid_slider_panel_number
-
     if vendor? 
       3
     elsif person? && account != nil
-    5
+      5
     else
-        4 
+      4 
     end
-
   end
 
   def default_group
@@ -151,9 +149,27 @@ class Profile < ActiveRecord::Base
     default_group.members
   end
 
-  def non_members
+  def non_members(params={})
+    included_profile_ids = params[:included_profile_ids]
+
     wrong_ids = default_group.members.pluck(:profile_id)
     wrong_ids << self.id
-    Profile.where(profile_type: 'INDIVIDUAL').where.not(id: wrong_ids)
+
+    filtered_array = if included_profile_ids 
+      wrong_ids.reject { |id| included_profile_ids.include? id }
+    else
+      wrong_ids
+    end
+
+    Profile.where(profile_type: 'INDIVIDUAL').where.not(id: filtered_array).order(first_name: :asc)
+  end
+
+  def occupation_posistion
+    s = "#{self.occupation} / #{self.job_position}".strip
+    s.chop! if s.ends_with?("/")
+    s = s[1..-1] if s.starts_with?("/")
+    s
+
+
   end
 end

@@ -30,6 +30,7 @@ describe Address do
       fill_in 'State region', with: 'Metro Manila'
       fill_in 'Zipcode', with: '12345'
       fill_in 'Description', with: 'Home'
+      find(:select, 'address_country').first(:option, 'Philippines').select_option
       click_button 'Save'
       sleep 0.25
       expect(page).to have_content('Rufino Building, Ayala Avenue, Legaspi Village')
