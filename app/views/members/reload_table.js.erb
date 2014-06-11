@@ -1,0 +1,10 @@
+modal_form_close();
+$('#member_list').remove();
+$('#members').append('<%=j render partial: 'members/table', 
+  locals: {members: @profile.members, remote: true}%>')
+$('#member_<%=@member.id%>').addClass('new');
+adjustHeight();
+$('#member_list .add_overlay').on('click', function() {
+    overlay();
+});
+flash_success('<%="Updated Guests for #{@profile.full_name}"%>');

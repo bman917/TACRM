@@ -103,4 +103,15 @@ module ApplicationHelper
   def format_date(date)
     date.to_time.to_s(:med)
   end
+
+  def launch_modal_form_link(params)
+    text = params[:text] || 'Add'
+    source = params[:source] || 'show'
+    path = params[:path] 
+    remote = true if params[:remote] == nil
+    url = send(path, profile_id: params[:profile_id], source: source, remote: remote)
+    link_to(text, url, remote: remote, class: 'std_button add_overlay')
+  end
+
+
 end

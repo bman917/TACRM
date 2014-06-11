@@ -6,6 +6,7 @@ FactoryGirl.define do
       first_name 'Juan'
       last_name 'Dela Cruz'
       profile_type 'INDIVIDUAL'
+      account
 
       factory :person_with_notes do
         ignore do
@@ -20,6 +21,11 @@ FactoryGirl.define do
 
   factory :note do
     note "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed o eiusmod tempor"
+    profile
+  end
+
+  factory :account do
+    name 'Default'
     profile
   end
 end

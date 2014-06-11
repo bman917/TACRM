@@ -130,4 +130,30 @@ class Profile < ActiveRecord::Base
     end
 
   end
+
+  def default_group
+    if account.groups.count == 0
+      account.groups.create(name: 'Default Group')
+    else
+      account.groups.first
+    end
+  end
+
+  def add_member(member_attributes)
+    default_group.members.create(member_attributes)    
+  end
+
+  def remove_member(profile)
+    default_group.members.where(profile: profile).first.try :destroy
+  end
+
+  def members
+    default_group.members
+  end
+
+  def non_members
+    wrong_ids = default_group.members.pluck(:profile_id)
+    wrong_ids << self.id
+    Profile.where(profile_type: 'INDIVIDUAL').where.not(id: wrong_ids)
+  end
 end

@@ -1,0 +1,12 @@
+<table id="member_list" class="dynamic">
+  <tbody>
+    <th>Name</th>
+    <th>Relationship</th>
+    <th></th>
+    <th></th>
+  </tbody>
+
+  <%members.each do | member | %>
+    <%=render member%>
+  <% end %>
+</table>
