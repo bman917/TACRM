@@ -32,6 +32,10 @@ describe 'Guest' do
       fill_autocomplete 'profile_full_name', with: 'Juan Dela Cru', not_found: true
     end
 
+    it "does not allow an empty profile", bug: true do
+      expect(page).to have_button('Save', disabled: true)
+    end
+
     it "can add a guest and thes now duplicate guests to be added", js: true do
       fill_autocomplete 'profile_full_name', with: 'Fr'
       fill_in 'Relationship', with: 'Friend'

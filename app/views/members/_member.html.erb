@@ -1,9 +1,9 @@
 <tr id="member_<%=member.id%>">
   <td>
-	 <%=link_to member.profile.full_name, profile_path(member.profile)%>
+	 <%=link_to(member.profile.full_name, profile_path(member.profile)) if member.profile%>
   </td>
   <td>
-    <%=member.profile.occupation_posistion%>
+    <%=member.profile.try :occupation_posistion%>
   </td>
   <td>
     <%=member.relationship%>

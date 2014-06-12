@@ -50,6 +50,12 @@ after(:all) { DatabaseCleaner.clean }
     @juana.reload
   end
 
+  it "does not accept empty profile" do
+    member = Member.new
+    member.save
+    expect(member.errors).not_to be_empty
+  end
+
   it "Does not blow if a non-member is removed" do
      not_a_member = create(:person, first_name: 'No', last_name: 'Body')
     @juan.remove_member(not_a_member)
