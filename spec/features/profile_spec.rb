@@ -34,11 +34,11 @@ describe Profile do
     end
   end
 
-  describe "Edit", js: true do
-    it "can edit a profile of an INDIVIDUAL" do
-      p = create(:person)
-    end
-  end
+  # describe "Edit", js: true do
+  #   it "can edit a profile of an INDIVIDUAL" do
+  #     p = create(:person)
+  #   end
+  # end
 
   describe "Create", js: true do
 

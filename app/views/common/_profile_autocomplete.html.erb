@@ -1,0 +1,33 @@
+<div class="profile_autocomplete_container">
+
+  <%=hidden_field_tag profile_id_field, nil, 
+    class: 'profile_id required', 
+    name: profile_id_name%>
+
+  <%= text_field_tag :profile_full_name, [], size: 35, 
+        placeholder: "Start typing and profile names will appear...",  
+        autofocus: true, class: 'text'%>
+
+  <%=link_to 'change', '', class: 'hidden change_link'%>
+
+</div>
+
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+
+  /* Generate the profile names */
+    var preloaded_profiles = [
+      <% owner_profile.non_members.each do | profile | %>
+        {
+          id: <%=profile.id%>,
+          label: "<%=profile.full_name%>"
+        },
+      <% end %>
+    ];
+
+  profile_autocomplete_setup(preloaded_profiles);
+  profile_autocomplete_setup_form_logic();
+
+});
+<% end %>      

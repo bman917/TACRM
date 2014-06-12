@@ -1,6 +1,6 @@
 <div id="address_form_container">
 
-  <%= simple_form_for @member, html: {id: 'new_member_form', class: 'span-14', remote: params[:remote]} do | f | %>
+  <%= simple_form_for @member, html: {id: 'new_member_form', class: 'span-18', remote: params[:remote]} do | f | %>
 
     <h3 class="titleize">
     <%=params[:action].titleize%> Member
@@ -8,12 +8,25 @@
 
     <%= f.hidden_field :group_id %>
 
+
     <fieldset>
     <legend>For <%=@member.owner.try :full_name%></legend>
 
-    
-    <%= f.input :profile_id, label: 'Member', collection: @member.owner.non_members(included_profile_ids: [@included_profile_ids]), 
-        value_method: :id, label_method: :full_name, include_blank: false%> 
+    <div class="input string required span-15">
+        <label class="string control-label">Member</label>
+
+        <%if params[:action] == 'edit' && @member.profile_id %>
+           <%= f.hidden_field :profile_id %>
+           <%=text_field_tag :profile_full_name, @member.profile.full_name, disabled: true, size: (@member.profile.full_name.length + 4) %>
+        <% else %>
+            <%=render partial: 'common/profile_autocomplete', 
+                locals: {
+                    owner_profile: @member.owner,
+                    profile_id_field: 'member_profile_id', 
+                    profile_id_name: 'member[profile_id]'}%>
+        <% end %>
+
+    </div>
     <%= f.input :relationship %>
         
     <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :profile do
+
     factory :person do
       first_name 'Juan'
       last_name 'Dela Cruz'
@@ -21,12 +22,10 @@ FactoryGirl.define do
 
   factory :note do
     note "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed o eiusmod tempor"
-    profile
   end
 
   factory :account do
     name 'Default'
-    profile
   end
   
 end

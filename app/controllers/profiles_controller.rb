@@ -25,7 +25,14 @@ class ProfilesController < ApplicationController
   end
 
   def full_names
-    @profiles = Profile.search_by_name(params[:term])
+
+    if params[:exclude_profile_id]
+      @profile = Profile.find(params[:exclude_profile_id])
+      @profiles = @profile.non_members.search_by_name(params[:term])
+    else
+      @profiles = Profile.search_by_name(params[:term])
+    end
+
     render json: @profiles.to_json(methods: :label) 
   end
 
