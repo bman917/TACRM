@@ -3,7 +3,9 @@ class ProfilePresenter < BasePresenter
 
   def phone
     if profile.phones.size == 0 && profile.unlocked?
-      link_to add_img(alt: 'Add Phone', title: 'Add Phone'), new_phone_path(profile_id: profile.id, source: 'index', remote: true), remote: true
+      link_to add_img(alt: 'Add Phone', title: 'Add Phone'), 
+        new_phone_path(profile_id: profile.id, source: 'index', remote: true),
+        remote: true, class: 'slow_link'
     else
       profile.phones.first.try :display
     end
@@ -11,7 +13,9 @@ class ProfilePresenter < BasePresenter
 
   def address
     if profile.addresses.size == 0 && profile.unlocked?
-      link_to add_img(alt: 'Add Address', title: 'Add Address'), new_address_path(profile_id: profile.id, source: 'index', remote: true), remote: true
+      link_to add_img(alt: 'Add Address', title: 'Add Address'), 
+        new_address_path(profile_id: profile.id, source: 'index', remote: true), 
+        remote: true, class: 'slow_link'
     else
       truncate profile.addresses.first.try(:display)
     end

@@ -4,8 +4,6 @@ function init_profiles_index() {
 
   $('a.spin_on_click').on('click', spin_and_overlay);
 
-
-
   // Select filter for different profile types.
   // Causes profile filtered by profile type to be loaded.
   // Calls overlays while profiles are being retreived
