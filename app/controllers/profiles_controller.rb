@@ -175,14 +175,15 @@ class ProfilesController < ApplicationController
 
       case @profile_type
       when 'ALL'
-        @profiles = Profile.all
+        @profiles = Profile.all.includes(:phones, :addresses)
       when 'NO_CONACT_DETAILS'
         @profiles = Profile.no_contact_detail
       when 'NO_ADDRESS'
         @profiles = Profile.no_address
       else
-        @profiles = Profile.where(profile_type: @profile_type)
+        @profiles = Profile.where(profile_type: @profile_type).includes(:phones, :addresses)
       end
+
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
