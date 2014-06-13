@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def current_version
-    '1.6.8'
+    '1.7'
   end
 
   def add_role(key)

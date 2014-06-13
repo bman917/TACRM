@@ -1,6 +1,14 @@
 class ProfilePresenter < BasePresenter
   presents :profile
 
+  def view
+    if profile.deleted?
+      link_to 'Restore', restore_profile_path(profile), method: :post, class: 'std_button', data: { confirm: "WARNING!!! Restore Profile for '#{profile.full_name}'?", remote: true}
+    else
+      link_to view_img(size: '27x24'), profile, class: 'slow_link'
+    end
+  end
+
   def phone
     if profile.phones.size == 0 && profile.unlocked?
       link_to add_img(alt: 'Add Phone', title: 'Add Phone'), 
@@ -41,6 +49,10 @@ class ProfilePresenter < BasePresenter
     end
   end
 
+  def deleted_css
+    profile.deleted? ? 'deleted' : ''
+  end
+
   def profile_css_id
     "profile_#{profile.id}"
   end
@@ -54,14 +66,18 @@ class ProfilePresenter < BasePresenter
   end
 
   def destroy_link(options={}, path_params={}, html_options={})
-    lock_check do
-      options[:size] ||= '24x24'
-      link_to delete_img(options), profile, method: :delete, class: "remove_fields", data: { confirm: "WARNING!!! Delete Record for '#{profile.full_name}'?" }
+    if profile.deleted? && can?(:restore, Profile)
+       link_to('DELETE', profile, method: :delete, class: 'std_button del', data: { confirm: "PERMANENTLY DELETE Profile for '#{profile.full_name}'?"})
+    else
+      lock_check do
+        options[:size] ||= '24x24'
+        link_to delete_img(options), delete_profile_path(profile), method: :delete, class: "remove_fields", data: { confirm: "WARNING!!! Delete Record for '#{profile.full_name}'?"}
+      end
     end
   end
 
   def lock_check
-    if profile.try(:locked?)
+    if profile.try(:locked?) 
       ""
     else
       yield
@@ -75,7 +91,9 @@ class ProfilePresenter < BasePresenter
     link_to_options[:remote] = true if link_to_options[:remote].nil?
     link_to_options[:class] ||= 'spin_on_click'    
 
-    if can? :lock, Profile
+    if profile.deleted?
+      ''
+    elsif can?(:lock, Profile)
       if profile.locked?
         link_to_options[:data]  ||= { confirm: "Unlock Profile for '#{profile.full_name}'?" }
         link_to locked_img('Unlock Profile', img_params), 

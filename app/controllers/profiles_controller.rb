@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy, :lock, :unlock]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :delete, :restore, :lock, :unlock]
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
   def lock_all
@@ -38,6 +38,11 @@ class ProfilesController < ApplicationController
 
   def search
     @profiles = Profile.order(:name).where("name like ?", "%#{params[:term]}%")
+  end
+
+  def view_deleted
+    @profiles = Profile.deleted
+    render 'index'
   end
 
   # GET /profiles
@@ -132,18 +137,48 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # DELETE /profiles/1
-  # DELETE /profiles/1.json
-  def destroy
+  def restore
+    respond_to do |format|
+      if @profile.restore
+          flash[:notice] = "#{@profile.full_name} has been restored!"
+          format.html {redirect_to view_deleted_profiles_path}
+          format.js
+      else
+          format.html {redirect_to view_deleted_profiles_path, alert: "Restore failed!!!"}
+          format.js { render 'error'}
+      end
+    end
+  end
+
+  def delete
     if @profile.locked?
       redirect_to profiles_url,  notice: "#{@profile.full_name} cannot be deleted because it is LOCKED."
     else
-      @profile.destroy
+      @profile.delete
       respond_to do |format|
-        format.html { redirect_to profiles_url, notice: "Deleted #{@profile.full_name}" }
+        flash[:notice] = "Deleted #{@profile.full_name}"
+        format.html { redirect_to profiles_url }
         format.json { head :no_content }
+        format.js
       end
     end
+  end
+
+  # DELETE /profiles/1
+  # DELETE /profiles/1.json
+  def destroy
+    # if @profile.locked?
+      # redirect_to view_deleted_profiles_path,  notice: "#{@profile.full_name} cannot be deleted because it is LOCKED."
+    # else
+      if @profile.destroy
+        respond_to do |format|
+          format.html { redirect_to view_deleted_profiles_path, notice: "Deleted #{@profile.full_name}" }
+          format.json { head :no_content }
+        end
+      else
+        redirect_to view_deleted_profiles_path, alert: @profile.errors.messages
+      end
+    # end
   end
 
   private
@@ -175,13 +210,13 @@ class ProfilesController < ApplicationController
 
       case @profile_type
       when 'ALL'
-        @profiles = Profile.all.includes(:phones, :addresses)
+        @profiles = Profile.all_undeleted
       when 'NO_CONACT_DETAILS'
-        @profiles = Profile.no_contact_detail
+        @profiles = Profile.all_undeleted.no_contact_detail
       when 'NO_ADDRESS'
-        @profiles = Profile.no_address
+        @profiles = Profile.all_undeleted.no_address
       else
-        @profiles = Profile.where(profile_type: @profile_type).includes(:phones, :addresses)
+        @profiles = Profile.all_undeleted.where(profile_type: @profile_type)
       end
 
     end

@@ -11,4 +11,7 @@ module ProfilesHelper
 	def profile_form(partial_name, profile, f)
 		render partial: "profiles/forms/#{partial_name}", locals: {profile: profile, f: f}
 	end
+
+	def profile_tr_css
+	end
 end

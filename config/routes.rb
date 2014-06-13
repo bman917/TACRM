@@ -34,8 +34,11 @@ TACRM::Application.routes.draw do
     get :corporate_index, on: :collection
     get :lock, on: :member
     get :unlock, on: :member
+    delete :delete, on: :member
+    post :restore, on: :member
     get :lock_all, on: :collection
     get :unlock_all, on: :collection
+    get :view_deleted, on: :collection
   end
   get 'identifications/new/profile/:profile_id' => 'identifications#new', as: 'profile_new_identification'
   get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'

@@ -39,6 +39,43 @@ describe Profile do
   #     p = create(:person)
   #   end
   # end
+  describe "Delete", :js, :delete  do
+    before(:each) do 
+      Profile.delete_all
+      @p = create(:person)
+      visit profiles_path
+    end
+
+    it "can delete a profile" do
+      within("tr#profile_#{@p.id}") do
+        click_on 'Delete'
+        page.driver.browser.switch_to.alert.accept
+      end
+      expect(page).to have_no_selector("tr#profile_#{@p.id}")
+    end
+
+    describe "Restore" do
+      before(:each) do 
+        @p.delete
+        visit view_deleted_profiles_path
+      end
+
+      it "can view deleted profiles" do
+        expect(page).to have_selector("tr#profile_#{@p.id}")
+        expect(page).to have_no_selector("a#p#{@p.id}_locked")
+      end
+
+      it "can restore a deleted profile" do
+        within("tr#profile_#{@p.id}") do
+          click_on 'Restore'
+          page.driver.browser.switch_to.alert.accept
+        end
+        expect(page).to have_content("has been restored")
+        expect(page).to have_no_selector("tr#profile_#{@p.id}")
+      end
+     end
+  end
+
 
   describe "Create", js: true do
 
@@ -47,7 +84,7 @@ describe Profile do
       expect(page).to have_css('#new_profile_form')
 
       click_link 'Close'
-      sleep 0.25
+      sleep 0.5
       expect(page).to have_no_css('#new_profile_form')   
     end
 

@@ -1,7 +1,7 @@
 <% present profile do | profile_presenter | %>
-  <tr id="<%=profile_presenter.profile_css_id%>" class="<%=cycle('odd','even')%>">
+  <tr id="<%=profile_presenter.profile_css_id%>" class="<%=profile_presenter.deleted_css%>">
     <td class="view">
-      <%= link_to view_img(size: '27x24'), profile, class: 'slow_link' %>
+      <%= profile_presenter.view %>
     </td>
 
     <td><%= profile.full_name %></td>

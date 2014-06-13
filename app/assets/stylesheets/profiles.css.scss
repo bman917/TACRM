@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #profile_index_table_container {
+  tr.deleted td {
+    background-color: #FFF0F0;
+    a.del {
+      background: red;
+    }
+    a.del:hover {
+      color: white;
+      
+    }
 
-
+  }
 }

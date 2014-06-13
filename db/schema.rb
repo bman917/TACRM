@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609170050) do
+ActiveRecord::Schema.define(version: 20140613165052) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.datetime "updated_at"
   end
 
-  add_index "accounts", ["profile_id"], name: "index_accounts_on_profile_id"
+  add_index "accounts", ["profile_id"], name: "index_accounts_on_profile_id", using: :btree
 
   create_table "addresses", force: true do |t|
     t.integer  "owner_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["account_id"], name: "index_groups_on_account_id"
+  add_index "groups", ["account_id"], name: "index_groups_on_account_id", using: :btree
 
   create_table "identifications", force: true do |t|
     t.string   "foid_type"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.string   "description"
   end
 
-  add_index "identifications", ["profile_id"], name: "index_identifications_on_profile_id"
+  add_index "identifications", ["profile_id"], name: "index_identifications_on_profile_id", using: :btree
 
   create_table "members", force: true do |t|
     t.integer  "profile_id"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.datetime "updated_at"
   end
 
-  add_index "members", ["group_id"], name: "index_members_on_group_id"
-  add_index "members", ["profile_id"], name: "index_members_on_profile_id"
+  add_index "members", ["group_id"], name: "index_members_on_group_id", using: :btree
+  add_index "members", ["profile_id"], name: "index_members_on_profile_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "profile_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.datetime "updated_at"
   end
 
-  add_index "notes", ["profile_id"], name: "index_notes_on_profile_id"
+  add_index "notes", ["profile_id"], name: "index_notes_on_profile_id", using: :btree
 
   create_table "phones", force: true do |t|
     t.string   "phone_type"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.string   "nationality"
     t.string   "contact_person"
     t.string   "business_type"
-    t.date     "client_since",   limit: 255
-    t.decimal  "credit_limit"
+    t.date     "client_since"
+    t.decimal  "credit_limit",   precision: 10, scale: 0
     t.string   "terms"
     t.string   "status"
     t.string   "lead_source"
@@ -117,7 +117,8 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.string   "occupation"
     t.string   "employer"
     t.string   "job_position"
-    t.boolean  "locked",                     default: false
+    t.boolean  "locked",                                  default: false
+    t.boolean  "deleted"
   end
 
   create_table "users", force: true do |t|
@@ -138,22 +139,22 @@ ActiveRecord::Schema.define(version: 20140609170050) do
     t.string   "status",                 default: "Active"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",                  null: false
-    t.integer  "item_id",                    null: false
-    t.string   "event",                      null: false
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
     t.integer  "profile_id"
     t.string   "description"
-    t.text     "object_changes", limit: 255
+    t.text     "object_changes"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  add_index "versions", ["profile_id"], name: "index_versions_on_profile_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["profile_id"], name: "index_versions_on_profile_id", using: :btree
 
 end

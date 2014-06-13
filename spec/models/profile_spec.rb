@@ -4,6 +4,7 @@ describe Profile, :type => :model do
   
 after(:all) { DatabaseCleaner.clean }
 
+describe "CURD" do
   it "Saves an Account when it is saved" do
      p = create(:person)
      p.account = Account.new(name: p.full_name)
@@ -13,15 +14,29 @@ after(:all) { DatabaseCleaner.clean }
      assert p.account != nil
   end
 
+  it "only marks a profile as deleted" do
+    p = create(:person)
+    p.delete
+    expect(p.deleted?).to be true
+    expect(Profile.deleted.count).to eq 1
+    expect{Profile.find(p.id)}.to_not raise_error
+  end
+
+end
+
+describe "Utilities" do
+
   it "agent can be identified" do
   	p = build(:person, profile_type: 'AGENT')
   	expect(p.agent?).to be true
   end
 
- it "person can be identified" do
+  it "person can be identified" do
   	p = build(:person, profile_type: 'INDIVIDUAL')
   	expect(p.person?).to be true
   end
+
+end
 
  describe Member, type: :model do
 

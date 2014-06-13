@@ -1,0 +1,8 @@
+<% present @profile do | profile_presenter | %>
+$('#<%=profile_presenter.profile_css_id%>').fadeOut('slow', function(){
+        $(this).remove();
+});
+<% end %>
+<% if notice %>
+  flash_success("<%= notice %>");
+<% end %>

@@ -11,18 +11,39 @@ class Profile < ActiveRecord::Base
   validates :first_name, presence: {message: "First name must not be blank."}, if: :person?
   validates :last_name, presence: {message: "Last name must not be blank."}, if: :person?
   validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
-  before_destroy :profile_not_locked
 
-  scope :no_contact_detail, -> {where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")").includes(:phones, :addresses)}
-  scope :no_address, -> {where("id not in (select owner_id from addresses where owner_type = \"Profile\")").includes(:phones, :addresses)}
-  scope :person, -> {where(profile_type: ['INDIVIDUAL','AGENT','GUEST']).includes(:phones, :addresses)}
+  scope :all_undeleted, -> {where(deleted: [nil, false]).includes(:phones, :addresses)}
+  scope :no_contact_detail, -> {all_undeleted.where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
+  scope :no_address, -> {all_undeleted.where("id not in (select owner_id from addresses where owner_type = \"Profile\")")}
+  scope :person, -> {all_undeleted.where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
   scope :search_by_name, -> (term) { 
-    where("first_name like ? or middle_name like ? or last_name like ?",
+    all_undeleted.where("first_name like ? or middle_name like ? or last_name like ?",
       "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
-
 
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}, 
     :ignore => [:updated_at]
+
+  scope :deleted, -> {where(deleted: true)}
+
+  def restore
+    self.deleted = false
+    self.locked = false
+    self.save
+  end
+
+  def delete
+    self.deleted = true
+    self.locked = true
+    self.save
+  end
+
+  def not_deleted?
+    !deleted?
+  end
+
+  def deleted?
+    self.deleted
+  end
 
   def profile_not_locked
     if locked?
@@ -40,11 +61,11 @@ class Profile < ActiveRecord::Base
     end
 
     def unlocked?
-      locked == false
+      locked == false && not_deleted?
     end
 
     def locked?
-      locked == true
+      locked == true || deleted?
     end
 
     def value
@@ -169,7 +190,5 @@ class Profile < ActiveRecord::Base
     s.chop! if s.ends_with?("/")
     s = s[1..-1] if s.starts_with?("/")
     s
-
-
   end
 end

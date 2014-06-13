@@ -28,8 +28,12 @@
 
     </div>
     <%= f.input :relationship %>
-        
-    <%= f.button :submit, 'Save', disabled: true, data: {disable_with: "Saving...."} %>
+    
+    <%if params[:action] == 'edit'%>
+        <%= f.button :submit, 'Save', data: {disable_with: "Saving...."} %>
+    <% else %>
+        <%= f.button :submit, 'Save', disabled: true, data: {disable_with: "Saving...."} %>
+    <% end %>
     </fieldset>
 
   <% end %>
