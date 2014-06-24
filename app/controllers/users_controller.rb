@@ -28,6 +28,8 @@ class UsersController < ApplicationController
   def edit
   end
 
+
+
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -43,16 +45,30 @@ class UsersController < ApplicationController
   def show
   end
 
+  def activate
+    status_change { |user| user.status = 'Active' }
+  end
+
+  def disable
+    status_change { |user| user.status = 'Disabled' }
+  end
+
   def destroy
-    @user.destroy unless (@user.username == "Admin" || @user.id == current_user.id)
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-      format.js
-    end
+    status_change { |user| user.status = 'Deleted' }
   end
 
   private
+    def status_change
+      unless (@user.username == "Admin" || @user.id == current_user.id)
+        yield @user
+        @user.save
+      end
+      respond_to do |format|
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+        format.js
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

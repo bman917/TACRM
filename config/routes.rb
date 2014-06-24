@@ -12,7 +12,9 @@ TACRM::Application.routes.draw do
 
   devise_for :users
   scope "/admin" do
-    resources :users
+    resources :users do
+      get :activate, on: :member
+    end
   end
 
   

@@ -37,8 +37,7 @@ describe Note do
     before(:each) do
       @p = create(:person_with_notes)
       @note_css = "tr#note_#{@p.notes.first.id}"
-      visit profiles_path
-      view_profile(@p)
+      visit profile_path(@p)
       click_on 'Notes'
     end
 

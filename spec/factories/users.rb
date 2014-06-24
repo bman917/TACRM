@@ -7,6 +7,12 @@ FactoryGirl.define do
   		password 'password'
   		role 'Admin'
   	end
+
+    factory :moderator do
+      username 'moderator'
+      password 'password'
+      role 'Moderator'
+    end
   		
   end
 end
