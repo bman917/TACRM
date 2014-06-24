@@ -8,8 +8,7 @@ describe Phone do
   describe "Show Create", js: true do
     before(:each) do
       @p = create(:person)
-      visit profiles_path
-      view_profile(@p)
+      visit profile_path(@p)
       click_on 'Client Details'
       click_on 'Add Phone Number'
     end

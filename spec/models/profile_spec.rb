@@ -5,6 +5,9 @@ describe Profile, :type => :model do
 after(:all) { DatabaseCleaner.clean }
 
 describe "CURD" do
+  before(:each) do
+    Profile.destroy_all
+  end
   it "Saves an Account when it is saved" do
      p = create(:person)
      p.account = Account.new(name: p.full_name)
