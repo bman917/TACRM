@@ -1,0 +1,63 @@
+
+<div class="portal">
+
+<div class="controls container titleize">
+  <div  class="box span-11 portal-1">
+  <h3>View Client Profiles</h3>
+    <ul>
+      <li><%= link_to 'Individual', profiles_path(profile_type: 'Individual') %></li>
+      <li><%= link_to 'Corporate', profiles_path(profile_type: 'Corporate') %></li>
+    </ul>
+
+    <h3>Internal Profiles</h3>
+      <ul>
+        <li><%= link_to 'Agents', profiles_path(profile_type: 'Agent') %></li>
+        <li><%= link_to 'Vendor', profiles_path(profile_type: 'Vendor') %></li>
+      </ul>
+
+    <h3>Special Filters</h3>
+    For Profiles with....
+    <ul>
+      <li><%= link_to 'No Contact Details', profiles_path(profile_type: 'NO_CONACT_DETAILS') %></li>
+      <li><%= link_to 'No Address', profiles_path(profile_type: 'NO_ADDRESS') %></li>
+    </ul>
+  </div>
+
+  <% if can? :create, Profile %>
+  <div  class="portal-2 box span-12">
+  <h3>Add New Profiles</h3>
+          <ul>
+          <li><%=add_profile_link titleize: true, class: '', profile_type: :individual%></li>
+          <li><%=add_profile_link titleize: true, class: '', profile_type: :corporate%></li>
+          <li><%=add_profile_link titleize: true, class: '', profile_type: :agent %></li>
+          <li><%=add_profile_link titleize: true, class: '', profile_type: :vendor %></li>
+          </ul>
+  </div>
+  <% end %>
+
+  <% if current_user.try :admin? %>
+  <div  class="box span-12 portal-3">
+  <h3>Administration</h3>    
+        <ul>
+          <li><%= link_to 'User Activity', profile_versions_path %></li>
+          <li><%= link_to 'Manage Users', users_path %></li>
+          <li><%= link_to 'Restore Deleted Profiles', view_deleted_profiles_path%></li>
+          <li><%= link_to 'View System Updates', system_updates_index_path%></li>
+        </ul>
+  </div>
+  <% end %>
+</div>
+<hr/>
+<div class="notifications">
+  <div  class="box span-24">
+  <h3 class="titleize">Expiring Passports</h3> 
+  <% if @expiring_passports && @expiring_passports.count > 0 %>
+    <%=render_identifications_table(@expiring_passports, show_edits: false)%>
+  <% else %>
+    <%= "none" %>
+  <% end %>
+  </div>
+
+</div>
+
+</div>

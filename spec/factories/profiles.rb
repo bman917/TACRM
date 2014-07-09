@@ -27,5 +27,9 @@ FactoryGirl.define do
   factory :account do
     name 'Default'
   end
+
+  factory :identification do
+    foid_type 'Passport'
+  end
   
 end

@@ -1,0 +1,31 @@
+// Place all the styles related to the portal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.portal {
+  
+  .container {
+    .portal-2 {background: #F6F5E7;}
+    .portal-3 {background: #F6E7E8;}
+  }
+
+  h3 { 
+    font-size: 2em;
+    font-weight: bolder;
+    color: #375219;
+    margin-bottom: .25em;
+
+  }
+  .box {
+    background: #EFF6E7;
+    border: 1px solid #375238;
+
+  }
+  .controls ul li {
+    font-size: 1.5em;
+    padding: 4px 0;
+  }
+
+  .notifications {
+
+  }
+}

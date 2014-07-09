@@ -10,13 +10,13 @@
     <td><%=identification_presenter.expiration_date%></td>
     <td><%=identification_presenter.other_details%></td>
 
-    <% if can? :edit, Identification %>
+    <% if can?(:edit, Identification) && show_edits %>
     <td>
     <%= identification_presenter.edit_link(remote) %>
     </td>
     <% end %>
 
-    <% if can? :destroy, identification %>
+    <% if can?(:destroy, identification) && show_edits %>
     <td>
     <%= identification_presenter.destroy_link%>
     </td>

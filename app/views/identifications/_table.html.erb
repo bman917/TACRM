@@ -7,6 +7,10 @@ $(document).ready(function(){
 });
 <% end %>
 
+<%
+  show_edits = show_edits.nil? ? true : show_edits
+%>
+
 <table id="identification_table">
   <thead>
     <tr>
@@ -19,8 +23,8 @@ $(document).ready(function(){
       <th>Date Issued</th>
       <th>Expiration Date</th>
       <th>Other Details</th>
-      <% if can? :edit, Identification %> <th class="tiny"></th> <% end %>
-      <% if can? :destroy, Identification %> <th class="tiny"></th> <% end %>
+      <% if can?(:edit, Identification) && show_edits %> <th class="tiny"></th> <% end %>
+      <% if can?(:destroy, Identification) && show_edits %> <th class="tiny"></th> <% end %>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +33,8 @@ $(document).ready(function(){
         locals: {
           identification: identification, 
           show_client_name: defined?(show_client_name) && show_client_name,
-          remote: defined?(remote) && remote
+          remote: defined?(remote) && remote,
+          show_edits: defined?(show_edits) && show_edits
         }
       %>
     <% end %>

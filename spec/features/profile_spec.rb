@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Profile do
   before(:each) do
     sign_in
+    visit profiles_path
   end
 
   describe "Filters" do
