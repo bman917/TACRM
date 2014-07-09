@@ -16,7 +16,7 @@ describe "Portal" do
      it "does not display not-expired passports" do
       Profile.destroy_all
       p = create(:person)
-      p.identifications.create(foid_type: "Passport", foid: "PP-FUTURE-PROOF-01", expiration_date: Date.today.to_date + 31)
+      p.identifications.create(foid_type: "Passport", foid: "PP-FUTURE-PROOF-01", expiration_date: Date.today.to_date + 61)
       visit portal_index_path
       expect(page).to have_no_content("PP-FUTURE-PROOF-01")
       expect(page).to have_content("none")
