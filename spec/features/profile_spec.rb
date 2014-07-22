@@ -78,7 +78,7 @@ describe Profile do
   end
 
 
-  describe "Create", js: true do
+  describe "Create", :js, :create do
 
     it "can open and close a form" do
       click_on 'ADD INDIVIDUAL'
@@ -93,6 +93,7 @@ describe Profile do
 
       click_on 'ADD INDIVIDUAL'
 
+      select "Mr.", from: 'Title'
       fill_in 'First name',  with: "Bart"
       fill_in 'Middle name', with: "C"
       fill_in 'Last name',   with: "Olome"
@@ -117,6 +118,7 @@ describe Profile do
       expect(saved_bart.middle_name).to eq "C"
       expect(saved_bart.last_name).to   eq "Olome"
       expect(saved_bart.email).to       eq "Bart.Olome@yahoo.com"
+      expect(saved_bart.title).to       eq "Mr."
 
       expect(saved_bart.birth_day).to    eq Date.parse("May 19, 2013")
       expect(saved_bart.client_since).to eq Date.parse("Jan  1, 2014")
@@ -176,6 +178,14 @@ describe Profile do
       click_on 'Unlock Profile'
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_css("#p#{p.id}_unlocked") 
+    end
+  end
+
+  describe "Show", :js, :show do
+    it "displays correct details" do
+      p = create(:person, title: 'Mayor')
+      visit profile_path(p)
+      expect(page).to have_content('Mayor')
     end
   end
 end

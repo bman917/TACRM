@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def current_version
-    '1.8.0'
+    '1.9.0'
   end
 
   def add_role(key)
@@ -85,6 +85,18 @@ module ApplicationHelper
       ['Landline','Landline'],
       ['Mobile','Mobile'],
       ['Fax','Fax']
+    ]
+  end
+
+  def profile_titles
+    [
+      ['Mr.','Mr.'],
+      ['Mrs.','Mrs.'],
+      ['Ms.','Ms.'],
+      ['Dr.','Dr.'],
+      ['Prof.','Prof.'],
+      ['Atty.','Atty.'],
+      ['Other','Other']
     ]
   end
 

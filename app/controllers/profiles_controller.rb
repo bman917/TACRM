@@ -230,6 +230,6 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:contact_person, :business_type,
         :client_since,:credit_limit,:terms,:status,:lead_source,:nationality, 
         :name, :profile_type, :first_name, :last_name, :middle_name, :birth_day, 
-        :gender, :email, :marital_status, :occupation, :employer, :job_position)
+        :gender, :email, :marital_status, :occupation, :employer, :job_position, :title)
     end
 end

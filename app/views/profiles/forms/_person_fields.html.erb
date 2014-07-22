@@ -1,4 +1,5 @@
 <% present profile do | profile_presenter | %>
+<%= f.input :title, collection: profile_titles, include_blank: true%>
 <%= f.input :first_name, input_html: {class: 'required'} %>
 <%= f.input :middle_name%>
 <%= f.input :last_name, input_html: {class: 'required'} %>
