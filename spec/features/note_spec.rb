@@ -8,8 +8,7 @@ describe Note do
   describe "Create", js: true do
     before(:each) do
       @p = create(:person, first_name: 'Note', last_name: 'Tester')
-      visit profiles_path
-      view_profile(@p)
+      visit profile_path(@p)
       click_on 'Notes'
       click_on 'Add Note'
     end
