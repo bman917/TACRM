@@ -1,6 +1,10 @@
 class IdentificationsController < ApplicationController
   before_action :set_identification, only: [:show, :edit, :update, :destroy]
 
+  def expiring
+    @expiring_passports = Identification.passports.where("expiration_date < ?", Date.today.to_date + 210)
+  end
+
   # GET /identifications
   # GET /identifications.json
   def index

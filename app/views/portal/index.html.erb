@@ -50,13 +50,12 @@
 <hr/>
 <div class="notifications">
   <div  class="box span-24">
-  <h3 class="titleize">Expiring Passports</h3> 
-  <p>(Passports expiring within 7 months from today)</p>
-  <% if @expiring_passports && @expiring_passports.count > 0 %>
-    <%=render_identifications_table(@expiring_passports, show_edits: false)%>
+  <h3 class="titleize">Notifications</h3> 
+  <%if @expiring_passports && @expiring_passports.count > 0%>
+    <%=link_to "There are #{@expiring_passports.count} Passports that are within 7 months of expiry", expiring_passports_path%>
   <% else %>
     <div> 
-    <h4>-none-</h4>
+      <h4>-none-</h4>
     </div>
   <% end %>
   </div>

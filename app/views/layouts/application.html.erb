@@ -83,6 +83,7 @@ version: <%=current_version%>
         <% if can? :create, Identification %>
         <li><%= link_to 'Add Document', new_identification_path %></li>
         <% end %>
+        <li><%= link_to 'Expiring Passports', expiring_passports_path %></li>
 
       </ul>
     </li>

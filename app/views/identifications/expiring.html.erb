@@ -1,0 +1,14 @@
+<div class="notifications">
+  <div  class="span-24">
+  <h3 class="titleize">Expiring Passports</h3> 
+  <p>(Passports expiring within 7 months from today)</p>
+  <% if @expiring_passports && @expiring_passports.count > 0 %>
+    <%=render_identifications_table(@expiring_passports, show_edits: false)%>
+  <% else %>
+    <div> 
+    <h4>-none-</h4>
+    </div>
+  <% end %>
+  </div>
+
+</div>

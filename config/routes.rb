@@ -43,6 +43,7 @@ TACRM::Application.routes.draw do
     get :unlock_all, on: :collection
     get :view_deleted, on: :collection
   end
+  get 'identifications/passports/expiring' => 'identifications#expiring', as: 'expiring_passports'
   get 'identifications/new/profile/:profile_id' => 'identifications#new', as: 'profile_new_identification'
   get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'
   get 'versions/profile/:profile_id' => 'profile_versions#index', as: 'versions_profile'
