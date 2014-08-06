@@ -41,7 +41,7 @@ describe 'Guest' do
       fill_in 'Relationship', with: 'Friend'
       click_on 'Save'
       sleep 0.25
-      expect(page).to have_content('Friend One')
+      expect(page).to have_content(@p2.full_name)
 
       click_on 'Add Guest'
       fill_autocomplete 'profile_full_name', with: 'Fr', not_found: true
