@@ -24,7 +24,6 @@ describe "CURD" do
     expect(Profile.deleted.count).to eq 1
     expect{Profile.find(p.id)}.to_not raise_error
   end
-
 end
 
 describe "Utilities" do

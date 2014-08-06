@@ -1,11 +1,18 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+
+  sequence :random do |n|
+    n
+  end
+
   factory :profile do
 
     factory :person do
       first_name 'Juan'
       last_name 'Dela Cruz'
+      middle_name {generate(:random)}
+
       profile_type 'INDIVIDUAL'
       account
 

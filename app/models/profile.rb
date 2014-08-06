@@ -11,6 +11,9 @@ class Profile < ActiveRecord::Base
   validates :first_name, presence: {message: "First name must not be blank."}, if: :person?
   validates :last_name, presence: {message: "Last name must not be blank."}, if: :person?
   validates :name, presence: {message: "Company name must not be blank."}, if: :corporate_client?
+  #validates_uniqueness_of :first_name, scope: [:last_name, :middle_name, :birth_day], case_sensitive: false, if: :person?
+  #validates_uniqueness_of :name, scope: [:business_type], case_sensitive: false, if: :corporate_client?
+  validates_with NameValidator, on: :create
 
   scope :all_undeleted, -> {where(deleted: [nil, false]).includes(:phones, :addresses)}
   scope :no_contact_detail, -> {all_undeleted.where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
@@ -24,6 +27,16 @@ class Profile < ActiveRecord::Base
     :ignore => [:updated_at]
 
   scope :deleted, -> {where(deleted: true)}
+
+  before_validation :truncate_values
+
+  def truncate_values
+    first_name.try(:squish!)
+    middle_name.try(:squish!)
+    last_name.try(:squish!)
+    name.try(:squish!)
+    # puts "#{name} #{first_name} #{middle_name} #{last_name} #{birth_day}"
+  end
 
   def restore
     self.deleted = false

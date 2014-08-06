@@ -126,6 +126,19 @@ describe Profile do
       assert saved_bart.individual_client?
     end
 
+    it "displays error on duplicate records", js: true do
+      existing_profile = create(:person)
+
+      click_on 'ADD INDIVIDUAL'
+      fill_in 'First name',  with: existing_profile.first_name
+      fill_in 'Middle name', with: existing_profile.middle_name
+      fill_in 'Last name',   with: existing_profile.last_name
+
+      click_button 'Save'
+      expect(page).to have_content("Name '#{existing_profile.full_name}' has already been taken")
+
+    end
+
     it "can create a profile for an VENDOR", js: true do
 
       click_on 'ADD VENDOR'
@@ -148,6 +161,7 @@ describe Profile do
   end
 
   describe "Lock", js: true do 
+
     it "can be locked and unlocked on Index page" do
       p = create(:person, first_name: 'Lock', last_name: 'Test')
       visit profiles_path
