@@ -39,8 +39,7 @@ describe Phone do
       @p = create(:person)
       @p.phones.create(phone_type:'Landline', number: '7777777')
       @phone_css = "tr#profile_phone_#{@p.phones.first.id}"
-      visit profiles_path
-      view_profile(@p)
+      visit profile_path(@p)
       click_on 'Client Details'
     end
 
