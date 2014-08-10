@@ -13,9 +13,13 @@
 <%=javascript_tag do %>
 
 $(document).ready(function(){
+
   init_profiles_index();
-
-
+  
+  /* Needed if DataTable state change is enabled */
+  <% if @profile_type %>
+    runDataTableProfileTypeSearch();  
+  <% end %>
 });
 
 <% end %>
@@ -30,7 +34,7 @@ Profiles Index
 
 
 
-<%=form_tag profiles_path, method: 'get', id: 'type_filter', remote: true do %>
+<%=form_tag profiles_path, method: 'get', id: 'type_filter' do %>
 Filter: <%= select_tag(:profile_type, 
 options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 <% end %>
@@ -53,8 +57,6 @@ options_for_select(profile_types.push(['ALL']) , @profile_type))%>
 </div>
 
 <div id="profile_index_table_container">
-  <% cache(add_role "#{ProfilesHelper.cache_key_for_profiles}-#{@profile_type}") do %>
     <%= render 'profile_table'%>
-  <% end %>
 <div class="table_botom_spacer">&nbsp</div>
 </div>

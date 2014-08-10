@@ -1,0 +1,75 @@
+<% url = TACRM::Application.routes.url_helpers %>
+
+function init_profiles_index() {
+
+  $('a.slow_link').on('click',  overlay);
+
+  $('a.spin_on_click').on('click', spin_and_overlay);
+
+  // Select filter for different profile types.
+  // Causes profile filtered by profile type to be loaded.
+  $('#profile_type').change(function() {
+    runDataTableProfileTypeSearch();
+  });
+
+  profile_index_init_data_table();
+}
+
+/* currently used for locking and ulocking profiles. but i think this might be reusable.*/
+function spin_and_overlay() {
+
+  //this only works when the link has a data-confirm attribute.
+  //what this says is wait for the user to confirm/cancel before doing anything.
+  $(this).on('confirm:complete', function(e,answer) {
+    if (answer) {
+      $(this).parent().spin('small');
+      overlay();
+    }else {
+      $(this).parent().stop_spinner();
+      remove_overlay();
+    }
+  });
+}
+
+function profile_index_init_data_table() {
+  $('#profile_data_table').dataTable( {
+        "paging": true,
+        "pagingType": "full_numbers",
+        "jQueryUI": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "<%=url.json_profiles_path%>",
+        "stateSave": true,
+        "columns": [
+          {"data": "view"},
+          {"data": "name"},
+          {"data": "type"},
+          {"data": "email"},
+          {"data": "number"},
+          {"data": "address"},
+          {"data": "locked"},
+          {"data": "edit"},
+          {"data": "del"}
+        ],
+        "columnDefs": [
+          {"targets": [0,4,5,6,7,8], "orderable": false}
+        ],
+        /* initial search filter */
+        "searchCols": [
+          null,
+          null,
+          {"search": $('#profile_type').val()},
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+    } );
+    $('#profile_data_table_filter input').focus();
+}
+
+function runDataTableProfileTypeSearch() {
+  $('#profile_data_table').DataTable().columns(2).search($('#profile_type').val()).draw();
+}

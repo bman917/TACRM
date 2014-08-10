@@ -19,6 +19,10 @@ class Profile < ActiveRecord::Base
   scope :no_contact_detail, -> {all_undeleted.where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
   scope :no_address, -> {all_undeleted.where("id not in (select owner_id from addresses where owner_type = \"Profile\")")}
   scope :person, -> {all_undeleted.where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
+  scope :search_by_full_name, -> (term) { 
+    all_undeleted.where("first_name like ? or middle_name like ? or last_name like ? or name like ?",
+      "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
+
   scope :search_by_name, -> (term) { 
     all_undeleted.where("first_name like ? or middle_name like ? or last_name like ?",
       "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
@@ -29,6 +33,23 @@ class Profile < ActiveRecord::Base
   scope :deleted, -> {where(deleted: true)}
 
   before_validation :truncate_values
+
+  def self.apply_filter(params={})
+      @profile_type = params[:profile_type] || 'ALL'
+      @profile_type.upcase!
+
+      case @profile_type
+      when 'ALL'
+        @profiles = Profile.all_undeleted
+      when 'NO_CONACT_DETAILS'
+        @profiles = Profile.all_undeleted.no_contact_detail
+      when 'NO_ADDRESS'
+        @profiles = Profile.all_undeleted.no_address
+      else
+        @profiles = Profile.all_undeleted.where(profile_type: @profile_type)
+      end
+      @profiles
+  end
 
   def truncate_values
     first_name.try(:squish!)

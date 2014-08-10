@@ -2,6 +2,18 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy, :delete, :restore, :lock, :unlock]
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
+  def json
+
+    render json: ProfilesDatatable.new(view_context)
+
+  end
+
+  def datatable
+
+    @profile_type = params[:profile_type]
+
+  end
+
   def lock_all
     Profile.update_all(locked: true)
     flash[:notice] = "All Profiles Locked!!"
@@ -42,20 +54,26 @@ class ProfilesController < ApplicationController
 
   def view_deleted
     @profiles = Profile.deleted
-    render 'index'
+#    render 'index'
   end
 
   # GET /profiles
   # GET /profiles.json
   def index
-    index_load
-    # # @profiles = Profile.all
-    @profile = Profile.new(profile_type: 'INDIVIDUAL')
+    @profile_type = params[:profile_type]
+    @profile_type.try :upcase!
+    @profiles = nil
 
-    respond_to do | format |
-      format.html
-      format.js
-    end
+    puts "xxxxxxxxxx@prfiles: #{@profiles}"
+
+    # index_load
+    # # # @profiles = Profile.all
+    # @profile = Profile.new(profile_type: 'INDIVIDUAL')
+
+    # respond_to do | format |
+    #   format.html
+    #   format.js
+    # end
   end
 
   def corporate_index
@@ -207,17 +225,7 @@ class ProfilesController < ApplicationController
     def index_load
       @profile_type = params[:profile_type] || 'ALL'
       @profile_type.upcase!
-
-      case @profile_type
-      when 'ALL'
-        @profiles = Profile.all_undeleted
-      when 'NO_CONACT_DETAILS'
-        @profiles = Profile.all_undeleted.no_contact_detail
-      when 'NO_ADDRESS'
-        @profiles = Profile.all_undeleted.no_address
-      else
-        @profiles = Profile.all_undeleted.where(profile_type: @profile_type)
-      end
+      @profiles = Profile.apply_filter(params)
 
     end
     # Use callbacks to share common setup or constraints between actions.

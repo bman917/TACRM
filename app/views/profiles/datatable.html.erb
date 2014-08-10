@@ -1,0 +1,95 @@
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+
+  // Select filter for different profile types.
+  // Causes profile filtered by profile type to be loaded.
+  // Calls overlays while profiles are being retreived
+  $('#profile_type').change(function() {
+    $('#profile_data_table').DataTable().columns(2).search($('#profile_type').val()).draw();
+  });
+
+
+  $('#profile_data_table').dataTable( {
+        "paging": true,
+        "pagingType": "full_numbers",
+        "jQueryUI": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "json",
+        "columns": [
+          {"data": "view"},
+          {"data": "name"},
+          {"data": "type"},
+          {"data": "email"},
+          {"data": "number"},
+          {"data": "address"},
+          {"data": "locked"},
+          {"data": "edit"},
+          {"data": "del"}
+        ],
+        "columnDefs": [
+          {"targets": [0,4,5,6,7,8], "orderable": false}
+        ],
+        /* initial search filter */
+        "searchCols": [
+          null,
+          null,
+          {"search": $('#profile_type').val()},
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+    } );
+
+});
+
+<% end %>
+<div id="section_title">
+Profiles Index
+</div>
+<div id="section_controls">
+<%=form_tag datatable_profiles_path, method: 'get', id: 'type_filter' do %>
+Filter: <%= select_tag(:profile_type, 
+options_for_select(profile_types , @profile_type))%>
+<% end %>
+
+<% if can? :create, Profile %>
+  <span class="group">
+    <%=add_profile_link%>
+    <%=add_profile_link profile_type: 'CORPORATE'%>
+    <%=add_profile_link profile_type: 'AGENT'%>
+    <%=add_profile_link profile_type: 'VENDOR'%>
+  </span>
+<% end %>
+</div>
+
+<div id="profile_index_table_container">
+
+<table id="profile_data_table" class="section_table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Email</th>
+      <th>Contact Number</th>
+      <th>Address</th>
+      <th></th>
+      <% if can? :update, Profile %>
+          <th></th>
+      <% end %>
+      <% if can? :destroy, Profile %>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+
+</table>
+
+<div class="table_botom_spacer">&nbsp</div>
+</div>

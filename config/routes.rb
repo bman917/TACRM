@@ -34,6 +34,8 @@ TACRM::Application.routes.draw do
   resources :phones
 
   resources :profiles do
+    get :json, on: :collection
+    get :datatable, on: :collection
     get :corporate_index, on: :collection
     get :lock, on: :member
     get :unlock, on: :member

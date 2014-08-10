@@ -1,11 +1,11 @@
 <% present profile do | profile_presenter | %>
   <tr id="<%=profile_presenter.profile_css_id%>" class="<%=profile_presenter.deleted_css%>">
-    <td class="view">
+    <td>
       <%= profile_presenter.view %>
     </td>
 
     <td><%= profile.full_name %></td>
-    <td class="ppt"><%= profile.profile_type %></td>
+    <td><%= profile.profile_type %></td>
     <td><%= profile.email %></td>
     <td><%= profile_presenter.phone %></td>
     <td><%= profile_presenter.address  %></td>
