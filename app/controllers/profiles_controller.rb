@@ -64,8 +64,6 @@ class ProfilesController < ApplicationController
     @profile_type.try :upcase!
     @profiles = nil
 
-    puts "xxxxxxxxxx@prfiles: #{@profiles}"
-
     # index_load
     # # # @profiles = Profile.all
     # @profile = Profile.new(profile_type: 'INDIVIDUAL')

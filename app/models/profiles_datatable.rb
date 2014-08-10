@@ -18,7 +18,6 @@ class ProfilesDatatable
   private
 
   def data
-    puts "Displaying #{profiles.count} records..."
     filtered_profiles.map do | profile |
       profile_presenter = ProfilePresenter.new(profile,@view)
       {
@@ -48,11 +47,11 @@ class ProfilesDatatable
 
   def fetch_profiles
     
-    puts "Profile Type Filter: #{profile_type_filter}"
+    #puts "Profile Type Filter: #{profile_type_filter}"
     @profiles = Profile.apply_filter(profile_type: profile_type_filter)
 
     search_val = params[:search][:value]
-    puts "Search Value: #{search_val}"
+    #puts "Search Value: #{search_val}"
     if search_val && !search_val.empty?
       @profile_unordered = @profiles.search_by_full_name(search_val)
     else
@@ -65,7 +64,7 @@ class ProfilesDatatable
       index = order[1][:column].to_i || 0
       dir = order[1][:dir].to_sym || :desc
       column = columns[index]
-      puts "Order Column Index: #{index}, Column: #{column}, Dir: #{dir}"
+      #puts "Order Column Index: #{index}, Column: #{column}, Dir: #{dir}"
 
       @profile_ordered = @profile_unordered.order(column=> dir) if column
     end
