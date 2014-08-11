@@ -15,6 +15,8 @@ class Ability
       cannot [:unlock, :lock], Profile
     else
       can :read, :all
+      can :json, Profile
+      can :expiring, Identification
       cannot :manage, User
     end
   end

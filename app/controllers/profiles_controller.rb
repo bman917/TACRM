@@ -3,9 +3,7 @@ class ProfilesController < ApplicationController
   # before_action :check_if_user_is_admin, only: [:new, :edit, :update, :destroy, :create]
 
   def json
-
     render json: ProfilesDatatable.new(view_context)
-
   end
 
   def datatable

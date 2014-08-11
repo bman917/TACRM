@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
   	email {"#{username}@noreply.com"}
 
@@ -12,6 +13,12 @@ FactoryGirl.define do
       username 'moderator'
       password 'password'
       role 'Moderator'
+    end
+
+    factory :viewer do
+      username 'viewer'
+      password 'password'
+      role 'Viewer'
     end
   		
   end

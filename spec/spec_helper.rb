@@ -84,6 +84,14 @@ def sign_in
   click_button 'Sign in'
 end
 
+def sign_in_as(options={})
+  visit new_user_session_path
+  fill_in 'user_username', :with => options[:username]
+  fill_in 'user_password', :with => options[:password]
+  click_button 'Sign in'
+end
+
+
 def view_profile(p)
   within("tr#profile_#{p.id}") do
     click_on 'View'

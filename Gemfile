@@ -39,7 +39,6 @@ group :development, :test do
 	gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 	gem 'launchy'
 	gem 'selenium-webdriver'
-  gem 'launchy'
   gem 'database_cleaner'
   gem 'thin'
 end

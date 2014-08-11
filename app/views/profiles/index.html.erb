@@ -14,12 +14,33 @@
 
 $(document).ready(function(){
 
-  init_profiles_index();
+  columns = <%=raw columns_by_user_role%>;
+  search_cols = <%=raw search_cols_by_user_role%>;
+  column_defs = <%=raw column_defs%>
+
+  $('#profile_data_table').dataTable( {
+      "paging": true,
+      "pagingType": "full_numbers",
+      "jQueryUI": true,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "<%=json_profiles_path%>",
+      "stateSave": true,
+      "columns": columns,
+      "columnDefs": column_defs,
+      "searchCols": search_cols,
+      "order": [ 2, 'asc' ]
+  } );
+  $('#profile_data_table_filter input').focus();
+
   
   /* Needed if DataTable state change is enabled */
   <% if @profile_type %>
     runDataTableProfileTypeSearch();  
   <% end %>
+
+  init_profiles_index();
+  
 });
 
 <% end %>

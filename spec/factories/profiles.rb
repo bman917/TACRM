@@ -8,6 +8,17 @@ FactoryGirl.define do
 
   factory :profile do
 
+    factory :vendor do
+      name "Side Walk"
+      profile_type 'VENDOR'
+    end
+
+
+    factory :company do
+      name "JD's Food Hall"
+      profile_type 'CORPORATE'
+    end
+
     factory :person do
       first_name 'Juan'
       last_name 'Dela Cruz'
