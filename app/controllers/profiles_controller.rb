@@ -58,18 +58,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profile_type = params[:profile_type]
-    @profile_type.try :upcase!
-    @profiles = nil
-
-    # index_load
-    # # # @profiles = Profile.all
-    # @profile = Profile.new(profile_type: 'INDIVIDUAL')
-
-    # respond_to do | format |
-    #   format.html
-    #   format.js
-    # end
+    index_load
   end
 
   def corporate_index
@@ -214,16 +203,14 @@ class ProfilesController < ApplicationController
         format.js { render 'lock' }
 
       end
-
-
     end
 
     def index_load
-      @profile_type = params[:profile_type] || 'ALL'
-      @profile_type.upcase!
-      @profiles = Profile.apply_filter(params)
-
+      @profile_type = params[:profile_type] || 'INDIVIDUAL'
+      @profile_type.try :upcase!
+      @profiles = nil
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])
