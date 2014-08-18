@@ -24,12 +24,13 @@ $(document).ready(function(){
       "jQueryUI": true,
       "processing": true,
       "serverSide": true,
-      "ajax": "<%=json_profiles_path%>",
+      "ajax": {"url": "<%=json_profiles_path%>", "type": "POST"},
       "stateSave": true,
       "columns": columns,
       "columnDefs": column_defs,
       "searchCols": search_cols,
-      "order": [ 2, 'asc' ]
+      "order": [ 2, 'asc' ],
+      "deferLoading": true
   } );
   $('#profile_data_table_filter input').focus();
 

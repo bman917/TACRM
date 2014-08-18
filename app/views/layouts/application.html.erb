@@ -48,7 +48,7 @@ version: <%=current_version%>
     <li><%=link_to 'Home', portal_index_path%></li>
     <li><%=link_to 'Clients', profiles_path%>
       <ul>
-        <li><%= link_to 'All', profiles_path %></li>
+        <li><%= link_to 'All', profiles_path(profile_type: 'All') %></li>
         <li><%= link_to 'Individual', profiles_path(profile_type: 'Individual') %></li>
         <li><%= link_to 'Corporate', profiles_path(profile_type: 'Corporate') %></li>
         <li><%= link_to 'Agents', profiles_path(profile_type: 'Agent') %></li>
