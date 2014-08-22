@@ -1,5 +1,7 @@
 TACRM::Application.routes.draw do
   
+  get "transactions/new"
+  get "transactions/create"
   get "portal/index"
   get "system_updates/index"
   get "users/index"
@@ -18,6 +20,7 @@ TACRM::Application.routes.draw do
     end
   end
 
+  resources :transactions
   
   resources :identifications
 

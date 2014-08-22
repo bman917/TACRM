@@ -19,7 +19,7 @@
            <%= f.hidden_field :profile_id %>
            <%=text_field_tag :profile_full_name, @member.profile.full_name, disabled: true, size: (@member.profile.full_name.length + 4) %>
         <% else %>
-            <%=render partial: 'common/profile_autocomplete', 
+            <%=render partial: 'member_profile_autocomplete', 
                 locals: {
                     owner_profile: @member.owner,
                     profile_id_field: 'member_profile_id', 

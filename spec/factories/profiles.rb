@@ -36,6 +36,13 @@ FactoryGirl.define do
         end      
       end
     end
+
+    factory :agent do
+      first_name 'Agent'
+      middle_name {generate(:random)}
+      last_name 'X44'
+      profile_type 'AGENT'
+    end
   end
 
   factory :note do

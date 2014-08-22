@@ -18,16 +18,18 @@ $(document).ready(function(){
 
   /* Generate the profile names */
     var preloaded_profiles = [
-      <% owner_profile.non_members.each do | profile | %>
+      <% Profile.person.each do | profile | %>
         {
           id: <%=profile.id%>,
           label: "<%=profile.full_name%>"
         },
       <% end %>
     ];
-
   profile_autocomplete_setup(preloaded_profiles);
   profile_autocomplete_setup_form_logic();
-
 });
+
+function next_tab_index() {
+  return <%=defined?(next_tab_index) ? next_tab_index : 1%>;
+}
 <% end %>      

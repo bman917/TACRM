@@ -1,3 +1,36 @@
+<div class="profile_autocomplete_container">
+
+  <%=hidden_field_tag profile_id_field, nil, 
+    class: 'profile_id required', 
+    name: profile_id_name%>
+
+  <%= text_field_tag :profile_full_name, [], size: 35, 
+        placeholder: "Start typing and profile names will appear...",  
+        autofocus: true, class: 'text'%>
+
+  <%=link_to 'change', '', class: 'hidden change_link'%>
+
+</div>
+
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+
+  /* Generate the profile names */
+    var preloaded_profiles = [
+      <% owner_profile.non_members.each do | profile | %>
+        {
+          id: <%=profile.id%>,
+          label: "<%=profile.full_name%>"
+        },
+      <% end %>
+    ];
+
+  profile_autocomplete_setup(preloaded_profiles);
+  profile_autocomplete_setup_form_logic();
+
+});
+
 var pa_change_link_css = '.profile_autocomplete_container a.change_link';
 var pa_profile_id_css = '.profile_autocomplete_container .profile_id';
 var pa_full_name_css = '.profile_autocomplete_container #profile_full_name';
@@ -44,14 +77,11 @@ Sets the profile id of the profile selected from the autocomplete dropdown
 function profile_selected(event, ui)
 {
   $(pa_profile_id_css).val(ui.item.id);
-  tab = next_tab_index();
-  $("[tabindex='" + tab + "']").focus();
   disable_profile_autocomplete();
 }
 
 
 function disable_profile_autocomplete() {
-  currenttab = $('#profile_full_name').attr("tabindex");
     $('#profile_full_name').prop("disabled",true);
     $(pa_change_link_css).show();
     $('.profile_autocomplete_container').removeClass('alert');
@@ -67,3 +97,4 @@ function reset_profile_autocomplete() {
   $(pa_change_link_css).hide();
 }
 
+<% end %>      

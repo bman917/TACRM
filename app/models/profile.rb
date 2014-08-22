@@ -19,6 +19,8 @@ class Profile < ActiveRecord::Base
   scope :no_contact_detail, -> {all_undeleted.where("id not in (select contact_detail_id from phones where contact_detail_type = \"Profile\")")}
   scope :no_address, -> {all_undeleted.where("id not in (select owner_id from addresses where owner_type = \"Profile\")")}
   scope :person, -> {all_undeleted.where(profile_type: ['INDIVIDUAL','AGENT','GUEST'])}
+  scope :vendors, -> {all_undeleted.where(profile_type: 'VENDOR')}
+  scope :agents, -> {all_undeleted.where(profile_type: 'AGENT')}
   scope :search_by_full_name, -> (term) { 
     all_undeleted.where("first_name like ? or middle_name like ? or last_name like ? or name like ?",
       "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%").order(:first_name)} 
@@ -224,5 +226,9 @@ class Profile < ActiveRecord::Base
     s.chop! if s.ends_with?("/")
     s = s[1..-1] if s.starts_with?("/")
     s
+  end
+
+  def to_s
+    self.full_name
   end
 end
