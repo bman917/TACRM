@@ -112,8 +112,12 @@ module ApplicationHelper
     link_to params[:text], '', id: params[:id], class: "add_fields no-print"
   end
 
+  def shrot_date(date)
+    date.try(:to_date).try(:to_s, :short)
+  end
+
   def format_date(date)
-    date.to_time.to_s(:med)
+    date.try(:to_time).try(:to_s, :med)
   end
 
   def launch_modal_form_link(params)

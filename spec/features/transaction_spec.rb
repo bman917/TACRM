@@ -35,12 +35,20 @@ describe "Transaction" do
 
       select 'Confirmed', from: 'Status'
 
-      fill_in 'PNR/Ticket No.', with: 'ABC123'
+      fill_in 'PNR', with: 'ABC123'
 
       select vendor.full_name, from: 'Vendor'
       select agent.full_name, from: 'Agent'
 
       click_on 'Save'
+
+      expect(current_path).to eq profile_path(client)
+
+      within("#content") do
+        expect(page).to have_content("Transactions")
+        expect(page).to have_content("Cebu Trip")
+        expect(page).to have_content("CEB")
+      end
     end
   end
 end

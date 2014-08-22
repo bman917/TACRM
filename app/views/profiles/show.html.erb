@@ -52,6 +52,10 @@ $(document).ready(function(){
 	    <% end %>
 	  <% end %>
 
+	  <div class="tab_content transactions">
+	  	<%=render 'transactions/index'%>
+	  </div>
+
 	    <% cache(add_role @profile.contact_details_cache_key) do %>
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>

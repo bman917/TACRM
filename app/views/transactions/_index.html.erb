@@ -1,0 +1,36 @@
+<h2 class="title hidden">Transactions</h2>
+
+<div id="transactions_all">
+<%=link_to 'Add New', profile_new_identification_path(@profile), remote: true,
+  class: 'std_button add_overlay' %>
+  <div id="new_document">
+  
+  </div>
+
+<table id="identification_table">
+  <thead>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Destination</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Reference #</th>
+    <th>Vendor</th>
+    <th>Agent</th>
+  </thead>
+  <%@transactions.try :each do | transaction |%>
+
+  <tr>
+    <td><%=transaction.name%></td>
+    <td><%=transaction.type_code%></td>
+    <td><%=transaction.destination_code%></td>
+    <td><%=shrot_date transaction.arrival_date%> - <%=shrot_date transaction.return_date%></td>
+    <td><%=transaction.status%></td>
+    <td><%=transaction.reference_number%></td>
+    <td><%=transaction.vendor%></td>
+    <td><%=transaction.agent%></td>
+  </tr>
+
+  <%end%>
+</table>
+</div>

@@ -1,6 +1,7 @@
 class Profile < ActiveRecord::Base
   attr_reader :label, :value
 
+  has_many :transactions, foreign_key: :client_id
   has_many :phones, as: :contact_detail, :dependent => :delete_all
   has_many :addresses, as: :owner, :dependent => :delete_all
   has_many :notes, :dependent => :delete_all
@@ -176,13 +177,21 @@ class Profile < ActiveRecord::Base
     "#{cache_key}/identifications/#{generic_cache_key(identifications)}"
   end
 
+  def transactions_liquid_slider_panel_number
+    if person?
+      2
+    else
+      1
+    end
+  end
+
   def updates_liquid_slider_panel_number
     if vendor? 
-      3
+      4
     elsif person? && account != nil
-      5
+      6
     else
-      4 
+      5 
     end
   end
 

@@ -75,6 +75,7 @@ class ProfilesController < ApplicationController
     @account = Account.new(profile: @profile, name: @profile.full_name)
     @note = Note.new(profile: @profile)
     @identification = Identification.new(profile: @profile)
+    @transactions = @profile.transactions
 
     # @versions = PaperTrail::Version.where(profile_id: @profile).paginate(:page => params[:page]).per_page(10).order("created_at desc")
     @versions = @profile.profile_versions.includes(:user).paginate(:page => params[:page]).per_page(10).order("created_at desc")
