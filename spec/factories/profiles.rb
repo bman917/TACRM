@@ -9,7 +9,7 @@ FactoryGirl.define do
   factory :profile do
 
     factory :vendor do
-      name "Side Walk"
+      name {"Lucky Travel Corp #{generate(:random)}"}
       profile_type 'VENDOR'
     end
 

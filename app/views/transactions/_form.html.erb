@@ -1,0 +1,30 @@
+<div id="transaction_form_container">
+<% transaction_presenter = present(@transaction) %>
+
+<%= simple_form_for @transaction, html: {id: 'new_transaction_form', class: 'span-18', remote: params[:remote]} do | f | %>
+
+<h3 class="titleize">
+Transaction
+</h3>
+
+<fieldset>
+<legend>Details</legend>
+
+    <div class="input string required span-15">
+        <label class="string control-label">Client</label>
+        <%=transaction_presenter.profile_full_name_field%>
+    </div>
+<%= f.input(:type_code, include_blank: false, collection: ['Domestic Ticketing', 'International Ticketing'], wrapper_html: {class: 'span-15'}, input_html: {tabindex: 1}) %>
+<%= f.input(:destination_code, label: "Destination", include_blank: false, collection: [['Cebu','CEB']], wrapper_html: {class: 'span-15'}, input_html: {tabindex: 2}) %>
+<%= f.input(:name, label: 'Transaction Name', wrapper_html: {class: 'span-15'}, input_html: {tabindex: 3})%>
+<%= f.input(:arrival_date, as: :date, label: "Arrival", wrapper_html: {class: 'span-15'}, input_html: {tabindex: 4})%>
+<%= f.input(:return_date, as: :date, label: "Return", wrapper_html: {class: 'span-15'}, input_html: {tabindex: 5})%>
+<%= f.input(:status, include_blank: true, collection: ['Pending', 'Confirmed', 'Canceled'], wrapper_html: {class: 'span-15'}, input_html: {tabindex: 6}) %>
+<%= f.input(:reference_number, label: 'PNR',wrapper_html: {class: 'span-15'}, input_html: {tabindex: 7})%>
+<%= f.association(:vendor, label_method: :full_name, include_blank: true, collection: Profile.vendors, wrapper_html: {class: 'span-15'}, input_html: {tabindex: 8}) %>
+<%= f.association(:agent, label_method: :full_name, include_blank: true, collection: Profile.agents, wrapper_html: {class: 'span-15'}, input_html: {tabindex: 9}) %>
+<%= f.button :submit, 'Save', disabled: true, data: {disable_with: "Saving...."} %>
+<% end %>
+</fieldset>
+
+</div>

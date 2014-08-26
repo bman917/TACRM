@@ -1,7 +1,7 @@
 <h2 class="title hidden">Transactions</h2>
 
 <div id="transactions_all">
-<%=link_to 'Add New', profile_new_identification_path(@profile), remote: true,
+<%=link_to 'Add New', new_transaction_path, remote: true,
   class: 'std_button add_overlay' %>
   <div id="new_document">
   
@@ -17,10 +17,12 @@
     <th>Reference #</th>
     <th>Vendor</th>
     <th>Agent</th>
+    <th></th>
+    <th></th>
   </thead>
   <%@transactions.try :each do | transaction |%>
 
-  <tr>
+  <tr id="transaction_<%=transaction.id%>">
     <td><%=transaction.name%></td>
     <td><%=transaction.type_code%></td>
     <td><%=transaction.destination_code%></td>
@@ -29,6 +31,8 @@
     <td><%=transaction.reference_number%></td>
     <td><%=transaction.vendor%></td>
     <td><%=transaction.agent%></td>
+    <td><%=link_to edit_img, edit_transaction_path(transaction, source: 'show', remote: true), class: 'add_overlay', remote: true %></td>
+    <td><%=link_to delete_img, transaction, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete '#{transaction.name}'?"} %></td>
   </tr>
 
   <%end%>
