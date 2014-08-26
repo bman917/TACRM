@@ -13,6 +13,6 @@ FactoryGirl.define do
     reference_number {"ABC#{generate(:transaction_seq)}"}
     vendor_id { create(:vendor).id }
     agent_id { create(:agent).id }
-    air_booking nil
+    air_booking { create(:air_booking) }
   end
 end

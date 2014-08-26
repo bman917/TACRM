@@ -30,7 +30,7 @@ REMINDER: This is a staging environment (for testing only). Production environme
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.username %></strong>.
       
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, tabindex: -1 %>
     <% else %>
       <!--%= link_to "Sign up", new_user_registration_path %-->
       <%= link_to "Login", new_user_session_path %>

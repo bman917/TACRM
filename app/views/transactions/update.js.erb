@@ -1,0 +1,5 @@
+modal_form_close();
+$('#transactions_table').remove();
+$('#transactions_all').append('<%=j render "transactions/table"%>');
+$('.overlay-5').remove();
+adjustHeight();

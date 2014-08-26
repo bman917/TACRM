@@ -19,7 +19,9 @@ describe "Transaction" do
 
       click_on "New Transaction"
 
-      fill_in_and_save_domestic_ticketing_form
+      fill_in_and_save_domestic_ticketing_form do 
+        fill_autocomplete 'profile_full_name', with: @client.full_name
+      end
 
       expect(current_path).to eq profile_path(@client)
 
@@ -30,13 +32,17 @@ describe "Transaction" do
       end
     end
 
-    it "can be created in profile show page" do
+    it "can be created in profile show page", :show do
       p = create(:person)
       visit profile_path(p)
 
       click_on_cransaction_tab
       within("#transactions_all") { click_on "Add New" }
-      fill_in_and_save_domestic_ticketing_form
+
+      fill_in_and_save_domestic_ticketing_form do
+        within("#new_transaction_form") { expect(page).to have_content(p.full_name) }
+      end
+
 
       within("#transactions_all") do
         expect(page).to have_content("Cebu Trip")
@@ -56,6 +62,27 @@ describe "Transaction" do
       end
       expect(page).to have_no_selector(transaction_row_selector)
     end
+
+    it "can be edited", :edit do
+      t = create(:transaction)
+      transaction_row_selector = "tr#transaction_#{t.id}"
+
+      visit profile_path(t.client)
+      click_on_cransaction_tab
+      within(transaction_row_selector) do
+        click_on 'Edit'
+      end
+      expect(page).to have_css("#new_transaction_form")
+      within("#new_transaction_form") do
+        expect(page).to have_content("edit transaction")
+        fill_in "PNR", with: "PNR is Edited"
+        click_on 'Save'
+      end
+
+      within("#transactions_all") do
+        expect(page).to have_content("PNR is Edited")
+      end
+    end
   end
 end
 
@@ -66,8 +93,8 @@ end
 def fill_in_and_save_domestic_ticketing_form
 
   expect(page).to have_css("#new_transaction_form")
-  
-  fill_autocomplete 'profile_full_name', with: @client.full_name
+
+  yield if block_given?
 
   select 'Domestic Ticketing', from: 'transaction_type_code'
   select 'Cebu', from: 'transaction_destination_code'

@@ -21,6 +21,7 @@ TACRM::Application.routes.draw do
   end
 
   resources :transactions
+
   
   resources :identifications
 
@@ -49,6 +50,7 @@ TACRM::Application.routes.draw do
     get :unlock_all, on: :collection
     get :view_deleted, on: :collection
   end
+  get 'transaction/new/profile/:profile_id' => 'transactions#new', as: 'profile_new_transaction'
   get 'identifications/passports/expiring' => 'identifications#expiring', as: 'expiring_passports'
   get 'identifications/new/profile/:profile_id' => 'identifications#new', as: 'profile_new_identification'
   get 'profile/:id/panel/:panel_number' => 'profiles#show', as: 'profile_panel'

@@ -2,9 +2,9 @@
 <% transaction_presenter = present(@transaction) %>
 
 <%= simple_form_for @transaction, html: {id: 'new_transaction_form', class: 'span-18', remote: params[:remote]} do | f | %>
-
+<%=hidden_field_tag :transaction_id, @transaction.id%>
 <h3 class="titleize">
-Transaction
+<%=transaction_presenter.title%>
 </h3>
 
 <fieldset>
@@ -23,7 +23,7 @@ Transaction
 <%= f.input(:reference_number, label: 'PNR',wrapper_html: {class: 'span-15'}, input_html: {tabindex: 7})%>
 <%= f.association(:vendor, label_method: :full_name, include_blank: true, collection: Profile.vendors, wrapper_html: {class: 'span-15'}, input_html: {tabindex: 8}) %>
 <%= f.association(:agent, label_method: :full_name, include_blank: true, collection: Profile.agents, wrapper_html: {class: 'span-15'}, input_html: {tabindex: 9}) %>
-<%= f.button :submit, 'Save', disabled: true, data: {disable_with: "Saving...."} %>
+<%= f.button :submit, 'Save', data: {disable_with: "Saving...."}, tabindex: 10%>
 <% end %>
 </fieldset>
 

@@ -1,7 +1,23 @@
 class TransactionsController < ApplicationController
 
+  def update
+    @transaction = get_transaction
+    @transaction.update(transaction_params)
+    @transaction.air_booking.update(air_booking_params)
+    @transactions = @transaction.client.transactions
+
+    respond_to do | format |
+      format.html { redirect_to_profile_page(@transaction) }
+      format.js { render 'reload'}
+    end
+  end
+
+  def edit
+    @transaction = get_transaction
+  end
+
   def destroy
-    @transaction = Transaction.find(params[:id])
+    @transaction = get_transaction
     @transaction.destroy
     respond_to do | format |
       format.html { redirect_to_profile_page(@transaction) }
@@ -10,7 +26,9 @@ class TransactionsController < ApplicationController
   end
 
   def new
+    @profile = Profile.find(params[:profile_id]) if params[:profile_id]
     @transaction = Transaction.new
+    @transaction.client = @profile
     @transaction.air_booking = AirBooking.new
 
     respond_to do | format |
@@ -21,15 +39,20 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    transaction = Transaction.new(transaction_params)
-    transaction.air_booking = AirBooking.new(air_booking_params)
-    transaction.save
+    @transaction = Transaction.new(transaction_params)
+    @transaction.air_booking = AirBooking.new(air_booking_params)
+    @transaction.save
+    @transactions = @transaction.client.transactions
+    respond_to do | format |
+      format.html { redirect_to_profile_page(@transaction) }
+      format.js { render 'reload'}
+    end
 
-    redirect_to_profile_page(transaction)
+    
   end
 
   def transaction_params
-    params.require(:transaction).permit(:client_id, :name, :type_code, :status,
+    params.require(:transaction).permit(:id, :client_id, :name, :type_code, :status,
       :reference_number, :vendor_id, :agent_id, :air_booking_id)
   end
 
@@ -43,5 +66,9 @@ class TransactionsController < ApplicationController
   def redirect_to_profile_page(transaction)
     client = Profile.find(transaction.client_id)
     redirect_to profile_path(id: client.id, panel_number: client.transactions_liquid_slider_panel_number)
+  end
+
+  def get_transaction
+    @transaction = Transaction.find(params[:id])
   end
 end
