@@ -36,13 +36,12 @@ describe "Transaction" do
       p = create(:person)
       visit profile_path(p)
 
-      click_on_cransaction_tab
+      click_on_transactions_tab
       within("#transactions_all") { click_on "Add New" }
 
       fill_in_and_save_domestic_ticketing_form do
-        within("#new_transaction_form") { expect(page).to have_content(p.full_name) }
+        within("#new_transaction_form") { expect(page).to have_content(/#{p.full_name}/i) }
       end
-
 
       within("#transactions_all") do
         expect(page).to have_content("Cebu Trip")
@@ -50,12 +49,12 @@ describe "Transaction" do
       end
     end
 
-    it "can be deleted", :delete do
+    it "can be deleted by admin", :delete do
       t = create(:transaction)
       transaction_row_selector = "tr#transaction_#{t.id}"
 
       visit profile_path(t.client)
-      click_on_cransaction_tab
+      click_on_transactions_tab
       within(transaction_row_selector) do
         click_on 'Delete'
         page.driver.browser.switch_to.alert.accept
@@ -63,12 +62,24 @@ describe "Transaction" do
       expect(page).to have_no_selector(transaction_row_selector)
     end
 
+    it "cannot be deleted by moderator", :delete do
+      click_on 'Logout'
+      sign_in_as role: :moderator
+      t = create(:transaction)
+      transaction_row_selector = "tr#transaction_#{t.id}"
+
+      visit profile_path(t.client)
+      click_on_transactions_tab
+      sleep 1
+      expect(page).to have_no_selector("a#delete_#{t.id}") 
+    end
+
     it "can be edited", :edit do
       t = create(:transaction)
       transaction_row_selector = "tr#transaction_#{t.id}"
 
       visit profile_path(t.client)
-      click_on_cransaction_tab
+      click_on_transactions_tab
       within(transaction_row_selector) do
         click_on 'Edit'
       end
@@ -86,7 +97,7 @@ describe "Transaction" do
   end
 end
 
-def click_on_cransaction_tab
+def click_on_transactions_tab
   within("#content") { click_on 'Transactions' }
 end
 
@@ -99,7 +110,7 @@ def fill_in_and_save_domestic_ticketing_form
   select 'Domestic Ticketing', from: 'transaction_type_code'
   select 'Cebu', from: 'transaction_destination_code'
 
-  fill_in 'Transaction Name', with: 'Cebu Trip'
+  fill_in 'Name', with: 'Cebu Trip'
 
   select "2013", from: 'transaction_arrival_date_1i'
   select "May", from: 'transaction_arrival_date_2i'

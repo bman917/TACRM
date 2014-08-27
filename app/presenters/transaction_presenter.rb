@@ -11,7 +11,7 @@ class TransactionPresenter < BasePresenter
                 }
     else
       content_tag :div do
-        content = content_tag :h2, transaction.client.full_name
+        content = content_tag :h2, transaction.client.full_name, class: 'titleize'
         content << hidden_field_tag(:transaction_client_id, transaction.client.id, name: 'transaction[client_id]')
       end.html_safe
     end

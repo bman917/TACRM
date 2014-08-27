@@ -6,4 +6,14 @@ class Transaction < ActiveRecord::Base
 
   delegate :destination_code, :arrival_date, :return_date, to: :air_booking, allow_nil: true
 
+  has_paper_trail :meta => { :profile_id => :clientid, :description => :description}, 
+    :ignore => [:updated_at]
+
+  def clientid
+    client.id
+  end
+
+  def description
+    "Transaction '#{name}'"
+  end
 end

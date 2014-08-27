@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
     @transaction = get_transaction
     @transaction.update(transaction_params)
     @transaction.air_booking.update(air_booking_params)
-    @transactions = @transaction.client.transactions
+    
 
     respond_to do | format |
       format.html { redirect_to_profile_page(@transaction) }
@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     respond_to do | format |
       format.html { redirect_to_profile_page(@transaction) }
-      format.js
+      format.js { render 'reload'}
     end
   end
 
@@ -70,5 +70,7 @@ class TransactionsController < ApplicationController
 
   def get_transaction
     @transaction = Transaction.find(params[:id])
+    @transactions = @transaction.client.transactions
+    return @transaction
   end
 end

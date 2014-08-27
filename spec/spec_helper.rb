@@ -85,9 +85,12 @@ def sign_in
 end
 
 def sign_in_as(options={})
+  if options[:role] = :moderator
+      user = create(:moderator) unless User.find_by_username('moderator')
+  end
   visit new_user_session_path
-  fill_in 'user_username', :with => options[:username]
-  fill_in 'user_password', :with => options[:password]
+  fill_in 'user_username', :with => user.username
+  fill_in 'user_password', :with => 'password'
   click_button 'Sign in'
 end
 

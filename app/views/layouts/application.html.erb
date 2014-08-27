@@ -87,10 +87,10 @@ version: <%=current_version%>
 
       </ul-->
     </li>
-
-    <li><a id='x' href="">Transactions</a>
+    <% if can? :create, Transaction %>
+    <li><a href="">Transactions</a>
       <ul>
-        <li><%= link_to 'Domestic Ticketing', '', id: 'x'%></li>
+        <li><%= link_to 'Domestic Ticketing', new_transaction_path, remote: true%></li>
         <li><%= link_to 'Intl Ticketing', '', id: 'x'%></li>
         <li><%= link_to 'Hotel Accommodation', '', id: 'x'%></li>
         <li><%= link_to 'Package Tour', '', id: 'x'%></li>
@@ -101,6 +101,7 @@ version: <%=current_version%>
         <li><%= link_to 'Others', '', id: 'x'%></li>
       </ul>
     </li>
+    <% end %>
     <% if current_user.try :admin? %>
     <li><a href="">Administration</a>
       <ul>

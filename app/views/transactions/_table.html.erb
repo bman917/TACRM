@@ -23,7 +23,7 @@
     <td><%=transaction.vendor%></td>
     <td><%=transaction.agent%></td>
     <td><%=link_to edit_img, edit_transaction_path(transaction, source: 'show', remote: true), class: 'add_overlay', remote: true %></td>
-    <td><%=link_to delete_img, transaction, method: :delete, class: "remove_fields no-print", data: {confirm: "Delete '#{transaction.name}'?"} %></td>
+    <td><%=link_to(delete_img, transaction, method: :delete, remote: true, class: "remove_fields no-print", data: {confirm: "Delete '#{transaction.name}'?"}, id: "delete_#{transaction.id}") if can? :destroy, Transaction%></td>
   </tr>
 
   <%end%>

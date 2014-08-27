@@ -12,6 +12,7 @@ class Ability
       cannot :manage, User
       cannot :delete, Profile
       cannot :destroy, Profile
+      cannot :destroy, Transaction
       cannot [:unlock, :lock], Profile
     else
       can :read, :all

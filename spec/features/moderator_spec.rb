@@ -4,8 +4,7 @@ describe "Moderator" do
 
   describe "Profile Index", :js do
     it "can view the data table" do
-      user = create(:moderator) unless User.find_by_username('moderator')
-      sign_in_as username: user.username, password: 'password'
+      sign_in_as role: :moderator
 
       person = create(:person)
       company = create(:company)
