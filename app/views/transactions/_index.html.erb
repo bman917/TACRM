@@ -1,8 +1,10 @@
 <h2 class="title hidden">Transactions</h2>
 
 <div id="transactions_all">
-<%=link_to 'Add New', profile_new_transaction_path(@profile, source: 'show', remote: true), remote: true,
-  class: 'std_button add_overlay' %>
+<% if @profile.individual_client? %>
+  <%=link_to 'Add New', profile_new_transaction_path(@profile, source: 'show', remote: true), remote: true,
+    class: 'std_button add_overlay' %>
+<% end %>
 
 <%=render 'transactions/table'%>
 

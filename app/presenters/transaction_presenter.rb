@@ -24,5 +24,4 @@ class TransactionPresenter < BasePresenter
       'New Transaction'
     end
   end
-
 end

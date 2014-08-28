@@ -11,12 +11,14 @@ FactoryGirl.define do
     factory :vendor do
       name {"Lucky Travel Corp #{generate(:random)}"}
       profile_type 'VENDOR'
+      account
     end
 
 
     factory :company do
-      name "JD's Food Hall"
+      name {"JD's Food Hall #{generate(:random)}"}
       profile_type 'CORPORATE'
+      account
     end
 
     factory :person do
@@ -42,6 +44,7 @@ FactoryGirl.define do
       middle_name {generate(:random)}
       last_name 'X44'
       profile_type 'AGENT'
+      account
     end
   end
 

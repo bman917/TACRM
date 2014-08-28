@@ -37,6 +37,18 @@ class Profile < ActiveRecord::Base
 
   before_validation :truncate_values
 
+  def transactions_by_profile_type
+    if vendor?
+      Transaction.where(vendor_id: self.id)
+    elsif agent?
+      Transaction.where(agent_id: self.id)
+    elsif corporate_client?
+      Transaction.where(client_id: members.map { | m | m.profile_id })
+    else
+      transactions
+    end
+  end
+
   def self.apply_filter(params={})
       @profile_type = params[:profile_type] || 'ALL'
       @profile_type.upcase!

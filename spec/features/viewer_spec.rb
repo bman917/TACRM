@@ -4,8 +4,7 @@ describe "Viewer" do
 
   describe "Profile Index", :js do
     before(:each) do
-      create(:viewer) unless User.find_by_username('viewer')
-      sign_in_as username: 'viewer', password: 'password'
+      sign_in_as role: :viewer
     end
 
     it "can view the data table" do

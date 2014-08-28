@@ -1,27 +1,30 @@
 <table id="transactions_table">
   <thead>
+    <%=content_tag(:th, "Client") if @profile && !@profile.individual_client? %>
     <th>Name</th>
     <th>Type</th>
     <th>Destination</th>
     <th>Date</th>
     <th>Status</th>
     <th>Reference #</th>
-    <th>Vendor</th>
-    <th>Agent</th>
+    <%=content_tag(:th, "Vendor") if @profile && !@profile.vendor? %>
+    <%=content_tag(:th, "Agent") if @profile && !@profile.agent? %>
     <th></th>
     <th></th>
   </thead>
-  <%@transactions.try :each do | transaction |%>
+  <% @transactions.try :each do | transaction | %>
+  <% transaction_presenter = present(transaction) %>
 
   <tr id="transaction_<%=transaction.id%>">
+    <%=content_tag(:td, link_to(transaction.client, profile_path(transaction.client)))  if @profile && !@profile.individual_client? %>
     <td><%=transaction.name%></td>
     <td><%=transaction.type_code%></td>
     <td><%=transaction.destination_code%></td>
     <td><%=shrot_date transaction.arrival_date%> - <%=shrot_date transaction.return_date%></td>
     <td><%=transaction.status%></td>
     <td><%=transaction.reference_number%></td>
-    <td><%=transaction.vendor%></td>
-    <td><%=transaction.agent%></td>
+    <%=content_tag(:td, link_to(transaction.vendor, profile_path(transaction.vendor)))  if @profile && !@profile.vendor? %>
+    <%=content_tag(:td, link_to(transaction.agent, profile_path(transaction.agent)))  if @profile && !@profile.agent? %>
     <td><%=link_to edit_img, edit_transaction_path(transaction, source: 'show', remote: true), class: 'add_overlay', remote: true %></td>
     <td><%=link_to(delete_img, transaction, method: :delete, remote: true, class: "remove_fields no-print", data: {confirm: "Delete '#{transaction.name}'?"}, id: "delete_#{transaction.id}") if can? :destroy, Transaction%></td>
   </tr>
