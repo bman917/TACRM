@@ -71,6 +71,7 @@ class TransactionsController < ApplicationController
   def get_transaction
     @transaction = Transaction.find(params[:id])
     @transactions = @transaction.client.transactions
+    @profile = @transaction.client
     return @transaction
   end
 end

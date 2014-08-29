@@ -15,7 +15,7 @@
   <% @transactions.try :each do | transaction | %>
   <% transaction_presenter = present(transaction) %>
 
-  <tr id="transaction_<%=transaction.id%>">
+  <tr id="<%=transaction.css_id%>">
     <%=content_tag(:td, link_to(transaction.client, profile_path(transaction.client)))  if @profile && !@profile.individual_client? %>
     <td><%=transaction.name%></td>
     <td><%=transaction.type_code%></td>
@@ -23,8 +23,8 @@
     <td><%=shrot_date transaction.arrival_date%> - <%=shrot_date transaction.return_date%></td>
     <td><%=transaction.status%></td>
     <td><%=transaction.reference_number%></td>
-    <%=content_tag(:td, link_to(transaction.vendor, profile_path(transaction.vendor)))  if @profile && !@profile.vendor? %>
-    <%=content_tag(:td, link_to(transaction.agent, profile_path(transaction.agent)))  if @profile && !@profile.agent? %>
+    <%=transaction_presenter.vendor_column(@profile) %>
+    <%=transaction_presenter.agent_column(@profile) %>
     <td><%=link_to edit_img, edit_transaction_path(transaction, source: 'show', remote: true), class: 'add_overlay', remote: true %></td>
     <td><%=link_to(delete_img, transaction, method: :delete, remote: true, class: "remove_fields no-print", data: {confirm: "Delete '#{transaction.name}'?"}, id: "delete_#{transaction.id}") if can? :destroy, Transaction%></td>
   </tr>

@@ -9,25 +9,33 @@ describe "Transaction" do
     sign_in
   end
 
-  describe "Add link on Profile Show Page", :js, :add_link do
-    it "does not have a link for corporate profiles" do
-      check_add_link create(:company)
+  describe "table on Show Page", :js, :show do
+    describe "Add link", :add_link do
+      it "does not have a link for corporate profiles" do
+        check_add_link create(:company)
+      end
+      it "does not have a link for agent profiles" do
+        check_add_link create(:agent)
+      end
+      it "does not have a link for agent profiles" do
+        check_add_link create(:vendor)
+      end
     end
-    it "does not have a link for agent profiles" do
-      check_add_link create(:agent)
+
+    it "works even if no vendor is assigned" do
+      t1 = create(:transaction, vendor_id: nil, agent_id: nil)
+      visit profile_path(t1.client)
+      click_on_transactions_tab
+      expect(page).to have_selector(t1.css_id_selector)
     end
-    it "does not have a link for agent profiles" do
-      check_add_link create(:vendor)
-    end
+
   end
+
 
   describe "Associations", :js, :associations do
     it "is shown betwwen Individual and Corporations" do
       t1 = create(:transaction)
       t2 = create(:transaction)
-
-      t1_row_selector = "tr#transaction_#{t1.id}"
-      t2_row_selector = "tr#transaction_#{t2.id}"
 
       corp = create(:company)
       corp.add_member(profile: t1.client, relationship: 'Employee')
@@ -35,28 +43,27 @@ describe "Transaction" do
 
       visit profile_path(corp)
       click_on_transactions_tab
-      expect(page).to have_selector(t1_row_selector)
-      expect(page).to have_selector(t2_row_selector)
-      within(t1_row_selector) { expect(page).to have_content(t1.client.full_name) }
-      within(t2_row_selector) { expect(page).to have_content(t2.client.full_name) }
+      expect(page).to have_selector(t1.css_id_selector)
+      expect(page).to have_selector(t2.css_id_selector)
+      within(t1.css_id_selector) { expect(page).to have_content(t1.client.full_name) }
+      within(t2.css_id_selector) { expect(page).to have_content(t2.client.full_name) }
 
     end
 
     it "is shown between Individual, Vendor and Agent" do
       t = create(:transaction)
-      transaction_row_selector = "tr#transaction_#{t.id}"
-
+      
       visit profile_path(t.vendor)
       click_on_transactions_tab
-      expect(page).to have_selector(transaction_row_selector)
-      within(transaction_row_selector) do
+      expect(page).to have_selector(t.css_id_selector)
+      within(t.css_id_selector) do
         expect(page).to have_content(t.client.full_name)
       end
 
       visit profile_path(t.agent)
       click_on_transactions_tab
-      expect(page).to have_selector(transaction_row_selector)
-      within(transaction_row_selector) do
+      expect(page).to have_selector(t.css_id_selector)
+      within(t.css_id_selector) do
         expect(page).to have_content(t.client.full_name)
       end
 

@@ -1,6 +1,26 @@
 class TransactionPresenter < BasePresenter
   presents :transaction
 
+  def agent_column(profile_in_display)
+    unless profile_in_display.try(:agent?)
+      if transaction.agent
+        content_tag :td, link_to(transaction.agent, profile_path(transaction.agent))
+      else
+        content_tag :td, ""
+      end
+    end
+  end
+
+  def vendor_column(profile_in_display)
+    unless profile_in_display.try(:vendor?)
+      if transaction.vendor
+        content_tag :td, link_to(transaction.vendor, profile_path(transaction.vendor))
+      else
+        content_tag :td, ""
+      end
+    end
+  end
+
   def profile_full_name_field
     unless transaction.client
       render partial: 'common/profile_autocomplete', 

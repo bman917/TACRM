@@ -16,4 +16,12 @@ class Transaction < ActiveRecord::Base
   def description
     "Transaction '#{name}'"
   end
+
+  def css_id
+    "transaction_#{id}"
+  end
+
+  def css_id_selector
+    "##{css_id}"
+  end
 end
