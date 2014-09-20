@@ -68,7 +68,8 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       if @identification.update(identification_params)
         notice = "#{@identification.foid_type} for #{@identification.profile.full_name} was successfully updated."
-        format.html { redirect_to identifications_path,  flash: {identification_notice: notice}}
+        #format.html { redirect_to identifications_path,  flash: {identification_notice: notice}}
+        format.html { redirect_to profile_path(@identification.profile)}
         format.json { head :no_content }
         format.js { render 'add_identification'}
       else
