@@ -1,0 +1,19 @@
+<div>
+
+  <%= simple_form_for @identification, :html => {:id => 'upload_image', :multipart => true} do |f| %>
+  <h3 class="titleize">Upload Image</h3>
+
+  <fieldset id="select_client">
+    <legend>Client</legend>
+    <%=@identification.profile.full_name%>
+  </fieldset>   
+
+  <fieldset id="select_client">
+    <legend><%=@identification.display%></legend>
+    <%= f.hidden_field :id %>
+    <%= f.file_field :doc_image %>
+  </fieldset>
+  <%= f.submit 'Upload' %>
+    
+  <% end %>
+</div>

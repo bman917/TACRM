@@ -37,7 +37,7 @@ describe "Users" do
     end
     
     it "activates and deactivates", js: true do
-      user = create(:moderator)
+      user = User.find_by_username('moderator') || create(:moderator)
       visit users_path
       
       within("tr#user_#{user.id}") do

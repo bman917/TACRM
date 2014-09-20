@@ -35,7 +35,9 @@ class ApplicationController < ActionController::Base
   end
 
   def excluded_controllers
-     (params[:controller] == "profile_versions" || params[:controller] == "portal" || devise_controller?)
+     (params[:controller] == 'doc_image' || 
+      params[:controller] == "profile_versions" || 
+      params[:controller] == "portal" || devise_controller?)
   end
 
 end

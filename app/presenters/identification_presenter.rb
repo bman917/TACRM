@@ -2,6 +2,12 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, :other?, to: :identification
 
+  def new_doc_image_link(remote=nil)
+    lock_check do
+      link_to 'upload', new_doc_image_path(identification), remote: defined?(remote) && remote
+    end
+  end
+
   def destroy_link
     lock_check do
       link_to delete_img, identification, remote: true, method: :delete, title: 'Delete!!!', class: "remove_fields no-print", data: {confirm: "Delete [#{identification.foid_type} - #{identification.foid}]?"}

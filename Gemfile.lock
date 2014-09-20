@@ -97,6 +97,11 @@ GEM
     capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
@@ -192,6 +197,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rmagick (2.13.2)
     rspec-core (3.0.0.rc1)
       rspec-support (= 3.0.0.rc1)
     rspec-expectations (3.0.0.rc1)
@@ -279,6 +285,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capybara!
+  carrierwave
   coffee-rails (~> 4.0.0)
   common_assets!
   country_select
@@ -298,6 +305,7 @@ DEPENDENCIES
   paper_trail (~> 3.0.1)
   rack-mini-profiler
   rails (= 4.0.2)
+  rmagick (= 2.13.2)
   rspec-expectations
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 4.0.0)

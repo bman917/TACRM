@@ -90,3 +90,5 @@ gem "cancan"
 gem 'blueprint-rails'
 gem 'jquery-datatables-rails'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'rmagick', '2.13.2'

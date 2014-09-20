@@ -1,0 +1,2 @@
+module DocImageHelper
+end

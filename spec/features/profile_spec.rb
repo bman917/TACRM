@@ -20,17 +20,17 @@ describe Profile do
 
     it "can select profiles with incomplete contact details", js: true do
       p = create(:person, first_name: 'Incomplete', last_name: 'Contact Details')
-      sleep 0.25
+      sleep 0.5
       select 'No Contact Details'
-      sleep 0.25
+      sleep 0.5
       expect(page).to have_content('Incomplete')
     end
 
     it "can select profile with no address", js: true do
       p = create(:person, first_name: 'Firstname No Address', last_name: 'Person')
-      sleep 0.25
+      sleep 0.5
       select 'No Address'
-      sleep 0.25
+      sleep 0.5
       expect(page).to have_content('Firstname No Address')
     end
   end

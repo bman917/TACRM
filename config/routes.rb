@@ -24,6 +24,7 @@ TACRM::Application.routes.draw do
 
   
   resources :identifications
+  get 'identification/:id/doc_image/new' => 'doc_image#new', as: 'new_doc_image'
 
   resources :notes
 

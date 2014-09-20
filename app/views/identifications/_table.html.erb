@@ -24,6 +24,7 @@ $(document).ready(function(){
       <th>Expiration Date</th>
       <th>Other Details</th>
       <% if can?(:edit, Identification) && show_edits %> <th class="tiny"></th> <% end %>
+      <% if can?(:add_image, Identification) && show_edits %> <th class="tiny"></th> <% end %>
       <% if can?(:destroy, Identification) && show_edits %> <th class="tiny"></th> <% end %>
     </tr>
   </thead>
