@@ -13,7 +13,9 @@ $(document).ready(function(){
 		$('.best_in_place').best_in_place();
 	<% else %>
 		$('.best_in_place').removeClass('best_in_place');
-		$('#profile-tabs a').remove();
+		$('#profile-tabs a').toggle();
+		$('#profile-tabs a.view_doc_image').show();
+		$('.pagination a').show();
 	<% end %>
 
     $('#profile-tabs').liquidSlider({
@@ -45,23 +47,18 @@ $(document).ready(function(){
 	<div class="liquid-slider span-26" id="profile-tabs">
 
 		<% if @profile.person? %>
-		  <% cache(add_role @profile.documents_cache_key) do %>
    	    <div class="tab_content documents">
 	        <%=render 'documents_all' %>
 	      </div>
-	    <% end %>
 	  <% end %>
 
 	  <div class="tab_content transactions">
 	  	<%=render 'transactions/index'%>
 	  </div>
 
-	    <% cache(add_role @profile.contact_details_cache_key) do %>
 	    <div class="tab_content">
 	      <%=render 'contact_details'%>
 	    </div>
-	    <% end %>
-
 
 	    <div class="tab_content">
 	      <%=render 'note_details' %>

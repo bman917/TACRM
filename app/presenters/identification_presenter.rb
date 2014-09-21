@@ -2,11 +2,11 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, :other?, to: :identification
 
-  def doc_image_column(remote=nil, show_edits=nil)
+  def doc_image_column()
     if identification.doc_image.url.nil? == false
-      link_to(image_tag(download_doc_image_path(identification, :thumb), 
-        alt: identification.doc_image.disp), 
-        view_doc_image_path(identification), remote: true)
+        link_to(image_tag(download_doc_image_path(identification, :thumb), 
+          alt: identification.doc_image.disp), 
+          view_doc_image_path(identification), remote: true, class: 'view_doc_image')
     else
       ""
     end

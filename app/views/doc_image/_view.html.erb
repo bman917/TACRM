@@ -6,7 +6,7 @@
     <%=link_to(delete_img, delete_doc_image_path(@identification), 
     method: :delete, title: 'Delete!!!',
     class: "remove_fields no-print", 
-    data: {confirm: "Delete #{@identification.doc_image.disp}?"})%>
+    data: {confirm: "Delete #{@identification.doc_image.disp}?"}) if can?(:update, Profile)%>
 
   </legend>
   <%=image_tag(download_doc_image_path(@identification, :original))%>

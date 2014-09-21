@@ -52,6 +52,20 @@ describe 'DocImage' do
     within "##{@p.identifications.first.css_id}" do
       expect(page).to have_no_css("img[alt='logo.png']")
     end
+
+    #View image as viewer
+    click_on 'Logout'
+    sign_in_as role: :viewer
+    visit profile_path(@p)
+    click_on 'Documents'
+    within "##{@p.identifications.first.css_id}" do
+      expect(page).to have_css("img[alt='logo.png']")
+      click_on 'logo.png'
+    end
+    expect(page).to have_css("div#view_doc_image")
+    within "#view_doc_image" do
+      expect(page).to have_content("logo.png")
+    end   
   end
 
   it 'only accepts image files', :js do
