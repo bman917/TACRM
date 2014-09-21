@@ -9,16 +9,11 @@
     <td><%=identification_presenter.date_issued%></td>
     <td><%=identification_presenter.expiration_date%></td>
     <td><%=identification_presenter.other_details%></td>
+    <td><%=identification_presenter.doc_image_column(remote, show_edits)%></td>
 
-    
     <% if can?(:edit, Identification) && show_edits %>
     <td><%=identification_presenter.new_doc_image_link(remote)%></td>
-    <% end %>
-
-    <% if can?(:edit, Identification) && show_edits %>
-    <td>
-    <%= identification_presenter.edit_link(remote) %>
-    </td>
+    <td><%=identification_presenter.edit_link(remote) %></td>
     <% end %>
 
     <% if can?(:destroy, identification) && show_edits %>

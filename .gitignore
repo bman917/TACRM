@@ -20,6 +20,7 @@
 .sass-cache
 capybara-*.html
 .rspec
+/uploads
 /log
 /tmp
 /db/*.sqlite3

@@ -11,6 +11,8 @@ class Identification < ActiveRecord::Base
 
   has_paper_trail :meta => { :profile_id => :prof, :description => :display}
 
+  mount_uploader :doc_image, DocImageUploader
+
   def profile_not_locked
     if profile.try :locked?
       errors.add(:profile, "is locked. Unlock profile before editing this document.")

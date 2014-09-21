@@ -73,7 +73,13 @@ class IdentificationsController < ApplicationController
         format.json { head :no_content }
         format.js { render 'add_identification'}
       else
-        format.html { render action: 'edit' }
+        format.html do
+          if identification_params[:doc_image]
+            render '/doc_image/new'
+          else
+            render action: 'edit'
+          end
+       end
         format.json { render json: @identification.errors, status: :unprocessable_entity }
       end
     end
@@ -101,6 +107,6 @@ class IdentificationsController < ApplicationController
     def identification_params
       params.require(:identification).permit(:foid_type, :foid, :notes, 
         :profile_id, :date_issued, :expiration_date, :issued_by, :description,
-        :country, :sub_type, :visa_type, :entry_date, :max_stay)
+        :country, :sub_type, :visa_type, :entry_date, :max_stay, :doc_image)
     end
 end

@@ -1,0 +1,14 @@
+<div id="view_doc_image" style="width:750px;height:800px;clear:both">
+  <h3 class="titleize">View Image</h3>
+  <fieldset id="select_client">
+  <legend>
+    <%=@identification.doc_image.disp%>
+    <%=link_to(delete_img, delete_doc_image_path(@identification), 
+    method: :delete, title: 'Delete!!!',
+    class: "remove_fields no-print", 
+    data: {confirm: "Delete #{@identification.doc_image.disp}?"})%>
+
+  </legend>
+  <%=image_tag(download_doc_image_path(@identification, :original))%>
+  </fieldset>
+</div>

@@ -1,4 +1,15 @@
 <div>
+  <% if @identification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@identification.errors.count, "error") %> prohibited this identification from being saved:</h2>
+
+      <ul>
+      <% @identification.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= simple_form_for @identification, :html => {id: 'upload_image', multipart: true} do |f| %>
   <h3 class="titleize">Upload Image</h3>
@@ -7,6 +18,13 @@
     <legend>Client</legend>
     <h2 class="titleize"><%=@identification.profile.full_name%></h2>
   </fieldset>   
+
+  <% if @identification.doc_image.url.nil? == false %>
+    <fieldset>
+      <legend>WARNING: <br>This will replace existing image</legend>
+      <%=image_tag @identification.doc_image.url(:thumb)%>
+    </fieldset>
+  <% end %>
 
   <fieldset id="select_client">
     <legend><%=@identification.display%></legend>

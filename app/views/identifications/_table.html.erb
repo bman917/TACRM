@@ -23,6 +23,7 @@ $(document).ready(function(){
       <th>Date Issued</th>
       <th>Expiration Date</th>
       <th>Other Details</th>
+      <th>Scanned Image</th>
       <% if can?(:edit, Identification) && show_edits %> <th class="tiny"></th> <% end %>
       <% if can?(:add_image, Identification) && show_edits %> <th class="tiny"></th> <% end %>
       <% if can?(:destroy, Identification) && show_edits %> <th class="tiny"></th> <% end %>

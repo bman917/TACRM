@@ -2,9 +2,19 @@ class IdentificationPresenter < BasePresenter
   presents :identification
   delegate :visa?, :passport?, :other?, to: :identification
 
+  def doc_image_column(remote=nil, show_edits=nil)
+    if identification.doc_image.url.nil? == false
+      link_to(image_tag(download_doc_image_path(identification, :thumb), 
+        alt: identification.doc_image.disp), 
+        view_doc_image_path(identification), remote: true)
+    else
+      ""
+    end
+  end
+
   def new_doc_image_link(remote=nil)
     lock_check do
-      link_to 'upload', new_doc_image_path(identification), remote: defined?(remote) && remote
+      link_to image_tag('upload-xl.png', size: '20x20', title: 'Upload Image', alt: 'upload'), new_doc_image_path(identification), remote: defined?(remote) && remote
     end
   end
 

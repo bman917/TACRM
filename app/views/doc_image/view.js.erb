@@ -1,0 +1,13 @@
+$('body').append('<div class="overlay-5"></div>');
+$('body').append('<div id="modal_form_container" class="modal-1 modal_form"></div>');
+$('#modal_form_container').append("<%=j render('view')%>");
+
+
+//Add Close Link...
+$('#modal_form_container').prepend('<%= j link_to 'Close', '', class: 'close std_button'%>');
+$('#modal_form_container a.close').on('click', function(e){
+  e.preventDefault();
+  modal_form_close();
+});
+
+$('#modal_form_container').center();
