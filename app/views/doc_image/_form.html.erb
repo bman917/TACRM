@@ -22,7 +22,7 @@
   <% if @identification.doc_image.url.nil? == false %>
     <fieldset>
       <legend>WARNING: <br>This will replace existing image</legend>
-      <%=image_tag @identification.doc_image.url(:thumb)%>
+      <%=image_tag download_doc_image_path(@identification, :thumb)%>
     </fieldset>
   <% end %>
 
