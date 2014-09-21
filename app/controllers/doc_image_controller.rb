@@ -7,9 +7,9 @@ class DocImageController < ApplicationController
     @identification = get_identification
 
     path = if params[:version] == "original"
-      "#{Rails.root}/#{@identification.doc_image.url()}"
+      "#{DocImageUploader.root}/#{@identification.doc_image.url()}"
     else
-      "#{Rails.root}/#{@identification.doc_image.url(params[:version])}"
+      "#{DocImageUploader.root}/#{@identification.doc_image.url(params[:version])}"
     end
 
     send_file path, :x_sendfiel=>true
