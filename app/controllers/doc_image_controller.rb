@@ -6,10 +6,10 @@ class DocImageController < ApplicationController
   def download
     @identification = get_identification
 
-    path = if params[:version] == :original
-      "#{Rails.root}/#{@identification.doc_image.url(params[:version])}"
-    else
+    path = if params[:version] == "original"
       "#{Rails.root}/#{@identification.doc_image.url()}"
+    else
+      "#{Rails.root}/#{@identification.doc_image.url(params[:version])}"
     end
 
     send_file path, :x_sendfiel=>true
