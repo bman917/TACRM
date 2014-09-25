@@ -9,14 +9,15 @@ $(document).ready(function(){
   
   	$('.toggler a').on('click', toggle_form);
 
-  	<% if can?(:update, Profile) && @profile.unlocked?%>
+  <% if can?(:update, Profile) && @profile.unlocked?%>
 		$('.best_in_place').best_in_place();
 	<% else %>
 		$('.best_in_place').removeClass('best_in_place');
 		$('#profile-tabs a').toggle();
-		$('#profile-tabs a.view_doc_image').show();
-		$('.pagination a').show();
 	<% end %>
+
+	$('#profile-tabs a.view_doc_image').show();
+	$('.pagination a').show();
 
     $('#profile-tabs').liquidSlider({
 	        slideEaseDuration: 500,

@@ -11,7 +11,10 @@ describe 'DocImage' do
 
   end
 
-  it 'has an upload link', :js do
+  #
+  #TO DO: break this test to smaller parts...
+  #
+  it 'has an upload feature', :js do
     within "##{@p.identifications.first.css_id}" do
       click_on 'upload'
     end
@@ -77,12 +80,9 @@ describe 'DocImage' do
     end
 
     attach_file('identification_doc_image',"#{Rails.root}/app/assets/javascripts/application.js")
-    #click_on 'Upload' #click Upload button
-    #Sep 25: jQuery file upload added. It will submit the form automatically upon
-    #        file selection.
-    
+    page.driver.browser.switch_to.alert.accept    
     expect(page).to have_no_css("img[alt='application.js']")
-    expect(page).to have_content('You are not allowed to upload "js" files')
+    
   end
 
   def close_modal_form
