@@ -62,8 +62,6 @@ class IdentificationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /identifications/1
-  # PATCH/PUT /identifications/1.json
   def update
     respond_to do |format|
       if @identification.update(identification_params)
@@ -73,14 +71,13 @@ class IdentificationsController < ApplicationController
         format.json { head :no_content }
         format.js { render 'add_identification'}
       else
-        format.html do
-          if identification_params[:doc_image]
-            render '/doc_image/new'
-          else
-            render action: 'edit'
-          end
-       end
-        format.json { render json: @identification.errors, status: :unprocessable_entity }
+        if identification_params[:doc_image]
+          format.html { render '/doc_image/new' }
+          format.js { render '/doc_image/new' }
+        else
+          render action: 'edit'
+          format.json { render json: @identification.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

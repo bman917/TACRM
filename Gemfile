@@ -92,3 +92,4 @@ gem 'jquery-datatables-rails'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
+gem "jquery-fileupload-rails"

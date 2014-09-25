@@ -27,6 +27,7 @@ TACRM::Application.routes.draw do
   get 'identification/:id/doc_image/download/:version' => 'doc_image#download', as: 'download_doc_image'
   get 'identification/:id/doc_image/new' => 'doc_image#new', as: 'new_doc_image'
   get 'identification/:id/doc_image/view' => 'doc_image#view', as: 'view_doc_image'
+  post 'identification/:id/doc_image/upload' => 'doc_image#upload', as: 'upload_doc_image'
   delete 'identification/:id/doc_image/destroy' => 'doc_image#destroy', as: 'delete_doc_image'
   resources :notes
 

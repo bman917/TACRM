@@ -1,3 +1,12 @@
 // Place all the styles related to the DocImage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#progress {
+  width: 100%;
+  background: #BBD39E;
+  display: none;
+}
+.bar {
+    height: 18px;
+    background: green;
+}

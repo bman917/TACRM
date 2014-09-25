@@ -1,6 +1,16 @@
 class DocImageController < ApplicationController
+  before_action :get_identification
+
   def new
     get_identification
+  end
+
+  def upload
+    if @identification.update(identification_params)
+      render 'identifications/add_identification'
+    else
+      render 'error'
+    end
   end
 
   def download
@@ -15,7 +25,6 @@ class DocImageController < ApplicationController
     send_file path, :x_sendfiel=>true
   end
 
-
   def destroy
     @identification = get_identification
     @identification.remove_doc_image!
@@ -28,7 +37,14 @@ class DocImageController < ApplicationController
   end
 
   private
-  def get_identification
-    @identification = Identification.find(params[:id])
-  end
+    def get_identification
+      @identification = Identification.find(params[:id])
+      @profile = @identification.profile
+      return @identification
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def identification_params
+      params.require(:identification).permit(:doc_image)
+    end    
 end

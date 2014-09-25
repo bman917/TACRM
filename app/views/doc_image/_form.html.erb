@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= simple_form_for @identification, :html => {id: 'upload_image', multipart: true} do |f| %>
+  <%= form_tag upload_doc_image_path(@identification), id: 'upload_image', multipart: true do |f| %>
   <h3 class="titleize">Upload Image</h3>
 
   <fieldset id="select_client">
@@ -28,9 +28,20 @@
 
   <fieldset id="select_client">
     <legend><%=@identification.display%></legend>
-    <%= f.file_field :doc_image %>
+    <%= file_field_tag :identification_doc_image, name: 'identification[doc_image]' %>
+    <div id="file_list" style="display: none">
+      <span>Uploading...</span></br>
+    </div>
+    <div id="progress">
+      <div class="bar" style="width: 0%;"></div>
+    </div>
   </fieldset>
-  <%= f.submit 'Upload' %>
-    
   <% end %>
 </div>
+
+<%=javascript_tag do %>
+
+//find me at doc_image.js
+init_doc_image_uploader();
+
+<% end %>

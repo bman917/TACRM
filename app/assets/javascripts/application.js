@@ -24,6 +24,7 @@
 //= require common_tools
 //= require common_tools/jquery-spin
 //= require common_tools/best_in_place_default_binds
+//= require jquery-fileupload/basic
 //= require_tree .
 
 function application_init() {

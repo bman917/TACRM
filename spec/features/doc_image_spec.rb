@@ -20,7 +20,10 @@ describe 'DocImage' do
     expect(page).to have_field("identification_doc_image")
 
     attach_file('identification_doc_image',"#{Rails.root}/app/assets/images/logo.png")
-    click_on 'Upload' #click Upload button
+    #click_on 'Upload' #click Upload button
+    #Sep 25: jQuery file upload added. It will submit the form automatically upon
+    #        file selection.
+
     within "##{@p.identifications.first.css_id}" do
       expect(page).to have_css("img[alt='logo.png']")
       click_on 'logo.png'
@@ -74,7 +77,10 @@ describe 'DocImage' do
     end
 
     attach_file('identification_doc_image',"#{Rails.root}/app/assets/javascripts/application.js")
-    click_on 'Upload'
+    #click_on 'Upload' #click Upload button
+    #Sep 25: jQuery file upload added. It will submit the form automatically upon
+    #        file selection.
+    
     expect(page).to have_no_css("img[alt='application.js']")
     expect(page).to have_content('You are not allowed to upload "js" files')
   end

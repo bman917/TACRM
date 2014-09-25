@@ -15,6 +15,7 @@
  *= require blueprint/fancy-type
  *= require blueprint/buttons
  *= require blueprint/ext
+ *= require jquery.fileupload-ui
  
  *= require jquery.ui.datepicker
  *= require best_in_place
