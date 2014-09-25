@@ -14,7 +14,7 @@ class IdentificationPresenter < BasePresenter
 
   def new_doc_image_link(remote=nil)
     lock_check do
-      link_to image_tag('upload-xl.png', size: '20x20', title: 'Upload Image', alt: 'upload'), new_doc_image_path(identification), remote: defined?(remote) && remote
+      link_to image_tag('upload-xl.png', size: '20x20', title: 'Upload Image', alt: 'upload'), new_doc_image_path(identification), class: 'upload_doc_image', remote: defined?(remote) && remote
     end
   end
 
