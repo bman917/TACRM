@@ -35,3 +35,11 @@ production:
   username: tacrm_admin
   password: <%=ENV['MYSQL_PASSWORD']%>
   host: localhost
+
+amayra_prod:
+  adapter: mysql2
+  database: tacrm_amayra_prod
+  pool: 5
+  username: tacrm_amayra
+  password: <%=ENV['MYSQL_PASSWORD']%>
+  host: localhost

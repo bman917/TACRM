@@ -47,7 +47,7 @@ group :development do
 	gem 'better_errors'
 	gem 'meta_request'
 	gem 'binding_of_caller'
-	gem 'capistrano'
+	gem 'capistrano', '3.2.0'
 	gem 'capistrano-rails'
 	gem 'capistrano-rvm'
 end
