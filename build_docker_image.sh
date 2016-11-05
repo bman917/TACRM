@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t jchan917/tacrm:latest .
+git clean -fdx && docker build -t jchan917/tacrm:latest .

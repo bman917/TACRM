@@ -3,6 +3,8 @@ RUN apt-get update && apt-get install nodejs=0.10.29~dfsg-2 imagemagick=8:6.8.9.
 ENV PATH /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16:$PATH
 
 WORKDIR /work/TACRM
-COPY . $WORKDIR
-
+COPY Gemfile Gemfile
+COPY Gemfile.lock COPYGemfile.lock
 RUN bundle install
+
+COPY . $WORKDIR
