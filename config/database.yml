@@ -5,9 +5,9 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql2
-  database: tacrm_production
+  database: <%=ENV['MYSQL_DATABASE']%>
   pool: 5
-  username: tacrm_admin
+  username: <%=ENV['MYSQL_USER']%>
   password: <%=ENV['MYSQL_PASSWORD']%>
   host: <%=ENV['MYSQL_URL']%>
 
@@ -22,11 +22,11 @@ test:
 
 staging:
   adapter: mysql2
-  database: tacrm_staging
+  database: <%=ENV['MYSQL_DATABASE']%>
   pool: 5
-  username: tacrm_staging
-  password: <%=ENV['TACRM_STAGING_MYSQL_PASSWORD']%>
-  host: localhost
+  username: <%=ENV['MYSQL_USER']%>
+  password: <%=ENV['MYSQL_PASSWORD']%>
+  host: <%=ENV['MYSQL_URL']%>
 
 production:
   adapter: mysql2
@@ -34,7 +34,7 @@ production:
   pool: 5
   username: tacrm_admin
   password: <%=ENV['MYSQL_PASSWORD']%>
-  host: localhost
+  host: <%=ENV['MYSQL_URL']%>
 
 amayra_prod:
   adapter: mysql2
@@ -42,4 +42,4 @@ amayra_prod:
   pool: 5
   username: tacrm_amayra
   password: <%=ENV['MYSQL_PASSWORD']%>
-  host: localhost
+  host: <%=ENV['MYSQL_URL']%>

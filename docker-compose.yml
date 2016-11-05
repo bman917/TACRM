@@ -28,11 +28,14 @@ services:
   tacrm:
     image: jchan917/tacrm:latest
     container_name: tacrm_dev
-    volumes:
-      - ~/uploads/development:/development
+    # volumes:
+    #   - ~/uploads:/uploads
+    #   - .:/work/TACRM
     environment:
+     - RAILS_ENV=production
      - MYSQL_URL=db
-     - RAILS_ENV=development
+     - MYSQL_DATABASE=tacrm_production
+     - MYSQL_USER=tacrm_admin     
      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
       - db
@@ -40,4 +43,4 @@ services:
       - db
     ports:
       - "3000:3000"
-    entrypoint: ./wait-for-it.sh db:3306 -t 30 --strict -- ./start.sh
+    entrypoint: docker_scripts/wait-for-it.sh db:3306 -t 30 --strict -- docker_scripts/start.sh

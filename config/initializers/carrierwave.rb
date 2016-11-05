@@ -9,6 +9,6 @@ CarrierWave.configure do |config|
   if %w(test).include?(Rails.env)
     config.root = Rails.root
   else
-    config.root = "/#{Rails.env}"
+    config.root = "/uploads/#{Rails.env}"
   end
 end
