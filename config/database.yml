@@ -9,7 +9,7 @@ development:
   pool: 5
   username: tacrm_admin
   password: <%=ENV['MYSQL_PASSWORD']%>
-  host: localhost
+  host: <%=ENV['MYSQL_URL']%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
