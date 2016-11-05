@@ -8,7 +8,7 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=tacrm_production
       - MYSQL_USER=tacrm_admin
-      - MYSQL_PASSWORD=password
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
   phpmyadmin:
