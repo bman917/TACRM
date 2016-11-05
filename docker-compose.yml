@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: mysql/mysql-server:5.5
+    # volumes:
+    #   - /var/lib/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=tacrm_production
+      - MYSQL_USER=tacrm_admin
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.6.4-1
+    container_name: phpmyadmin
+    environment:
+     - PMA_ARBITRARY=1
+    restart: always
+    ports:
+     - 8080:80
+    volumes:
+     - /sessions
+    links:
+     - db
